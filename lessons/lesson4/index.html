@@ -20,15 +20,15 @@
         ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-thumb { background: #e2b96f; border-radius: 10px; }
         .verse { font-family: 'Amiri', serif; color: #b45309; text-align: center; font-size: 1.25rem; line-height: 2; padding: 1rem; background: #fffbeb; border: 1px dashed #e2b96f; margin: 1rem 0; border-radius: 0.5rem; }
         
-        /* البطاقات الدوارة */
-        .flip-card { perspective: 1000px; height: 200px; cursor: pointer; }
+        /* البطاقات */
+        .flip-card { perspective: 1000px; height: 180px; cursor: pointer; }
         .flip-card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; }
         .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
         .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; display: flex; align-items: center; justify-content: center; padding: 1rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .flip-card-front { background: #16213e; color: #e2b96f; border: 2px solid #e2b96f; font-family: 'Amiri', serif; font-size: 1.4rem; }
-        .flip-card-back { background: #faf8f3; color: #16213e; border: 2px solid #16213e; transform: rotateY(180deg); font-size: 1rem; line-height: 1.6; }
+        .flip-card-front { background: #16213e; color: #e2b96f; border: 2px solid #e2b96f; font-family: 'Amiri', serif; font-size: 1.3rem; }
+        .flip-card-back { background: #faf8f3; color: #16213e; border: 2px solid #16213e; transform: rotateY(180deg); font-size: 0.95rem; line-height: 1.6; }
         
-        /* الخريطة الذهنية */
+        /* الخريطة */
         .map-root { background: #16213e; color: #e2b96f; border: 2px solid #e2b96f; padding: 0.75rem 2rem; border-radius: 1rem; font-weight: bold; font-size: 1.25rem; display: inline-block; margin-bottom: 2rem; position: relative; }
         .map-branch { background: white; border: 1px solid #16213e; position: relative; padding: 1rem; border-radius: 0.5rem; }
         .map-branch::before { content: ''; position: absolute; top: -2rem; left: 50%; width: 2px; height: 2rem; background: #e2b96f; }
@@ -41,7 +41,7 @@
     <div id="root"></div>
     <script type="text/babel">
         // ==========================================
-        // 1. DATA (المادة العلمية الشاملة والملونة)
+        // 1. DATA (المادة العلمية الشاملة)
         // ==========================================
         
         const TOPICS_DATA = [
@@ -126,9 +126,9 @@
                     <p><span className="text-blue-700 font-bold">الرجعة:</span> إعادة زوجته المطلقة طلاقاً غير بائن بدون عقد.</p>
                     <p className="font-bold text-navy">شروط صحة الرجعة:</p>
                     <ul className="list-disc list-inside bg-white p-4 rounded shadow-sm">
-                        <li>أن يكون الطلاق <span className="text-green-600 font-bold">دون الثلاث</span> (الطلقة الأولى أو الثانية).</li>
-                        <li>أن تكون المطلقة <span className="text-green-600 font-bold">مدخولاً بها</span> (لأن غير المدخول بها تبين فوراً).</li>
-                        <li>أن يكون الطلاق <span className="text-green-600 font-bold">بغير عوض</span> (ليس خلعاً).</li>
+                        <li>أن يكون الطلاق <span className="text-green-600 font-bold">دون الثلاث</span>.</li>
+                        <li>أن تكون المطلقة <span className="text-green-600 font-bold">مدخولاً بها</span>.</li>
+                        <li>أن يكون الطلاق <span className="text-green-600 font-bold">بغير عوض</span>.</li>
                         <li>أن تكون الرجعة <span className="text-green-600 font-bold">أثناء العدة</span>.</li>
                     </ul>
                 </div>,
@@ -138,27 +138,37 @@
             }
         ];
 
+        // --- 12 بطاقة ---
         const FLASHCARDS = [
-            { f: "الخلع شرعاً", b: "فرقة تجري بين الزوجين على عوض مالي تدفعه المرأة." },
+            { f: "الخلع شرعاً", b: "فرقة تجري بين الزوجين على عوض مالي تدفعه المرأة لزوجها." },
             { f: "الطلاق شرعاً", b: "حل قيد النكاح أو بعضه." },
-            { f: "طلاق صريح", b: "لفظ لا يحتمل غير الطلاق (أنت طالق)، ويقع بلا نية." },
+            { f: "طلاق صريح", b: "لفظ لا يحتمل غير الطلاق (أنت طالق)، ويقع وإن لم ينوِ." },
             { f: "طلاق كناية", b: "لفظ يحتمل الطلاق وغيره (الحقي بأهلك)، ولا يقع إلا بنية." },
             { f: "طلاق السنة", b: "طلقة واحدة في طهر لم يجامعها فيه." },
             { f: "طلاق البدعة", b: "الطلاق في الحيض، أو بعد جماع، أو ثلاثاً بلفظ واحد." },
-            { f: "الرجعة", b: "إعادة المطلقة غير البائن لعصمته بدون عقد." },
-            { f: "طلاق غير المدخول بها", b: "بائن لا عدة لها، وتبين بمجرد النطق بالطلاق." }
+            { f: "الرجعة", b: "إعادة المطلقة رجعياً لعصمته بدون عقد." },
+            { f: "طلاق غير المدخول بها", b: "بائن لا عدة لها، وتبين بمجرد النطق بالطلاق." },
+            { f: "الخلع في الحيض", b: "يجوز شرعاً ولا يكره، لعدم الضرر بتطويل العدة." },
+            { f: "طلاق الغضبان", b: "الغضبان غضباً شديداً يفقده الإدراك لا يقع طلاقه." },
+            { f: "البينونة الصغرى", b: "انقضاء العدة قبل الرجعة، تحل له بعقد ومهر جديدين." },
+            { f: "البينونة الكبرى", b: "استيفاء 3 طلقات، لا تحل له حتى تتزوج غيره ويدخل بها." }
         ];
 
+        // --- 10 أسئلة مقالية ---
         const ESSAYS = [
-            { q: "ما الفرق بين الطلاق الصريح والكناية؟", a: "الصريح: موضوع للطلاق (طلقتك) ويقع بلا نية بمجرد التلفظ به. الكناية: يحتمل الطلاق وغيره (اخرجي، الحقي بأهلك) ولا يقع إلا بوجود نية الطلاق." },
+            { q: "ما هو الخلع شرعاً؟ وما دليله من القرآن الكريم؟", a: "هو فرقة تجري بين الزوجين على عوض مالي تدفعه المرأة. دليله: ﴿فَإِنْ خِفْتُمْ أَلَّا يُقِيمَا حُدُودَ اللَّهِ فَلَا جُنَاحَ عَلَيْهِمَا فِيمَا افْتَدَتْ بِهِ﴾." },
+            { q: "ما هي الحكمة من مشروعية الخلع؟", a: "دفع الضرر عن المرأة إذا ساءت العشرة وكرهت خلق زوجها أو دينه، وخافت ألا تقيم حدود الله، فيباح لها طلب الفراق مقابل عوض." },
+            { q: "هل يقع الطلاق من المكره؟ وما العلة؟", a: "لا يقع طلاق المكره؛ لعدم وجود القصد والرضا والاختيار الذي هو شرط في صحة إيقاع الطلاق." },
+            { q: "ما الفرق بين الطلاق الصريح والكناية؟", a: "الصريح: موضوع للطلاق (طلقتك) ويقع بلا نية بمجرد التلفظ به. الكناية: يحتمل الطلاق (اخرجي) ولا يقع إلا بوجود نية الطلاق." },
             { q: "ما حكم إيقاع الطلاق البدعي؟ وهل يقع؟", a: "حكمه محرم ويأثم الزوج بفعله، ولكنه يقع شرعاً وتُحسب طلقة (وفقاً للجمهور)." },
-            { q: "ما هي شروط صحة الرجعة؟", a: "1- أن يكون الطلاق دون الثلاث (الأولى أو الثانية). 2- أن تكون مدخولاً بها. 3- أن يكون الطلاق بلا عوض (ليس خلعاً). 4- أن تكون الرجعة أثناء العدة." },
+            { q: "ما هي شروط صحة الرجعة؟", a: "1- أن يكون الطلاق دون الثلاث. 2- أن تكون مدخولاً بها. 3- أن يكون الطلاق بلا عوض. 4- أن تكون الرجعة أثناء العدة." },
             { q: "هل يشترط لرجعة المرأة رضاها أو وجود وليها؟", a: "لا يشترط رضاها ولا رضا وليها؛ فالزوج أحق بردها في العدة لقوله تعالى: (وبعولتهن أحق بردهن)." },
-            { q: "ما الفرق بين البينونة الصغرى والكبرى؟", a: "الصغرى: انقضاء العدة من طلقة أولى أو ثانية، وتحل بعقد ومهر جديدين. الكبرى: استيفاء 3 طلقات، لا تحل له حتى تتزوج رجلاً غيره ويدخل بها ثم يفارقها." },
-            { q: "ما حكم خروج المطلقة رجعياً من بيتها أثناء العدة؟", a: "تعتبر زوجة، فلا يجوز لها الخروج ولا للزوج إخراجها، ولها حق النفقة والسكنى، لعل الله يحدث بعد ذلك أمراً." }
+            { q: "بم تحصل الرجعة للمطلقة؟", a: "تحصل باللفظ مثل (راجعت امرأتي)، أو تحصل بالفعل كالوطء إذا نوى به الرجعة." },
+            { q: "ما الفرق بين البينونة الصغرى والكبرى؟", a: "الصغرى: انقضاء العدة وتحل بعقد ومهر جديدين. الكبرى: استيفاء 3 طلقات، ولا تحل له حتى تتزوج رجلاً غيره ويفارقها." },
+            { q: "ما حكم خروج المطلقة رجعياً من بيتها أثناء العدة؟", a: "تعتبر زوجة، فلا يجوز لها الخروج ولا للزوج إخراجها، ولها حق النفقة والسكنى." }
         ];
 
-        // 20 سؤال بأربع خيارات دقيقة
+        // --- 20 سؤال اختياري ---
         const QUIZ = [
             { q: "الخلع لغة مأخوذ من:", o: ["خلع الثوب", "الخروج والهروب", "الترك والهجر", "القسمة"], a: 0 },
             { q: "الخلع شرعاً يقع مقابل:", o: ["بدون مقابل", "عوض مالي", "شروط قاسية", "تنازل عن الحضانة"], a: 1 },
@@ -185,7 +195,7 @@
         // ==========================================
         // 2. DB & UTILS
         // ==========================================
-        const DB_KEY = 'fiqh_v3';
+        const DB_KEY = 'fiqh_v4';
         const getRecs = () => JSON.parse(localStorage.getItem(DB_KEY) || '[]');
         const saveRec = (r) => { const x = getRecs(); x.push(r); localStorage.setItem(DB_KEY, JSON.stringify(x)); };
         const getConf = (k) => localStorage.getItem(k) || '';
@@ -242,7 +252,6 @@
             const [stu, setStu] = React.useState({ n: '', s: '' });
             const [dash, setDash] = React.useState(false);
 
-            // Google Gemini Chat Widget State
             const [chatOpen, setChatOpen] = React.useState(false);
             const [msgs, setMsgs] = React.useState([{r:'bot', t:'مرحباً بك! أنا مساعدك الذكي لمادة الفقه. هل لديك سؤال حول النكاح أو الطلاق؟'}]);
             const [inp, setInp] = React.useState('');
@@ -259,8 +268,8 @@
                     const key = getConf('geminiAPI'); 
                     if(!key) throw new Error("المعلم لم يقم بإضافة مفتاح الذكاء الاصطناعي.");
                     
-                    // استخدام gemini-pro لضمان التوافق المطلق
-                    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${key}`, {
+                    // استخدام النموذج الأحدث والمستقر 1.5-flash-latest
+                    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${key}`, {
                         method: 'POST', headers: {'Content-Type': 'application/json'},
                         body: JSON.stringify({ contents: [{ parts: [{ text: `أنت معلم فقه ميسر لطلاب الجامعة تشرح أحكام الطلاق والخلع. أجب باختصار ولطف.\nسؤال الطالب: ${txt}` }] }] })
                     });
@@ -324,7 +333,6 @@
                         </nav>
                     )}
 
-                    {/* AI Chat Widget */}
                     {screen !== 'welcome' && (
                         <div className="fixed bottom-20 left-4 z-50">
                             {!chatOpen && <button onClick={()=>setChatOpen(true)} className="w-14 h-14 bg-gradient-to-tr from-navy to-blue-800 text-gold rounded-full shadow-2xl flex items-center justify-center font-bold text-2xl hover:scale-110 transition border-2 border-gold">؟</button>}
@@ -365,7 +373,7 @@
                         setActIdx(a=>a+1); 
                     } else { 
                         alert('🌟 أحسنت! أكملت تمارين هذه الشريحة، يمكنك الانتقال للشريحة التالية.'); 
-                        setActIdx(-1); // -1 تعني اكتمال التمارين
+                        setActIdx(-1); 
                     }
                 } else alert('❌ إجابة خاطئة، حاول مرة أخرى للتقدم.');
             };
@@ -391,7 +399,6 @@
                                         <button key={i} onClick={()=>handleAns(i)} className="w-full text-right p-4 bg-gray-50 border-2 border-gray-100 rounded-xl hover:border-gold hover:bg-gold/10 transition font-medium text-navy text-lg">{opt}</button>
                                     ))}
                                 </div>
-                                <p className="text-xs text-gray-400 mt-4 text-center">أجب بشكل صحيح لتتمكن من الانتقال للشريحة التالية.</p>
                             </div>
                         ) : (
                             <div className="text-center bg-green-50 border border-green-200 text-green-700 font-bold p-6 rounded-xl animate-fade text-lg">
@@ -413,11 +420,11 @@
                 <div className="w-full max-w-2xl bg-white p-8 rounded-3xl shadow-sm border text-center">
                     <div className="map-root">الفرقة بين الزوجين</div>
                     <div className="flex justify-around relative pt-6 border-t-2 border-gold/50">
-                        <div className="map-branch w-2/5 shadow-sm">
+                        <div className="map-branch w-[45%] shadow-sm">
                             <h3 className="font-bold text-navy text-xl border-b pb-2 mb-2">الخلع</h3>
                             <p className="text-sm text-gray-600 font-medium">بعوض مالي<br/>بائنة لا رجعة فيها<br/>يجوز في الحيض</p>
                         </div>
-                        <div className="map-branch w-2/5 shadow-sm">
+                        <div className="map-branch w-[45%] shadow-sm">
                             <h3 className="font-bold text-navy text-xl border-b pb-2 mb-2">الطلاق</h3>
                             <p className="text-sm text-gray-600 font-medium">بغير عوض<br/>رجعي أو بائن<br/>لا يجوز في الحيض</p>
                         </div>
@@ -449,8 +456,8 @@
             
             return (
                 <div className="animate-fade pb-10">
-                    <h2 className="text-2xl font-amiri text-navy mb-6 text-center font-bold">1. بطاقات المفاهيم</h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
+                    <h2 className="text-2xl font-amiri text-navy mb-6 text-center font-bold">1. بطاقات المفاهيم ({FLASHCARDS.length})</h2>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12">
                         {FLASHCARDS.map((c, i) => {
                             const [fl, setFl] = React.useState(false);
                             return (
@@ -465,7 +472,7 @@
                     </div>
                     
                     <div className="border-t-2 border-gray-200 pt-8">
-                        <h2 className="text-2xl font-amiri text-navy mb-6 text-center font-bold">2. الأسئلة المقالية للتقييم الذاتي</h2>
+                        <h2 className="text-2xl font-amiri text-navy mb-6 text-center font-bold">2. الأسئلة المقالية للتقييم الذاتي ({ESSAYS.length})</h2>
                         <div className="space-y-4">
                             {ESSAYS.map((q, i) => (
                                 <div key={i} className="rounded-xl overflow-hidden shadow-sm border border-gray-100">
@@ -493,7 +500,8 @@
             const callGemini = async (sys, prompt) => {
                 const key = getConf('geminiAPI'); 
                 if(!key) throw new Error("مفتاح API غير متوفر، الرجاء إخبار المعلم لإضافته من لوحة التحكم.");
-                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${key}`, {
+                // استخدام النموذج 1.5-flash-latest لحل مشكلة عدم التوفر في بعض المناطق
+                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${key}`, {
                     method: 'POST', headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({ contents: [{ parts: [{ text: `${sys}\n\n${prompt}` }] }] })
                 });
