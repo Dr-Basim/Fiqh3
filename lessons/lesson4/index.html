@@ -41,7 +41,7 @@
     <div id="root"></div>
     <script type="text/babel">
         // ==========================================
-        // 1. DATA (المادة العلمية الشاملة)
+        // 1. DATA
         // ==========================================
         
         const TOPICS_DATA = [
@@ -195,7 +195,7 @@
         // ==========================================
         // 2. DB & UTILS
         // ==========================================
-        const DB_KEY = 'fiqh_v4';
+        const DB_KEY = 'fiqh_v5';
         const getRecs = () => JSON.parse(localStorage.getItem(DB_KEY) || '[]');
         const saveRec = (r) => { const x = getRecs(); x.push(r); localStorage.setItem(DB_KEY, JSON.stringify(x)); };
         const getConf = (k) => localStorage.getItem(k) || '';
@@ -268,8 +268,8 @@
                     const key = getConf('geminiAPI'); 
                     if(!key) throw new Error("المعلم لم يقم بإضافة مفتاح الذكاء الاصطناعي.");
                     
-                    // استخدام النموذج الأحدث والمستقر 1.5-flash-latest
-                    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${key}`, {
+                    // التحديث الجذري هنا: استخدام gemini-1.5-flash وهو المدعوم رسمياً الآن من جوجل للـ REST API
+                    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${key}`, {
                         method: 'POST', headers: {'Content-Type': 'application/json'},
                         body: JSON.stringify({ contents: [{ parts: [{ text: `أنت معلم فقه ميسر لطلاب الجامعة تشرح أحكام الطلاق والخلع. أجب باختصار ولطف.\nسؤال الطالب: ${txt}` }] }] })
                     });
@@ -500,8 +500,8 @@
             const callGemini = async (sys, prompt) => {
                 const key = getConf('geminiAPI'); 
                 if(!key) throw new Error("مفتاح API غير متوفر، الرجاء إخبار المعلم لإضافته من لوحة التحكم.");
-                // استخدام النموذج 1.5-flash-latest لحل مشكلة عدم التوفر في بعض المناطق
-                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${key}`, {
+                // التحديث الجذري هنا لحل المشكلة:
+                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${key}`, {
                     method: 'POST', headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({ contents: [{ parts: [{ text: `${sys}\n\n${prompt}` }] }] })
                 });
