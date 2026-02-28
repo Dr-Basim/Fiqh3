@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تطبيق الفقه الميسر | الخلع والطلاق والرجعة</title>
+
+    <!-- الخطوط العربية -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#16213e',
+                        gold: '#e2b96f',
+                        creamy: '#faf8f3',
+                        trait1: '#f0fdf4',
+                        trait2: '#eff6ff',
+                        trait3: '#fdf2f8',
+                        trait4: '#fffbeb',
+                        trait5: '#f5f3ff',
+                        trait6: '#fdf4ff',
+                        trait7: '#ecfeff',
+                        trait8: '#fef2f2'
+                    },
+                    fontFamily: {
+                        amiri: ['Amiri', 'serif'],
+                        tajawal:['Tajawal', 'sans-serif']
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out',
+                        'slide-up': 'slideUp 0.5s ease-out',
+                        'bounce-slight': 'bounceSlight 2s infinite',
+                        'pulse-glow': 'pulseGlow 2s infinite'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- React & ReactDOM -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- Custom CSS -->
+    <style>
+        body { background-color: #faf8f3; font-family: 'Tajawal', sans-serif; overflow-x: hidden; }
+        h1, h2, h3, h4, h5, h6, .verse-text { font-family: 'Amiri', serif; }
+        
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(226, 185, 111, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+        }
+
+        .hl-red { color: #dc2626; font-weight: bold; }
+        .hl-blue { color: #2563eb; font-weight: bold; }
+        .hl-emerald { color: #059669; font-weight: bold; }
+        .hl-gold { color: #b4862b; font-weight: bold; }
+        .hl-mark { background-color: #fef08a; padding: 0 4px; border-radius: 4px; color: #16213e; font-weight: 600;}
+
+        .verse {
+            background: rgba(255, 255, 255, 0.7);
+            border-right: 4px solid #e2b96f;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.5rem 1.5rem 1.5rem 0.5rem;
+            font-family: 'Amiri', serif;
+            font-size: 1.35rem;
+            line-height: 2.2;
+            color: #16213e;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            position: relative;
+        }
+
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2316213e%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat;
+            background-position: left 0.7rem top 50%;
+            background-size: 0.65rem auto;
+            padding-left: 2rem;
+        }
+
+        .flip-card { perspective: 1000px; height: 260px; }
+        .flip-card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); transform-style: preserve-3d; }
+        .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 1.5rem; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1.5rem; border: 2px solid rgba(226, 185, 111, 0.5); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);}
+        .flip-card-front { background: linear-gradient(135deg, #16213e, #2a3d6b); color: #faf8f3; }
+        .flip-card-back { background: #faf8f3; color: #16213e; transform: rotateY(180deg); overflow-y: auto; }
+
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #e2b96f; border-radius: 3px; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+
+        /* Custom Mind Map Styles */
+        .map-root { background: linear-gradient(135deg, #16213e, #2a3d6b); color: white; border: 3px solid #e2b96f; box-shadow: 0 10px 20px rgba(22, 33, 62, 0.3); }
+        .map-branch { background: white; color: #16213e; border: 2px solid #e2b96f; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .map-leaf { background: #faf8f3; border-right: 4px solid #e2b96f; }
+        .v-line { width: 3px; background-color: #e2b96f; margin: 0 auto; }
+        .h-line { height: 3px; background-color: #e2b96f; }
+    </style>
+</head>
+<body class="text-navy antialiased min-h-screen flex flex-col">
+    <div id="root" class="flex-grow flex flex-col"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        // --- رابط شعار الجامعة (يقرأ الصورة من نفس المجلد) ---
+        const UNIVERSITY_LOGO_URL = "./logo.png"; 
+
+        // --- دوال مساعدة لرسم الخرائط الشجرية المصغرة داخل المادة ---
+        const renderTree = (rootText, childrenArray) => {
+            const numChildren = childrenArray.length;
+            const lineWidth = numChildren > 1 ? `${((numChildren - 1) / numChildren) * 100}%` : '0%';
+            return (
+                <div className="flex flex-col items-center mt-6 w-full max-w-4xl mx-auto">
+                    <div className="bg-navy text-white px-8 py-3 rounded-full border-2 border-gold font-bold text-xl shadow-lg text-center z-10 w-11/12 md:w-auto min-w-[200px]">{rootText}</div>
+                    <div className="w-1.5 h-8 bg-gold"></div>
+                    {numChildren > 1 && (<div className="w-full relative flex justify-center"><div className="absolute top-0 h-1.5 bg-gold" style={{ width: lineWidth }}></div></div>)}
+                    <div className={`flex justify-around w-full relative z-0 mt-0 gap-2 md:gap-6`}>
+                        {childrenArray.map((child, i) => (
+                            <div key={i} className="flex flex-col items-center flex-1">
+                                {numChildren > 1 && <div className="w-1.5 h-6 bg-gold"></div>}
+                                <div className="text-gold -mt-3 mb-2 text-2xl drop-shadow-md">▼</div>
+                                <div className="bg-white text-navy px-4 py-4 rounded-2xl border-b-4 border-gold shadow-md text-center w-full text-base md:text-lg font-bold leading-relaxed flex flex-col items-center justify-center min-h-[100px]">{child}</div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            );
+        };
+
+        const renderSequenceTree = (rootText, stepsArray) => {
+            return (
+                <div className="flex flex-col items-center mt-6 w-full max-w-md mx-auto">
+                    <div className="bg-navy text-white px-8 py-3 rounded-full border-2 border-gold font-bold text-xl shadow-lg text-center z-10 w-full">{rootText}</div>
+                    {stepsArray.map((step, idx) => (
+                        <React.Fragment key={idx}>
+                            <div className="w-1.5 h-8 bg-gold"></div>
+                            <div className="text-gold -mt-3 mb-2 text-3xl drop-shadow-md">▼</div>
+                            <div className={`px-6 py-4 rounded-2xl border-2 ${idx === stepsArray.length - 1 ? 'border-red-500 bg-red-50 text-red-700' : 'border-gold bg-white text-navy'} shadow-md text-center w-11/12 text-lg md:text-xl font-bold leading-relaxed`}>{step}</div>
+                        </React.Fragment>
+                    ))}
+                </div>
+            );
+        };
+
+        // --- البيانات التفاعلية ---
+        const TOPICS_DATA =[
+            {
+                id: 1, trait: "trait1", title: "الخُلع: تعريفه ومشروعيته",
+                content: (
+                    <div>
+                        <p className="mb-4 text-lg"><span className="hl-blue">الخُلع لغة:</span> مأخوذ من خلع الثوب؛ لأن كلاً من الزوجين لباس للآخر.</p>
+                        <p className="mb-4 text-lg"><span className="hl-blue">وشرعاً:</span> فُرقة تجري بين الزوجين على <span className="hl-mark">عوض تدفعه المرأة لزوجها</span>، بألفاظ مخصوصة.</p>
+                        <h3 className="text-xl font-bold mb-2 text-navy">مشروعية الخلع:</h3>
+                        <p className="mb-2 text-lg">الخلع مشروع؛ لقوله تعالى:</p>
+                        <div className="verse text-emerald-800">﴿ فَإِنْ خِفْتُمْ أَلَّا يُقِيمَا حُدُودَ اللَّهِ فَلَا جُنَاحَ عَلَيْهِمَا فِيمَا افْتَدَتْ بِهِ ﴾ [البقرة: 229]</div>
+                        <p className="text-lg">ولحديث امرأة ثابت بن قيس حينما أتت النبي ﷺ وقالت: (يا رسول الله ثابت بن قيس ما أعتب عليه في خلق ولا دين، ولكني أكره الكفر في الإسلام). فقال النبي ﷺ: <span className="verse-text text-blue-900">(أتردين عليه حديقته؟)</span> قالت: نعم. فقال رسول الله ﷺ: <span className="verse-text text-blue-900">(اقبل الحديقة، وطلقها تطليقة)</span>.</p>
+                    </div>
+                ),
+                tree: renderTree("الخُلع",[
+                    <span>التعريف<br/><span className="text-gray-600 font-normal block mt-2 text-base">فرقة بين الزوجين على عوض تدفعه المرأة</span></span>,
+                    <span>المشروعية<br/><span className="text-emerald-600 block mt-2 text-base">جائز ومشروع بالكتاب والسنة</span></span>
+                ]),
+                activity: {
+                    type: "fill-blank", question: "أكمل الفراغات بما يناسب تعريف الخلع:",
+                    textParts:["الخلع شرعاً هو فرقة تجري بين الزوجين على ", " تدفعه ", " لزوجها."],
+                    blanks:[
+                        { id: 0, options: ["عوض (مال)", "مهر جديد"], correct: "عوض (مال)" },
+                        { id: 1, options: ["المرأة", "المحكمة"], correct: "المرأة" }
+                    ]
+                }
+            },
+            {
+                id: 2, trait: "trait2", title: "أحكام الخلع",
+                content: (
+                    <div>
+                        <h3 className="text-xl font-bold mb-4 text-navy border-b-2 border-gold pb-2 inline-block">تتلخص أحكام الخلع في الآتي:</h3>
+                        <ul className="list-none space-y-4 text-lg">
+                            <li className="flex items-start"><span className="text-gold ml-2 font-bold">١-</span> الخلع جائز لسوء العشرة، <span className="hl-red">ولا يقع إلا بعوض مالي</span> تفرضه الزوجة للزوج.</li>
+                            <li className="flex items-start"><span className="text-gold ml-2 font-bold">٢-</span> <span className="hl-red">لا يقع</span> من غير الزوجة الرشيدة؛ لأن غير الرشيدة لا تملك التصرف لنقص الأهلية.</li>
+                            <li className="flex items-start"><span className="text-gold ml-2 font-bold">٣-</span> إذا خالع الرجل امرأته ملكت المرأة بذلك أمر نفسها، <span className="hl-red">ولا رجعة له عليها</span>.</li>
+                            <li className="flex items-start"><span className="text-gold ml-2 font-bold">٤-</span> <span className="hl-emerald">يجوز</span> الخلع في الحيض والطهر الذي جامعها فيه؛ لعدم الضرر عليها بذلك.</li>
+                            <li className="flex items-start"><span className="text-gold ml-2 font-bold">٥-</span> <span className="hl-red">يحرم</span> على الرجل أن يؤذي زوجته ويمنعها حقوقها حتى يضطرها إلى خلع نفسها.</li>
+                        </ul>
+                    </div>
+                ),
+                tree: renderTree("أهم أحكام الخلع",[
+                    <span>العوض المالي<br/><span className="text-gray-600 block mt-1 text-base">شرط أساسي لوقوع الخلع</span></span>,
+                    <span>الرجعة<br/><span className="text-red-600 block mt-1 text-base">لا رجعة للزوج عليها (تملك أمر نفسها)</span></span>,
+                    <span>وقت الخلع<br/><span className="text-emerald-600 block mt-1 text-base">يجوز في الحيض والطهر</span></span>
+                ]),
+                activity: {
+                    type: "matching", question: "اربط الحكم الفقهي بحالته في الخلع:",
+                    pairs:[
+                        { term: "الخلع بدون عوض مالي", def: "لا يقع الخلع." },
+                        { term: "إرجاع الزوجة بعد الخلع", def: "لا رجعة له عليها، فقد ملكت أمر نفسها." },
+                        { term: "الخلع أثناء فترة الحيض", def: "يجوز، لعدم الضرر عليها." }
+                    ]
+                }
+            },
+            {
+                id: 3, trait: "trait3", title: "الطلاق: تعريفه ومشروعيته",
+                content: (
+                    <div>
+                        <p className="mb-4 text-lg"><span className="hl-blue">الطلاق لغة:</span> التخلية، يقال: طَلَقَت الناقة إذا سرحت حيث شاءت.</p>
+                        <p className="mb-4 text-lg"><span className="hl-blue">وشرعاً:</span> حل قيد النكاح أو بعضه.</p>
+                        <h3 className="text-xl font-bold mb-2 text-navy">مَن يصح طلاقه:</h3>
+                        <p className="mb-4 text-lg">يصح إيقاع الطلاق من الزوج <span className="hl-emerald">البالغ العاقل المميز المختار</span> الذي يعقله، أو من وكيله. <span className="hl-red">فلا يقع</span> طلاق غير الزوج، ولا الصبي، ولا المجنون، ولا السكران، ولا المكره، ولا الغضبان غضباً شديداً لا يدري معه ما يقول.</p>
+                        <h3 className="text-xl font-bold mb-2 text-navy">حكمة مشروعيته:</h3>
+                        <p className="text-lg">شُرع الطلاق لأن فيه حلاً للمشكلات الزوجية عند الحاجة إليه، وبخاصة عند عدم الوفاق، وحلول البغضاء التي لا يتمكن الزوجان معها من إقامة حدود الله.</p>
+                    </div>
+                ),
+                tree: renderTree("شروط المُطَلِّق (من يصح طلاقه)",[
+                    <span>يقع طلاقه<br/><span className="text-emerald-600 block mt-1 text-base">البالغ، العاقل، المختار</span></span>,
+                    <span>لا يقع طلاقه<br/><span className="text-red-600 block mt-1 text-base">الصبي، المجنون، المكره، الغضبان (فاقد الوعي)</span></span>
+                ]),
+                activity: {
+                    type: "matching", question: "ميّز بين من يقع طلاقه ومن لا يقع:",
+                    pairs:[
+                        { term: "الزوج البالغ العاقل المختار", def: "يقع طلاقه." },
+                        { term: "المكره (المجبر بالقوة)", def: "لا يقع طلاقه." },
+                        { term: "الغضبان غضباً شديداً لا يدري ما يقول", def: "لا يقع طلاقه." }
+                    ]
+                }
+            },
+            {
+                id: 4, trait: "trait4", title: "حكم الطلاق",
+                content: (
+                    <div>
+                        <p className="mb-4 text-lg">الأصل في الطلاق أن يكون <span className="hl-emerald">جائزاً، مباحاً</span>، يقوم به الرجل عند الضرورة والحاجة إليه؛ كسوء خلق المرأة وسوء عشرتها.</p>
+                        <div className="space-y-4">
+                            <div className="p-4 bg-white rounded-xl shadow-sm border border-gray-200">
+                                <h5 className="font-bold text-lg text-navy mb-1">الطلاق المندوب (المستحب):</h5>
+                                <p className="text-lg">إذا اشتمل على المصالح؛ من إعفاف نفسه، وطلب النسل، وغيرها.</p>
+                            </div>
+                            <div className="p-4 bg-white rounded-xl shadow-sm border border-gray-200">
+                                <h5 className="font-bold text-lg text-navy mb-1">الطلاق المكروه:</h5>
+                                <p className="text-lg">يُكره من غير حاجة إليه، مع استقامة الحال.</p>
+                            </div>
+                            <div className="p-4 bg-white rounded-xl shadow-sm border border-gray-200">
+                                <h5 className="font-bold text-lg text-navy mb-1">الطلاق المحرم:</h5>
+                                <p className="text-lg">يحرم في بعض الأحوال (كالطلاق البدعي)، أو إذا علم بفجور زوجته وتبين زناها لئلا يكون ديوثاً، ولئلا تُلحق به ولداً من غيره.</p>
+                            </div>
+                        </div>
+                    </div>
+                ),
+                tree: renderTree("الأحكام التكليفية للطلاق",[
+                    <span>مباح / مندوب<br/><span className="text-emerald-600 block mt-1 text-base">عند الحاجة أو لتحقيق مصلحة شرعية</span></span>,
+                    <span>مكروه<br/><span className="text-gold block mt-1 text-base">من غير حاجة مع استقامة الحال</span></span>,
+                    <span>محرم<br/><span className="text-red-600 block mt-1 text-base">الطلاق البدعي، أو لإلحاق الضرر</span></span>
+                ]),
+                activity: {
+                    type: "fill-blank", question: "أكمل الفراغات لتحديد حكم الطلاق:",
+                    textParts:["الأصل في الطلاق أنه ", " عند الحاجة إليه، ولكنه يكون ", " إذا كان من غير حاجة مع استقامة الحال."],
+                    blanks:[
+                        { id: 0, options: ["محرم", "مباح وجائز"], correct: "مباح وجائز" },
+                        { id: 1, options: ["مكروهاً", "واجباً"], correct: "مكروهاً" }
+                    ]
+                }
+            },
+            {
+                id: 5, trait: "trait5", title: "ألفاظ الطلاق",
+                content: (
+                    <div>
+                        <h3 className="text-xl font-bold mb-4 text-navy">تنقسم ألفاظ الطلاق إلى قسمين:</h3>
+                        <div className="mb-6">
+                            <h4 className="font-bold text-lg text-navy mb-2 flex items-center"><span className="text-gold ml-2">١-</span> ألفاظ صريحة:</h4>
+                            <p className="text-lg">وهي الألفاظ الموضوعة له، التي لا تحتمل غيره، وهي لفظ الطلاق وما تصرّف منه. <span className="hl-mark">مثل: طلقتك، أو أنتِ طالق، أو أنتِ مطلقة.</span></p>
+                            <p className="text-lg mt-2"><span className="hl-red">حكمها:</span> يقع بها الطلاق ولو لم ينوه، سواء كان جاداً أو هازلاً (مازحاً)؛ لقوله ﷺ: (ثلاث جدهن جد وهزلهن جد: النكاح، والطلاق، والرجعة).</p>
+                        </div>
+                        <div>
+                            <h4 className="font-bold text-lg text-navy mb-2 flex items-center"><span className="text-gold ml-2">٢-</span> ألفاظ كنائية:</h4>
+                            <p className="text-lg">وهي الألفاظ التي تحتمل الطلاق وغيره. <span className="hl-mark">مثل: أنتِ خلية، وبرية، وبائن، وحبلك على غاربك، والحقي بأهلك.</span></p>
+                            <p className="text-lg mt-2"><span className="hl-emerald">حكمها:</span> لا يقع بها الطلاق، <span className="font-bold underline">إلا إذا نواه</span> نية مقارنة للفظه.</p>
+                        </div>
+                    </div>
+                ),
+                tree: renderTree("ألفاظ الطلاق",[
+                    <span>صريحة (أنتِ طالق)<br/><span className="text-red-600 block mt-1 text-base">يقع الطلاق بها (نوى أو لم ينوِ، جاداً أو مازحاً)</span></span>,
+                    <span>كناية (الحقي بأهلك)<br/><span className="text-emerald-600 block mt-1 text-base">لا يقع الطلاق إلا بـ (النية)</span></span>
+                ]),
+                activity: {
+                    type: "matching", question: "طابق بين اللفظ وحكم وقوع الطلاق به:",
+                    pairs:[
+                        { term: "قال لزوجته مازحاً: أنتِ طالق", def: "يقع الطلاق (لأنه لفظ صريح)." },
+                        { term: "قال لها: الحقي بأهلك (وهو ينوي الطلاق)", def: "يقع الطلاق (لأنه لفظ كناية اقترن بالنية)." },
+                        { term: "قال لها: الحقي بأهلك (وهو يقصد زيارة أهلها فقط)", def: "لا يقع الطلاق (لعدم وجود النية)." }
+                    ]
+                }
+            },
+            {
+                id: 6, trait: "trait6", title: "طلاق السُّنة",
+                content: (
+                    <div>
+                        <p className="mb-4 text-lg"><span className="hl-blue">طلاق السنة:</span> هو الطلاق الذي أذن فيه الشارع، وهو الواقع طبقاً لتعاليم الشريعة الإسلامية.</p>
+                        <h3 className="text-xl font-bold mb-2 text-navy">ويكون ذلك بأمرين:</h3>
+                        <ul className="list-none space-y-4 text-lg mb-4">
+                            <li className="flex items-start"><span className="text-gold ml-2 font-bold">١- عدد الطلاق:</span> أن يطلق <span className="hl-emerald">طلقة واحدة</span> فقط.</li>
+                            <li className="flex items-start"><span className="text-gold ml-2 font-bold">٢- حال إيقاعه:</span> أن يطلقها <span className="hl-emerald">في طُهر لم يجامعها فيه</span>، ويتركها فلا يتبعها طلاقاً آخر حتى تنقضي عدتها.</li>
+                        </ul>
+                        <p className="text-lg">لقوله تعالى: <span className="verse-text text-emerald-800">﴿ يَا أَيُّهَا النَّبِيُّ إِذَا طَلَّقْتُمُ النِّسَاءَ فَطَلِّقُوهُنَّ لِعِدَّتِهِنَّ ﴾</span> أي: في الوقت الذي يُشرعن فيه في استقبال العدة وهو الطهر.</p>
+                        <p className="text-lg mt-2"><span className="hl-blue">حكمه:</span> أجمع العلماء على أن طلاق السنة <span className="font-bold">واقع</span>.</p>
+                    </div>
+                ),
+                tree: renderSequenceTree("شروط طلاق السُّنة",[
+                    "العدد: طلقة واحدة فقط",
+                    "الحال: في طُهر (ليست حائضاً)",
+                    "الشرط الإضافي: لم يجامعها في هذا الطهر",
+                    "النتيجة: طلاق سني موافق للشرع (واقع)"
+                ]),
+                activity: {
+                    type: "fill-blank", question: "أكمل شروط طلاق السنة:",
+                    textParts:["طلاق السنة أن يطلق الرجل زوجته طلقة ", "، في ", " لم يجامعها فيه."],
+                    blanks:[
+                        { id: 0, options: ["واحدة", "ثلاثاً"], correct: "واحدة" },
+                        { id: 1, options: ["حيض", "طُهر"], correct: "طُهر" }
+                    ]
+                }
+            },
+            {
+                id: 7, trait: "trait7", title: "الطلاق البِدعي",
+                content: (
+                    <div>
+                        <p className="mb-4 text-lg"><span className="hl-red">الطلاق البدعي:</span> هو الطلاق الذي يوقعه الرجل على الوجه المحرم الذي نهى عنه الشارع.</p>
+                        <h3 className="text-xl font-bold mb-2 text-navy">ويكون بأحد أمرين:</h3>
+                        <ul className="list-none space-y-4 text-lg mb-4">
+                            <li className="flex items-start"><span className="text-gold ml-2 font-bold">١- عدد الطلاق:</span> أن يطلقها <span className="hl-red">ثلاثاً بلفظ واحد</span>، أو متفرقات في طهر واحد.</li>
+                            <li className="flex items-start"><span className="text-gold ml-2 font-bold">٢- حال إيقاعه:</span> أن يطلقها وهي <span className="hl-red">حائض أو نفساء</span>، أو طلقها في طهر جامعها فيه ولم يتبين حملها.</li>
+                        </ul>
+                        <p className="text-lg mb-2"><span className="hl-red">حكمه:</span> محرم، منهي عنه شرعاً، وفاعله آثم.</p>
+                        <p className="text-lg"><span className="hl-blue">هل يقع؟</span> يقع الطلاق البدعي كالسُّني؛ لأن النبي ﷺ أمر ابن عمر بمراجعة زوجته (لما طلقها حائضاً)، ولا تكون الرجعة إلا بعد وقوع الطلاق.</p>
+                    </div>
+                ),
+                tree: renderTree("صور الطلاق البدعي (محرم ويأثم فاعله)",[
+                    <span>في العدد<br/><span className="text-gray-600 block mt-1 text-base">الطلاق بالثلاث بلفظ واحد</span></span>,
+                    <span>في الحال<br/><span className="text-gray-600 block mt-1 text-base">الطلاق أثناء الحيض/النفاس، أو طهر جامعها فيه</span></span>
+                ]),
+                activity: {
+                    type: "matching", question: "حدد نوع الطلاق في الحالات التالية:",
+                    pairs:[
+                        { term: "طلقها طلقة واحدة في طهر لم يجامعها فيه", def: "طلاق سُني (موافق للشرع)." },
+                        { term: "قال لها: أنت طالق بالثلاثة", def: "طلاق بدعي (محرم)." },
+                        { term: "طلقها وهي حائض", def: "طلاق بدعي (محرم، ولكنه يقع)." }
+                    ]
+                }
+            },
+            {
+                id: 8, trait: "trait8", title: "الرجعة: تعريفها ومشروعيتها",
+                content: (
+                    <div>
+                        <p className="mb-4 text-lg"><span className="hl-blue">الرجعة لغة:</span> المرة من الرجوع.</p>
+                        <p className="mb-4 text-lg"><span className="hl-blue">وشرعاً:</span> إعادة زوجته المطلقة طلاقاً غير بائن إلى ما كانت عليه قبل الطلاق <span className="hl-mark">بدون عقد</span>.</p>
+                        <h3 className="text-xl font-bold mb-2 text-navy">مشروعيتها:</h3>
+                        <p className="mb-2 text-lg">دل على مشروعية الرجعة الكتاب والسنة والإجماع. قال تعالى:</p>
+                        <div className="verse text-emerald-800">﴿ وَبُعُولَتُهُنَّ أَحَقُّ بِرَدِّهِنَّ فِي ذَلِكَ إِنْ أَرَادُوا إِصْلَاحًا ﴾ [البقرة: 228]</div>
+                        <h3 className="text-xl font-bold mb-2 text-navy">الحكمة منها:</h3>
+                        <p className="text-lg">إعطاء الزوج الفرصة إذا ندم على إيقاع الطلاق وأراد استئناف العشرة الزوجية، فيجد الباب مفتوحاً أمامه، وهذا من رحمة الله بعباده.</p>
+                    </div>
+                ),
+                tree: renderTree("الرجعة",[
+                    <span>التعريف<br/><span className="text-gray-600 block mt-1 text-base">إعادة المطلقة (غير البائن) بدون عقد جديد</span></span>,
+                    <span>الحكمة<br/><span className="text-emerald-600 block mt-1 text-base">إعطاء فرصة للندم واستئناف الحياة الزوجية</span></span>
+                ]),
+                activity: {
+                    type: "fill-blank", question: "أكمل تعريف الرجعة:",
+                    textParts:["الرجعة شرعاً هي إعادة زوجته المطلقة طلاقاً غير بائن إلى ما كانت عليه ", " عقد جديد."],
+                    blanks:[
+                        { id: 0, options: ["بعقد ومهر", "بدون"], correct: "بدون" }
+                    ]
+                }
+            },
+            {
+                id: 9, trait: "trait1", title: "شروط صحة الرجعة",
+                content: (
+                    <div>
+                        <h3 className="text-xl font-bold mb-4 text-navy border-b-2 border-gold pb-2 inline-block">تصح الرجعة بشروط، وهي:</h3>
+                        <ul className="list-none space-y-4 text-lg">
+                            <li className="flex items-start"><span className="text-gold ml-2 font-bold">١-</span> أن يكون الطلاق <span className="hl-emerald">دون العدد الذي يملكه الزوج</span> (وهو ثلاث تطليقات). فإن استوفى العدد لا تحل له حتى تنكح زوجاً غيره.</li>
+                            <li className="flex items-start"><span className="text-gold ml-2 font-bold">٢-</span> أن تكون المطلقة <span className="hl-emerald">مدخولاً بها</span>؛ لأن غير المدخول بها لا عدة عليها، والرجعة لا تكون إلا في العدة.</li>
+                            <li className="flex items-start"><span className="text-gold ml-2 font-bold">٣-</span> أن يكون الطلاق <span className="hl-red">بغير عوض</span>؛ لأن العوض (الخلع) جعل لتفتدي المرأة نفسها، فلا تحل إلا بعقد جديد.</li>
+                            <li className="flex items-start"><span className="text-gold ml-2 font-bold">٤-</span> أن يكون النكاح <span className="hl-emerald">صحيحاً</span>.</li>
+                            <li className="flex items-start"><span className="text-gold ml-2 font-bold">٥-</span> أن تكون الرجعة <span className="hl-emerald">في العدة</span>.</li>
+                            <li className="flex items-start"><span className="text-gold ml-2 font-bold">٦-</span> أن تكون الرجعة <span className="hl-emerald">منجزة</span> (غير معلقة بشرط).</li>
+                        </ul>
+                    </div>
+                ),
+                tree: renderSequenceTree("أهم شروط الرجعة",[
+                    "الطلقة الأولى أو الثانية (لم يستوفِ الثلاث)",
+                    "أن تكون المطلقة مدخولاً بها (لأن لها عدة)",
+                    "أن تكون الرجعة أثناء فترة العدة",
+                    "أن يكون الطلاق بغير عوض مالي (ليس خلعاً)"
+                ]),
+                activity: {
+                    type: "matching", question: "حدد هل تصح الرجعة أم لا في الحالات التالية:",
+                    pairs:[
+                        { term: "طلقها الطلقة الثالثة وأراد إرجاعها", def: "لا تصح الرجعة (استوفى العدد)." },
+                        { term: "طلقها قبل الدخول بها وأراد إرجاعها", def: "لا تصح الرجعة (لأنه لا عدة لها)." },
+                        { term: "خالعته على مال، ثم أراد إرجاعها في العدة", def: "لا تصح الرجعة (الخلع طلاق بائن يتطلب عقداً جديداً)." }
+                    ]
+                }
+            },
+            {
+                id: 10, trait: "trait2", title: "بمَ تحصل الرجعة؟ وأحكامها",
+                content: (
+                    <div>
+                        <h3 className="text-xl font-bold mb-2 text-navy">تحصل الرجعة بأحد أمرين:</h3>
+                        <ul className="list-disc list-inside space-y-2 text-lg mb-6">
+                            <li><span className="font-bold text-gold">باللفظ:</span> كقوله: راجعت امرأتي، ورددتها، وأمسكتها.</li>
+                            <li><span className="font-bold text-gold">بالفعل:</span> تحصل بوطء الزوجة (الجماع) إذا نوى بذلك رجعتها.</li>
+                        </ul>
+                        
+                        <h3 className="text-xl font-bold mb-2 text-navy">من أحكام الطلاق الرجعي:</h3>
+                        <ul className="list-none space-y-3 text-lg">
+                            <li><span className="text-gold font-bold">١-</span> المطلقة طلاقاً رجعياً <span className="hl-emerald">زوجة ما دامت في العدة</span>، لها النفقة والكسوة والسكنى، وتتزين لزوجها.</li>
+                            <li><span className="text-gold font-bold">٢-</span> <span className="hl-red">لا يُشترط</span> في الرجعة رضا المرأة أو وليها.</li>
+                            <li><span className="text-gold font-bold">٣-</span> <span className="hl-red">ينتهي وقت الرجعة</span> بانتهاء العدة (ثلاث حيضات). فإذا طهرت من الحيضة الثالثة بانت منه بينونة صغرى، ولا تحل إلا بعقد جديد.</li>
+                        </ul>
+                    </div>
+                ),
+                tree: renderTree("أحكام المطلقة رجعياً (أثناء العدة)",[
+                    <span>صفتها<br/><span className="text-emerald-600 block mt-1 text-base">تعتبر زوجة (لها النفقة والسكن)</span></span>,
+                    <span>رضاها للرجعة<br/><span className="text-gray-600 block mt-1 text-base">لا يُشترط رضاها ولا رضا وليها</span></span>,
+                    <span>انتهاء العدة<br/><span className="text-red-600 block mt-1 text-base">تبين بينونة صغرى (تحتاج عقداً جديداً)</span></span>
+                ]),
+                activity: {
+                    type: "fill-blank", question: "أكمل الفراغات المتعلقة بأحكام الرجعة:",
+                    textParts:["المطلقة طلاقاً رجعياً تعتبر ", " ما دامت في العدة، و", " يشترط رضاها لإرجاعها."],
+                    blanks:[
+                        { id: 0, options: ["أجنبية", "زوجة"], correct: "زوجة" },
+                        { id: 1, options: ["لا", "نعم"], correct: "لا" }
+                    ]
+                }
+            }
+        ];
+
+        // --- بيانات المراجعة والتقييم ---
+        const FLASHCARDS =[
+            { front: "الخُلع (تعريف)", back: "فرقة تجري بين الزوجين على عوض تدفعه المرأة لزوجها." },
+            { front: "الطلاق (تعريف)", back: "حل قيد النكاح أو بعضه." },
+            { front: "الرجعة (تعريف)", back: "إعادة زوجته المطلقة طلاقاً غير بائن إلى ما كانت عليه قبل الطلاق بدون عقد." },
+            { front: "حكم الخلع أثناء الحيض", back: "يجوز، لعدم الضرر عليها." },
+            { front: "هل للزوج رجعة في الخلع؟", back: "لا رجعة له عليها، لأنها ملكت أمر نفسها بالعوض." },
+            { front: "شروط المُطَلِّق", back: "البالغ، العاقل، المميز، المختار." },
+            { front: "طلاق الغضبان فاقد الوعي", back: "لا يقع طلاقه." },
+            { front: "ألفاظ الطلاق الصريحة", back: "مثل: أنتِ طالق. ويقع بها الطلاق نوى أو لم ينوِ." },
+            { front: "ألفاظ الطلاق الكنائية", back: "مثل: الحقي بأهلك. ولا يقع بها الطلاق إلا بالنية." },
+            { front: "طلاق السُّنة", back: "طلقة واحدة، في طهر لم يجامعها فيه." },
+            { front: "الطلاق البدعي", back: "الطلاق بالثلاث بلفظ واحد، أو الطلاق أثناء الحيض. وهو محرم ويأثم فاعله." },
+            { front: "هل يقع الطلاق البدعي؟", back: "نعم يقع، مع الإثم." },
+            { front: "شرط الرجعة في العدد", back: "أن يكون الطلاق دون الثلاث (الطلقة الأولى أو الثانية)." },
+            { front: "الرجعة قبل الدخول", back: "لا تصح، لأن غير المدخول بها لا عدة لها، والرجعة تكون في العدة فقط." },
+            { front: "المطلقة رجعياً أثناء العدة", back: "تعتبر زوجة، لها النفقة والسكن، ولا يشترط رضاها للرجعة." }
+        ];
+
+        const ESSAY_QUESTIONS =[
+            { q: "ما هو الخُلع شرعاً؟ وما دليله من القرآن الكريم؟", a: "الخلع هو فُرقة تجري بين الزوجين على عوض (مال) تدفعه المرأة لزوجها. ودليله قوله تعالى: (فَإِنْ خِفْتُمْ أَلَّا يُقِيمَا حُدُودَ اللَّهِ فَلَا جُنَاحَ عَلَيْهِمَا فِيمَا افْتَدَتْ بِهِ)." },
+            { q: "ما هو الشرط الأساسي لوقوع الخلع؟ وهل يملك الزوج إرجاع زوجته بعده؟", a: "الشرط الأساسي هو وجود (عوض مالي) تفرضه الزوجة. وإذا وقع الخلع، فإن الزوجة تملك أمر نفسها، ولا يحق للزوج إرجاعها (لا رجعة له عليها) إلا بعقد ومهر جديدين برضاها." },
+            { q: "هل يجوز إيقاع الخلع أثناء فترة حيض الزوجة؟ ولماذا؟", a: "نعم يجوز الخلع في الحيض وفي الطهر الذي جامعها فيه؛ وذلك لعدم وقوع الضرر عليها، لأنها هي من طلبت الفراق وافتدت نفسها." },
+            { q: "من هو الشخص الذي يصح ويقع طلاقه؟ ومن الذي لا يقع طلاقه؟", a: "يصح الطلاق من الزوج البالغ، العاقل، المميز، المختار. ولا يقع طلاق الصبي، والمجنون، والسكران، والمكره (المجبر)، والغضبان غضباً شديداً لا يدري معه ما يقول." },
+            { q: "ما هي الحالات التي يكون فيها الطلاق مباحاً، ومكروهاً، ومحرماً؟", a: "يكون مباحاً عند الحاجة إليه كسوء خلق المرأة. ويكون مكروهاً من غير حاجة مع استقامة الحال. ويكون محرماً في الطلاق البدعي (كطلاق الحائض) أو إذا كان بقصد الإضرار بالزوجة." },
+            { q: "ما الفرق بين ألفاظ الطلاق الصريحة والكنائية من حيث وقوع الطلاق؟", a: "الألفاظ الصريحة (مثل: أنتِ طالق) يقع بها الطلاق سواء نوى أو لم ينوِ، وسواء كان جاداً أو مازحاً. أما الألفاظ الكنائية (مثل: الحقي بأهلك) فلا يقع بها الطلاق إلا إذا اقترنت بـ (النية)." },
+            { q: "ما هي شروط طلاق السُّنة (الموافق للشرع)؟", a: "أن يطلقها طلقة واحدة فقط (في العدد)، وأن يطلقها في طُهر لم يجامعها فيه (في الحال)، ويتركها حتى تنقضي عدتها." },
+            { q: "ما هو الطلاق البِدعي؟ وما حكمه؟ وهل يقع؟", a: "هو الطلاق المحرم، كأن يطلقها ثلاثاً بلفظ واحد، أو يطلقها وهي حائض أو نفساء. حكمه: محرم ويأثم فاعله. ولكنه (يقع) وتُحسب تطليقة." },
+            { q: "ما هي الرجعة شرعاً؟ وما الحكمة من مشروعيتها؟", a: "الرجعة هي إعادة الزوجة المطلقة طلاقاً غير بائن إلى ما كانت عليه قبل الطلاق بدون عقد جديد. الحكمة منها إعطاء الزوج فرصة للندم واستئناف الحياة الزوجية." },
+            { q: "اذكر ثلاثة من أهم شروط صحة الرجعة.", a: "1. أن يكون الطلاق دون الثلاث (الطلقة الأولى أو الثانية). 2. أن تكون المطلقة مدخولاً بها (لأن لها عدة). 3. أن تكون الرجعة في فترة العدة. 4. أن يكون الطلاق بغير عوض (ليس خلعاً)." },
+            { q: "ما هي حقوق المطلقة طلاقاً رجعياً ما دامت في فترة العدة؟ وهل يُشترط رضاها للرجعة؟", a: "تعتبر (زوجة)، ولها حق النفقة والكسوة والسكنى، ويُستحب أن تتزين لزوجها. ولا يُشترط رضاها ولا رضا وليها لإرجاعها ما دامت في العدة." }
+        ];
+
+        const QUIZ_QUESTIONS =[
+            { q: "فرقة تجري بين الزوجين على عوض تدفعه المرأة لزوجها، هذا تعريف:", options:["الطلاق", "الخلع", "الرجعة", "الظهار"], answer: 1 },
+            { q: "حكم إيقاع الخلع أثناء فترة حيض الزوجة:", options:["محرم", "مكروه", "يجوز", "باطل"], answer: 2 },
+            { q: "إذا خالع الرجل امرأته، فهل يجوز له إرجاعها أثناء العدة بدون عقد؟", options:["نعم يجوز", "لا يجوز، فقد ملكت أمر نفسها", "يجوز برضاها فقط", "يجوز إن كان الخلع بغير مال"], answer: 1 },
+            { q: "طلاق المكره (المجبر بالقوة) أو الغضبان غضباً شديداً لا يعي ما يقول:", options:["يقع", "لا يقع", "يقع طلقة بائنة", "يقع مع الإثم"], answer: 1 },
+            { q: "قال لزوجته مازحاً (أنتِ طالق)، ما الحكم؟", options:["لا يقع لأنه يمزح", "يقع لأن اللفظ صريح", "يقع إن نوت هي ذلك", "يقع طلاقاً بدعياً"], answer: 1 },
+            { q: "قال لزوجته (الحقي بأهلك) وهو لا ينوي الطلاق، ما الحكم؟", options:["يقع الطلاق", "لا يقع الطلاق لعدم النية", "يقع طلقة رجعية", "تعتبر طالقة بالثلاث"], answer: 1 },
+            { q: "أن يطلق الرجل زوجته طلقة واحدة في طهر لم يجامعها فيه، يسمى:", options:["طلاقاً بدعياً", "طلاق سُنة", "خلعاً", "طلاقاً بائناً"], answer: 1 },
+            { q: "الطلاق بالثلاث بلفظ واحد (أنتِ طالق بالثلاث) يعتبر:", options:["طلاق سُنة", "طلاقاً بدعياً محرماً", "مستحباً", "مكروهاً تنزيهاً"], answer: 1 },
+            { q: "هل يقع الطلاق البدعي (كالطلاق أثناء الحيض)؟", options:["لا يقع أبداً", "يقع مع الإثم", "يقع ولا إثم فيه", "يقع طلقة بائنة كبرى"], answer: 1 },
+            { q: "إعادة زوجته المطلقة طلاقاً غير بائن إلى ما كانت عليه قبل الطلاق بدون عقد، يسمى:", options: ["الخلع", "الرجعة", "النكاح الجديد", "الظهار"], answer: 1 },
+            { q: "من شروط صحة الرجعة:", options:["أن تكون بعد الطلقة الثالثة", "أن تكون المطلقة غير مدخول بها", "أن تكون الرجعة في فترة العدة", "أن يكون الطلاق على عوض مالي"], answer: 2 },
+            { q: "هل يُشترط رضا الزوجة أو وليها لصحة الرجعة أثناء العدة؟", options:["نعم يشترط رضاها", "نعم يشترط رضا الولي", "لا يُشترط", "يشترط رضا المحكمة"], answer: 2 },
+            { q: "بم تنتهي فترة الرجعة للمرأة التي تحيض؟", options:["بمرور شهر واحد", "بانتهاء الحيضة الثالثة (العدة)", "بمرور سنة كاملة", "بوضع الحمل فقط"], answer: 1 },
+            { q: "المطلقة طلاقاً رجعياً ما دامت في العدة تعتبر:", options:["أجنبية عن زوجها", "زوجة لها النفقة والسكن", "ناشزاً", "بائنة بينونة كبرى"], answer: 1 },
+            { q: "طلق زوجته قبل الدخول بها، ثم أراد إرجاعها، ما الحكم؟", options:["تصح الرجعة", "لا تصح الرجعة لأنه لا عدة لها", "تصح برضاها", "تصح بدفع نصف المهر"], answer: 1 }
+        ];
+
+        // --- المكونات (Components) ---
+        const SVGIcons = {
+            Book: () => <svg className="w-6 h-6 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>,
+            Map: () => <svg className="w-6 h-6 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>,
+            Cards: () => <svg className="w-6 h-6 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>,
+            Quiz: () => <svg className="w-6 h-6 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>,
+            Check: () => <svg className="w-5 h-5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>,
+            ChevronDown: () => <svg className="w-6 h-6 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>,
+            ChevronUp: () => <svg className="w-6 h-6 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 15l7-7 7 7"></path></svg>,
+            Brain: () => <svg className="w-6 h-6 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>,
+            Refresh: () => <svg className="w-5 h-5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>,
+            Send: () => <svg className="w-5 h-5 inline-block transform rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>,
+            Lock: () => <svg className="w-5 h-5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>,
+            Close: () => <svg className="w-6 h-6 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        };
+
+        const WelcomeScreen = ({ onStart }) => {
+            const [name, setName] = useState('');
+            const [section, setSection] = useState('');
+            const[error, setError] = useState('');
+
+            const handleStart = () => {
+                if (name.trim().split(/\s+/).length < 3) return setError('عذراً، يجب إدخال الاسم الثلاثي على الأقل.');
+                if (!section.trim()) return setError('عذراً، يجب إدخال رقم الشعبة.');
+                onStart(name, section);
+            };
+
+            return (
+                <div className="flex-grow flex items-center justify-center p-4 animate-fade-in bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')]">
+                    <div className="glass-panel p-10 rounded-3xl max-w-xl w-full text-center relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-gold opacity-20 rounded-bl-full"></div>
+                        <img src={UNIVERSITY_LOGO_URL} alt="شعار الجامعة" className="h-24 mx-auto mb-6 object-contain relative z-10 drop-shadow-md" />
+                        <h1 className="text-4xl font-amiri font-bold text-navy mb-2 relative z-10">الفقه الميسر</h1>
+                        <h2 className="text-2xl text-gold mb-8 border-b border-gray-200 pb-4 inline-block relative z-10">كتاب النكاح والطلاق: الخلع، الطلاق، والرجعة</h2>
+                        <div className="space-y-6 relative z-10">
+                            <input type="text" value={name} onChange={(e) => {setName(e.target.value); setError('');}} placeholder="أدخل اسمك الكامل هنا..." className="w-full p-4 rounded-xl border-2 border-gray-200 focus:border-gold focus:outline-none text-center" />
+                            <input type="text" value={section} onChange={(e) => {setSection(e.target.value); setError('');}} placeholder="رقم الشعبة (مثال: YM2)" className="w-full p-4 rounded-xl border-2 border-gray-200 focus:border-gold focus:outline-none text-center" />
+                            {error && <p className="text-red-500 font-bold animate-pulse">{error}</p>}
+                            <button onClick={handleStart} className="w-full bg-navy text-white font-bold text-xl py-4 rounded-xl mt-4 hover:bg-gold hover:text-navy transition-colors duration-300 shadow-lg transform hover:scale-105">ابدأ رحلة التعلم</button>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const FillBlankActivity = ({ activity, onPass }) => {
+            const [answers, setAnswers] = useState({});
+            const[isCorrect, setIsCorrect] = useState(false);
+
+            useEffect(() => {
+                const allCorrect = activity.blanks.every(b => answers[b.id] === b.correct);
+                setIsCorrect(allCorrect);
+                if(allCorrect) onPass();
+            }, [answers]);
+
+            return (
+                <div className="bg-white p-6 rounded-2xl border-2 border-emerald-500/30 shadow-md">
+                    <h4 className="font-bold text-navy mb-4 flex items-center gap-2"><SVGIcons.Check/> {activity.question}</h4>
+                    <p className="text-xl leading-loose font-tajawal">
+                        {activity.textParts.map((part, idx) => (
+                            <React.Fragment key={idx}>
+                                {part}
+                                {idx < activity.blanks.length && (
+                                    <select 
+                                        className={`mx-2 p-1 px-4 rounded border-2 font-bold focus:outline-none cursor-pointer ${answers[idx] === activity.blanks[idx].correct ? 'border-emerald-500 bg-emerald-50 text-emerald-700' : 'border-gray-300 bg-gray-50'}`}
+                                        onChange={(e) => setAnswers(prev => ({...prev, [idx]: e.target.value}))}
+                                        value={answers[idx] || ""}
+                                    >
+                                        <option value="" disabled>-- اختر --</option>
+                                        {activity.blanks[idx].options.sort().map((opt, i) => <option key={i} value={opt}>{opt}</option>)}
+                                    </select>
+                                )}
+                            </React.Fragment>
+                        ))}
+                    </p>
+                    {isCorrect && <div className="mt-4 text-emerald-600 font-bold animate-pulse flex items-center gap-2"><SVGIcons.Check/> أحسنت! إجابة صحيحة.</div>}
+                </div>
+            );
+        };
+
+        const MatchingActivity = ({ activity, onPass }) => {
+            const [answers, setAnswers] = useState({});
+            const [isCorrect, setIsCorrect] = useState(false);
+            const [options] = useState([...activity.pairs.map(p => p.def)].sort(() => Math.random() - 0.5));
+
+            useEffect(() => {
+                const allCorrect = activity.pairs.every((p, idx) => answers[idx] === p.def);
+                setIsCorrect(allCorrect);
+                if(allCorrect) onPass();
+            }, [answers]);
+
+            return (
+                <div className="bg-white p-6 rounded-2xl border-2 border-emerald-500/30 shadow-md">
+                    <h4 className="font-bold text-navy mb-4 flex items-center gap-2"><SVGIcons.Check/> {activity.question}</h4>
+                    <div className="space-y-4">
+                        {activity.pairs.map((pair, idx) => (
+                            <div key={idx} className="flex flex-col md:flex-row items-center gap-4 bg-gray-50 p-3 rounded-xl border border-gray-200">
+                                <div className="w-full md:w-1/3 font-bold text-navy text-lg">{pair.term}</div>
+                                <div className="w-full md:w-2/3">
+                                    <select 
+                                        className={`w-full p-3 rounded border-2 font-tajawal focus:outline-none text-sm md:text-base cursor-pointer ${answers[idx] === pair.def ? 'border-emerald-500 bg-emerald-50 text-emerald-800 font-bold' : 'border-gray-300'}`}
+                                        onChange={(e) => setAnswers(prev => ({...prev, [idx]: e.target.value}))}
+                                        value={answers[idx] || ""}
+                                    >
+                                        <option value="" disabled>-- اختر الإجابة المطابقة --</option>
+                                        {options.map((opt, i) => <option key={i} value={opt}>{opt}</option>)}
+                                    </select>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    {isCorrect && <div className="mt-4 text-emerald-600 font-bold animate-pulse flex items-center gap-2"><SVGIcons.Check/> عمل رائع! الإجابات متطابقة.</div>}
+                </div>
+            );
+        };
+
+        const StepperContentScreen = ({ onComplete }) => {
+            const [currentIndex, setCurrentIndex] = useState(0);
+            const [activityPassed, setActivityPassed] = useState(false);
+            const topRef = useRef(null);
+
+            const topic = TOPICS_DATA[currentIndex];
+            const isLast = currentIndex === TOPICS_DATA.length - 1;
+
+            const handleNext = (e) => {
+                e.preventDefault();
+                if (isLast) onComplete(); 
+                else { setCurrentIndex(prev => prev + 1); setActivityPassed(false); topRef.current?.scrollIntoView({ behavior: 'smooth' }); }
+            };
+
+            const jumpToPrevious = (idx) => {
+                if (idx < currentIndex) { setCurrentIndex(idx); setActivityPassed(false); topRef.current?.scrollIntoView({ behavior: 'smooth' }); }
+            }
+
+            return (
+                <div className="animate-fade-in pb-32 w-full max-w-5xl mx-auto mt-6 px-4" ref={topRef}>
+                    <div className="mb-8 glass-panel p-4 rounded-2xl flex items-center gap-4 overflow-x-auto hide-scrollbar scroll-smooth">
+                        {TOPICS_DATA.map((t, idx) => (
+                            <div key={t.id} onClick={() => jumpToPrevious(idx)} className="min-w-[50px] md:min-w-[65px] flex-shrink-0 flex flex-col items-center gap-2" style={{ cursor: idx < currentIndex ? 'pointer' : 'default' }}>
+                                <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-500 ${idx < currentIndex ? 'bg-emerald-500 text-white shadow-md' : idx === currentIndex ? 'bg-gold text-navy shadow-lg ring-4 ring-gold/30' : 'bg-gray-200 text-gray-400'}`}>
+                                    {idx < currentIndex ? '✓' : idx + 1}
+                                </div>
+                                <div className="text-[10px] md:text-xs text-center font-bold text-gray-500 w-full truncate px-1">{t.title.split(':')[0]}</div>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div className={`bg-${topic.trait} rounded-3xl shadow-lg border border-gray-100 overflow-hidden animate-slide-up mb-8`}>
+                        <div className="bg-navy text-white px-8 py-5 border-b-4 border-gold"><h2 className="text-3xl font-amiri font-bold">{topic.title}</h2></div>
+                        <div className="p-8">
+                            <div className="mb-10 text-gray-800 leading-relaxed">{topic.content}</div>
+                            <hr className="border-gray-200 mb-8" />
+                            <div className="mb-10">
+                                <h3 className="text-xl font-bold text-navy mb-4 border-r-4 border-gold pr-2">التلخيص الشجري:</h3>
+                                <div className="bg-white/50 p-6 rounded-2xl overflow-x-auto hide-scrollbar border border-gold/20">{topic.tree}</div>
+                            </div>
+                            <hr className="border-gray-200 mb-8" />
+                            <div>
+                                <h3 className="text-xl font-bold text-navy mb-4 border-r-4 border-emerald-500 pr-2">تأكيد الفهم للعبور:</h3>
+                                {topic.activity.type === "fill-blank" ? <FillBlankActivity key={`act-${topic.id}`} activity={topic.activity} onPass={() => setActivityPassed(true)} /> : <MatchingActivity key={`act-${topic.id}`} activity={topic.activity} onPass={() => setActivityPassed(true)} />}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="flex justify-between items-center bg-white p-4 rounded-2xl shadow-sm border border-gray-200 sticky bottom-2 z-40">
+                        <button onClick={() => jumpToPrevious(currentIndex - 1)} disabled={currentIndex === 0} className={`px-6 py-2 rounded-xl font-bold transition-colors ${currentIndex === 0 ? 'text-gray-400 cursor-not-allowed' : 'text-navy border border-navy hover:bg-gray-50'}`}>السابق</button>
+                        <button onClick={handleNext} disabled={!activityPassed} className={`px-8 py-3 rounded-xl font-bold text-lg shadow-md transition-all duration-300 flex items-center gap-2 ${activityPassed ? 'bg-navy text-white hover:bg-gold hover:text-navy hover:scale-105 animate-bounce-slight' : 'bg-gray-300 text-gray-500 cursor-not-allowed'}`}>
+                            {isLast ? 'إتمام المادة العلمية' : 'التالي'}
+                            {activityPassed && <SVGIcons.Check />}
+                        </button>
+                    </div>
+                </div>
+            );
+        };
+
+        const MindMapScreen = () => {
+            const MapSection = ({ title, children }) => (
+                <div className="mb-20 animate-slide-up">
+                    <div className="text-center mb-10">
+                        <h3 className="text-3xl font-amiri font-bold text-navy bg-gold/20 inline-block px-8 py-3 rounded-full border-2 border-gold shadow-sm">{title}</h3>
+                    </div>
+                    {children}
+                </div>
+            );
+
+            return (
+                <div className="p-4 md:p-8 max-w-6xl mx-auto pb-32">
+                    <div className="text-center mb-16 animate-fade-in">
+                        <h2 className="text-4xl font-amiri font-bold text-navy mb-2">الخرائط المفاهيمية الشاملة</h2>
+                        <p className="text-gray-600 text-lg">تلخيص هيكلي لأبواب النكاح والطلاق</p>
+                    </div>
+
+                    {/* خريطة الخلع */}
+                    <MapSection title="خريطة أحكام الخُلع">
+                        <div className="flex flex-col items-center">
+                            <div className="map-root px-10 py-4 rounded-full text-2xl font-bold z-10">الخُلع</div>
+                            <div className="v-line h-8"></div>
+                            <div className="w-full max-w-3xl relative flex justify-center">
+                                <div className="absolute top-0 h-line w-full"></div>
+                                <div className="flex justify-between w-full relative z-0 pt-8 gap-4">
+                                    <div className="flex flex-col items-center flex-1">
+                                        <div className="absolute top-0 v-line h-8"></div>
+                                        <div className="map-branch px-4 py-2 rounded-xl font-bold mb-4 w-full text-center">التعريف والمشروعية</div>
+                                        <div className="flex flex-col gap-2 w-full text-sm">
+                                            <div className="map-leaf p-3 rounded shadow-sm">فرقة بعوض تدفعه المرأة</div>
+                                            <div className="map-leaf p-3 rounded shadow-sm">مشروع بالكتاب والسنة</div>
+                                        </div>
+                                    </div>
+                                    <div className="flex flex-col items-center flex-1">
+                                        <div className="absolute top-0 v-line h-8"></div>
+                                        <div className="map-branch px-4 py-2 rounded-xl font-bold mb-4 w-full text-center">شروط الوقوع</div>
+                                        <div className="flex flex-col gap-2 w-full text-sm">
+                                            <div className="map-leaf p-3 rounded shadow-sm text-red-700 font-bold">لا يقع إلا بعوض مالي</div>
+                                            <div className="map-leaf p-3 rounded shadow-sm">يقع من الزوجة الرشيدة فقط</div>
+                                        </div>
+                                    </div>
+                                    <div className="flex flex-col items-center flex-1">
+                                        <div className="absolute top-0 v-line h-8"></div>
+                                        <div className="map-branch px-4 py-2 rounded-xl font-bold mb-4 w-full text-center">أحكام تترتب عليه</div>
+                                        <div className="flex flex-col gap-2 w-full text-sm">
+                                            <div className="map-leaf p-3 rounded shadow-sm text-red-700 font-bold">لا رجعة للزوج عليها</div>
+                                            <div className="map-leaf p-3 rounded shadow-sm text-emerald-700 font-bold">يجوز في الحيض والطهر</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </MapSection>
+
+                    {/* خريطة الطلاق */}
+                    <MapSection title="خريطة أحكام الطلاق">
+                        <div className="flex flex-col items-center">
+                            <div className="map-root px-10 py-4 rounded-full text-2xl font-bold z-10">الطلاق</div>
+                            <div className="v-line h-8"></div>
+                            <div className="w-full max-w-4xl relative flex justify-center">
+                                <div className="absolute top-0 h-line w-full"></div>
+                                <div className="flex justify-between w-full relative z-0 pt-8 gap-4">
+                                    <div className="flex flex-col items-center flex-1">
+                                        <div className="absolute top-0 v-line h-8"></div>
+                                        <div className="map-branch px-4 py-2 rounded-xl font-bold mb-4 w-full text-center">من يصح منه؟</div>
+                                        <div className="flex flex-col gap-2 w-full text-sm">
+                                            <div className="map-leaf p-3 rounded shadow-sm text-emerald-700 font-bold">البالغ، العاقل، المختار</div>
+                                            <div className="map-leaf p-3 rounded shadow-sm text-red-700 font-bold">لا يقع من: المكره، الغضبان</div>
+                                        </div>
+                                    </div>
+                                    <div className="flex flex-col items-center flex-1">
+                                        <div className="absolute top-0 v-line h-8"></div>
+                                        <div className="map-branch px-4 py-2 rounded-xl font-bold mb-4 w-full text-center">ألفاظه</div>
+                                        <div className="flex flex-col gap-2 w-full text-sm">
+                                            <div className="map-leaf p-3 rounded shadow-sm"><span className="font-bold">صريحة:</span> يقع بلا نية (أنتِ طالق)</div>
+                                            <div className="map-leaf p-3 rounded shadow-sm"><span className="font-bold">كناية:</span> لا يقع إلا بالنية (الحقي بأهلك)</div>
+                                        </div>
+                                    </div>
+                                    <div className="flex flex-col items-center flex-1">
+                                        <div className="absolute top-0 v-line h-8"></div>
+                                        <div className="map-branch px-4 py-2 rounded-xl font-bold mb-4 w-full text-center">طلاق السُّنة (جائز)</div>
+                                        <div className="flex flex-col gap-2 w-full text-sm">
+                                            <div className="map-leaf p-3 rounded shadow-sm">طلقة واحدة فقط</div>
+                                            <div className="map-leaf p-3 rounded shadow-sm">في طهر لم يجامعها فيه</div>
+                                        </div>
+                                    </div>
+                                    <div className="flex flex-col items-center flex-1">
+                                        <div className="absolute top-0 v-line h-8"></div>
+                                        <div className="map-branch px-4 py-2 rounded-xl font-bold mb-4 w-full text-center text-red-700">طلاق بدعي (محرم)</div>
+                                        <div className="flex flex-col gap-2 w-full text-sm">
+                                            <div className="map-leaf p-3 rounded shadow-sm text-red-700">بالثلاث بلفظ واحد</div>
+                                            <div className="map-leaf p-3 rounded shadow-sm text-red-700">وهي حائض/نفساء (ويقع)</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </MapSection>
+
+                    {/* خريطة الرجعة */}
+                    <MapSection title="خريطة أحكام الرجعة">
+                        <div className="flex flex-col items-center">
+                            <div className="map-root px-10 py-4 rounded-full text-2xl font-bold z-10">الرجعة</div>
+                            <div className="v-line h-8"></div>
+                            <div className="w-full max-w-3xl relative flex justify-center">
+                                <div className="absolute top-0 h-line w-full"></div>
+                                <div className="flex justify-between w-full relative z-0 pt-8 gap-4">
+                                    <div className="flex flex-col items-center flex-1">
+                                        <div className="absolute top-0 v-line h-8"></div>
+                                        <div className="map-branch px-4 py-2 rounded-xl font-bold mb-4 w-full text-center">التعريف</div>
+                                        <div className="flex flex-col gap-2 w-full text-sm">
+                                            <div className="map-leaf p-3 rounded shadow-sm">إعادة المطلقة (غير البائن)</div>
+                                            <div className="map-leaf p-3 rounded shadow-sm text-emerald-700 font-bold">بدون عقد جديد</div>
+                                        </div>
+                                    </div>
+                                    <div className="flex flex-col items-center flex-1">
+                                        <div className="absolute top-0 v-line h-8"></div>
+                                        <div className="map-branch px-4 py-2 rounded-xl font-bold mb-4 w-full text-center">شروط الصحة</div>
+                                        <div className="flex flex-col gap-2 w-full text-sm">
+                                            <div className="map-leaf p-3 rounded shadow-sm">الطلاق دون الثلاث (1 أو 2)</div>
+                                            <div className="map-leaf p-3 rounded shadow-sm">المطلقة مدخول بها (لها عدة)</div>
+                                            <div className="map-leaf p-3 rounded shadow-sm">الرجعة في فترة العدة</div>
+                                            <div className="map-leaf p-3 rounded shadow-sm text-red-700">الطلاق بغير عوض (ليس خلعاً)</div>
+                                        </div>
+                                    </div>
+                                    <div className="flex flex-col items-center flex-1">
+                                        <div className="absolute top-0 v-line h-8"></div>
+                                        <div className="map-branch px-4 py-2 rounded-xl font-bold mb-4 w-full text-center">أحكام المطلقة رجعياً</div>
+                                        <div className="flex flex-col gap-2 w-full text-sm">
+                                            <div className="map-leaf p-3 rounded shadow-sm">تعتبر زوجة (لها النفقة)</div>
+                                            <div className="map-leaf p-3 rounded shadow-sm text-red-700 font-bold">لا يُشترط رضاها للرجعة</div>
+                                            <div className="map-leaf p-3 rounded shadow-sm">بانتهاء العدة تبين بينونة صغرى</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </MapSection>
+                </div>
+            );
+        };
+
+        const ReviewScreen = () => {
+            const[flippedCards, setFlippedCards] = useState({});
+            const [openAccordion, setOpenAccordion] = useState(null);
+
+            const toggleCard = (idx) => setFlippedCards(prev => ({...prev, [idx]: !prev[idx]}));
+            const toggleAccordion = (idx) => setOpenAccordion(openAccordion === idx ? null : idx);
+
+            return (
+                <div className="p-4 md:p-8 max-w-5xl mx-auto animate-slide-up pb-32">
+                    <div className="text-center mb-12"><h2 className="text-4xl font-amiri font-bold text-navy mb-2">المراجعة الذكية</h2></div>
+                    
+                    <h3 className="text-2xl font-bold text-navy mb-6 border-r-4 border-gold pr-3">أولاً: بطاقات التعريفات والأحكام</h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+                        {FLASHCARDS.map((card, idx) => (
+                            <div key={idx} className={`flip-card cursor-pointer ${flippedCards[idx] ? 'flipped' : ''}`} onClick={() => toggleCard(idx)}>
+                                <div className="flip-card-inner">
+                                    <div className="flip-card-front text-center">
+                                        <div className="w-12 h-12 rounded-full border-2 border-gold flex items-center justify-center text-gold mb-3"><SVGIcons.Cards /></div>
+                                        <h4 className="text-xl md:text-2xl font-amiri font-bold leading-relaxed">{card.front}</h4>
+                                    </div>
+                                    <div className="flip-card-back p-5 text-base md:text-lg font-bold shadow-inner flex items-center justify-center leading-loose border-2 border-gold/30 text-center">{card.back}</div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    <h3 className="text-2xl font-bold text-navy mb-6 border-r-4 border-gold pr-3">ثانياً: الأسئلة المقالية الشاملة</h3>
+                    <div className="space-y-4">
+                        {ESSAY_QUESTIONS.map((item, idx) => {
+                            const isGold = idx % 2 === 0;
+                            const isOpen = openAccordion === idx;
+                            return (
+                                <div key={idx} className="rounded-2xl overflow-hidden shadow-sm border border-gray-200 transition-all duration-300">
+                                    <button 
+                                        onClick={() => toggleAccordion(idx)}
+                                        className={`w-full p-5 flex justify-between items-center text-right font-bold text-lg md:text-xl transition-colors ${isGold ? 'bg-gold text-navy hover:bg-yellow-500' : 'bg-navy text-white hover:bg-gray-800'}`}
+                                    >
+                                        <span className="flex items-center gap-3">
+                                            <span className={`w-8 h-8 flex items-center justify-center rounded-full text-sm shrink-0 ${isGold ? 'bg-navy text-gold' : 'bg-gold text-navy'}`}>{idx + 1}</span>
+                                            {item.q}
+                                        </span>
+                                        <span className="shrink-0 ml-2">{isOpen ? <SVGIcons.ChevronUp /> : <SVGIcons.ChevronDown />}</span>
+                                    </button>
+                                    <div className={`transition-all duration-500 ease-in-out ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'} overflow-hidden bg-white`}>
+                                        <div className="p-6 text-gray-800 text-lg leading-relaxed border-t border-gray-100 bg-gray-50">
+                                            {item.a}
+                                        </div>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+            );
+        };
+
+        const NawazilScreen = () => {
+            const [scenario, setScenario] = useState('');
+            const [answer, setAnswer] = useState('');
+            const [feedback, setFeedback] = useState('');
+            const [isLoading, setIsLoading] = useState(false);
+            const [stage, setStage] = useState('idle'); 
+
+            const generateScenario = async () => {
+                setIsLoading(true); setStage('generating'); setScenario(''); setAnswer(''); setFeedback('');
+                try {
+                    const res = await fetch('/api/nawazil', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'generate' }) });
+                    if (!res.ok) throw new Error('Network error');
+                    const data = await res.json();
+                    setScenario(data.result); setStage('answering');
+                } catch (error) {
+                    setScenario('عذراً، حدث خطأ في الاتصال بالخادم. يرجى المحاولة لاحقاً.'); setStage('idle');
+                } finally { setIsLoading(false); }
+            };
+
+            const submitAnswer = async () => {
+                if (!answer.trim()) return;
+                setIsLoading(true); setStage('evaluating');
+                try {
+                    const res = await fetch('/api/nawazil', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'evaluate', scenario, answer }) });
+                    if (!res.ok) throw new Error('Network error');
+                    const data = await res.json();
+                    setFeedback(data.result); setStage('feedback');
+                } catch (error) {
+                    setFeedback('عذراً، حدث خطأ أثناء تقييم الإجابة.'); setStage('answering');
+                } finally { setIsLoading(false); }
+            };
+
+            return (
+                <div className="p-4 md:p-8 max-w-4xl mx-auto animate-fade-in pb-32 w-full">
+                    <div className="text-center mb-10">
+                        <div className="inline-flex items-center justify-center w-20 h-20 bg-navy text-gold rounded-full mb-4 shadow-lg"><SVGIcons.Brain /></div>
+                        <h2 className="text-4xl font-amiri font-bold text-navy mb-2">مولد النوازل الواقعية</h2>
+                        <p className="text-gray-600 text-lg">اختبر فهمك الفقهي في قضايا معاصرة يولدها الذكاء الاصطناعي</p>
+                    </div>
+
+                    <div className="bg-white rounded-3xl shadow-xl border-2 border-gold/30 overflow-hidden">
+                        <div className="bg-navy p-6 text-center">
+                            {(stage === 'idle' || stage === 'feedback') && (
+                                <button onClick={generateScenario} disabled={isLoading} className="bg-gold text-navy font-bold text-lg px-8 py-3 rounded-xl hover:bg-yellow-500 transition-colors shadow-md flex items-center justify-center gap-2 mx-auto">
+                                    {isLoading ? 'جاري التوليد...' : 'توليد نازلة فقهية جديدة'} {!isLoading && <SVGIcons.Refresh />}
+                                </button>
+                            )}
+                            {stage === 'generating' && <div className="text-gold font-bold animate-pulse">جاري صياغة قصة واقعية...</div>}
+                        </div>
+
+                        {scenario && (
+                            <div className="p-6 md:p-8">
+                                <h3 className="text-xl font-bold text-navy mb-4 border-r-4 border-gold pr-3">النازلة (القضية):</h3>
+                                <div className="bg-trait4 p-6 rounded-2xl border border-gold/20 text-lg leading-relaxed text-gray-800 shadow-inner mb-8">{scenario}</div>
+
+                                {(stage === 'answering' || stage === 'evaluating') && (
+                                    <div className="animate-slide-up">
+                                        <h3 className="text-xl font-bold text-navy mb-4 border-r-4 border-emerald-500 pr-3">ما هو الحكم الفقهي برأيك؟ ولماذا؟</h3>
+                                        <textarea value={answer} onChange={(e) => setAnswer(e.target.value)} disabled={isLoading} placeholder="اكتب إجابتك هنا بناءً على ما درسته..." className="w-full p-4 rounded-xl border-2 border-gray-200 focus:border-emerald-500 focus:outline-none text-lg min-h-[150px] mb-4 bg-gray-50"></textarea>
+                                        <button onClick={submitAnswer} disabled={isLoading || !answer.trim()} className="w-full bg-emerald-600 text-white font-bold text-xl py-4 rounded-xl hover:bg-emerald-700 transition-colors shadow-md flex justify-center items-center gap-2 disabled:opacity-50">
+                                            {stage === 'evaluating' ? 'جاري تصحيح الإجابة...' : 'إرسال الحل للتقييم'} {stage !== 'evaluating' && <SVGIcons.Send />}
+                                        </button>
+                                    </div>
+                                )}
+
+                                {stage === 'feedback' && (
+                                    <div className="animate-slide-up mt-8">
+                                        <h3 className="text-xl font-bold text-navy mb-4 border-r-4 border-blue-500 pr-3">إجابتك:</h3>
+                                        <div className="bg-gray-100 p-4 rounded-xl text-gray-700 mb-6">{answer}</div>
+                                        <h3 className="text-xl font-bold text-navy mb-4 border-r-4 border-gold pr-3 flex items-center gap-2"><SVGIcons.Brain /> تقييم الذكاء الاصطناعي:</h3>
+                                        <div className="bg-white border-2 border-gold p-6 rounded-2xl text-lg leading-relaxed text-navy shadow-md">{feedback}</div>
+                                    </div>
+                                )}
+                            </div>
+                        )}
+                    </div>
+                </div>
+            );
+        };
+
+        const QuizScreen = ({ studentData, onFinish }) => {
+            const [currentQ, setCurrentQ] = useState(0);
+            const [selectedAnswers, setSelectedAnswers] = useState({});
+            const [isFinished, setIsFinished] = useState(false);
+            const[score, setScore] = useState(0);
+
+            const handleSelect = (idx) => {
+                if (isFinished) return;
+                setSelectedAnswers(prev => ({...prev, [currentQ]: idx}));
+                setTimeout(() => { if (currentQ < QUIZ_QUESTIONS.length - 1) setCurrentQ(prev => prev + 1); }, 600);
+            };
+
+            const nextQ = () => currentQ < QUIZ_QUESTIONS.length - 1 && setCurrentQ(prev => prev + 1);
+            const prevQ = () => currentQ > 0 && setCurrentQ(prev => prev - 1);
+
+            const finishQuiz = () => {
+                let s = 0;
+                QUIZ_QUESTIONS.forEach((q, idx) => { if (selectedAnswers[idx] === q.answer) s++; });
+                setScore(s); setIsFinished(true);
+                onFinish(s, new Date()); // إرسال الدرجة ووقت الانتهاء للوحة التحكم
+            };
+
+            if (isFinished) {
+                return (
+                    <div className="flex-grow flex items-center justify-center p-4 animate-fade-in pb-32">
+                        <div className="glass-panel p-10 rounded-3xl max-w-2xl w-full text-center">
+                            <h2 className="text-4xl font-amiri font-bold text-navy mb-6">نتيجة التقييم الشامل</h2>
+                            <div className="bg-white rounded-2xl p-8 mb-8 border-2 border-gold relative shadow-inner">
+                                <div className="text-7xl font-bold text-navy mb-4">{score} <span className="text-3xl text-gray-400">/ 15</span></div>
+                                <div className="text-2xl font-bold text-gold mb-4">{score >= 13 ? "أداء مبهر وممتاز!" : score >= 10 ? "أداء جيد جداً!" : "تحتاج إلى مراجعة المادة مرة أخرى."}</div>
+                            </div>
+                        </div>
+                    </div>
+                );
+            }
+
+            const q = QUIZ_QUESTIONS[currentQ];
+            const hasAnsweredAll = Object.keys(selectedAnswers).length === QUIZ_QUESTIONS.length;
+
+            return (
+                <div className="p-4 md:p-8 max-w-4xl mx-auto animate-fade-in pb-32 w-full">
+                    <div className="flex justify-between items-center mb-8 bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
+                        <div className="text-navy font-bold text-lg">السؤال {currentQ + 1} من {QUIZ_QUESTIONS.length}</div>
+                        <div className="w-1/2 bg-gray-200 rounded-full h-3"><div className="bg-gold h-3 transition-all" style={{ width: `${((currentQ + 1) / QUIZ_QUESTIONS.length) * 100}%` }}></div></div>
+                    </div>
+                    <div className="bg-white rounded-3xl p-8 shadow-lg border-t-4 border-navy mb-8 min-h-[300px]">
+                        <h3 className="text-2xl font-bold text-navy mb-8 leading-relaxed">{q.q}</h3>
+                        <div className="space-y-4">
+                            {q.options.map((opt, idx) => (
+                                <button key={idx} onClick={() => handleSelect(idx)} className={`w-full text-right p-5 rounded-xl text-lg transition-all border-2 ${selectedAnswers[currentQ] === idx ? 'bg-navy text-white border-navy shadow-md transform scale-[1.01]' : 'bg-gray-50 text-gray-700 hover:border-gold'}`}>{opt}</button>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="flex justify-between">
+                        <button onClick={prevQ} disabled={currentQ === 0} className={`px-6 py-3 rounded-xl font-bold ${currentQ === 0 ? 'bg-gray-200 text-gray-400' : 'bg-white text-navy border border-navy hover:bg-gray-50'}`}>السابق</button>
+                        {currentQ === QUIZ_QUESTIONS.length - 1 ? (
+                            <button onClick={finishQuiz} disabled={!hasAnsweredAll} className={`px-8 py-3 rounded-xl font-bold shadow-md transition-all ${!hasAnsweredAll ? 'bg-gray-300 text-gray-500' : 'bg-gold text-navy hover:scale-105 animate-pulse'}`}>إنهاء التقييم</button>
+                        ) : (
+                            <button onClick={nextQ} className="px-8 py-3 rounded-xl font-bold bg-navy text-white shadow-md hover:scale-105 transition-transform">التالي</button>
+                        )}
+                    </div>
+                </div>
+            );
+        };
+
+        // --- لوحة تحكم الأستاذ (مكونات جديدة) ---
+        const AdminLogin = ({ onLogin, onClose }) => {
+            const [pass, setPass] = useState('');
+            const [err, setErr] = useState('');
+            const handleLogin = () => {
+                if (pass === '1234') onLogin(); // الرقم السري هو 1234
+                else setErr('الرقم السري غير صحيح');
+            };
+            return (
+                <div className="fixed inset-0 bg-black/80 z-[200] flex items-center justify-center p-4 animate-fade-in">
+                    <div className="bg-white rounded-2xl p-8 max-w-sm w-full relative text-center shadow-2xl">
+                        <button onClick={onClose} className="absolute top-4 left-4 text-gray-400 hover:text-red-500 transition-colors"><SVGIcons.Close/></button>
+                        <div className="w-16 h-16 bg-navy text-gold rounded-full flex items-center justify-center mx-auto mb-4"><SVGIcons.Lock/></div>
+                        <h2 className="text-2xl font-bold text-navy mb-6">دخول الأستاذ</h2>
+                        <input type="password" value={pass} onChange={e=>setPass(e.target.value)} className="w-full p-3 border-2 border-gray-200 focus:border-gold focus:outline-none rounded-xl mb-4 text-center text-lg" placeholder="أدخل الرقم السري..." />
+                        {err && <p className="text-red-500 font-bold mb-4">{err}</p>}
+                        <button onClick={handleLogin} className="bg-gold text-navy hover:bg-yellow-500 px-6 py-3 rounded-xl font-bold w-full transition-colors">دخول للوحة التحكم</button>
+                    </div>
+                </div>
+            );
+        };
+
+        const AdminDashboard = ({ studentData, startTime, endTime, score, onClose }) => {
+            let timeSpent = "لم ينهِ الاختبار بعد";
+            if (startTime && endTime) {
+                const diff = Math.round((endTime - startTime) / 60000);
+                timeSpent = `${diff} دقيقة`;
+            }
+
+            return (
+                <div className="fixed inset-0 bg-black/80 z-[200] flex items-center justify-center p-4 animate-fade-in">
+                    <div className="bg-white rounded-2xl p-8 max-w-md w-full relative shadow-2xl border-t-8 border-navy">
+                        <button onClick={onClose} className="absolute top-4 left-4 text-gray-400 hover:text-red-500 transition-colors"><SVGIcons.Close/></button>
+                        <h2 className="text-3xl font-amiri font-bold text-navy mb-6 border-b-2 border-gold pb-3 flex items-center gap-2">
+                            <SVGIcons.Lock/> لوحة تحكم الأستاذ
+                        </h2>
+                        {studentData ? (
+                            <div className="space-y-5 text-lg bg-gray-50 p-6 rounded-xl border border-gray-200">
+                                <p className="flex justify-between border-b border-gray-200 pb-2"><span className="font-bold text-navy">اسم الطالب:</span> <span className="text-gray-700">{studentData.name}</span></p>
+                                <p className="flex justify-between border-b border-gray-200 pb-2"><span className="font-bold text-navy">الشعبة:</span> <span className="text-gray-700">{studentData.section}</span></p>
+                                <p className="flex justify-between border-b border-gray-200 pb-2"><span className="font-bold text-navy">وقت الدخول:</span> <span className="text-gray-700">{startTime.toLocaleTimeString('ar-SA')}</span></p>
+                                <p className="flex justify-between border-b border-gray-200 pb-2"><span className="font-bold text-navy">الوقت المستغرق:</span> <span className="text-emerald-600 font-bold">{timeSpent}</span></p>
+                                <p className="flex justify-between"><span className="font-bold text-navy">درجة الاختبار:</span> <span className="text-gold font-bold text-xl">{score !== null ? `${score} / 15` : 'لم يختبر'}</span></p>
+                            </div>
+                        ) : (
+                            <p className="text-gray-500 text-center text-lg py-8">لم يسجل أي طالب الدخول بعد.</p>
+                        )}
+                    </div>
+                </div>
+            );
+        };
+
+        const App = () => {
+            const [screen, setScreen] = useState(1);
+            const[studentData, setStudentData] = useState(null);
+            const [startTime, setStartTime] = useState(null);
+            const [endTime, setEndTime] = useState(null);
+            const [quizScore, setQuizScore] = useState(null);
+            
+            // حالات لوحة التحكم
+            const [showAdminPrompt, setShowAdminPrompt] = useState(false);
+            const [isAdminAuth, setIsAdminAuth] = useState(false);
+
+            const handleStart = (name, section) => { setStudentData({ name, section }); setStartTime(new Date()); setScreen(2); };
+
+            const NavButton = ({ targetScreen, icon, label }) => (
+                <button onClick={() => setScreen(targetScreen)} className={`flex flex-col items-center p-2 rounded-lg transition-colors ${screen === targetScreen ? 'text-gold bg-navy' : 'text-gray-400 hover:text-navy hover:bg-gray-100'}`}>
+                    {icon}<span className="text-[10px] md:text-xs font-bold mt-1">{label}</span>
+                </button>
+            );
+
+            return (
+                <div className="flex flex-col min-h-screen">
+                    {/* Admin Modals */}
+                    {showAdminPrompt && !isAdminAuth && <AdminLogin onLogin={() => setIsAdminAuth(true)} onClose={() => setShowAdminPrompt(false)} />}
+                    {showAdminPrompt && isAdminAuth && <AdminDashboard studentData={studentData} startTime={startTime} endTime={endTime} score={quizScore} onClose={() => setShowAdminPrompt(false)} />}
+
+                    {screen > 1 && (
+                        <header className="bg-white shadow-sm sticky top-0 z-50 p-3 border-b-2 border-gold flex justify-between items-center">
+                            <div className="flex items-center gap-3">
+                                <img src={UNIVERSITY_LOGO_URL} alt="شعار الجامعة" className="h-10 object-contain" />
+                                <div className="font-amiri font-bold text-lg md:text-xl text-navy hidden sm:block">الخلع والطلاق والرجعة</div>
+                            </div>
+                            <div className="flex items-center gap-3">
+                                <div className="text-sm bg-trait4 px-3 py-1 rounded-full border border-gold text-navy font-bold">{studentData.name.split(' ')[0]} ({studentData.section})</div>
+                                {/* زر الدخول للوحة التحكم (أيقونة القفل) */}
+                                <button onClick={() => setShowAdminPrompt(true)} className="text-gray-300 hover:text-gold transition-colors" title="لوحة تحكم الأستاذ">
+                                    <SVGIcons.Lock />
+                                </button>
+                            </div>
+                        </header>
+                    )}
+                    <main className="flex-grow flex flex-col relative bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')]">
+                        {screen === 1 && <WelcomeScreen onStart={handleStart} />}
+                        {screen === 2 && <StepperContentScreen onComplete={() => setScreen(3)} />}
+                        {screen === 3 && <MindMapScreen />}
+                        {screen === 4 && <ReviewScreen />}
+                        {screen === 5 && <NawazilScreen />}
+                        {screen === 6 && <QuizScreen studentData={studentData} onFinish={(score, time) => { setQuizScore(score); setEndTime(time); }} />}
+                    </main>
+                    {screen > 1 && (
+                        <nav className="fixed bottom-0 w-full bg-white shadow-[0_-4px_15px_rgba(0,0,0,0.05)] border-t border-gray-100 z-50">
+                            <div className="max-w-xl mx-auto flex justify-between px-2 md:px-6 py-2">
+                                <NavButton targetScreen={2} icon={<SVGIcons.Book />} label="المادة" />
+                                <NavButton targetScreen={3} icon={<SVGIcons.Map />} label="الخرائط" />
+                                <NavButton targetScreen={4} icon={<SVGIcons.Cards />} label="المراجعة" />
+                                <NavButton targetScreen={5} icon={<SVGIcons.Brain />} label="النوازل" />
+                                <NavButton targetScreen={6} icon={<SVGIcons.Quiz />} label="التقييم" />
+                            </div>
+                        </nav>
+                    )}
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
