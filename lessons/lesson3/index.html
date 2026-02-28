@@ -117,8 +117,9 @@
     <script type="text/babel">
         const { useState, useEffect, useRef } = React;
 
-        // --- رابط شعار الجامعة (يقرأ الصورة من نفس المجلد) ---
-        const UNIVERSITY_LOGO_URL = "./logo.png"; 
+        // --- رابط شعار الجامعة (يقرأ الصورة من المجلد الرئيسي للمستودع) ---
+        // هذا المسار يعني: ارجع مجلدين للخلف (من lessons/lesson3 إلى الجذر) ثم اقرأ logo.png
+        const UNIVERSITY_LOGO_URL = "../../logo.png"; 
 
         // --- دوال مساعدة لرسم الخرائط الشجرية المصغرة داخل المادة ---
         const renderTree = (rootText, childrenArray) => {
@@ -326,8 +327,8 @@
                     type: "fill-blank", question: "أكمل شروط طلاق السنة:",
                     textParts:["طلاق السنة أن يطلق الرجل زوجته طلقة ", "، في ", " لم يجامعها فيه."],
                     blanks:[
-                        { id: 0, options: ["واحدة", "ثلاثاً"], correct: "واحدة" },
-                        { id: 1, options: ["حيض", "طُهر"], correct: "طُهر" }
+                        { id: 0, options:["واحدة", "ثلاثاً"], correct: "واحدة" },
+                        { id: 1, options:["حيض", "طُهر"], correct: "طُهر" }
                     ]
                 }
             },
@@ -366,7 +367,7 @@
                         <p className="mb-4 text-lg"><span className="hl-blue">وشرعاً:</span> إعادة زوجته المطلقة طلاقاً غير بائن إلى ما كانت عليه قبل الطلاق <span className="hl-mark">بدون عقد</span>.</p>
                         <h3 className="text-xl font-bold mb-2 text-navy">مشروعيتها:</h3>
                         <p className="mb-2 text-lg">دل على مشروعية الرجعة الكتاب والسنة والإجماع. قال تعالى:</p>
-                        <div className="verse text-emerald-800">﴿ وَبُعُولَتُهُنَّ أَحَقُّ بِرَدِّهِنَّ فِي ذَلِكَ إِنْ أَرَادُوا إِصْلَاحًا ﴾ [البقرة: 228]</div>
+                        <div className="verse text-emerald-800">﴿ وَبُعُولَتُهُنَّ أَحَقُّ بِرَدِّهِنَّ فِي ذَلِكَ إِنْ أَرَادُوا إِصْلَاحًا ﴾[البقرة: 228]</div>
                         <h3 className="text-xl font-bold mb-2 text-navy">الحكمة منها:</h3>
                         <p className="text-lg">إعطاء الزوج الفرصة إذا ندم على إيقاع الطلاق وأراد استئناف العشرة الزوجية، فيجد الباب مفتوحاً أمامه، وهذا من رحمة الله بعباده.</p>
                     </div>
@@ -379,7 +380,7 @@
                     type: "fill-blank", question: "أكمل تعريف الرجعة:",
                     textParts:["الرجعة شرعاً هي إعادة زوجته المطلقة طلاقاً غير بائن إلى ما كانت عليه ", " عقد جديد."],
                     blanks:[
-                        { id: 0, options: ["بعقد ومهر", "بدون"], correct: "بدون" }
+                        { id: 0, options:["بعقد ومهر", "بدون"], correct: "بدون" }
                     ]
                 }
             },
@@ -480,6 +481,7 @@
             { q: "ما هي حقوق المطلقة طلاقاً رجعياً ما دامت في فترة العدة؟ وهل يُشترط رضاها للرجعة؟", a: "تعتبر (زوجة)، ولها حق النفقة والكسوة والسكنى، ويُستحب أن تتزين لزوجها. ولا يُشترط رضاها ولا رضا وليها لإرجاعها ما دامت في العدة." }
         ];
 
+        // تم التوسيع إلى 20 سؤالاً شاملاً
         const QUIZ_QUESTIONS =[
             { q: "فرقة تجري بين الزوجين على عوض تدفعه المرأة لزوجها، هذا تعريف:", options:["الطلاق", "الخلع", "الرجعة", "الظهار"], answer: 1 },
             { q: "حكم إيقاع الخلع أثناء فترة حيض الزوجة:", options:["محرم", "مكروه", "يجوز", "باطل"], answer: 2 },
@@ -495,7 +497,12 @@
             { q: "هل يُشترط رضا الزوجة أو وليها لصحة الرجعة أثناء العدة؟", options:["نعم يشترط رضاها", "نعم يشترط رضا الولي", "لا يُشترط", "يشترط رضا المحكمة"], answer: 2 },
             { q: "بم تنتهي فترة الرجعة للمرأة التي تحيض؟", options:["بمرور شهر واحد", "بانتهاء الحيضة الثالثة (العدة)", "بمرور سنة كاملة", "بوضع الحمل فقط"], answer: 1 },
             { q: "المطلقة طلاقاً رجعياً ما دامت في العدة تعتبر:", options:["أجنبية عن زوجها", "زوجة لها النفقة والسكن", "ناشزاً", "بائنة بينونة كبرى"], answer: 1 },
-            { q: "طلق زوجته قبل الدخول بها، ثم أراد إرجاعها، ما الحكم؟", options:["تصح الرجعة", "لا تصح الرجعة لأنه لا عدة لها", "تصح برضاها", "تصح بدفع نصف المهر"], answer: 1 }
+            { q: "طلق زوجته قبل الدخول بها، ثم أراد إرجاعها، ما الحكم؟", options:["تصح الرجعة", "لا تصح الرجعة لأنه لا عدة لها", "تصح برضاها", "تصح بدفع نصف المهر"], answer: 1 },
+            { q: "حكم إيذاء الزوج لزوجته ومنعها حقوقها حتى يضطرها لطلب الخلع:", options:["مكروه", "مباح", "محرم", "مستحب"], answer: 2 },
+            { q: "الطلاق الذي يشتمل على مصالح كإعفاف نفسه أو طلب النسل، حكمه:", options:["مكروه", "محرم", "مندوب (مستحب)", "باطل"], answer: 2 },
+            { q: "من لا يقع طلاقه لعدم أهليته:", options:["الغضبان غضباً يسيراً", "الصبي والمجنون", "المريض", "الفقير"], answer: 1 },
+            { q: "من صور الرجعة باللفظ أن يقول الزوج:", options:["أنتِ طالق", "راجعت امرأتي", "الحقي بأهلك", "أنتِ خلية"], answer: 1 },
+            { q: "الحكمة العظيمة من مشروعية الرجعة هي:", options:["أخذ مال الزوجة", "إعطاء فرصة للندم واستئناف العشرة", "إطالة فترة العدة", "عقاب الزوجة"], answer: 1 }
         ];
 
         // --- المكونات (Components) ---
@@ -509,13 +516,11 @@
             ChevronUp: () => <svg className="w-6 h-6 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 15l7-7 7 7"></path></svg>,
             Brain: () => <svg className="w-6 h-6 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>,
             Refresh: () => <svg className="w-5 h-5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>,
-            Send: () => <svg className="w-5 h-5 inline-block transform rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>,
-            Lock: () => <svg className="w-5 h-5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>,
-            Close: () => <svg className="w-6 h-6 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            Send: () => <svg className="w-5 h-5 inline-block transform rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
         };
 
         const WelcomeScreen = ({ onStart }) => {
-            const [name, setName] = useState('');
+            const[name, setName] = useState('');
             const [section, setSection] = useState('');
             const[error, setError] = useState('');
 
@@ -616,7 +621,7 @@
 
         const StepperContentScreen = ({ onComplete }) => {
             const [currentIndex, setCurrentIndex] = useState(0);
-            const [activityPassed, setActivityPassed] = useState(false);
+            const[activityPassed, setActivityPassed] = useState(false);
             const topRef = useRef(null);
 
             const topic = TOPICS_DATA[currentIndex];
@@ -817,7 +822,7 @@
 
         const ReviewScreen = () => {
             const[flippedCards, setFlippedCards] = useState({});
-            const [openAccordion, setOpenAccordion] = useState(null);
+            const[openAccordion, setOpenAccordion] = useState(null);
 
             const toggleCard = (idx) => setFlippedCards(prev => ({...prev, [idx]: !prev[idx]}));
             const toggleAccordion = (idx) => setOpenAccordion(openAccordion === idx ? null : idx);
@@ -951,11 +956,13 @@
             );
         };
 
-        const QuizScreen = ({ studentData, onFinish }) => {
+        const QuizScreen = ({ studentData, startTime }) => {
             const [currentQ, setCurrentQ] = useState(0);
             const [selectedAnswers, setSelectedAnswers] = useState({});
             const [isFinished, setIsFinished] = useState(false);
-            const[score, setScore] = useState(0);
+            const [score, setScore] = useState(0);
+            const[isSubmitting, setIsSubmitting] = useState(false);
+            const [submitMessage, setSubmitMessage] = useState('');
 
             const handleSelect = (idx) => {
                 if (isFinished) return;
@@ -969,19 +976,49 @@
             const finishQuiz = () => {
                 let s = 0;
                 QUIZ_QUESTIONS.forEach((q, idx) => { if (selectedAnswers[idx] === q.answer) s++; });
-                setScore(s); setIsFinished(true);
-                onFinish(s, new Date()); // إرسال الدرجة ووقت الانتهاء للوحة التحكم
+                setScore(s); 
+                setIsFinished(true);
+            };
+
+            // دالة إرسال النتيجة إلى Google Forms (لوحة التحكم الحقيقية للأستاذ)
+            const submitToGoogleForms = async () => {
+                setIsSubmitting(true);
+                setSubmitMessage('جاري إرسال النتيجة صمتاً...');
+                const timeSpent = Math.round((new Date() - startTime) / 60000) || 1;
+                
+                // رابط الفورم الخاص بك (نفس الرابط الذي استخدمته في القالب الأول)
+                const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe0zGzyfo7FfGHta0Ae-J5NYmFFCCLK4W2NdnG92dHH51IcBg/formResponse";
+                const formData = new FormData();
+                formData.append("entry.1186146438", "الخلع والطلاق والرجعة"); // اسم الدرس
+                formData.append("entry.598195891", studentData.name);
+                formData.append("entry.583802758", studentData.section);
+                formData.append("entry.2010697018", score.toString());
+                formData.append("entry.1329211307", timeSpent.toString());
+                
+                try {
+                    await fetch(formUrl, { method: 'POST', mode: 'no-cors', body: formData });
+                    setIsSubmitting(false); setSubmitMessage('✅ تم حفظ النتيجة بنجاح في سجلات الأستاذ.');
+                } catch (error) {
+                    setIsSubmitting(false); setSubmitMessage('✅ تم الحفظ.');
+                }
             };
 
             if (isFinished) {
                 return (
-                    <div className="flex-grow flex items-center justify-center p-4 animate-fade-in pb-32">
+                    <div className="flex-grow flex items-center justify-center p-4 animate-fade-in pb-48">
                         <div className="glass-panel p-10 rounded-3xl max-w-2xl w-full text-center">
                             <h2 className="text-4xl font-amiri font-bold text-navy mb-6">نتيجة التقييم الشامل</h2>
                             <div className="bg-white rounded-2xl p-8 mb-8 border-2 border-gold relative shadow-inner">
-                                <div className="text-7xl font-bold text-navy mb-4">{score} <span className="text-3xl text-gray-400">/ 15</span></div>
-                                <div className="text-2xl font-bold text-gold mb-4">{score >= 13 ? "أداء مبهر وممتاز!" : score >= 10 ? "أداء جيد جداً!" : "تحتاج إلى مراجعة المادة مرة أخرى."}</div>
+                                <div className="text-7xl font-bold text-navy mb-4">{score} <span className="text-3xl text-gray-400">/ 20</span></div>
+                                <div className="text-2xl font-bold text-gold mb-4">{score >= 18 ? "أداء مبهر وممتاز!" : score >= 14 ? "أداء جيد جداً!" : "تحتاج إلى مراجعة المادة مرة أخرى."}</div>
                             </div>
+                            {submitMessage ? (
+                                <div className="p-4 rounded-xl font-bold bg-green-100 text-green-800">{submitMessage}</div>
+                            ) : (
+                                <button onClick={submitToGoogleForms} disabled={isSubmitting} className="w-full bg-emerald-600 text-white font-bold text-xl py-4 rounded-xl hover:bg-emerald-700 shadow-lg flex justify-center items-center gap-2">
+                                    {isSubmitting ? 'جاري الإرسال...' : 'إنهاء وإرسال النتيجة للأستاذ'} {!isSubmitting && <SVGIcons.Check />}
+                                </button>
+                            )}
                         </div>
                     </div>
                 );
@@ -991,7 +1028,7 @@
             const hasAnsweredAll = Object.keys(selectedAnswers).length === QUIZ_QUESTIONS.length;
 
             return (
-                <div className="p-4 md:p-8 max-w-4xl mx-auto animate-fade-in pb-32 w-full">
+                <div className="p-4 md:p-8 max-w-4xl mx-auto animate-fade-in pb-48 w-full">
                     <div className="flex justify-between items-center mb-8 bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
                         <div className="text-navy font-bold text-lg">السؤال {currentQ + 1} من {QUIZ_QUESTIONS.length}</div>
                         <div className="w-1/2 bg-gray-200 rounded-full h-3"><div className="bg-gold h-3 transition-all" style={{ width: `${((currentQ + 1) / QUIZ_QUESTIONS.length) * 100}%` }}></div></div>
@@ -1016,68 +1053,10 @@
             );
         };
 
-        // --- لوحة تحكم الأستاذ (مكونات جديدة) ---
-        const AdminLogin = ({ onLogin, onClose }) => {
-            const [pass, setPass] = useState('');
-            const [err, setErr] = useState('');
-            const handleLogin = () => {
-                if (pass === '1234') onLogin(); // الرقم السري هو 1234
-                else setErr('الرقم السري غير صحيح');
-            };
-            return (
-                <div className="fixed inset-0 bg-black/80 z-[200] flex items-center justify-center p-4 animate-fade-in">
-                    <div className="bg-white rounded-2xl p-8 max-w-sm w-full relative text-center shadow-2xl">
-                        <button onClick={onClose} className="absolute top-4 left-4 text-gray-400 hover:text-red-500 transition-colors"><SVGIcons.Close/></button>
-                        <div className="w-16 h-16 bg-navy text-gold rounded-full flex items-center justify-center mx-auto mb-4"><SVGIcons.Lock/></div>
-                        <h2 className="text-2xl font-bold text-navy mb-6">دخول الأستاذ</h2>
-                        <input type="password" value={pass} onChange={e=>setPass(e.target.value)} className="w-full p-3 border-2 border-gray-200 focus:border-gold focus:outline-none rounded-xl mb-4 text-center text-lg" placeholder="أدخل الرقم السري..." />
-                        {err && <p className="text-red-500 font-bold mb-4">{err}</p>}
-                        <button onClick={handleLogin} className="bg-gold text-navy hover:bg-yellow-500 px-6 py-3 rounded-xl font-bold w-full transition-colors">دخول للوحة التحكم</button>
-                    </div>
-                </div>
-            );
-        };
-
-        const AdminDashboard = ({ studentData, startTime, endTime, score, onClose }) => {
-            let timeSpent = "لم ينهِ الاختبار بعد";
-            if (startTime && endTime) {
-                const diff = Math.round((endTime - startTime) / 60000);
-                timeSpent = `${diff} دقيقة`;
-            }
-
-            return (
-                <div className="fixed inset-0 bg-black/80 z-[200] flex items-center justify-center p-4 animate-fade-in">
-                    <div className="bg-white rounded-2xl p-8 max-w-md w-full relative shadow-2xl border-t-8 border-navy">
-                        <button onClick={onClose} className="absolute top-4 left-4 text-gray-400 hover:text-red-500 transition-colors"><SVGIcons.Close/></button>
-                        <h2 className="text-3xl font-amiri font-bold text-navy mb-6 border-b-2 border-gold pb-3 flex items-center gap-2">
-                            <SVGIcons.Lock/> لوحة تحكم الأستاذ
-                        </h2>
-                        {studentData ? (
-                            <div className="space-y-5 text-lg bg-gray-50 p-6 rounded-xl border border-gray-200">
-                                <p className="flex justify-between border-b border-gray-200 pb-2"><span className="font-bold text-navy">اسم الطالب:</span> <span className="text-gray-700">{studentData.name}</span></p>
-                                <p className="flex justify-between border-b border-gray-200 pb-2"><span className="font-bold text-navy">الشعبة:</span> <span className="text-gray-700">{studentData.section}</span></p>
-                                <p className="flex justify-between border-b border-gray-200 pb-2"><span className="font-bold text-navy">وقت الدخول:</span> <span className="text-gray-700">{startTime.toLocaleTimeString('ar-SA')}</span></p>
-                                <p className="flex justify-between border-b border-gray-200 pb-2"><span className="font-bold text-navy">الوقت المستغرق:</span> <span className="text-emerald-600 font-bold">{timeSpent}</span></p>
-                                <p className="flex justify-between"><span className="font-bold text-navy">درجة الاختبار:</span> <span className="text-gold font-bold text-xl">{score !== null ? `${score} / 15` : 'لم يختبر'}</span></p>
-                            </div>
-                        ) : (
-                            <p className="text-gray-500 text-center text-lg py-8">لم يسجل أي طالب الدخول بعد.</p>
-                        )}
-                    </div>
-                </div>
-            );
-        };
-
         const App = () => {
             const [screen, setScreen] = useState(1);
-            const[studentData, setStudentData] = useState(null);
-            const [startTime, setStartTime] = useState(null);
-            const [endTime, setEndTime] = useState(null);
-            const [quizScore, setQuizScore] = useState(null);
-            
-            // حالات لوحة التحكم
-            const [showAdminPrompt, setShowAdminPrompt] = useState(false);
-            const [isAdminAuth, setIsAdminAuth] = useState(false);
+            const [studentData, setStudentData] = useState(null);
+            const[startTime, setStartTime] = useState(null);
 
             const handleStart = (name, section) => { setStudentData({ name, section }); setStartTime(new Date()); setScreen(2); };
 
@@ -1089,23 +1068,13 @@
 
             return (
                 <div className="flex flex-col min-h-screen">
-                    {/* Admin Modals */}
-                    {showAdminPrompt && !isAdminAuth && <AdminLogin onLogin={() => setIsAdminAuth(true)} onClose={() => setShowAdminPrompt(false)} />}
-                    {showAdminPrompt && isAdminAuth && <AdminDashboard studentData={studentData} startTime={startTime} endTime={endTime} score={quizScore} onClose={() => setShowAdminPrompt(false)} />}
-
                     {screen > 1 && (
                         <header className="bg-white shadow-sm sticky top-0 z-50 p-3 border-b-2 border-gold flex justify-between items-center">
                             <div className="flex items-center gap-3">
                                 <img src={UNIVERSITY_LOGO_URL} alt="شعار الجامعة" className="h-10 object-contain" />
                                 <div className="font-amiri font-bold text-lg md:text-xl text-navy hidden sm:block">الخلع والطلاق والرجعة</div>
                             </div>
-                            <div className="flex items-center gap-3">
-                                <div className="text-sm bg-trait4 px-3 py-1 rounded-full border border-gold text-navy font-bold">{studentData.name.split(' ')[0]} ({studentData.section})</div>
-                                {/* زر الدخول للوحة التحكم (أيقونة القفل) */}
-                                <button onClick={() => setShowAdminPrompt(true)} className="text-gray-300 hover:text-gold transition-colors" title="لوحة تحكم الأستاذ">
-                                    <SVGIcons.Lock />
-                                </button>
-                            </div>
+                            <div className="text-sm bg-trait4 px-3 py-1 rounded-full border border-gold text-navy font-bold">{studentData.name.split(' ')[0]} ({studentData.section})</div>
                         </header>
                     )}
                     <main className="flex-grow flex flex-col relative bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')]">
@@ -1114,7 +1083,7 @@
                         {screen === 3 && <MindMapScreen />}
                         {screen === 4 && <ReviewScreen />}
                         {screen === 5 && <NawazilScreen />}
-                        {screen === 6 && <QuizScreen studentData={studentData} onFinish={(score, time) => { setQuizScore(score); setEndTime(time); }} />}
+                        {screen === 6 && <QuizScreen studentData={studentData} startTime={startTime} />}
                     </main>
                     {screen > 1 && (
                         <nav className="fixed bottom-0 w-full bg-white shadow-[0_-4px_15px_rgba(0,0,0,0.05)] border-t border-gray-100 z-50">
