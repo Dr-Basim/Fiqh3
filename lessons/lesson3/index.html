@@ -453,9 +453,9 @@ const Dashboard=({onClose})=>{
         </div>
         <div style={{borderRadius:8,overflow:'hidden',border:'1px solid rgba(255,255,255,.1)'}}>
           <table className="dt">
-            <thead><tr><th>الاسم</th><th>الشعبة</th><th>الدرجة</th><th>التاريخ</th></tr></thead>
+            <thead><tr><th>الاسم</th><th>الشعبة</th><th>الدرجة</th><th>المدة</th><th>التاريخ</th></tr></thead>
             <tbody>
-              {recs.map((r,i)=><tr key={i}><td>{r.name}</td><td>{r.sec}</td><td style={{fontWeight:700,color:r.score>=12?'#86efac':'#fca5a5'}}>{r.score}/20</td><td style={{fontSize:'.69rem',opacity:.7}}>{r.date}</td></tr>)}
+              {recs.map((r,i)=><tr key={i}><td>{r.name}</td><td>{r.sec}</td><td style={{fontWeight:700,color:r.score>=12?'#86efac':'#fca5a5'}}>{r.score}/20</td><td style={{color:'var(--gl)',fontWeight:600}}>{r.dur||'—'}</td><td style={{fontSize:'.69rem',opacity:.7}}>{r.date}</td></tr>)}
               {recs.length===0&&<tr><td colSpan="4" style={{textAlign:'center',padding:14,opacity:.5}}>لا يوجد طلاب مسجلون.</td></tr>}
             </tbody>
           </table>
@@ -694,11 +694,22 @@ const Nawazil=()=>{
 };
 
 // ═══ QUIZ ═══
-const Quiz=({stu})=>{
+const fmtDur=(ms)=>{
+  if(!ms||ms<=0) return '—';
+  const tot=Math.floor(ms/1000);
+  const h=Math.floor(tot/3600);
+  const m=Math.floor((tot%3600)/60);
+  const s=tot%60;
+  if(h>0) return `${h}س ${m}د ${s}ث`;
+  if(m>0) return `${m}د ${s}ث`;
+  return `${s}ث`;
+};
+const Quiz=({stu,loginTime})=>{
   const [qi,setQi]=useState(0);
   const [sc,setSc]=useState(0);
   const [done,setDone]=useState(false);
   const [sel,setSel]=useState(null);
+  const [dur,setDur]=useState('');
   const q=QUIZ[qi];
   const handle=(i)=>{
     if(sel!==null)return;
@@ -708,10 +719,13 @@ const Quiz=({stu})=>{
     setTimeout(()=>{
       if(qi<QUIZ.length-1){setQi(qi+1);setSel(null);}
       else{
+        const elapsed=loginTime?Date.now()-loginTime:0;
+        const durStr=fmtDur(elapsed);
+        setDur(durStr);
         setDone(true);
-        saveRec({name:stu.n,sec:stu.s,score:ns,date:new Date().toLocaleDateString('ar-SA'),ts:Date.now()});
+        saveRec({name:stu.n,sec:stu.s,score:ns,dur:durStr,date:new Date().toLocaleDateString('ar-SA'),ts:Date.now()});
         const u=getConf('gsURL');
-        if(u){try{fetch(`${u}?name=${encodeURIComponent(stu.n)}&section=${encodeURIComponent(stu.s)}&score=${ns}/20`,{mode:'no-cors'});}catch(e){}}
+        if(u){try{fetch(`${u}?name=${encodeURIComponent(stu.n)}&section=${encodeURIComponent(stu.s)}&score=${ns}/20&duration=${encodeURIComponent(durStr)}`,{mode:'no-cors'});}catch(e){}}
       }
     },850);
   };
@@ -725,6 +739,7 @@ const Quiz=({stu})=>{
         <div style={{background:'#fee2e2',borderRadius:8,padding:10,textAlign:'center'}}><div style={{fontSize:'1.3rem',fontWeight:700,color:'var(--red)'}}>{20-sc}</div><div style={{fontSize:'.74rem',color:'#555'}}>خاطئة</div></div>
       </div>
       <p style={{fontSize:'.78rem',color:'#aaa'}}>{stu.n} | الشعبة: {stu.s}</p>
+      {dur&&<p style={{fontSize:'.78rem',color:'#888',marginTop:5}}>⏱ مدة الدراسة: <b style={{color:'var(--navy)'}}>{dur}</b></p>}
     </div>
   );
   return(
@@ -753,6 +768,7 @@ const App=()=>{
   const [stu,setStu]=useState({n:'',s:''});
   const [dash,setDash]=useState(false);
   const [chat,setChat]=useState(false);
+  const [loginTime,setLoginTime]=useState(null);
   const NAV=[{id:'learn',icon:'📖',label:'الدرس'},{id:'map',icon:'🗺️',label:'الخرائط'},{id:'review',icon:'🃏',label:'المراجعة'},{id:'nawazil',icon:'⚡',label:'النوازل'},{id:'quiz',icon:'📝',label:'الاختبار'}];
   if(scr==='welcome')return(
     <div className="ws">
@@ -764,7 +780,7 @@ const App=()=>{
         <p style={{fontSize:'.74rem',color:'#999',marginBottom:19}}>كتاب النكاح والطلاق</p>
         <input value={stu.n} onChange={e=>setStu({n:e.target.value,s:stu.s})} placeholder="الاسم الثلاثي للطالب" className="ifield"/>
         <input value={stu.s} onChange={e=>setStu({n:stu.n,s:e.target.value})} placeholder="رقم الشعبة" className="ifield"/>
-        <button onClick={()=>{if(stu.n&&stu.s)setScr('learn');else alert('الرجاء إدخال الاسم والشعبة.');}} className="bp">ابدأ التعلم ←</button>
+        <button onClick={()=>{if(stu.n&&stu.s){setLoginTime(Date.now());setScr('learn');}else alert('الرجاء إدخال الاسم والشعبة.');}} className="bp">ابدأ التعلم ←</button>
         <button onClick={()=>{const p=prompt('رمز الأستاذ:');if(p==='1234')setDash(true);else if(p!==null)alert('رمز خاطئ');}} style={{marginTop:12,background:'none',border:'none',color:'#bbb',fontSize:'.71rem',cursor:'pointer'}}>دخول لوحة تحكم الأستاذ</button>
       </div>
       {dash&&<Dashboard onClose={()=>setDash(false)}/>}
@@ -788,7 +804,7 @@ const App=()=>{
         {scr==='map'&&<MindMap/>}
         {scr==='review'&&<Review/>}
         {scr==='nawazil'&&<Nawazil/>}
-        {scr==='quiz'&&<Quiz stu={stu}/>}
+        {scr==='quiz'&&<Quiz stu={stu} loginTime={loginTime}/>}
       </div>
       <nav className="bn">
         {NAV.map(n=><button key={n.id} className={`nb${scr===n.id?' act':''}`} onClick={()=>setScr(n.id)}><span className="ni">{n.icon}</span>{n.label}</button>)}
