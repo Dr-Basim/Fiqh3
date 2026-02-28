@@ -4,7 +4,8 @@ export default async function handler(req, res) {
     }
 
     const { action, scenario, answer } = req.body;
-    const apiKey = process.env.GOOGLE_API_KEY; // سنضيف هذا المفتاح في Vercel
+    // استخدام مفتاح جوجل بدلاً من أوبن أيه آي
+    const apiKey = process.env.GOOGLE_API_KEY; 
 
     let systemPrompt = "";
     let userPrompt = "";
@@ -26,6 +27,7 @@ export default async function handler(req, res) {
     }
 
     try {
+        // الاتصال بخادم جوجل (Gemini 1.5 Flash)
         const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -41,6 +43,7 @@ export default async function handler(req, res) {
             throw new Error(data.error?.message || 'خطأ في الاتصال بجوجل');
         }
 
+        // استخراج النص من استجابة جوجل
         const result = data.candidates[0].content.parts[0].text;
         res.status(200).json({ result });
 
