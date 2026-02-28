@@ -1,4 +1,4 @@
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Method not allowed' });
     }
@@ -28,6 +28,7 @@ export default async function handler(req, res) {
     }
 
     try {
+        // تأكد من إضافة المفتاح في Vercel
         const response = await fetch('https://api.openai.com/v1/chat/completions', {
             method: 'POST',
             headers: {
@@ -35,7 +36,7 @@ export default async function handler(req, res) {
                 'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
             },
             body: JSON.stringify({
-                model: 'gpt-4o-mini', // تم التحديث للموديل الأذكى والأسرع
+                model: 'gpt-4o-mini',
                 messages:[
                     { role: "system", content: systemPrompt },
                     { role: "user", content: userPrompt }
