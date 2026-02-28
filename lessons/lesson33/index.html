@@ -709,8 +709,7 @@ data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABj4AAAFvCAYAAAD60bLhAAAACXBIWXMAAC
 
             const submitQuiz = () => {
                 let score = answers.filter((a, i) => a === QUIZ_QUESTIONS[i].answer).length;
-                const endTime = Date.now();
-                const elapsedSeconds = startTime ? Math.round((endTime - startTime) / 1000) : 0;
+                const elapsedSeconds = startTime ? Math.round((Date.now() - startTime) / 1000) : 0;
                 const minutes = Math.floor(elapsedSeconds / 60);
                 const seconds = elapsedSeconds % 60;
                 const timeStr = `${minutes} دقيقة و ${seconds} ثانية`;
