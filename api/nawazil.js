@@ -6,17 +6,17 @@ export default async function handler(req, res) {
     const { action, scenario, answer } = req.body;
     const apiKey = process.env.GOOGLE_API_KEY; 
 
-    // إعداد الأوامر للمساعد
+    // صياغة الطلب بشكل مبسط لضمان التوافق
     let promptText = "";
     if (action === 'generate') {
-        promptText = "أنت أستاذ فقه ميسر. قم بتأليف نازلة فقهية معاصرة قصيرة جداً عن (الخلع أو الطلاق) تنتهي بسؤال مباشر للطالب عن الحكم. لا تكتب الحل.";
+        promptText = "بصفتك أستاذ فقه متخصص، قم بتأليف نازلة فقهية معاصرة قصيرة جداً عن الخلع أو الطلاق تنتهي بسؤال مباشر للطالب عن الحكم. لا تكتب الحل.";
     } else {
-        promptText = `أنت مصحح فقهي. النازلة: ${scenario}. إجابة الطالب: ${answer}. قيم الإجابة بـ (صحيحة/خاطئة) مع تعليل فقهي مختصر جداً.`;
+        promptText = `بصفتك مصححاً فقهياً، قيم هذه الإجابة بـ (صحيحة أو خاطئة) مع ذكر التعليل باختصار: النازلة هي (${scenario})، وإجابة الطالب هي (${answer}).`;
     }
 
     try {
-        // الرابط المحدث للإصدار المستقر v1
-        const url = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+        // استخدمنا هنا gemini-pro وهو الموديل الأكثر استقراراً
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`;
 
         const response = await fetch(url, {
             method: 'POST',
@@ -30,16 +30,16 @@ export default async function handler(req, res) {
 
         const data = await response.json();
 
-        if (!response.ok) {
-            console.error("Google API Error Details:", data);
-            throw new Error(data.error?.message || 'خطأ في الاتصال بجوجل');
+        if (data.error) {
+            console.error("Google Error:", data.error);
+            throw new Error(data.error.message);
         }
 
         const result = data.candidates[0].content.parts[0].text;
         res.status(200).json({ result });
 
     } catch (error) {
-        console.error("Full Error:", error);
+        console.error("API Failure:", error.message);
         res.status(500).json({ error: error.message });
     }
 }
