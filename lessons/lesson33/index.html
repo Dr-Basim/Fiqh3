@@ -20,7 +20,7 @@
         ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-thumb { background: #e2b96f; border-radius: 10px; }
         .verse { font-family: 'Amiri', serif; color: #b45309; text-align: center; font-size: 1.25rem; line-height: 2; padding: 1rem; background: #fffbeb; border: 1px dashed #e2b96f; margin: 1rem 0; border-radius: 0.5rem; }
         
-        /* البطاقات الدوارة */
+        /* البطاقات */
         .flip-card { perspective: 1000px; height: 180px; cursor: pointer; }
         .flip-card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; }
         .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
@@ -28,7 +28,7 @@
         .flip-card-front { background: #16213e; color: #e2b96f; border: 2px solid #e2b96f; font-family: 'Amiri', serif; font-size: 1.3rem; }
         .flip-card-back { background: #faf8f3; color: #16213e; border: 2px solid #16213e; transform: rotateY(180deg); font-size: 0.95rem; line-height: 1.6; }
         
-        /* الخريطة الذهنية */
+        /* الخريطة */
         .map-root { background: #16213e; color: #e2b96f; border: 2px solid #e2b96f; padding: 0.75rem 2rem; border-radius: 1rem; font-weight: bold; font-size: 1.25rem; display: inline-block; margin-bottom: 2rem; position: relative; }
         .map-branch { background: white; border: 1px solid #16213e; position: relative; padding: 1rem; border-radius: 0.5rem; }
         .map-branch::before { content: ''; position: absolute; top: -2rem; left: 50%; width: 2px; height: 2rem; background: #e2b96f; }
@@ -44,7 +44,7 @@
         // 1. DATA
         // ==========================================
         
-        const TOPICS_DATA = [
+        const TOPICS_DATA =[
             {
                 title: 'الخلع: معناه وأدلة مشروعيته', bg: 'bg-green-50',
                 content: <div className="space-y-4 text-lg">
@@ -52,9 +52,9 @@
                     <p><span className="text-blue-700 font-bold">شرعاً:</span> <span className="text-red-600 font-bold">فُرْقَة</span> تجري بين الزوجين على <span className="text-green-700 font-bold">عوض مالي</span> تدفعه المرأة لزوجها.</p>
                     <div className="verse">﴿فَإِنْ خِفْتُمْ أَلَّا يُقِيمَا حُدُودَ اللَّهِ فَلَا جُنَاحَ عَلَيْهِمَا فِيمَا افْتَدَتْ بِهِ﴾</div>
                 </div>,
-                acts: [
-                    { q: 'الخلع شرعاً يقع بمقابل:', opts: ['عوض مالي', 'إكراه من القاضي', 'بدون مقابل', 'تنازل عن الحضانة'], ans: 0 },
-                    { q: 'صح أم خطأ: الخلع مأخوذ لغة من خلع الثوب.', opts: ['صح', 'خطأ'], ans: 0 }
+                acts:[
+                    { q: 'الخلع شرعاً يقع بمقابل:', opts:['عوض مالي', 'إكراه من القاضي', 'بدون مقابل', 'تنازل عن الحضانة'], ans: 0 },
+                    { q: 'صح أم خطأ: الخلع مأخوذ لغة من خلع الثوب.', opts:['صح', 'خطأ'], ans: 0 }
                 ]
             },
             {
@@ -67,9 +67,9 @@
                         <li><span className="text-green-600 font-bold">يجوز الخلع في الحيض</span> لعدم الضرر بتطويل العدة.</li>
                     </ul>
                 </div>,
-                acts: [
-                    { q: 'هل للزوج إرجاع المختلعة في عدتها بدون عقد جديد؟', opts: ['نعم يحق له', 'لا، إلا بعقد جديد', 'نعم برضاها', 'نعم بإذن القاضي'], ans: 1 },
-                    { q: 'صح أم خطأ: يحرم إيقاع الخلع في فترة الحيض.', opts: ['صح', 'خطأ'], ans: 1 }
+                acts:[
+                    { q: 'هل للزوج إرجاع المختلعة في عدتها بدون عقد جديد؟', opts:['نعم يحق له', 'لا، إلا بعقد جديد', 'نعم برضاها', 'نعم بإذن القاضي'], ans: 1 },
+                    { q: 'صح أم خطأ: يحرم إيقاع الخلع في فترة الحيض.', opts:['صح', 'خطأ'], ans: 1 }
                 ]
             },
             {
@@ -81,8 +81,8 @@
                         ولا يقع طلاق كل من: <span className="text-red-600 font-bold">الصبي، المجنون، السكران غير المميز، المكره، والغضبان غضباً شديداً لا يدري ما يقول</span>.
                     </p>
                 </div>,
-                acts: [
-                    { q: 'رجل أُكره تحت تهديد السلاح ليطلق زوجته، فما الحكم؟', opts: ['يقع الطلاق', 'لا يقع الطلاق', 'يقع طلقة رجعية', 'يقع خلعاً'], ans: 1 }
+                acts:[
+                    { q: 'رجل أُكره تحت تهديد السلاح ليطلق زوجته، فما الحكم؟', opts:['يقع الطلاق', 'لا يقع الطلاق', 'يقع طلقة رجعية', 'يقع خلعاً'], ans: 1 }
                 ]
             },
             {
@@ -99,9 +99,9 @@
                         <p className="mt-2"><span className="text-red-600 font-bold">حكمه:</span> لا يقع إلا بوجود النية.</p>
                     </div>
                 </div>,
-                acts: [
-                    { q: 'قال لزوجته مازحاً بدون نية: (أنت طالق)، فهل يقع؟', opts: ['لا يقع', 'يقع لأنه لفظ صريح', 'يقع إن غضبت', 'يقع كطلقة بائنة'], ans: 1 },
-                    { q: 'لفظ (الحقي بأهلك) يعتبر من:', opts: ['الألفاظ الصريحة', 'ألفاظ الكناية', 'الخلع', 'الظهار'], ans: 1 }
+                acts:[
+                    { q: 'قال لزوجته مازحاً بدون نية: (أنت طالق)، فهل يقع؟', opts:['لا يقع', 'يقع لأنه لفظ صريح', 'يقع إن غضبت', 'يقع كطلقة بائنة'], ans: 1 },
+                    { q: 'لفظ (الحقي بأهلك) يعتبر من:', opts:['الألفاظ الصريحة', 'ألفاظ الكناية', 'الخلع', 'الظهار'], ans: 1 }
                 ]
             },
             {
@@ -115,8 +115,8 @@
                         <li>أن يطلقها ثلاثاً بلفظ واحد (أنت طالق بالثلاث).</li>
                     </ul>
                 </div>,
-                acts: [
-                    { q: 'تطليق الزوجة وهي حائض يعتبر طلاقاً:', opts: ['سنياً', 'بدعياً محرماً ويقع', 'بدعياً ولا يقع', 'مباحاً'], ans: 1 },
+                acts:[
+                    { q: 'تطليق الزوجة وهي حائض يعتبر طلاقاً:', opts:['سنياً', 'بدعياً محرماً ويقع', 'بدعياً ولا يقع', 'مباحاً'], ans: 1 },
                     { q: 'صح أم خطأ: الطلاق البدعي يأثم فاعله ولا يقع أبداً.', opts: ['صح', 'خطأ'], ans: 1 }
                 ]
             },
@@ -132,14 +132,14 @@
                         <li>أن تكون الرجعة <span className="text-green-600 font-bold">أثناء العدة</span>.</li>
                     </ul>
                 </div>,
-                acts: [
-                    { q: 'طلق زوجته قبل أن يدخل بها، هل يحق له مراجعتها؟', opts: ['نعم', 'لا، لأنه لا عدة لها', 'نعم إذا رضيت', 'نعم بموافقة الولي'], ans: 1 }
+                acts:[
+                    { q: 'طلق زوجته قبل أن يدخل بها، هل يحق له مراجعتها؟', opts:['نعم', 'لا، لأنه لا عدة لها', 'نعم إذا رضيت', 'نعم بموافقة الولي'], ans: 1 }
                 ]
             }
         ];
 
         // 12 بطاقة
-        const FLASHCARDS = [
+        const FLASHCARDS =[
             { f: "الخلع شرعاً", b: "فرقة تجري بين الزوجين على عوض مالي تدفعه المرأة لزوجها." },
             { f: "الطلاق شرعاً", b: "حل قيد النكاح أو بعضه." },
             { f: "طلاق صريح", b: "لفظ لا يحتمل غير الطلاق (أنت طالق)، ويقع وإن لم ينوِ." },
@@ -155,7 +155,7 @@
         ];
 
         // 10 أسئلة مقالية ثابتة
-        const ESSAYS = [
+        const ESSAYS =[
             { q: "ما هو الخلع شرعاً؟ وما دليله من القرآن الكريم؟", a: "هو فرقة تجري بين الزوجين على عوض مالي تدفعه المرأة. دليله: ﴿فَإِنْ خِفْتُمْ أَلَّا يُقِيمَا حُدُودَ اللَّهِ فَلَا جُنَاحَ عَلَيْهِمَا فِيمَا افْتَدَتْ بِهِ﴾." },
             { q: "ما هي الحكمة من مشروعية الخلع؟", a: "دفع الضرر عن المرأة إذا ساءت العشرة وكرهت خلق زوجها أو دينه، وخافت ألا تقيم حدود الله، فيباح لها طلب الفراق مقابل عوض." },
             { q: "هل يقع الطلاق من المكره؟ وما العلة؟", a: "لا يقع طلاق المكره؛ لعدم وجود القصد والرضا والاختيار الذي هو شرط في صحة إيقاع الطلاق." },
@@ -168,34 +168,34 @@
             { q: "ما حكم خروج المطلقة رجعياً من بيتها أثناء العدة؟", a: "تعتبر زوجة، فلا يجوز لها الخروج ولا للزوج إخراجها، ولها حق النفقة والسكنى." }
         ];
 
-        // 20 سؤال بأربع خيارات
-        const QUIZ = [
-            { q: "الخلع لغة مأخوذ من:", o: ["خلع الثوب", "الخروج والهروب", "الترك والهجر", "القسمة"], a: 0 },
-            { q: "الخلع شرعاً يقع مقابل:", o: ["بدون مقابل", "عوض مالي", "شروط قاسية", "تنازل عن الحضانة"], a: 1 },
+        // 20 سؤال اختياري
+        const QUIZ =[
+            { q: "الخلع لغة مأخوذ من:", o:["خلع الثوب", "الخروج والهروب", "الترك والهجر", "القسمة"], a: 0 },
+            { q: "الخلع شرعاً يقع مقابل:", o:["بدون مقابل", "عوض مالي", "شروط قاسية", "تنازل عن الحضانة"], a: 1 },
             { q: "حكم الخلع لسوء العشرة:", o: ["محرم", "مكروه", "جائز", "واجب"], a: 2 },
-            { q: "الخلع من المرأة غير الرشيدة:", o: ["يقع نافذاً", "لا يقع لنقص أهليتها", "يقع بشروط", "موقوف"], a: 1 },
-            { q: "هل للزوج إرجاع المختلعة في عدتها؟", o: ["نعم يحق له", "لا، إلا بعقد ومهر جديدين", "نعم برضاها", "نعم بحكم القاضي"], a: 1 },
-            { q: "إيقاع الخلع في فترة الحيض يعتبر:", o: ["محرماً", "مكروهاً", "جائزاً لعدم الضرر", "باطلاً"], a: 2 },
-            { q: "الطلاق لغة يعني:", o: ["التخلية", "الربط", "الجمع", "القسمة"], a: 0 },
+            { q: "الخلع من المرأة غير الرشيدة:", o:["يقع نافذاً", "لا يقع لنقص أهليتها", "يقع بشروط", "موقوف"], a: 1 },
+            { q: "هل للزوج إرجاع المختلعة في عدتها؟", o:["نعم يحق له", "لا، إلا بعقد ومهر جديدين", "نعم برضاها", "نعم بحكم القاضي"], a: 1 },
+            { q: "إيقاع الخلع في فترة الحيض يعتبر:", o:["محرماً", "مكروهاً", "جائزاً لعدم الضرر", "باطلاً"], a: 2 },
+            { q: "الطلاق لغة يعني:", o:["التخلية", "الربط", "الجمع", "القسمة"], a: 0 },
             { q: "يقع الطلاق صحيحاً من:", o: ["الصبي المميز", "المجنون", "البالغ العاقل المختار", "المكره"], a: 2 },
-            { q: "طلاق الغضبان غضباً شديداً لا يدرك ما يقول:", o: ["يقع رجعياً", "يقع بائناً", "لا يقع الطلاق", "يقع بشروط"], a: 2 },
-            { q: "لفظ (أنت طالق) يعتبر:", o: ["ألفاظ كناية", "ألفاظ صريحة", "خلعاً", "ظهاراً"], a: 1 },
-            { q: "ألفاظ الكناية مثل (الحقي بأهلك):", o: ["تقع بلا نية", "لا تقع إلا بوجود نية", "لا تقع أبداً", "تقع في حال الغضب فقط"], a: 1 },
-            { q: "طلاق السنة هو أن يطلقها طلقة واحدة في:", o: ["فترة الحيض", "طهر جامعها فيه", "طهر لم يجامعها فيه", "فترة النفاس"], a: 2 },
-            { q: "ما حكم إيقاع الطلاق البدعي؟", o: ["مباح", "مستحب", "محرم ويأثم فاعله", "مكروه تنزيهاً"], a: 2 },
-            { q: "الطلاق ثلاثاً بلفظ واحد (أنت طالق بالثلاث) يعتبر:", o: ["طلاق سنة", "طلاق بدعي محرم", "طلاقاً مستحباً", "لا يقع مطلقاً"], a: 1 },
-            { q: "الرجعة شرعاً تعني إعادة المطلقة:", o: ["البائن", "غير البائن (الرجعية)", "قبل الدخول", "المختلعة"], a: 1 },
-            { q: "من شروط الرجعة أن يكون الطلاق:", o: ["دون الثلاث", "الطلقة الثالثة", "بمقابل مالي (خلع)", "قبل الدخول"], a: 0 },
-            { q: "رضا الزوجة في الرجعة أثناء العدة:", o: ["شرط أساسي", "ركن من الأركان", "لا يشترط", "مستحب"], a: 2 },
-            { q: "المطلقة رجعياً وهي في فترة العدة:", o: ["تخرج لبيت أهلها", "تعتبر زوجة ولها النفقة والسكن", "لا نفقة لها", "تبين فوراً"], a: 1 },
-            { q: "البينونة الصغرى تعني أن المرأة:", o: ["تعود بلا عقد", "لا تحل له أبداً", "تحل له بعقد ومهر جديدين", "تستأنف العدة"], a: 2 },
-            { q: "البينونة الكبرى تعني أن المرأة:", o: ["تحل بعقد جديد", "لا تحل له حتى تتزوج غيره ويفارقها", "تحل بعد سنة كاملة", "تحل بالتراضي والمحبة"], a: 1 }
+            { q: "طلاق الغضبان غضباً شديداً لا يدرك ما يقول:", o:["يقع رجعياً", "يقع بائناً", "لا يقع الطلاق", "يقع بشروط"], a: 2 },
+            { q: "لفظ (أنت طالق) يعتبر:", o:["ألفاظ كناية", "ألفاظ صريحة", "خلعاً", "ظهاراً"], a: 1 },
+            { q: "ألفاظ الكناية مثل (الحقي بأهلك):", o:["تقع بلا نية", "لا تقع إلا بوجود نية", "لا تقع أبداً", "تقع في حال الغضب فقط"], a: 1 },
+            { q: "طلاق السنة هو أن يطلقها طلقة واحدة في:", o:["فترة الحيض", "طهر جامعها فيه", "طهر لم يجامعها فيه", "فترة النفاس"], a: 2 },
+            { q: "ما حكم إيقاع الطلاق البدعي؟", o:["مباح", "مستحب", "محرم ويأثم فاعله", "مكروه تنزيهاً"], a: 2 },
+            { q: "الطلاق ثلاثاً بلفظ واحد (أنت طالق بالثلاث) يعتبر:", o:["طلاق سنة", "طلاق بدعي محرم", "طلاقاً مستحباً", "لا يقع مطلقاً"], a: 1 },
+            { q: "الرجعة شرعاً تعني إعادة المطلقة:", o:["البائن", "غير البائن (الرجعية)", "قبل الدخول", "المختلعة"], a: 1 },
+            { q: "من شروط الرجعة أن يكون الطلاق:", o:["دون الثلاث", "الطلقة الثالثة", "بمقابل مالي (خلع)", "قبل الدخول"], a: 0 },
+            { q: "رضا الزوجة في الرجعة أثناء العدة:", o:["شرط أساسي", "ركن من الأركان", "لا يشترط", "مستحب"], a: 2 },
+            { q: "المطلقة رجعياً وهي في فترة العدة:", o:["تخرج لبيت أهلها", "تعتبر زوجة ولها النفقة والسكن", "لا نفقة لها", "تبين فوراً"], a: 1 },
+            { q: "البينونة الصغرى تعني أن المرأة:", o:["تعود بلا عقد", "لا تحل له أبداً", "تحل له بعقد ومهر جديدين", "تستأنف العدة"], a: 2 },
+            { q: "البينونة الكبرى تعني أن المرأة:", o:["تحل بعقد جديد", "لا تحل له حتى تتزوج غيره ويفارقها", "تحل بعد سنة كاملة", "تحل بالتراضي والمحبة"], a: 1 }
         ];
 
         // ==========================================
         // 2. DB & UTILS
         // ==========================================
-        const DB_KEY = 'fiqh_v6';
+        const DB_KEY = 'fiqh_v7';
         const getRecs = () => JSON.parse(localStorage.getItem(DB_KEY) || '[]');
         const saveRec = (r) => { const x = getRecs(); x.push(r); localStorage.setItem(DB_KEY, JSON.stringify(x)); };
         const getConf = (k) => localStorage.getItem(k) || '';
@@ -206,7 +206,7 @@
         // ==========================================
         const Dash = ({ onClose }) => {
             const [url, setUrl] = React.useState(getConf('gsURL'));
-            const [api, setApi] = React.useState(getConf('geminiAPI'));
+            const [api, setApi] = React.useState(getConf('claudeAPI'));
             const recs = getRecs().sort((a,b)=> b.ts - a.ts);
             
             return (
@@ -218,14 +218,14 @@
                         </div>
                         <div className="space-y-4 mb-8 bg-white/5 p-4 rounded-lg">
                             <div>
-                                <label className="block text-gold mb-1 text-sm">مفتاح Google Gemini API:</label>
-                                <input type="password" value={api} onChange={e=>setApi(e.target.value)} placeholder="AIzaSy..." className="w-full p-2 bg-black/50 border border-gray-600 rounded text-left dir-ltr outline-none focus:border-gold"/>
+                                <label className="block text-gold mb-1 text-sm">مفتاح Claude API (Anthropic):</label>
+                                <input type="password" value={api} onChange={e=>setApi(e.target.value)} placeholder="sk-ant-..." className="w-full p-2 bg-black/50 border border-gray-600 rounded text-left dir-ltr outline-none focus:border-gold"/>
                             </div>
                             <div>
                                 <label className="block text-gold mb-1 text-sm">رابط Google Sheets Web App:</label>
                                 <input value={url} onChange={e=>setUrl(e.target.value)} placeholder="https://script.google.com/macros/..." className="w-full p-2 bg-black/50 border border-gray-600 rounded text-left dir-ltr outline-none focus:border-gold"/>
                             </div>
-                            <button onClick={() => {saveConf('gsURL',url); saveConf('geminiAPI',api); alert('تم حفظ الإعدادات بنجاح.');}} className="bg-gold text-navy px-6 py-2 rounded font-bold hover:bg-yellow-500 transition">حفظ الإعدادات</button>
+                            <button onClick={() => {saveConf('gsURL',url); saveConf('claudeAPI',api); alert('تم حفظ الإعدادات بنجاح.');}} className="bg-gold text-navy px-6 py-2 rounded font-bold hover:bg-yellow-500 transition">حفظ الإعدادات</button>
                         </div>
                         
                         <div className="flex justify-between items-center mb-4">
@@ -252,32 +252,42 @@
             const [stu, setStu] = React.useState({ n: '', s: '' });
             const [dash, setDash] = React.useState(false);
 
-            const [chatOpen, setChatOpen] = React.useState(false);
-            const [msgs, setMsgs] = React.useState([{r:'bot', t:'مرحباً بك! أنا مساعدك الذكي لمادة الفقه. هل لديك سؤال حول النكاح أو الطلاق؟'}]);
+            const[chatOpen, setChatOpen] = React.useState(false);
+            const [msgs, setMsgs] = React.useState([{r:'bot', t:'مرحباً بك! أنا مساعدك الذكي لمادة الفقه (Claude AI). هل لديك سؤال؟'}]);
             const [inp, setInp] = React.useState('');
-            const [loadingChat, setLoadingChat] = React.useState(false);
+            const[loadingChat, setLoadingChat] = React.useState(false);
             const endRef = React.useRef(null);
 
             const sendMsg = async () => {
                 if(!inp.trim() || loadingChat) return;
                 const txt = inp; setInp(''); 
-                setMsgs(p => [...p, {r:'user', t:txt}]);
+                setMsgs(p =>[...p, {r:'user', t:txt}]);
                 setLoadingChat(true);
                 
                 try {
-                    const key = getConf('geminiAPI'); 
-                    if(!key) throw new Error("المعلم لم يقم بإضافة مفتاح الذكاء الاصطناعي.");
+                    const key = getConf('claudeAPI'); 
+                    if(!key) throw new Error("المعلم لم يقم بإضافة مفتاح Claude API.");
                     
-                    // URL المعتمد رسمياً للـ REST API الخاص بجوجل حالياً
-                    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${key}`, {
-                        method: 'POST', headers: {'Content-Type': 'application/json'},
-                        body: JSON.stringify({ contents: [{ parts: [{ text: `أنت معلم فقه ميسر لطلاب الجامعة تشرح أحكام الطلاق والخلع. أجب باختصار ولطف.\nسؤال الطالب: ${txt}` }] }] })
+                    const res = await fetch('https://api.anthropic.com/v1/messages', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'x-api-key': key,
+                            'anthropic-version': '2023-06-01',
+                            'anthropic-dangerous-direct-browser-access': 'true'
+                        },
+                        body: JSON.stringify({
+                            model: 'claude-3-haiku-20240307',
+                            max_tokens: 400,
+                            system: "أنت معلم فقه ميسر لطلاب الجامعة تشرح أحكام الطلاق والخلع. أجب باختصار ولطف.",
+                            messages:[{ role: 'user', content: txt }]
+                        })
                     });
                     
                     const d = await res.json();
-                    if(!res.ok) throw new Error(d.error?.message || "حدث خطأ في الاتصال بخادم جوجل.");
+                    if(!res.ok) throw new Error(d.error?.message || "حدث خطأ في الاتصال بخادم Claude.");
                     
-                    setMsgs(p => [...p, {r:'bot', t: d.candidates[0].content.parts[0].text}]);
+                    setMsgs(p =>[...p, {r:'bot', t: d.content[0].text}]);
                 } catch(e) { 
                     setMsgs(p => [...p, {r:'bot', t: "⚠️ " + e.message}]); 
                 }
@@ -339,7 +349,7 @@
                             {chatOpen && (
                                 <div className="w-80 md:w-96 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden flex flex-col h-96 animate-fade">
                                     <div className="bg-navy text-gold p-3 flex justify-between items-center text-sm border-b-2 border-gold">
-                                        <span className="font-bold font-amiri text-lg">المساعد الفقهي</span>
+                                        <span className="font-bold font-amiri text-lg">المساعد الفقهي (Claude AI)</span>
                                         <button onClick={()=>setChatOpen(false)} className="text-white hover:text-red-300 text-lg">✕</button>
                                     </div>
                                     <div className="flex-1 p-4 overflow-y-auto space-y-3 bg-[#faf8f3] text-sm">
@@ -492,26 +502,36 @@
             const [sc, setSc] = React.useState(''); 
             const [ans, setAns] = React.useState('');
             const [fb, setFb] = React.useState(''); 
-            const [load, setLoad] = React.useState(false);
+            const[load, setLoad] = React.useState(false);
 
-            const callGemini = async (sys, prompt) => {
-                const key = getConf('geminiAPI'); 
+            const callClaude = async (sys, prompt) => {
+                const key = getConf('claudeAPI'); 
                 if(!key) throw new Error("مفتاح API غير متوفر، الرجاء إخبار المعلم لإضافته من لوحة التحكم.");
                 
-                // الحل الجذري النهائي: استخدام الرابط الرسمي الذي لا يتأثر بتحديثات الأسماء القديمة
-                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${key}`, {
-                    method: 'POST', headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({ contents: [{ parts: [{ text: `${sys}\n\n${prompt}` }] }] })
+                const res = await fetch('https://api.anthropic.com/v1/messages', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-api-key': key,
+                        'anthropic-version': '2023-06-01',
+                        'anthropic-dangerous-direct-browser-access': 'true'
+                    },
+                    body: JSON.stringify({
+                        model: 'claude-3-haiku-20240307',
+                        max_tokens: 400,
+                        system: sys,
+                        messages:[{ role: 'user', content: prompt }]
+                    })
                 });
                 const d = await res.json(); 
-                if(!res.ok) throw new Error(d.error?.message || "تعذر الاتصال بخادم جوجل.");
-                return d.candidates[0].content.parts[0].text;
+                if(!res.ok) throw new Error(d.error?.message || "تعذر الاتصال بخادم Claude.");
+                return d.content[0].text;
             };
 
             const gen = async () => { 
                 setLoad(true); setFb(''); setAns(''); 
                 try { 
-                    setSc(await callGemini('أنت صانع نوازل فقهية أستاذ جامعي.', 'اكتب قصة من سطرين واقعية جداً تمثل نازلة فقهية في الطلاق أو الخلع أو الرجعة، تنتهي بسؤال: ما الحكم الفقهي مع التعليل؟')); 
+                    setSc(await callClaude('أنت صانع نوازل فقهية أستاذ جامعي.', 'اكتب قصة من سطرين واقعية جداً تمثل نازلة فقهية في الطلاق أو الخلع أو الرجعة، تنتهي بسؤال: ما الحكم الفقهي مع التعليل؟')); 
                 } catch(e) { alert(e.message); } 
                 setLoad(false); 
             };
@@ -519,7 +539,7 @@
             const evalAns = async () => { 
                 setLoad(true); 
                 try { 
-                    setFb(await callGemini('أنت مصحح فقهي صارم ولطيف.', `النازلة التي طرحت: ${sc}\nإجابة الطالب: ${ans}\nقم بتصحيح الإجابة بناء على أحكام الفقه الميسر بلطف وإيجاز.`)); 
+                    setFb(await callClaude('أنت مصحح فقهي صارم ولطيف.', `النازلة التي طرحت: ${sc}\nإجابة الطالب: ${ans}\nقم بتصحيح الإجابة بناء على أحكام الفقه الميسر بلطف وإيجاز.`)); 
                 } catch(e) { alert(e.message); } 
                 setLoad(false); 
             };
@@ -527,7 +547,7 @@
             return (
                 <div className="animate-fade">
                     <div className="bg-navy p-8 rounded-t-3xl text-center border-b-[6px] border-gold">
-                        <h2 className="text-3xl font-amiri text-gold font-bold">مختبر النوازل</h2>
+                        <h2 className="text-3xl font-amiri text-gold font-bold">مختبر النوازل (Claude AI)</h2>
                         <p className="text-white mt-2 opacity-90 text-lg">يولد المعلم الآلي قضية فقهية واقعية لتقوم باستنباط الحكم فيها.</p>
                     </div>
                     <div className="bg-white p-8 rounded-b-3xl shadow-sm border border-t-0">
@@ -554,7 +574,7 @@
         const Quiz = ({ stu }) => {
             const [qIdx, setQIdx] = React.useState(0);
             const [score, setScore] = React.useState(0);
-            const [done, setDone] = React.useState(false);
+            const[done, setDone] = React.useState(false);
             const q = QUIZ[qIdx];
 
             const handle = async (i) => {
