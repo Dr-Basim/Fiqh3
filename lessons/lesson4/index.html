@@ -3,199 +3,449 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الفقه الميسر - الخلع والطلاق</title>
-
-    <!-- الخطوط -->
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
-
-    <!-- Tailwind CSS -->
+    <title>الفقه الميسر - إشراف د. باسم القرافي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        navy: '#16213e', gold: '#e2b96f', creamy: '#faf8f3',
-                        trait1: '#f0fdf4', trait2: '#eff6ff', trait3: '#fdf2f8', trait4: '#fffbeb',
-                        trait5: '#f5f3ff', trait6: '#ecfdf5', trait7: '#fff1f2', trait8: '#f0f9ff'
-                    },
-                    fontFamily: { amiri: ['Amiri', 'serif'], tajawal: ['Tajawal', 'sans-serif'] }
-                }
-            }
-        }
+        tailwind.config = { theme: { extend: { colors: { navy: '#16213e', gold: '#e2b96f', creamy: '#faf8f3' }, fontFamily: { amiri: ['Amiri', 'serif'], tajawal: ['Tajawal', 'sans-serif'] } } } }
     </script>
-
-    <!-- React & ReactDOM -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    
-    <!-- Babel -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
     <style>
-        body { background-color: #faf8f3; font-family: 'Tajawal', sans-serif; color: #16213e; overflow-x: hidden; }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #e2b96f; border-radius: 10px; }
-        
-        .verse { font-family: 'Amiri', serif; color: #b45309; text-align: center; font-size: 1.25rem; line-height: 2; padding: 1rem; background: #fffbeb; border-radius: 0.5rem; border: 1px dashed #e2b96f; margin: 1rem 0; }
-        
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
-        .animate-slide-up { animation: slideUp 0.5s ease-out forwards; }
-
-        /* Flip Card */
+        body { background: #faf8f3; font-family: 'Tajawal', sans-serif; color: #16213e; overflow-x: hidden; }
+        ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-thumb { background: #e2b96f; border-radius: 10px; }
+        .verse { font-family: 'Amiri', serif; color: #b45309; text-align: center; font-size: 1.25rem; line-height: 2; padding: 1rem; background: #fffbeb; border: 1px dashed #e2b96f; margin: 1rem 0; border-radius: 0.5rem; }
         .flip-card { perspective: 1000px; height: 220px; cursor: pointer; }
         .flip-card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; }
         .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
-        .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; display: flex; align-items: center; justify-content: center; padding: 1.5rem; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
-        .flip-card-front { background-color: #16213e; color: #e2b96f; border: 2px solid #e2b96f; font-family: 'Amiri', serif; font-size: 1.5rem; }
-        .flip-card-back { background-color: #faf8f3; color: #16213e; border: 2px solid #16213e; transform: rotateY(180deg); font-size: 1.1rem; line-height: 1.6; }
+        .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; display: flex; align-items: center; justify-content: center; padding: 1.5rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .flip-card-front { background: #16213e; color: #e2b96f; border: 2px solid #e2b96f; font-family: 'Amiri', serif; font-size: 1.5rem; }
+        .flip-card-back { background: #faf8f3; color: #16213e; border: 2px solid #16213e; transform: rotateY(180deg); font-size: 1.1rem; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade { animation: fadeIn 0.4s ease-out forwards; }
     </style>
 </head>
 <body>
     <div id="root"></div>
-
     <script type="text/babel">
-        // ==========================================
-        // 1. DATA (المادة العلمية الملونة)
-        // ==========================================
-        
+        // --- 1. DATA ---
         const TOPICS_DATA = [
             {
-                id: 1, title: 'الخلع: معناه وأدلة مشروعيته', bg: 'trait1',
-                content: <div className="space-y-4 text-gray-800 text-lg">
-                    <p><span className="text-blue-700 font-bold text-xl">الخُلْعُ لغةً:</span> مأخوذ من خلع الثوب؛ لأن كلاً من الزوجين لباس للآخر.</p>
-                    <p><span className="text-blue-700 font-bold text-xl">شرعاً:</span> <span className="text-rose-700 font-bold">فُرْقَة</span> تجري بين الزوجين على <span className="text-emerald-700 font-bold">عوض مالي</span> تدفعه المرأة لزوجها، بألفاظ مخصوصة.</p>
+                title: 'الخلع: معناه وأدلة مشروعيته', bg: 'bg-green-50',
+                content: <div className="space-y-4 text-lg">
+                    <p><span className="text-blue-700 font-bold">الخُلْعُ لغةً:</span> مأخوذ من خلع الثوب.</p>
+                    <p><span className="text-blue-700 font-bold">شرعاً:</span> <span className="text-red-600 font-bold">فُرْقَة</span> تجري بين الزوجين على <span className="text-green-700 font-bold">عوض مالي</span> تدفعه المرأة لزوجها.</p>
                     <div className="verse">﴿فَإِنْ خِفْتُمْ أَلَّا يُقِيمَا حُدُودَ اللَّهِ فَلَا جُنَاحَ عَلَيْهِمَا فِيمَا افْتَدَتْ بِهِ﴾</div>
-                    <p><span className="text-indigo-700 font-bold">الدليل من السنة:</span> قصة امرأة ثابت بن قيس التي قالت للنبي ﷺ: "لا أعتب عليه في خلق ولا دين، ولكني أكره الكفر في الإسلام". فأمرها النبي ﷺ برد الحديقة وأمره بتطليقها.</p>
                 </div>,
-                activities: [
-                    { type: 'mcq', q: 'الخلع شرعاً هو فرقة تجري بين الزوجين على:', opts: ['عوض مالي', 'إكراه', 'محبة ومودة'], ans: 0 },
-                    { type: 'tf', q: 'الخلع مأخوذ لغة من خلع الثوب.', ans: true }
+                acts: [
+                    { q: 'الخلع شرعاً يقع بمقابل:', opts: ['عوض مالي', 'إكراه من القاضي', 'بدون مقابل'], ans: 0 },
+                    { q: 'صح/خطأ: الخلع مأخوذ لغة من خلع الثوب', opts: ['صح', 'خطأ'], ans: 0 }
                 ]
             },
             {
-                id: 2, title: 'أحكام الخلع والحكمة منه', bg: 'trait2',
-                content: <div className="space-y-4 text-gray-800 text-lg">
-                    <ul className="list-disc list-inside space-y-3 leading-relaxed">
-                        <li><span className="text-emerald-600 font-bold">جائز</span> لسوء العشرة، ولا يقع إلا بـ <span className="text-amber-600 font-bold">عوض مالي</span>.</li>
-                        <li><span className="text-rose-600 font-bold">لا يقع</span> من غير الرشيدة (لنقص أهليتها).</li>
-                        <li>إذا خالع الرجل امرأته ملكت أمر نفسها، <span className="text-rose-600 font-bold">ولا رجعة له عليها</span> إلا بعقد جديد ومهر جديد.</li>
-                        <li><span className="text-emerald-600 font-bold">يجوز الخلع في الحيض</span> بخلاف الطلاق؛ لعدم الضرر بتطويل العدة.</li>
-                        <li><span className="text-rose-600 font-bold">يُحرم</span> على الزوج الإضرار بزوجته لتفتدي نفسها.</li>
+                title: 'أحكام الخلع', bg: 'bg-blue-50',
+                content: <div className="space-y-4 text-lg">
+                    <ul className="list-disc list-inside space-y-2">
+                        <li><span className="text-green-600 font-bold">جائز</span> لسوء العشرة بعوض.</li>
+                        <li><span className="text-red-600 font-bold">لا يقع</span> من غير الرشيدة.</li>
+                        <li>إذا خالعها <span className="text-red-600 font-bold">لا رجعة له عليها</span> إلا بعقد جديد.</li>
+                        <li><span className="text-green-600 font-bold">يجوز الخلع في الحيض</span> لعدم الضرر بتطويل العدة.</li>
                     </ul>
-                    <p className="mt-4 text-navy font-bold text-xl">الحكمة منه:</p>
-                    <p>إذا ساءت العشرة وكرهت المرأة خلق زوجها، يباح لها طلب الفراق على عوض تبذله لتفتدي به نفسها دفعاً للضرر.</p>
                 </div>,
-                activities: [
-                    { type: 'mcq', q: 'هل للزوج حق الرجعة على زوجته المختلعة أثناء عدتها؟', opts: ['نعم يحق له', 'لا رجعة له عليها إلا بعقد جديد', 'نعم بشرط رضا القاضي', 'نعم إذا ردت العوض'], ans: 1 },
-                    { type: 'tf', q: 'يجوز إيقاع الخلع والمرأة حائض.', ans: true },
-                    { type: 'mcq', q: 'الخلع لا يقع من:', opts: ['البالغ', 'الرشيدة', 'غير الرشيدة لنقص أهليتها'], ans: 2 }
+                acts: [
+                    { q: 'هل للزوج إرجاع المختلعة في عدتها بدون عقد جديد؟', opts: ['نعم يحق له', 'لا، إلا بعقد جديد', 'نعم برضاها'], ans: 1 },
+                    { q: 'صح/خطأ: يحرم إيقاع الخلع في فترة الحيض.', opts: ['صح', 'خطأ'], ans: 1 }
                 ]
             },
             {
-                id: 3, title: 'الطلاق: تعريفه وحكمه', bg: 'trait3',
-                content: <div className="space-y-4 text-gray-800 text-lg">
-                    <p><span className="text-blue-700 font-bold text-xl">الطلاق لغة:</span> التخلية، يقال: طلقت الناقة إذا سرحت.</p>
-                    <p><span className="text-blue-700 font-bold text-xl">شرعاً:</span> حل قيد النكاح أو بعضه.</p>
-                    <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-200">
-                        <p className="font-bold text-navy mb-2">من يصح طلاقه:</p>
-                        <p>يصح من الزوج <span className="text-emerald-600 font-bold">البالغ العاقل المختار</span>.</p>
-                        <p>ولا يقع طلاق كل من: <span className="text-rose-600 font-bold">(الصبي، المجنون، السكران، المكره، والغضبان غضباً شديداً لا يدري ما يقول)</span>.</p>
+                title: 'الطلاق: حكمه ومن يقع منه', bg: 'bg-rose-50',
+                content: <div className="space-y-4 text-lg">
+                    <p><span className="text-blue-700 font-bold">شرعاً:</span> حل قيد النكاح.</p>
+                    <p>يقع من الزوج <span className="text-green-600 font-bold">البالغ العاقل المختار</span>.</p>
+                    <p>ولا يقع من: <span className="text-red-600 font-bold">الصبي، المجنون، السكران، المكره، والغضبان الشديد</span>.</p>
+                </div>,
+                acts: [
+                    { q: 'رجل أُكره تحت تهديد السلاح ليطلق زوجته، فما الحكم؟', opts: ['يقع الطلاق', 'لا يقع', 'يقع طلقة رجعية'], ans: 1 }
+                ]
+            },
+            {
+                title: 'ألفاظ الطلاق', bg: 'bg-amber-50',
+                content: <div className="grid grid-cols-2 gap-4 text-lg">
+                    <div className="bg-white p-4 rounded border-t-4 border-green-500">
+                        <span className="font-bold text-green-700">1. ألفاظ صريحة:</span> لا تحتمل غير الطلاق (أنت طالق).
+                        <br/><span className="text-red-600 font-bold">حكمه:</span> يقع وإن لم ينوِ.
                     </div>
-                    <div className="verse">﴿يَا أَيُّهَا النَّبِيُّ إِذَا طَلَّقْتُمُ النِّسَاءَ فَطَلِّقُوهُنَّ لِعِدَّتِهِنَّ﴾</div>
+                    <div className="bg-white p-4 rounded border-t-4 border-amber-500">
+                        <span className="font-bold text-amber-700">2. كناية:</span> تحتمل الطلاق وغيره (الحقي بأهلك).
+                        <br/><span className="text-red-600 font-bold">حكمه:</span> لا يقع إلا بوجود النية.
+                    </div>
                 </div>,
-                activities: [
-                    { type: 'mcq', q: 'رجل أُكره تحت تهديد السلاح ليطلق زوجته فطلقها، فما الحكم؟', opts: ['يقع الطلاق', 'لا يقع الطلاق', 'يقع طلقة رجعية'], ans: 1 },
-                    { type: 'tf', q: 'يصح إيقاع الطلاق من الصبي المميز.', ans: false }
+                acts: [
+                    { q: 'قال لزوجته مازحاً بدون نية: (أنت طالق)، فهل يقع؟', opts: ['لا يقع', 'يقع لأنه صريح', 'يقع إن غضبت'], ans: 1 },
+                    { q: 'لفظ (الحقي بأهلك) يعتبر:', opts: ['صريحاً', 'كناية', 'خلعاً'], ans: 1 }
                 ]
             },
             {
-                id: 4, title: 'ألفاظ الطلاق', bg: 'trait4',
-                content: <div className="space-y-4 text-gray-800 text-lg">
-                    <p>ألفاظ الطلاق تنقسم إلى قسمين أساسيين:</p>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="p-5 bg-white rounded-xl border-t-4 border-emerald-500 shadow-sm">
-                            <h4 className="font-bold font-amiri text-xl mb-3 text-emerald-800">1. ألفاظ صريحة</h4>
-                            <p>وهي التي لا تحتمل معنى غير الطلاق.</p>
-                            <p className="my-2 text-gray-500">مثل: <span className="text-navy font-bold">طلقتك، أنت طالق</span>.</p>
-                            <p className="bg-emerald-50 p-2 rounded"><span className="font-bold text-emerald-700">حكمه:</span> يقع بها الطلاق وإن لم ينوه (سواء كان جاداً أو مازحاً).</p>
+                title: 'طلاق السنة والبدعة', bg: 'bg-purple-50',
+                content: <div className="space-y-4 text-lg">
+                    <p><span className="text-green-700 font-bold">طلاق السنة:</span> طلقة واحدة في طهر لم يجامعها فيه.</p>
+                    <p><span className="text-red-700 font-bold">الطلاق البدعي:</span> محرم ويأثم فاعله (ولكنه يقع)، ويكون بـ:</p>
+                    <ul className="list-disc list-inside text-red-600">
+                        <li>أن يطلقها في الحيض.</li>
+                        <li>أن يطلقها في طهر جامعها فيه.</li>
+                        <li>أن يطلقها ثلاثاً بلفظ واحد.</li>
+                    </ul>
+                </div>,
+                acts: [
+                    { q: 'تطليق الزوجة وهي حائض يعتبر:', opts: ['طلاق سنة', 'طلاق بدعي'], ans: 1 },
+                    { q: 'ما حكم الطلاق البدعي من حيث الوقوع والإثم؟', opts: ['محرم ويقع', 'مباح ويقع', 'محرم ولا يقع'], ans: 0 }
+                ]
+            },
+            {
+                title: 'الرجعة وشروطها', bg: 'bg-teal-50',
+                content: <div className="space-y-4 text-lg">
+                    <p><span className="text-blue-700 font-bold">الرجعة:</span> إعادة المطلقة غير البائن بدون عقد.</p>
+                    <p className="font-bold text-navy">شروطها:</p>
+                    <ul className="list-disc list-inside">
+                        <li>الطلاق <span className="text-green-600 font-bold">دون الثلاث</span>.</li>
+                        <li>أن تكون <span className="text-green-600 font-bold">مدخولاً بها</span>.</li>
+                        <li>الطلاق <span className="text-green-600 font-bold">بغير عوض</span> (ليس خلعاً).</li>
+                        <li>أن تكون الرجعة <span className="text-green-600 font-bold">أثناء العدة</span>.</li>
+                    </ul>
+                </div>,
+                acts: [
+                    { q: 'طلق زوجته قبل الدخول بها، هل يحق له مراجعتها؟', opts: ['نعم', 'لا، لأنه لا عدة لها'], ans: 1 }
+                ]
+            }
+        ];
+
+        const FLASHCARDS = [
+            { f: "الخلع", b: "فرقة تجري بين الزوجين على عوض تدفعه المرأة." },
+            { f: "الطلاق", b: "حل قيد النكاح أو بعضه." },
+            { f: "طلاق صريح", b: "لفظ لا يحتمل غير الطلاق (أنت طالق)، ويقع بلا نية." },
+            { f: "طلاق كناية", b: "لفظ يحتمل الطلاق (الحقي بأهلك)، ولا يقع إلا بنية." },
+            { f: "طلاق السنة", b: "طلقة واحدة في طهر لم يجامعها فيه." },
+            { f: "طلاق البدعة", b: "الطلاق في الحيض، أو بعد جماع، أو 3 بلفظ واحد." },
+            { f: "الرجعة", b: "إعادة المطلقة رجعيا لعصمته بدون عقد." },
+            { f: "طلاق غير المدخول بها", b: "بائن لا عدة لها، ولا رجعة فيها." }
+        ];
+
+        const ESSAYS = [
+            { q: "ما الفرق بين الطلاق الصريح والكناية؟", a: "الصريح: موضوع للطلاق (طلقتك) ويقع بلا نية. الكناية: يحتمل الطلاق (اخرجي) ولا يقع إلا بنية." },
+            { q: "ما حكم إيقاع الطلاق البدعي؟ وهل يقع؟", a: "محرم ويأثم الزوج بفعله، ولكنه يقع شرعاً وتُحسب طلقة." },
+            { q: "ما شروط صحة الرجعة؟", a: "طلاق دون الثلاث، مدخول بها، طلاق بلا عوض، والرجعة أثناء العدة." },
+            { q: "هل يشترط لرجعة المرأة رضاها؟", a: "لا يشترط رضاها ولا وليها؛ الزوج أحق بردها في العدة." },
+            { q: "ما الفرق بين البينونة الصغرى والكبرى؟", a: "الصغرى: انقضاء العدة وتحل بعقد ومهر جديدين. الكبرى: طلاق 3، لا تحل له حتى تتزوج غيره ويفارقها." }
+        ];
+
+        const QUIZ = [
+            { q: "فرقة تجري بين الزوجين على عوض تدفعه المرأة:", o: ["الطلاق", "الخلع", "الظهار"], a: 1 },
+            { q: "إيقاع الخلع في فترة حيض المرأة:", o: ["محرم", "مكروه", "جائز"], a: 2 },
+            { q: "من ألفاظ الطلاق الصريحة التي لا تحتاج لنية:", o: ["أنت خلية", "الحقي بأهلك", "أنت طالق"], a: 2 },
+            { q: "طلاق المكره والغضبان فاقد الإدراك:", o: ["يقع", "لا يقع", "يقع بائن"], a: 1 },
+            { q: "الطلاق في طهر لم يجامعها فيه طلقة واحدة يسمى طلاق:", o: ["بدعي", "سني", "خلع"], a: 1 },
+            { q: "التطليق وهي حائض طلاق:", o: ["سني", "بدعي محرم ويقع", "بدعي ولا يقع"], a: 1 },
+            { q: "الطلاق ثلاثاً بلفظ واحد (أنت طالق بالثلاث):", o: ["سني", "بدعي", "لا يقع"], a: 1 },
+            { q: "المطلقة رجعياً في العدة:", o: ["تخرج لأهلها", "تعتبر زوجة لها النفقة والسكن", "تبين فوراً"], a: 1 },
+            { q: "يشترط لصحة الرجعة أن تكون المرأة:", o: ["مدخولاً بها", "غير مدخول بها", "انتهت عدتها"], a: 0 },
+            { q: "إذا انقضت عدة المطلقة رجعياً ولم يراجعها:", o: ["تبين كبرى", "تبين صغرى", "تبقى زوجته"], a: 1 },
+            { q: "البينونة الصغرى تعني العودة بـ:", o: ["رجعة بالقول", "عقد ومهر جديدين", "زواج من آخر"], a: 1 },
+            { q: "الطلقة الثالثة تجعل المرأة تبين بينونة:", o: ["صغرى", "كبرى", "لا تبين"], a: 1 },
+            { q: "البينونة الكبرى تعني أن المرأة:", o: ["تحل بعقد جديد", "لا تحل حتى تتزوج غيره ويفارقها", "تحل بعد سنة"], a: 1 },
+            { q: "رضا الزوجة في الرجعة أثناء العدة:", o: ["ركن", "شرط", "لا يشترط"], a: 2 },
+            { q: "طلاق غير المدخول بها:", o: ["رجعي", "بائن لا عدة لها", "سني"], a: 1 }
+        ];
+
+        // --- 2. DB & UTILS ---
+        const DB_KEY = 'fiqh_v2';
+        const getRecs = () => JSON.parse(localStorage.getItem(DB_KEY) || '[]');
+        const saveRec = (r) => { const x = getRecs(); x.push(r); localStorage.setItem(DB_KEY, JSON.stringify(x)); };
+        const getConf = (k) => localStorage.getItem(k) || '';
+        const saveConf = (k, v) => localStorage.setItem(k, v);
+
+        // --- 3. COMPONENTS ---
+        const Dash = ({ onClose }) => {
+            const [url, setUrl] = React.useState(getConf('gsURL'));
+            const [api, setApi] = React.useState(getConf('geminiAPI'));
+            return (
+                <div className="fixed inset-0 bg-black/80 z-[100] flex items-center justify-center p-4">
+                    <div className="bg-navy w-full max-w-3xl rounded-xl p-6 text-white animate-fade">
+                        <div className="flex justify-between border-b border-gray-600 pb-3 mb-4">
+                            <h2 className="text-xl text-gold font-amiri">لوحة الأستاذ</h2>
+                            <button onClick={onClose} className="text-red-400">إغلاق ✕</button>
                         </div>
-                        <div className="p-5 bg-white rounded-xl border-t-4 border-amber-500 shadow-sm">
-                            <h4 className="font-bold font-amiri text-xl mb-3 text-amber-800">2. ألفاظ كناية</h4>
-                            <p>وهي التي تحتمل الطلاق وتحتمل معنى آخر.</p>
-                            <p className="my-2 text-gray-500">مثل: <span className="text-navy font-bold">أنت خلية، الحقي بأهلك</span>.</p>
-                            <p className="bg-amber-50 p-2 rounded"><span className="font-bold text-amber-700">حكمه:</span> <span className="text-rose-600 font-bold">لا يقع</span> بها الطلاق إلا بـ <span className="font-bold underline">نية</span> الطلاق.</p>
+                        <div className="space-y-4 mb-6">
+                            <div>
+                                <label className="block text-gold mb-1 text-sm">مفتاح Google Gemini API:</label>
+                                <input type="password" value={api} onChange={e=>setApi(e.target.value)} className="w-full p-2 bg-black/50 border border-gray-600 rounded text-left dir-ltr"/>
+                            </div>
+                            <div>
+                                <label className="block text-gold mb-1 text-sm">رابط Google Sheets Web App:</label>
+                                <input value={url} onChange={e=>setUrl(e.target.value)} className="w-full p-2 bg-black/50 border border-gray-600 rounded text-left dir-ltr"/>
+                            </div>
+                            <button onClick={() => {saveConf('gsURL',url); saveConf('geminiAPI',api); alert('تم الحفظ');}} className="bg-gold text-navy px-4 py-2 rounded font-bold">حفظ الإعدادات</button>
+                        </div>
+                        <h3 className="text-gold mb-2">النتائج ({getRecs().length})</h3>
+                        <div className="max-h-60 overflow-y-auto bg-black/30 p-2 rounded">
+                            <table className="w-full text-sm text-right">
+                                <thead><tr className="text-gold border-b border-gray-600"><th>الاسم</th><th>الشعبة</th><th>الدرجة</th></tr></thead>
+                                <tbody>{getRecs().map((r,i)=><tr key={i} className="border-b border-gray-700/50"><td>{r.name}</td><td>{r.sec}</td><td>{r.score}/15</td></tr>)}</tbody>
+                            </table>
                         </div>
                     </div>
-                </div>,
-                activities: [
-                    { type: 'mcq', q: 'قال لزوجته مازحاً بدون نية: (أنت طالق)، فهل يقع؟', opts: ['لا يقع لأنه يمزح', 'لا يقع لعدم وجود النية', 'يقع لأنه لفظ صريح'], ans: 2 },
-                    { type: 'mcq', q: 'لفظ (الحقي بأهلك) يعتبر من:', opts: ['الألفاظ الصريحة', 'ألفاظ الكناية', 'الخلع'], ans: 1 },
-                    { type: 'tf', q: 'ألفاظ الكناية يقع بها الطلاق مباشرة حتى بدون نية.', ans: false }
-                ]
-            },
-            {
-                id: 5, title: 'طلاق السنة والطلاق البدعي', bg: 'trait5',
-                content: <div className="space-y-4 text-lg text-gray-800">
-                    <div className="bg-emerald-50 p-5 rounded-xl border border-emerald-200">
-                        <h4 className="font-bold text-emerald-800 mb-3 text-xl">طلاق السنة</h4>
-                        <p>وهو المأذون فيه شرعاً، وله شرطان:</p>
-                        <p>1- أن يطلقها <span className="text-emerald-700 font-bold">طلقة واحدة</span>.</p>
-                        <p>2- في <span className="text-emerald-700 font-bold">طهر لم يجامعها فيه</span>.</p>
-                    </div>
-                    <div className="bg-rose-50 p-5 rounded-xl border border-rose-200">
-                        <h4 className="font-bold text-rose-800 mb-3 text-xl">الطلاق البدعي</h4>
-                        <p>وهو المحرم المنهي عنه. ويكون بأمرين:</p>
-                        <ul className="list-disc list-inside mt-2 space-y-2">
-                            <li><span className="font-bold text-rose-700">بدعي في العدد:</span> أن يطلقها ثلاثاً بلفظ واحد (أنت طالق بالثلاث).</li>
-                            <li><span className="font-bold text-rose-700">بدعي في الوقت:</span> أن يطلقها <span className="underline">في الحيض</span>، أو في <span className="underline">طهر جامعها فيه</span> ولم يتبين حملها.</li>
-                        </ul>
-                        <p className="mt-3 bg-white p-2 rounded inline-block"><span className="font-bold text-rose-800">حكمه:</span> محرم ويأثم فاعله، ولكنه يقع وتُحسب طلقة.</p>
-                    </div>
-                </div>,
-                activities: [
-                    { type: 'mcq', q: 'طلق الرجل زوجته طلقة واحدة وهي حائض، هذا الطلاق يسمى:', opts: ['طلاق سنة', 'طلاق بدعي (في الوقت)', 'طلاق بدعي (في العدد)'], ans: 1 },
-                    { type: 'mcq', q: 'ما حكم الطلاق البدعي من حيث الوقوع والإثم؟', opts: ['مستحب ولا يقع', 'محرم ويأثم فاعله ولكنه يقع', 'مباح ويقع'], ans: 1 },
-                    { type: 'tf', q: 'طلاق السنة يكون بأن يطلقها طلقة واحدة في طهر لم يجامعها فيه.', ans: true }
-                ]
-            },
-            {
-                id: 6, title: 'الرجعة: معناها وشروطها', bg: 'trait6',
-                content: <div className="space-y-4 text-lg text-gray-800">
-                    <p><span className="text-blue-700 font-bold text-xl">الرجعة شرعاً:</span> إعادة زوجته المطلقة طلاقاً <span className="text-amber-600 font-bold">غير بائن</span> إلى ما كانت عليه قبل الطلاق <span className="text-emerald-600 font-bold">بدون عقد</span>.</p>
-                    <div className="verse">﴿وَبُعُولَتُهُنَّ أَحَقُّ بِرَدِّهِنَّ فِي ذَلِكَ إِنْ أَرَادُوا إِصْلَاحًا﴾</div>
-                    <div className="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
-                        <p className="font-bold text-navy mb-3 text-xl">شروط صحة الرجعة:</p>
-                        <ul className="list-disc list-inside space-y-2">
-                            <li>أن يكون الطلاق <span className="text-emerald-600 font-bold">دون الثلاث</span> (الطلقة الأولى أو الثانية).</li>
-                            <li>أن تكون المطلقة <span className="text-emerald-600 font-bold">مدخولاً بها</span> (لأن غير المدخول بها لا عدة لها وتبين فوراً).</li>
-                            <li>أن يكون الطلاق <span className="text-emerald-600 font-bold">بغير عوض</span> (لأن الخلع بائن لا رجعة فيه).</li>
-                            <li>أن تكون الرجعة <span className="text-emerald-600 font-bold">في وقت العدة</span>.</li>
-                        </ul>
-                    </div>
-                </div>,
-                activities: [
-                    { type: 'mcq', q: 'طلق زوجته قبل أن يدخل بها، فهل يحق له مراجعتها؟', opts: ['نعم في فترة العدة', 'لا يحق له مراجعتها؛ لأنه لا عدة لها', 'نعم إذا رضيت'], ans: 1 },
-                    { type: 'mcq', q: 'من شروط صحة الرجعة:', opts: ['أن تكون بعد الطلقة الثالثة', 'أن يكون الطلاق بعوض', 'أن تكون الرجعة في وقت العدة'], ans: 2 },
-                    { type: 'tf', q: 'لا تصح الرجعة إذا كان الطلاق مقابل عوض مالي (خلع).', ans: true }
-                ]
-            },
-            {
-                id: 7, title: 'أحكام الرجعة', bg: 'trait7',
-                content: <div className="space-y-4 text-lg text-gray-800">
-                    <p><span className="text-navy font-bold text-xl">بم تحصل الرجعة؟</span> تحصل بـ <span className="text-emerald-600 font-bold">اللفظ</span> (راجعت امرأتي)، أو بـ <span className="text-emerald-600 font-bold">الفعل كالوطء</span> إذا نوى به الرجعة.</p>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                        <div className="bg-white p-4 rounded-xl border-t-4 border-navy shadow-sm">
-                            <h4 className="font-bold text-navy mb-2">أثناء العدة</h4>
-                            <p>المطلقة رجعياً تعتبر <span className="text-emerald-600 font-bold">زوجة</span> ما دامت في العدة. لا تخرج من بيتها، ولها النفقة، <span className="text-rose-600 font-bold">ولا يُشترط رضاها</span> أو وليها لصحة الرجعة.</p>
+                </div>
+            );
+        };
+
+        const App = () => {
+            const [screen, setScreen] = React.useState('welcome');
+            const [stu, setStu] = React.useState({ n: '', s: '' });
+            const [dash, setDash] = React.useState(false);
+
+            // Google Gemini Chat Logic
+            const [chatOpen, setChatOpen] = React.useState(false);
+            const [msgs, setMsgs] = React.useState([{r:'bot', t:'مرحباً بك! أنا مساعدك لفهم أحكام النكاح والطلاق. اسألني.'}]);
+            const [inp, setInp] = React.useState('');
+            const endRef = React.useRef(null);
+
+            const sendMsg = async () => {
+                if(!inp.trim()) return;
+                const txt = inp; setInp(''); setMsgs(p => [...p, {r:'user', t:txt}, {r:'sys', t:'...'}]);
+                try {
+                    const key = getConf('geminiAPI'); if(!key) throw new Error("المعلم لم يضف مفتاح Gemini API");
+                    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${key}`, {
+                        method: 'POST', headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({ contents: [{ parts: [{ text: `أنت معلم فقه ميسر لطلاب الجامعة. أجب باختصار ولطف.\nسؤال الطالب: ${txt}` }] }] })
+                    });
+                    const d = await res.json();
+                    if(!res.ok) throw new Error(d.error?.message || "خطأ");
+                    setMsgs(p => [...p.slice(0,-1), {r:'bot', t: d.candidates[0].content.parts[0].text}]);
+                } catch(e) { setMsgs(p => [...p.slice(0,-1), {r:'bot', t: "خطأ: " + e.message}]); }
+            };
+
+            React.useEffect(() => { endRef.current?.scrollIntoView({ behavior: "smooth" }); }, [msgs]);
+
+            return (
+                <div className="min-h-screen pb-20">
+                    {screen !== 'welcome' && (
+                        <header className="bg-navy text-white p-3 sticky top-0 z-40 flex justify-between items-center shadow-md">
+                            <div><div className="text-gold font-amiri text-lg">الفقه الميسر</div><div className="text-xs text-gray-300">د. باسم القرافي</div></div>
+                            <div className="text-left text-sm font-bold bg-white/10 px-3 py-1 rounded">{stu.n} - {stu.s}</div>
+                        </header>
+                    )}
+
+                    <main className="max-w-3xl mx-auto mt-6 px-4">
+                        {screen === 'welcome' && (
+                            <div className="animate-fade flex flex-col items-center justify-center min-h-[80vh]">
+                                <img src="../../logo.png" alt="شعار الجامعة" className="h-24 mb-4 object-contain" onError={(e)=>e.target.style.display='none'}/>
+                                <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-sm text-center border-t-4 border-navy">
+                                    <h1 className="text-3xl font-amiri text-navy mb-1">الفقه الميسر</h1>
+                                    <h2 className="text-sm text-gray-500 mb-6">إشراف الأستاذ: د. باسم القرافي</h2>
+                                    <input value={stu.n} onChange={e=>setStu({n:e.target.value,s:stu.s})} placeholder="الاسم الثلاثي" className="w-full mb-3 p-3 border rounded focus:border-gold outline-none text-center" />
+                                    <input value={stu.s} onChange={e=>setStu({n:stu.n,s:e.target.value})} placeholder="رقم الشعبة" className="w-full mb-6 p-3 border rounded focus:border-gold outline-none text-center" />
+                                    <button onClick={()=>{if(stu.n&&stu.s) setScreen('learn'); else alert('أدخل البيانات');}} className="w-full bg-navy text-gold py-3 rounded font-bold hover:bg-opacity-90 transition">دخول للصفحة</button>
+                                </div>
+                                <button onClick={()=>{if(prompt('الرمز السرّي:')==='1234') setDash(true);}} className="mt-6 text-xs text-gray-400">لوحة الأستاذ</button>
+                            </div>
+                        )}
+
+                        {screen === 'learn' && <Stepper />}
+                        {screen === 'review' && <Review />}
+                        {screen === 'nawazil' && <Nawazil />}
+                        {screen === 'quiz' && <Quiz stu={stu} />}
+                    </main>
+
+                    {screen !== 'welcome' && screen !== 'quiz' && (
+                        <nav className="fixed bottom-0 w-full bg-white border-t z-40 flex justify-around p-2 text-sm">
+                            <button onClick={()=>setScreen('learn')} className={`p-2 rounded ${screen==='learn'?'bg-gold text-navy':'text-gray-500'}`}>الدرس</button>
+                            <button onClick={()=>setScreen('review')} className={`p-2 rounded ${screen==='review'?'bg-gold text-navy':'text-gray-500'}`}>المراجعة</button>
+                            <button onClick={()=>setScreen('nawazil')} className={`p-2 rounded ${screen==='nawazil'?'bg-gold text-navy':'text-gray-500'}`}>النوازل</button>
+                            <button onClick={()=>setScreen('quiz')} className={`p-2 rounded ${screen==='quiz'?'bg-gold text-navy':'text-gray-500'}`}>الاختبار</button>
+                        </nav>
+                    )}
+
+                    {/* AI Chat Widget */}
+                    {screen !== 'welcome' && (
+                        <div className="fixed bottom-16 left-4 z-50">
+                            {!chatOpen && <button onClick={()=>setChatOpen(true)} className="w-12 h-12 bg-navy text-gold rounded-full shadow-lg flex items-center justify-center font-bold text-xl hover:scale-105 transition">؟</button>}
+                            {chatOpen && (
+                                <div className="w-72 bg-white rounded-xl shadow-2xl border border-gold overflow-hidden flex flex-col h-80 animate-fade">
+                                    <div className="bg-navy text-gold p-2 flex justify-between items-center text-sm"><span>المساعد الذكي</span><button onClick={()=>setChatOpen(false)}>✕</button></div>
+                                    <div className="flex-1 p-2 overflow-y-auto space-y-2 bg-gray-50 text-sm">
+                                        {msgs.map((m,i) => <div key={i} className={`p-2 rounded-lg ${m.r==='bot'?'bg-white border ml-4':'bg-navy text-white mr-4'}`}>{m.t}</div>)}
+                                        <div ref={endRef}/>
+                                    </div>
+                                    <div className="p-2 bg-white border-t flex gap-1">
+                                        <input value={inp} onChange={e=>setInp(e.target.value)} onKeyDown={e=>e.key==='Enter'&&sendMsg()} className="flex-1 border p-1 text-sm rounded outline-none"/>
+                                        <button onClick={sendMsg} className="bg-gold text-navy px-2 rounded">➤</button>
+                                    </div>
+                                </div>
+                            )}
                         </div>
-                        <div className="bg-white p-4 rounded-xl border-t-4 border-amber-500 shadow-sm">
-                            <h4 className="font-bold text-amber-700 mb-2">بعد انتهاء العدة</h4>
-                            <p>إذا انتهت العدة ولم يراجعها، بانت منه <span className="text-amber-600 font-bold">بينونة صغرى</span>، ولا تحل له إلا <span className="font-bold underline">بعقد ومهر جديدين</span>.</p>
+                    )}
+                    {dash && <Dash onClose={()=>setDash(false)} />}
+                </div>
+            );
+        };
+
+        const Stepper = () => {
+            const [step, setStep] = React.useState(0);
+            const [actIdx, setActIdx] = React.useState(0);
+            const t = TOPICS_DATA[step];
+
+            const handleAns = (i) => {
+                if(i === t.acts[actIdx].ans) {
+                    if(actIdx < t.acts.length - 1) { alert('إجابة صحيحة! ننتقل للسؤال التالي.'); setActIdx(a=>a+1); }
+                    else { alert('ممتاز! يمكنك الانتقال للشريحة التالية.'); setActIdx(-1); } // -1 means done
+                } else alert('إجابة خاطئة، حاول مرة أخرى.');
+            };
+
+            return (
+                <div className="animate-fade">
+                    <div className="flex gap-1 mb-4">{TOPICS_DATA.map((_, i) => <div key={i} className={`h-1.5 flex-1 rounded ${i<=step?'bg-gold':'bg-gray-300'}`}></div>)}</div>
+                    <div className={`${t.bg} p-6 rounded-2xl shadow-sm border border-gray-100 mb-6`}>
+                        <h2 className="text-2xl font-amiri text-navy border-b border-gold inline-block pb-1 mb-4">{t.title}</h2>
+                        {t.content}
+                    </div>
+                    <div className="bg-white p-5 rounded-xl border border-gray-200 shadow-sm">
+                        <h3 className="font-bold text-navy mb-3 text-lg">تمرين الفهم:</h3>
+                        {actIdx !== -1 ? (
+                            <div>
+                                <p className="mb-3 text-gray-800 font-medium">{t.acts[actIdx].q}</p>
+                                <div className="space-y-2">
+                                    {t.acts[actIdx].opts.map((opt, i) => <button key={i} onClick={()=>handleAns(i)} className="w-full text-right p-3 bg-gray-50 border border-gray-200 rounded hover:border-gold hover:bg-gold/10 transition">{opt}</button>)}
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="text-center text-green-600 font-bold p-4">✅ أكملت تمارين هذه الشريحة بنجاح!</div>
+                        )}
+                    </div>
+                    <div className="flex justify-between mt-6">
+                        <button disabled={step===0} onClick={()=>{setStep(s=>s-1); setActIdx(0);}} className="px-6 py-2 bg-gray-200 rounded disabled:opacity-50">السابق</button>
+                        <button disabled={actIdx !== -1} onClick={()=>{if(step<TOPICS_DATA.length-1){setStep(s=>s+1); setActIdx(0);}}} className="px-6 py-2 bg-navy text-white rounded disabled:opacity-50">التالي</button>
+                    </div>
+                </div>
+            );
+        };
+
+        const Review = () => {
+            const [mode, setMode] = React.useState('cards');
+            const [openQ, setOpenQ] = React.useState(null);
+            return (
+                <div className="animate-fade pb-10">
+                    <div className="flex justify-center gap-2 mb-6">
+                        <button onClick={()=>setMode('cards')} className={`px-4 py-2 rounded-full font-bold ${mode==='cards'?'bg-navy text-gold':'bg-white text-gray-500 shadow'}`}>بطاقات المفاهيم</button>
+                        <button onClick={()=>setMode('qa')} className={`px-4 py-2 rounded-full font-bold ${mode==='qa'?'bg-navy text-gold':'bg-white text-gray-500 shadow'}`}>الأسئلة المقالية</button>
+                    </div>
+                    {mode === 'cards' && (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            {FLASHCARDS.map((c, i) => {
+                                const [fl, setFl] = React.useState(false);
+                                return (
+                                    <div key={i} className={`flip-card ${fl?'flipped':''}`} onClick={()=>setFl(!fl)}>
+                                        <div className="flip-card-inner"><div className="flip-card-front">{c.f}</div><div className="flip-card-back">{c.b}</div></div>
+                                    </div>
+                                );
+                            })}
                         </div>
-                        <div className="bg-white p-4 rounded-xl border-t-4 border-rose-600 shadow-sm md:col-span-2">
-                            <h4 className="font-bold text-rose-700 mb-2">البينونة الكبرى</h4>
-                            <p>إذا استوفى الطلقات الثلاث، بانت بينونة كبرى، <span className="text-rose-600 font-bold">ولا تحل له أبداً</span> حتى تن
+                    )}
+                    {mode === 'qa' && (
+                        <div className="space-y-3">
+                            {ESSAYS.map((q, i) => (
+                                <div key={i} className="rounded-xl overflow-hidden shadow-sm">
+                                    <button onClick={()=>setOpenQ(openQ===i?null:i)} className={`w-full text-right p-4 font-bold flex justify-between items-center transition-colors ${i%2===0 ? 'bg-navy text-white' : 'bg-gold text-navy'}`}>
+                                        <span>{q.q}</span><span className="text-xl leading-none">{openQ===i?'-':'+'}</span>
+                                    </button>
+                                    {openQ === i && <div className="p-4 bg-white text-gray-700 leading-relaxed border border-t-0">{q.a}</div>}
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            );
+        };
+
+        const Nawazil = () => {
+            const [sc, setSc] = React.useState(''); const [ans, setAns] = React.useState('');
+            const [fb, setFb] = React.useState(''); const [load, setLoad] = React.useState(false);
+
+            const callGemini = async (sys, prompt) => {
+                const key = getConf('geminiAPI'); if(!key) throw new Error("مفتاح API غير متوفر");
+                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${key}`, {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ contents: [{ parts: [{ text: `${sys}\n\n${prompt}` }] }] })
+                });
+                const d = await res.json(); if(!res.ok) throw new Error(d.error?.message);
+                return d.candidates[0].content.parts[0].text;
+            };
+
+            const gen = async () => { setLoad(true); setFb(''); setAns(''); try { setSc(await callGemini('أنت صانع نوازل فقهية.', 'اكتب قصة من سطرين لنازلة طلاق/خلع/رجعة، تنتهي بـ: ما الحكم؟')); } catch(e) { alert(e.message); } setLoad(false); };
+            const evalAns = async () => { setLoad(true); try { setFb(await callGemini('أنت مصحح فقهي.', `النازلة: ${sc}\nإجابة الطالب: ${ans}\nصحح الإجابة بلطف.`)); } catch(e) { alert(e.message); } setLoad(false); };
+
+            return (
+                <div className="animate-fade">
+                    <div className="bg-navy p-6 rounded-t-2xl text-center border-b-4 border-gold">
+                        <h2 className="text-2xl font-amiri text-gold">مختبر النوازل (الذكاء الاصطناعي)</h2>
+                        <p className="text-white text-sm mt-2 opacity-80">يولد المعلم الآلي قضية فقهية واقعية لتقوم بالحكم فيها.</p>
+                    </div>
+                    <div className="bg-white p-6 rounded-b-2xl shadow-sm border border-t-0">
+                        {!sc && <button onClick={gen} disabled={load} className="w-full bg-gold text-navy py-3 rounded font-bold">{load ? 'جاري التوليد...' : 'توليد نازلة جديدة'}</button>}
+                        {sc && (
+                            <div className="space-y-4">
+                                <div className="bg-blue-50 p-4 rounded border-r-4 border-navy">{sc}</div>
+                                <textarea value={ans} onChange={e=>setAns(e.target.value)} placeholder="اكتب حكمك الفقهي هنا..." className="w-full p-3 border rounded h-24 outline-none focus:border-gold resize-none" />
+                                {!fb && <button onClick={evalAns} disabled={load||!ans.trim()} className="w-full bg-navy text-gold py-3 rounded font-bold disabled:opacity-50">{load ? 'جاري التصحيح...' : 'صحح إجابتي'}</button>}
+                                {fb && <div className="bg-green-50 p-4 rounded border-r-4 border-green-500"><h4 className="font-bold text-green-800">التصحيح:</h4><p className="text-gray-800 mt-2">{fb}</p><button onClick={()=>{setSc('');setFb('');}} className="mt-4 text-sm text-navy underline font-bold">جرب نازلة أخرى</button></div>}
+                            </div>
+                        )}
+                    </div>
+                </div>
+            );
+        };
+
+        const Quiz = ({ stu }) => {
+            const [qIdx, setQIdx] = React.useState(0);
+            const [score, setScore] = React.useState(0);
+            const [done, setDone] = React.useState(false);
+            const q = QUIZ[qIdx];
+
+            const handle = async (i) => {
+                const newScore = i === q.a ? score + 1 : score;
+                if(i === q.a) setScore(newScore);
+                if(qIdx < QUIZ.length - 1) setTimeout(() => setQIdx(qIdx + 1), 300);
+                else {
+                    setDone(true);
+                    const rec = { name: stu.n, sec: stu.s, score: newScore };
+                    saveRec(rec);
+                    const url = getConf('gsURL');
+                    if(url) fetch(`${url}?name=${stu.n}&section=${stu.s}&score=${newScore}/15`, {mode:'no-cors'}).catch(()=>{});
+                }
+            };
+
+            if(done) return (
+                <div className="text-center py-10 animate-fade">
+                    <div className="w-24 h-24 mx-auto rounded-full border-4 border-gold flex items-center justify-center mb-4"><span className="text-3xl font-bold text-navy">{score}/15</span></div>
+                    <h2 className="text-xl font-bold text-navy mb-2">{score >= 10 ? 'أحسنت! اجتزت الاختبار' : 'عليك المراجعة مجدداً'}</h2>
+                    <p className="text-gray-500">تم تسجيل نتيجتك.</p>
+                </div>
+            );
+
+            return (
+                <div className="animate-fade">
+                    <div className="flex justify-between text-sm text-gray-500 mb-2 font-bold"><span>السؤال {qIdx+1} من 15</span></div>
+                    <div className="w-full bg-gray-200 h-2 rounded-full mb-6"><div className="bg-gold h-2 rounded-full transition-all" style={{width: `${(qIdx/15)*100}%`}}></div></div>
+                    <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 text-center">
+                        <h3 className="text-xl font-amiri text-navy mb-6 leading-relaxed">{q.q}</h3>
+                        <div className="space-y-3">
+                            {q.o.map((opt, i) => <button key={i} onClick={()=>handle(i)} className="w-full p-3 text-right rounded border hover:border-gold hover:bg-gold/10 transition">{opt}</button>)}
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
+</body>
+</html>
