@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>فقه ٢ — المحاضرة الرابعة</title>
+<title>فقه ٣ — المحاضرة الرابعة</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -11,6 +12,7 @@
   --cream:#faf8f3;--green:#059669;--red:#dc2626;--blue:#2563eb;--purple:#7c3aed;
   --teal:#0d9488;--orange:#ea580c;--muted:#6b7280;
   --font-q:"Amiri",serif;--font-u:"Tajawal",sans-serif;
+  --font-naskh:"Noto Naskh Arabic",serif;
   --rad:20px;--sh:0 15px 40px rgba(10,22,40,.12);
 }
 html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:var(--navy);overflow:hidden}
@@ -23,14 +25,17 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
   display:flex;justify-content:space-between;align-items:center;
   border-bottom:3px solid var(--gold);z-index:100;
 }
-.hdr-right{display:flex;align-items:center;gap:12px}
-.hdr-logo{
-  width:120px;height:50px;border-radius:10px;object-fit:contain;
-  background:transparent;border:1px solid rgba(201,151,58,.4);
+.hdr-right{display:flex;flex-direction:column;align-items:center;gap:6px}
+.logo-box{
+  width:170px;height:75px;border-radius:10px;
+  border:2px dashed rgba(201,151,58,.6);
+  background:rgba(255,255,255,.05);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gold2);font-size:.85rem;font-weight:700;
 }
 .hdr-prof{color:var(--gold2);font-weight:800;font-size:.85rem}
-.hdr-center{text-align:center;flex:1}
-.hdr-course{font-family:var(--font-q);font-size:1.2rem;color:#fff}
+.hdr-center{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;flex:1}
+.hdr-course{font-family:var(--font-naskh);font-size:1.8rem;color:var(--gold);margin-bottom:4px}
 .hdr-lecture{font-size:.75rem;color:var(--gold2);font-weight:600}
 .hdr-left{display:flex;align-items:center;gap:10px}
 .hdr-stu{background:rgba(201,151,58,.15);border:1px solid rgba(201,151,58,.3);padding:6px 12px;border-radius:10px;color:#fff;font-size:.78rem}
@@ -82,8 +87,8 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
 .welcome-bg{
   position:absolute;inset:0;
   background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23c9973a' fill-opacity='0.06'%3E%3Cpath d='M0 0h40v40H0V0zm40 40h40v40H40V40zm0-40h2l-2 2V0zm0 4l4-4h2l-6 6V4zm0 4l8-8h2L40 10V8zm0 4L52 0h2L40 14v-2zm0 4L56 0h2L40 18v-2zm0 4L60 0h2L40 22v-2zm0 4L64 0h2L40 26v-2zm0 4L68 0h2L40 30v-2zm0 4L72 0h2L40 34v-2zm0 4L76 0h2L40 38v-2zm0 4L80 0v2L42 40h-2zm4 0L80 4v2L46 40h-2zm4 0L80 8v2L50 40h-2zm4 0l28-28v2L54 40h-2zm4 0l24-24v2L58 40h-2zm4 0l20-20v2L62 40h-2zm4 0l16-16v2L66 40h-2zm4 0l12-12v2L70 40h-2zm4 0l8-8v2l-6 6h-2zm4 0l4-4v2l-2 2h-2z'/%3E%3C/g%3E%3C/svg%3E"),
-    linear-gradient(135deg,#0a1628 0%,#1a365d 50%,#0f172a 100%);
+    linear-gradient(135deg, rgba(10,22,40,0.9), rgba(21,34,56,0.95)),
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23c9973a' fill-opacity='0.15' d='M30 0l6 24 24 6-24 6-6 24-6-24L0 30l24-6z'/%3E%3C/svg%3E") repeat;
   z-index:-1;
 }
 .welcome-card{
@@ -93,10 +98,18 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
   padding:40px 30px;text-align:center;
   box-shadow:0 30px 60px rgba(0,0,0,.4);
 }
+.logo-box-login{
+  width:180px;height:80px;border-radius:12px;
+  border:2px dashed rgba(201,151,58,.6);
+  background:rgba(255,255,255,.05);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gold2);font-size:1rem;font-weight:700;
+  margin:0 auto 20px;
+}
 .welcome-title{
-  font-family:"Amiri Quran",var(--font-q);
-  font-size:2.2rem;
-  color:var(--gold2);
+  font-family:var(--font-naskh);
+  font-size:3.2rem;
+  color:var(--gold);
   text-shadow:0 4px 20px rgba(201,151,58,.3);
   margin-bottom:8px;
   line-height:1.6;
@@ -198,7 +211,7 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
 /* === NUMBERED LIST === */
 .num-list{list-style:none;padding:0;margin:16px 0;counter-reset:item}
 .num-list li{
-  counter-increment:item;padding:14px 14px 14px 50px;margin-bottom:10px;
+  counter-increment:item;padding:14px 50px 14px 14px;margin-bottom:10px;
   background:linear-gradient(90deg,#f8f6f1,#fff);border-radius:14px;
   border:1px solid rgba(0,0,0,.05);position:relative;line-height:1.8;
 }
@@ -339,11 +352,11 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
 <!-- === COMPACT HEADER === -->
 <header class="hdr" id="mainHeader" style="display:none">
   <div class="hdr-right">
-    <img src="../../logo.png" alt="شعار الجامعة" class="hdr-logo" onerror="this.style.background='rgba(201,151,58,.2)';this.innerHTML='🏛️'">
+    <div class="logo-box">مكان شعار الجامعة</div>
     <div class="hdr-prof">د/ باسم القرافي</div>
   </div>
   <div class="hdr-center">
-    <div class="hdr-course">مقرر فقه ٢</div>
+    <div class="hdr-course">مقرر فقه ٣</div>
     <div class="hdr-lecture">المحاضرة الرابعة: الإيلاء • الظهار • اللعان • العدة والإحداد</div>
   </div>
   <div class="hdr-left">
@@ -357,7 +370,8 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
     <div class="welcome-bg"></div>
     <div style="padding-top:40px">
       <div class="welcome-card">
-        <div class="welcome-title">مقرر فقه ٢</div>
+        <div class="logo-box-login">مكان شعار الجامعة</div>
+        <div class="welcome-title">مقرر فقه ٣</div>
         <div class="welcome-sub">المحاضرة الرابعة: الإيلاء • الظهار • اللعان • العدة والإحداد</div>
         <div class="welcome-field">
           <label>الاسم الثلاثي</label>
@@ -908,7 +922,7 @@ function doLogin(){
   user={n,s};
   $('#dName').textContent=n;
   $('#dSec').textContent=s;
-  $('#mainHeader').style.display='grid';
+  $('#mainHeader').style.display='flex';
   $('#bottomBar').classList.add('on');
   startTimer();
   goSlide(0);
