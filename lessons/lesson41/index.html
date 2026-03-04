@@ -271,6 +271,10 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
 .progress-bar{height:6px;background:rgba(201,151,58,.2);border-radius:99px;margin:16px 0;overflow:hidden}
 .progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:99px;transition:.5s}
 </style>
+
+<!-- 🔥 استدعاء ملف الإعدادات الخارجي 🔥 -->
+<script src="config.js"></script>
+
 </head>
 <body>
 <div class="app">
@@ -500,18 +504,6 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
 <div id="toast" class="toast"></div>
 
 <script>
-/* =========================================================
-   🔑 إعدادات مفتاح Claude API المدمج
-   ضع المفتاح الخاص بك هنا قبل رفع الملف لـ Github
-   تم تقسيم المفتاح لتجنب أن يقوم Github بحذفه تلقائياً
-========================================================= */
-const PART_1 = ""; // اترك هذا الجزء إن كان مفتاحك يبدأ هكذا
-const PART_2 = ""; 
-
-// دمج المفتاح للعمل
-const CLAUDE_API_KEY = PART_1 + PART_2;
-
-
 const CARDS_DATA = { /* البيانات لم تتأثر */
   0: [{icon:"🎯",title:"الأهداف",body:"<ul><li>تعريف الإيلاء والظهار واللعان والعدة.</li><li>معرفة الشروط والأحكام.</li></ul>"},{icon:"🔗",title:"الترابط",body:"<p>معالجة خلل في العلاقة الزوجية.</p>"},{icon:"⚖️",title:"المقاصد",body:"<p>حفظ النسل والعرض ومنع الظلم.</p>"},{icon:"📚",title:"الأدلة",body:"<p>البقرة، النور، المجادلة.</p>"}],
   1: [{icon:"📋",title:"الشروط",body:"<ol><li>قدرة الزوج</li><li>يمين بالله</li><li>أكثر من ٤ أشهر</li></ol>"},{icon:"⚖️",title:"الحكم",body:"<p>محرم للإضرار بالزوجة.</p>"},{icon:"🏛️",title:"الإجراء",body:"<p>بعد ٤ أشهر يأمره القاضي بالفيئة أو الطلاق.</p>"},{icon:"💡",title:"الحكمة",body:"<p>إبطال عادة جاهلية.</p>"}],
@@ -551,7 +543,7 @@ const QUIZ = [
 let user={n:'',s:''},curSlide=0,score=0,answered=0,recs=[],activeL=null,gamesDone={};
 let startTime=null,timerInterval=null;
 let lessonComplete=false,reviewVisited=false;
-let currentNazilahText = ""; // مسألة الذكاء الاصطناعي الحالية
+let currentNazilahText = ""; 
 
 const $=s=>document.querySelector(s);
 const $$=s=>document.querySelectorAll(s);
@@ -652,11 +644,13 @@ function pickR(g,el,r){
 
 /* =========================================================
    وظائف المعلم الذكي (الذكاء الاصطناعي - النوازل التفاعلية)
+   معتمد على ملف config.js
    ========================================================= */
 
 async function callClaudeAPI(promptMsg) {
-    if(!PART_2 || PART_2 === "ضع_باقي_المفتاح_هنا_بين_علامتي_التنصيص") {
-        toast('⚠️ أستاذي: لم تقم بإضافة مفتاح API في كود الصفحة.');
+    // التأكد من أن المتغير CLAUDE_API_KEY موجود وتم تحميله من ملف config.js
+    if (typeof CLAUDE_API_KEY === 'undefined' || !CLAUDE_API_KEY || CLAUDE_API_KEY.includes("ضع_باقي_المفتاح_هنا")) {
+        toast('⚠️ خطأ: تعذر العثور على مفتاح API. تأكد من إعداد ملف config.js بشكل صحيح.');
         return null;
     }
     
@@ -667,7 +661,7 @@ async function callClaudeAPI(promptMsg) {
                 'Content-Type': 'application/json',
                 'x-api-key': CLAUDE_API_KEY,
                 'anthropic-version': '2023-06-01',
-                'anthropic-dangerous-direct-browser-access': 'true' // السماح للـ Frontend المباشر
+                'anthropic-dangerous-direct-browser-access': 'true' 
             },
             body: JSON.stringify({
                 model: "claude-3-haiku-20240307",
