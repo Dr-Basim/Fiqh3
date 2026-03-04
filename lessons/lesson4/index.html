@@ -1275,4 +1275,20 @@ function saveCfg(){
 }
 
 function exportRecs(){
-  const blob=new Blob([JSON.stringify({db:'fiqh_lecture4',records:recs},null,2)],{type:'appli
+  const blob=new Blob([JSON.stringify({db:'fiqh_lecture4',records:recs},null,2)],{type:'application/json'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='fiqh_records.json';
+  a.click();
+  toast('تم التصدير');
+}
+
+$$('.btab').forEach(b=>b.addEventListener('click',function(){
+  const t=this.dataset.t;
+  if(t==='lesson') goSlide(curSlide||0);
+  else switchTab(t);
+}));
+
+</script>
+</body>
+</html>
