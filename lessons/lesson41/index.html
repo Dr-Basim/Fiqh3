@@ -186,50 +186,26 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
 .progress-bar{height:6px;background:rgba(201,151,58,.2);border-radius:99px;margin:16px 0;overflow:hidden}
 .progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:99px;transition:.5s}
 
-/* === API BANNER (جديد) === */
-.api-banner{
-  background:linear-gradient(135deg,#fff3cd,#fff8e1);
-  border:2px solid var(--gold);
+/* === AI Status Banner === */
+.ai-status-banner{
+  background:linear-gradient(135deg,rgba(5,150,105,.1),rgba(5,150,105,.05));
+  border:2px solid rgba(5,150,105,.3);
   border-radius:16px;
-  padding:16px 20px;
+  padding:14px 20px;
   margin-bottom:20px;
   display:flex;
   align-items:center;
   gap:12px;
-  flex-wrap:wrap;
 }
-.api-banner input{
-  flex:1;
-  min-width:200px;
-  padding:10px 14px;
-  border-radius:10px;
-  border:2px solid rgba(201,151,58,.4);
-  font-family:var(--font-u);
-  font-size:.9rem;
-  direction:ltr;
+.ai-status-banner.error{
+  background:linear-gradient(135deg,rgba(220,38,38,.1),rgba(220,38,38,.05));
+  border-color:rgba(220,38,38,.3);
 }
-.api-banner input:focus{
-  outline:none;
-  border-color:var(--gold);
-}
-.api-banner button{
-  padding:10px 18px;
-  background:var(--navy);
-  color:#fff;
-  border:none;
-  border-radius:10px;
-  font-weight:700;
-  cursor:pointer;
-  font-family:var(--font-u);
-}
-.api-status{
-  font-size:.85rem;
-  font-weight:700;
-  padding:6px 12px;
-  border-radius:8px;
-}
-.api-ok{background:rgba(5,150,105,.15);color:#065f46}
-.api-no{background:rgba(220,38,38,.1);color:#991b1b}
+.ai-status-icon{font-size:1.6rem}
+.ai-status-text{flex:1}
+.ai-status-text strong{display:block;margin-bottom:4px;color:var(--green)}
+.ai-status-banner.error .ai-status-text strong{color:var(--red)}
+.ai-status-text span{font-size:.85rem;color:var(--muted)}
 </style>
 </head>
 <body>
@@ -411,7 +387,7 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
     <div class="nav-row"><button class="nav-btn btn-outline" onclick="goSlide(3)">◁ اللعان</button><button class="nav-btn btn-gold" id="next-4" disabled onclick="finishLesson()">✓ إنهاء الدرس</button></div>
   </div>
 
-  <!-- === NAWAZIL (المعدلة للذكاء الاصطناعي) === -->
+  <!-- === NAWAZIL === -->
   <div id="s-nawazil" class="scr">
     <div class="page-header">
       <div class="page-icon">⚖️</div>
@@ -419,15 +395,13 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
       <div class="page-sub">أجب بأسلوبك، وسيقوم أستاذ الذكاء الاصطناعي بتقييمك فوراً</div>
     </div>
 
-    <!-- شريط API الجديد -->
-    <div class="api-banner" id="apiBanner">
-      <span style="font-size:1.4rem">🔑</span>
-      <div style="flex:1">
-        <div style="font-weight:800;margin-bottom:6px">مفتاح Claude API</div>
-        <div style="font-size:.82rem;color:var(--muted)">أدخل مفتاحك هنا للتقييم الذكي — يُحفظ تلقائياً في متصفحك</div>
+    <!-- شريط حالة الذكاء الاصطناعي -->
+    <div class="ai-status-banner" id="aiStatusBanner">
+      <span class="ai-status-icon">🤖</span>
+      <div class="ai-status-text">
+        <strong>المُقيّم الذكي جاهز</strong>
+        <span>سيقوم الذكاء الاصطناعي بتقييم إجاباتك وتوجيهك للصواب</span>
       </div>
-      <input type="password" id="quickApiKey" placeholder="sk-ant-api03-..." oninput="quickSaveApi(this.value)">
-      <span id="apiStatus" class="api-status api-no">غير مفعّل</span>
     </div>
 
     <div class="naz-card">
@@ -520,9 +494,7 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
       <div style="display:flex;gap:10px;margin-top:16px"><button class="nav-btn btn-navy" onclick="authDash()">دخول</button><button class="nav-btn btn-outline" onclick="closeDash()">إلغاء</button></div>
     </div>
     <div id="dashPanel" style="display:none">
-      <div class="field" style="margin-bottom:15px"><label style="font-weight:700;display:block;margin-bottom:6px">Claude API Key (لتقييم النوازل)</label><input type="password" id="cfApi" placeholder="sk-ant-..." style="width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;"></div>
-      <button class="nav-btn btn-gold" style="width:100%;margin-top:12px" onclick="saveCfg()">حفظ الإعدادات</button>
-      <h4 style="margin:20px 0 10px">سجل النتائج (محلياً)</h4>
+      <h4 style="margin:0 0 10px">سجل النتائج (محلياً)</h4>
       <div id="recBox" style="background:#f5f5f5;padding:14px;border-radius:14px;max-height:200px;overflow:auto;font-size:.88rem">لا توجد سجلات بعد.</div>
       <button class="nav-btn btn-navy" style="width:100%;margin-top:12px" onclick="exportRecs()">تصدير JSON</button>
     </div>
@@ -532,6 +504,22 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
 
 <!-- ===================== JAVASCRIPT ===================== -->
 <script>
+/*
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  ⚙️ إعدادات المدرس - ضع مفتاح Claude API هنا قبل رفع الملف على GitHub       ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║  1. احصل على المفتاح من: https://console.anthropic.com/                     ║
+║  2. ضع المفتاح بين علامتي الاقتباس أدناه                                     ║
+║  3. ارفع الملف على GitHub وسيعمل تلقائياً لجميع الطلاب                       ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+*/
+
+// ════════════════════════════════════════════════════════════════════════════
+// 🔑 ضع مفتاح Claude API هنا:
+const CLAUDE_API_KEY = "sk-ant-api03-ضع_مفتاحك_هنا";
+// ════════════════════════════════════════════════════════════════════════════
+
+
 // 1. البيانات (Data)
 const CARDS_DATA = {
   0: [
@@ -573,7 +561,6 @@ const GAMES = {
   4: {pairs:[{l:"مطلقة قبل الدخول",r:"لا عدة عليها"},{l:"متوفى عنها (حامل)",r:"بوضع الحمل"},{l:"مطلقة ذات حيض",r:"ثلاثة قروء"},{l:"متوفى عنها (غير حامل)",r:"٤ أشهر و١٠ أيام"}]}
 };
 
-// البيانات الخاصة بالنوازل
 const NAWAZIL_DATA = {
   1: {q: "رجل حلف بالله ألا يقرب زوجته ستة أشهر بسبب خلاف بينهما، ثم ندم بعد شهرين وأراد الرجوع إليها.", a: "هذا إيلاء منعقد لأنه حلف بالله على ترك الوطء أكثر من ٤ أشهر. وبما أنه رجع قبل انتهاء المدة فعليه: الفيئة + كفارة يمين."},
   2: {q: "قال رجل لزوجته في لحظة غضب: «أنتِ عليّ كظهر أمي»، ثم أراد معاشرتها في نفس اليوم.", a: "لا يجوز له معاشرتها قبل أداء الكفارة. يجب عليه كفارة الظهار المرتبة: عتق رقبة، فإن لم يجد فصيام شهرين متتابعين، فإن لم يستطع فإطعام ٦٠ مسكيناً."},
@@ -640,6 +627,37 @@ const $=s=>document.querySelector(s);
 const $$=s=>document.querySelectorAll(s);
 const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),2000)};
 
+// التحقق من صحة المفتاح
+function isValidApiKey(key) {
+  return key && key.startsWith('sk-ant-') && key.length > 30 && !key.includes('ضع_مفتاحك_هنا');
+}
+
+// تحديث شريط حالة AI
+function updateAiStatusBanner() {
+  const banner = $('#aiStatusBanner');
+  if (!banner) return;
+  
+  if (isValidApiKey(CLAUDE_API_KEY)) {
+    banner.className = 'ai-status-banner';
+    banner.innerHTML = `
+      <span class="ai-status-icon">🤖</span>
+      <div class="ai-status-text">
+        <strong>المُقيّم الذكي جاهز</strong>
+        <span>سيقوم الذكاء الاصطناعي بتقييم إجاباتك وتوجيهك للصواب</span>
+      </div>
+    `;
+  } else {
+    banner.className = 'ai-status-banner error';
+    banner.innerHTML = `
+      <span class="ai-status-icon">⚠️</span>
+      <div class="ai-status-text">
+        <strong>المُقيّم الذكي غير مفعّل</strong>
+        <span>لم يتم إعداد مفتاح API — ستظهر الإجابات النموذجية فقط</span>
+      </div>
+    `;
+  }
+}
+
 function formatTime(ms){
   const s=Math.floor(ms/1000);
   const h=Math.floor(s/3600);
@@ -660,8 +678,6 @@ function doLogin(){
   errBox.style.display = 'none'; user={n,s}; $('#dName').textContent=n; $('#dSec').textContent=s;
   $('#mainHeader').style.display='flex'; $('#bottomBar').classList.add('on');
   startTimer(); goSlide(0);
-  // تهيئة حالة API
-  setTimeout(initApiStatus, 300);
 }
 
 function goSlide(i){
@@ -680,8 +696,7 @@ function switchTab(t){
   if(idx!==undefined) $$('.btab')[idx].classList.add('act'); else $$('.btab')[0].classList.add('act');
   if(t==='review'){reviewVisited=true; if(!$('#fcBox').innerHTML.trim()) renderReview(); checkQuizUnlock();}
   if(t==='quiz' && !$('#qzBox').innerHTML.trim()) {renderQuiz();}
-  // تحديث حالة API عند فتح النوازل
-  if(t==='nawazil') initApiStatus();
+  if(t==='nawazil') updateAiStatusBanner();
 }
 
 function openCard(slide,idx){
@@ -711,50 +726,10 @@ function pickR(g,el,r){
   }
 }
 
-// ========== دوال API الجديدة ==========
-
-// دالة سريعة لحفظ المفتاح مع التحقق
-function quickSaveApi(val) {
-  const clean = val.trim();
-  const statusEl = $('#apiStatus');
-  if (clean.startsWith('sk-ant-') && clean.length > 20) {
-    localStorage.setItem('claudeApi', clean);
-    statusEl.textContent = '✅ مفعّل';
-    statusEl.className = 'api-status api-ok';
-    // مزامنة مع حقل لوحة المعلم
-    const dashField = $('#cfApi');
-    if (dashField) dashField.value = clean;
-  } else if (clean.length === 0) {
-    statusEl.textContent = 'غير مفعّل';
-    statusEl.className = 'api-status api-no';
-  } else {
-    statusEl.textContent = '⚠️ تحقق من المفتاح';
-    statusEl.className = 'api-status api-no';
-  }
-}
-
-// تحديث مؤشر الحالة عند تحميل الصفحة
-function initApiStatus() {
-  const saved = localStorage.getItem('claudeApi');
-  const quickInput = $('#quickApiKey');
-  const statusEl = $('#apiStatus');
-  if (!quickInput || !statusEl) return;
-  if (saved && saved.startsWith('sk-ant-')) {
-    quickInput.value = saved;
-    statusEl.textContent = '✅ مفعّل';
-    statusEl.className = 'api-status api-ok';
-  } else {
-    statusEl.textContent = 'غير مفعّل';
-    statusEl.className = 'api-status api-no';
-  }
-}
-
-// دالة التقييم الذكي المحسنة
+// دالة التقييم الذكي
 async function evaluateNazilah(n) {
   const studentAns = $(`#naz${n}`).value.trim();
   const fbBox = $(`#fb${n}`);
-
-  // البحث عن الزر الصحيح
   const allCards = $$('#s-nawazil .naz-card');
   const targetCard = allCards[n - 1];
   const btn = targetCard ? targetCard.querySelector('button') : null;
@@ -764,15 +739,14 @@ async function evaluateNazilah(n) {
     return;
   }
 
-  // إعادة قراءة المفتاح في كل مرة
-  const apiKey = localStorage.getItem('claudeApi');
+  const nazilah = NAWAZIL_DATA[n];
 
-  if (!apiKey || !apiKey.startsWith('sk-ant-')) {
+  // إذا لم يكن المفتاح صالحاً، اعرض الإجابة النموذجية فقط
+  if (!isValidApiKey(CLAUDE_API_KEY)) {
     fbBox.innerHTML = `
-      <strong>⚠️ المفتاح غير مضاف أو غير صحيح</strong><br><br>
-      أدخل مفتاح Claude API في الحقل أعلى الصفحة.<br><br>
-      <strong>الإجابة النموذجية:</strong><br>
-      ${NAWAZIL_DATA[n].a}
+      <strong>📝 الإجابة النموذجية:</strong><br><br>
+      ${nazilah.a}<br><br>
+      <small style="color:var(--muted)">💡 للحصول على تقييم ذكي لإجابتك، يجب تفعيل مفتاح API</small>
     `;
     fbBox.className = 'naz-fb on';
     fbBox.style.background = '#fef3c7';
@@ -790,8 +764,6 @@ async function evaluateNazilah(n) {
     btn.style.color = '#0a1628';
   }
   fbBox.className = 'naz-fb';
-
-  const nazilah = NAWAZIL_DATA[n];
 
   const systemPrompt = `أنت أستاذ جامعي متخصص في الفقه الإسلامي. قيّم إجابة الطالب التالية:
 
@@ -811,7 +783,7 @@ async function evaluateNazilah(n) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': apiKey,
+        'x-api-key': CLAUDE_API_KEY,
         'anthropic-version': '2023-06-01',
         'anthropic-dangerous-direct-browser-access': 'true'
       },
@@ -855,8 +827,8 @@ async function evaluateNazilah(n) {
 
     fbBox.innerHTML = `
       <strong>⚠️ خطأ في الاتصال:</strong> ${errMsg}<br><br>
-      <strong>الإجابة النموذجية:</strong><br>
-      ${NAWAZIL_DATA[n].a}
+      <strong>📝 الإجابة النموذجية:</strong><br>
+      ${nazilah.a}
     `;
     fbBox.className = 'naz-fb on';
     fbBox.style.background = '#fee2e2';
@@ -872,8 +844,6 @@ async function evaluateNazilah(n) {
     }
   }
 }
-
-// ========== نهاية دوال API ==========
 
 function renderReview(){
   $('#fcBox').innerHTML=FLASHCARDS.map(c=>`<div class="fc" onclick="this.classList.toggle('flip')"><div class="fc-in"><div class="fc-f"><div>${c.q}</div><small style="opacity:.6;margin-top:10px">اضغط للقلب</small></div><div class="fc-b"><div>${c.a}</div></div></div></div>`).join('');
@@ -915,28 +885,13 @@ function pickAns(qi,oi){
   }
 }
 
-function openDash(){
-  $('#cfApi').value = localStorage.getItem('claudeApi') || '';
-  $('#mDash').classList.add('on');
-}
+function openDash(){$('#mDash').classList.add('on');}
 function closeDash(){$('#mDash').classList.remove('on'); $('#dashPanel').style.display='none'; $('#dashLogin').style.display='block';}
 function authDash(){
   if($('#dashPass').value==='1234'){
     $('#dashLogin').style.display='none'; $('#dashPanel').style.display='block';
     $('#recBox').innerHTML=recs.length ? recs.map(r=>`<div style="border-bottom:1px solid #eee;padding:8px 0"><b>${r.name}</b> (${r.sec}) — ${r.score}/20 — ⏱️ ${r.time} — ${r.date}</div>`).join('') : 'لا توجد سجلات بعد.';
   }else{alert('رمز خاطئ!');}
-}
-
-function saveCfg(){
-  const key = $('#cfApi').value.trim();
-  localStorage.setItem('claudeApi', key);
-  // مزامنة مع حقل النوازل
-  const quickInput = $('#quickApiKey');
-  if (quickInput) {
-    quickInput.value = key;
-    quickSaveApi(key);
-  }
-  toast('تم حفظ الإعدادات ✅');
 }
 
 function exportRecs(){
