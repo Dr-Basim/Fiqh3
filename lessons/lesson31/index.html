@@ -1,0 +1,1024 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>فقه ٣ — المحاضرة الثالثة</title>
+
+<!-- خطوط الصفحة الأولى (Amiri + Tajawal) + Noto Naskh -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700;800;900&family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0a1628;--navy2:#152238;--gold:#c9973a;--gold2:#e8c678;--gold3:#f5e6c8;
+  --cream:#faf8f3;--green:#059669;--red:#dc2626;--blue:#2563eb;--purple:#7c3aed;
+  --teal:#0d9488;--orange:#ea580c;--muted:#6b7280;
+  --font-q:"Amiri",serif;--font-u:"Tajawal",sans-serif;
+  --font-naskh:"Noto Naskh Arabic",serif;
+  --rad:20px;--sh:0 15px 40px rgba(10,22,40,.12);
+  --login-navy:#16213e;
+  --login-gold:#e2b96f;
+  --login-cream:#faf8f3;
+}
+html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:var(--navy);overflow:hidden}
+.app{height:100%;display:flex;flex-direction:column}
+
+/* === HEADER (Compact) === */
+.hdr{
+  background:linear-gradient(135deg,var(--navy),var(--navy2));
+  padding:8px 20px;
+  display:flex;justify-content:space-between;align-items:center;
+  border-bottom:3px solid var(--gold);z-index:100;
+}
+.hdr-right{display:flex;flex-direction:column;align-items:center;gap:6px}
+.logo-box{
+  width:170px;height:75px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gold2);font-size:.85rem;font-weight:700;
+}
+.hdr-prof{color:var(--gold2);font-weight:800;font-size:.85rem}
+.hdr-center{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;flex:1}
+.hdr-course{font-family:var(--font-naskh);font-size:1.8rem;color:var(--gold);margin-bottom:4px}
+.hdr-lecture{font-size:.75rem;color:var(--gold2);font-weight:600}
+.hdr-left{display:flex;align-items:center;gap:10px}
+.hdr-stu{background:rgba(201,151,58,.15);border:1px solid rgba(201,151,58,.3);padding:6px 12px;border-radius:10px;color:#fff;font-size:.78rem}
+.hdr-stu b{color:var(--gold2);margin-left:6px}
+
+/* === MAIN === */
+.main{flex:1;overflow:hidden;position:relative}
+.scr{
+  position:absolute;inset:0;overflow-y:auto;padding:20px 20px 140px;
+  display:none;opacity:0;transform:translateY(20px);
+  transition:.5s cubic-bezier(.4,0,.2,1);
+  max-width:1100px;margin:0 auto;width:100%;
+}
+.scr.on{display:block;opacity:1;transform:translateY(0)}
+
+/* === BOTTOM BAR === */
+.bottom-bar{
+  position:fixed;bottom:0;left:0;right:0;z-index:100;
+  background:rgba(255,255,255,.97);backdrop-filter:blur(12px);
+  border-top:3px solid var(--gold);
+  display:none;padding:10px 20px max(10px,env(safe-area-inset-bottom));
+}
+.bottom-bar.on{display:block}
+.bottom-inner{
+  max-width:1100px;margin:0 auto;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.bottom-timer{
+  background:rgba(5,150,105,.12);border:1px solid rgba(5,150,105,.3);
+  padding:8px 16px;border-radius:12px;color:#059669;font-weight:900;font-size:.9rem;
+  display:flex;align-items:center;gap:8px;
+}
+.bottom-tabs{display:flex;gap:8px}
+.btab{
+  border:none;background:rgba(10,22,40,.06);color:var(--navy);cursor:pointer;
+  padding:10px 20px;border-radius:14px;font-weight:700;font-size:.82rem;
+  display:flex;align-items:center;gap:6px;transition:.2s;
+}
+.btab.act{background:var(--navy);color:var(--gold2)}
+.btab.locked{opacity:.4;cursor:not-allowed}
+.btab span{font-size:1.1rem}
+
+/* === LOGIN === */
+#s-login.scr{max-width:none;padding:0;}
+@keyframes loginFadeIn{0%{opacity:0}100%{opacity:1}}
+@keyframes loginPulse{0%,100%{opacity:1}50%{opacity:.5}}
+.welcome-wrap{min-height:100%;display:flex;align-items:center;justify-content:center;padding:1rem;background:url('https://www.transparenttextures.com/patterns/arabesque.png') repeat,var(--login-cream);animation:loginFadeIn .5s ease-out;}
+.welcome-glass{max-width:36rem;width:100%;background:rgba(255,255,255,0.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(226,185,111,0.3);box-shadow:0 8px 32px 0 rgba(31,38,135,0.07);border-radius:1.5rem;padding:2.5rem 1.875rem;text-align:center;position:relative;overflow:hidden;}
+.welcome-deco{position:absolute;top:0;right:0;width:8rem;height:8rem;background:var(--login-gold);opacity:.2;border-bottom-left-radius:9999px;pointer-events:none;}
+.welcome-logo-wrap{display:flex;justify-content:center;margin-bottom:1.5rem;position:relative;z-index:10;width:100%;}
+.welcome-logo-wrap img{width:16rem;height:auto;object-fit:contain;filter:drop-shadow(0 1px 2px rgba(0,0,0,.1));}
+.welcome-h1{font-family:'Amiri',serif;font-size:2.25rem;font-weight:700;color:var(--login-navy);margin-bottom:.5rem;position:relative;z-index:10;}
+.welcome-h2{font-size:1.5rem;font-weight:500;color:var(--login-gold);margin-bottom:.5rem;position:relative;z-index:10;}
+.welcome-prof-line{font-size:.875rem;font-weight:700;color:#6b7280;margin-bottom:2rem;border-bottom:1px solid #e5e7eb;padding-bottom:1rem;display:inline-block;position:relative;z-index:10;}
+.welcome-fields{display:flex;flex-direction:column;gap:1.5rem;position:relative;z-index:10;}
+.welcome-input{width:100%;padding:1rem;border-radius:.75rem;border:2px solid #e5e7eb;outline:none;transition:border-color .3s;text-align:center;font-family:'Tajawal',sans-serif;font-size:1rem;color:var(--login-navy);background:#fff;}
+.welcome-input:focus{border-color:var(--login-gold);}
+.welcome-input::placeholder{color:#9ca3af;}
+.welcome-error{color:#dc2626;font-weight:700;font-size:.95rem;animation:loginPulse 2s infinite;display:none;}
+.welcome-start-btn{width:100%;background:var(--login-navy);color:#fff;font-weight:700;font-size:1.25rem;padding:1rem;border-radius:.75rem;margin-top:1rem;border:none;cursor:pointer;box-shadow:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -2px rgba(0,0,0,.05);transition:all .3s ease;font-family:'Tajawal',sans-serif;}
+.welcome-start-btn:hover{background:var(--login-gold);color:var(--login-navy);transform:scale(1.05);}
+
+/* === TYPOGRAPHY === */
+.page-header{text-align:center;margin-bottom:30px;padding:20px;background:linear-gradient(135deg,rgba(201,151,58,.08),rgba(201,151,58,.02));border-radius:24px}
+.page-icon{font-size:3rem;margin-bottom:10px}
+.page-title{font-family:var(--font-q);font-size:2rem;color:var(--navy);margin-bottom:6px}
+.page-sub{color:var(--gold);font-weight:700;font-size:.95rem}
+.term{color:var(--blue);font-weight:800}
+.hukm{color:var(--green);font-weight:800}
+.warn{color:var(--red);font-weight:800}
+.gold-text{color:var(--gold);font-weight:800}
+.purple-text{color:var(--purple);font-weight:800}
+
+/* === VERSE BLOCK === */
+.verse-block{background:linear-gradient(135deg,#fffdf8,#fef9ee);border:2px solid var(--gold);border-radius:24px;padding:28px 24px;margin:24px 0;text-align:center;position:relative;box-shadow:inset 0 0 60px rgba(201,151,58,.05),0 12px 30px rgba(201,151,58,.1);}
+.verse-block::before{content:"﷽";display:block;color:var(--gold);font-size:1.8rem;margin-bottom:12px;font-family:var(--font-q)}
+.verse-text{font-family:var(--font-q);font-size:1.35rem;line-height:2.3;color:var(--navy)}
+.verse-ref{font-size:.8rem;color:var(--gold);margin-top:12px;font-weight:600}
+
+/* === CONTENT CARDS === */
+.content-section{background:#fff;border-radius:20px;padding:24px;margin:20px 0;box-shadow:var(--sh);border-right:5px solid var(--gold);}
+.section-title{font-family:var(--font-q);font-size:1.3rem;color:var(--navy);margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.section-title::before{content:"";width:8px;height:8px;background:var(--gold);border-radius:50%}
+.content-text{line-height:2;font-size:1rem}
+
+/* === SMART CELLS === */
+.cells-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:24px 0}
+.smart-cell{background:linear-gradient(145deg,#fff,#fdfcfa);border:2px solid rgba(201,151,58,.2);border-radius:20px;padding:24px 20px;text-align:center;cursor:pointer;transition:.4s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden;}
+.smart-cell:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(201,151,58,.15);border-color:var(--gold)}
+.cell-icon{font-size:2.5rem;display:block;margin-bottom:12px}
+.cell-title{font-weight:900;font-size:1rem;color:var(--navy);margin-bottom:6px}
+.cell-hint{font-size:.75rem;color:var(--muted)}
+
+/* === EXPANDED CARD OVERLAY === */
+.card-overlay{position:fixed;inset:0;background:rgba(10,22,40,.85);backdrop-filter:blur(8px);z-index:500;display:none;align-items:center;justify-content:center;padding:20px;opacity:0;transition:.4s;}
+.card-overlay.on{display:flex;opacity:1}
+.expanded-card{background:#fff;width:100%;max-width:700px;max-height:85vh;overflow-y:auto;border-radius:28px;padding:0;position:relative;box-shadow:0 30px 60px rgba(0,0,0,.3);transform:scale(.9);transition:.4s cubic-bezier(.34,1.56,.64,1);}
+.card-overlay.on .expanded-card{transform:scale(1)}
+.exp-header{background:linear-gradient(135deg,var(--navy),var(--navy2));padding:24px;border-radius:28px 28px 0 0;position:sticky;top:0;z-index:10;}
+.exp-icon{font-size:2.5rem;margin-bottom:8px}
+.exp-title{font-family:var(--font-q);font-size:1.5rem;color:#fff}
+.exp-close{position:absolute;top:20px;left:20px;background:rgba(255,255,255,.2);border:none;width:40px;height:40px;border-radius:50%;color:#fff;cursor:pointer;font-size:1.2rem;}
+.exp-body{padding:24px;line-height:2;font-size:1rem}
+.exp-body h4{color:var(--navy);margin:16px 0 10px;font-size:1.1rem;border-bottom:2px solid var(--gold3);padding-bottom:6px}
+.exp-body ol,.exp-body ul{padding-right:24px;margin:10px 0}
+.exp-body li{margin-bottom:8px}
+
+/* === NUMBERED LIST === */
+.num-list{list-style:none;padding:0;margin:16px 0;counter-reset:item}
+.num-list li{counter-increment:item;padding:14px 50px 14px 14px;margin-bottom:10px;background:linear-gradient(90deg,#f8f6f1,#fff);border-radius:14px;border:1px solid rgba(0,0,0,.05);position:relative;line-height:1.8;}
+.num-list li::before{content:counter(item);position:absolute;right:12px;top:12px;width:30px;height:30px;border-radius:50%;background:var(--gold);color:#fff;display:grid;place-items:center;font-weight:900;font-size:.85rem;}
+
+/* === MIND MAP === */
+.mindmap{margin:30px 0;padding:30px;border-radius:28px;background:linear-gradient(160deg,#f0f7ff 0%,#fef9f0 50%,#f0fdf4 100%);border:1px solid rgba(201,151,58,.2);position:relative;overflow:hidden;}
+.mind-title{text-align:center;font-family:var(--font-q);font-size:1.2rem;color:var(--navy);margin-bottom:20px;position:relative}
+.mind-center{width:160px;height:100px;margin:0 auto 24px;border-radius:50%;background:linear-gradient(135deg,var(--gold2),var(--gold));border:3px solid var(--gold);display:grid;place-items:center;font-weight:900;font-size:1rem;color:var(--navy);position:relative;z-index:2;box-shadow:0 15px 30px rgba(201,151,58,.25);text-align:center;}
+.mind-branches{display:grid;grid-template-columns:1fr 1fr;gap:16px;position:relative}
+.mind-branch{padding:16px;border-radius:16px;position:relative;line-height:1.7;font-size:.88rem;border:2px solid;transition:.3s}
+.mind-branch:hover{transform:scale(1.02)}
+.mind-branch h5{font-family:var(--font-q);font-size:1rem;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.mind-branch h5::before{content:"◆";font-size:.6rem}
+.mb-1{background:rgba(5,150,105,.1);border-color:rgba(5,150,105,.3);color:#065f46}
+.mb-2{background:rgba(37,99,235,.1);border-color:rgba(37,99,235,.3);color:#1e40af}
+.mb-3{background:rgba(234,88,12,.1);border-color:rgba(234,88,12,.3);color:#9a3412}
+.mb-4{background:rgba(124,58,237,.1);border-color:rgba(124,58,237,.3);color:#5b21b6}
+
+/* === MATCHING GAME === */
+.game-box{background:linear-gradient(135deg,#f8f9fa,#fff);border-radius:24px;padding:24px;margin:24px 0;border:2px solid rgba(10,22,40,.08);}
+.game-title{font-family:var(--font-q);color:var(--navy);margin-bottom:16px;font-size:1.1rem}
+.game-hint{font-size:.8rem;color:var(--muted);margin-bottom:16px}
+.game-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.game-col{display:flex;flex-direction:column;gap:12px}
+.g-item,.g-choice{padding:14px 16px;border-radius:14px;font-size:.9rem;font-weight:700;cursor:pointer;text-align:center;min-height:56px;display:flex;align-items:center;justify-content:center;transition:.25s;line-height:1.5;}
+.g-item{background:var(--navy);color:#fff;box-shadow:0 4px 0 var(--navy2)}
+.g-choice{background:#fff;border:2px solid var(--gold);color:var(--navy);box-shadow:0 4px 0 #e6d5a8}
+.g-item.active{background:var(--gold);transform:translateY(2px);box-shadow:none}
+.g-choice.active{border-color:var(--navy);transform:translateY(2px);box-shadow:none}
+.g-item.done,.g-choice.done{opacity:.4;pointer-events:none;background:var(--green)!important;color:#fff!important;border:none!important;box-shadow:none}
+
+/* === REVIEW / NAWAZIL ESSAYS === */
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:20px 0}
+.fc{height:180px;perspective:1000px;cursor:pointer}
+.fc-in{position:relative;width:100%;height:100%;transition:.6s;transform-style:preserve-3d;border-radius:18px;box-shadow:var(--sh)}
+.fc.flip .fc-in{transform:rotateY(180deg)}
+.fc-f,.fc-b{position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:20px}
+.fc-f{background:linear-gradient(135deg,var(--navy),var(--navy2));color:var(--gold2);font-weight:700;font-size:.95rem;text-align:center;line-height:1.6}
+.fc-b{background:#fff;border:2px solid var(--gold);transform:rotateY(180deg);font-size:.88rem;line-height:1.8;text-align:center;color:var(--navy)}
+
+.essay-list{display:flex;flex-direction:column;gap:12px}
+.essay{border-radius:16px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.06)}
+.essay-h{width:100%;border:none;padding:16px 20px;display:flex;align-items:center;gap:14px;font-weight:800;font-size:.95rem;cursor:pointer;transition:.2s;color:#fff;text-align:right;}
+.essay-navy{background:linear-gradient(90deg,#0a1628,#1e3a5f)}
+.essay-gold{background:linear-gradient(90deg,#c9973a,#e0b055);color:#2a1e05!important}
+.essay-icon{font-size:1.4rem;flex-shrink:0}
+.essay-text{flex:1;line-height:1.5}
+.essay-arr{font-size:1rem;transition:.3s}
+.essay.open .essay-arr{transform:rotate(180deg)}
+.essay-body{max-height:0;overflow:hidden;transition:.4s;background:#fff;padding:0 20px;line-height:1.9;font-size:.92rem}
+.essay.open .essay-body{max-height:400px;padding:16px 20px;overflow-y:auto;}
+
+/* === QUIZ === */
+.qz-card{background:#fff;border-radius:18px;padding:22px;margin-bottom:16px;box-shadow:var(--sh)}
+.qz-stem{font-family:var(--font-q);font-size:1.1rem;line-height:1.9;margin-bottom:14px}
+.qz-opt{display:block;width:100%;padding:14px 16px;margin:10px 0;border:2px solid #e5e7eb;border-radius:14px;background:#fff;cursor:pointer;text-align:right;font-size:.95rem;font-family:var(--font-u);transition:.2s;}
+.qz-opt:hover{border-color:var(--gold);background:#fffbf0}
+.qz-opt.right{background:var(--green);color:#fff;border-color:var(--green)}
+.qz-opt.wrong{background:var(--red);color:#fff;border-color:var(--red)}
+.qz-result{text-align:center;padding:40px;background:#fff;border-radius:24px;box-shadow:var(--sh)}
+
+/* === NAV CONTROLS === */
+.nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:30px;padding-top:20px;border-top:2px dashed rgba(201,151,58,.3)}
+.nav-btn{border:none;padding:14px 28px;border-radius:30px;font-weight:800;cursor:pointer;font-family:var(--font-u);transition:.2s;font-size:.95rem;}
+.nav-btn:active{transform:scale(.95)}
+.btn-gold{background:var(--gold);color:#fff}
+.btn-navy{background:var(--navy);color:#fff}
+.btn-outline{background:transparent;border:2px solid var(--navy);color:var(--navy)}
+.nav-btn:disabled{opacity:.4;cursor:not-allowed}
+
+.toast{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;padding:12px 24px;border-radius:30px;font-weight:700;z-index:700;opacity:0;transition:.3s;pointer-events:none}
+.toast.on{opacity:1}
+
+.progress-bar{height:6px;background:rgba(201,151,58,.2);border-radius:99px;margin:16px 0;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:99px;transition:.5s}
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- === COMPACT HEADER === -->
+<header class="hdr" id="mainHeader" style="display:none">
+  <div class="hdr-right">
+    <div class="logo-box" style="border:none; background:transparent;">
+      <img src="logo.png" alt="شعار الجامعة" style="max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 1px 2px rgba(0,0,0,.1));">
+    </div>
+    <div class="hdr-prof">د/ باسم القرافي</div>
+  </div>
+  <div class="hdr-center">
+    <div class="hdr-course">مقرر فقه ٣</div>
+    <div class="hdr-lecture">المحاضرة الثالثة: الخلع والطلاق</div>
+  </div>
+  <div class="hdr-left">
+    <div class="hdr-stu"><b id="dName">—</b> | الشعبة: <span id="dSec">—</span></div>
+  </div>
+</header>
+
+<div class="main">
+
+  <!-- === LOGIN SCREEN === -->
+  <div id="s-login" class="scr on">
+    <div class="welcome-wrap">
+      <div class="welcome-glass">
+        <div class="welcome-deco"></div>
+        <div class="welcome-logo-wrap">
+          <img src="logo.png" alt="شعار الجامعة">
+        </div>
+        <h1 class="welcome-h1">مقرر فقه ٣</h1>
+        <h2 class="welcome-h2">المحاضرة الثالثة: الخلع والطلاق</h2>
+        <div class="welcome-prof-line">إعداد: د/ باسم القرافي</div>
+        <div class="welcome-fields">
+          <div><input type="text" id="iName" class="welcome-input" placeholder="أدخل اسمك الكامل هنا..."></div>
+          <div><input type="text" id="iSec" class="welcome-input" placeholder="رقم الشعبة (مثال: YM2)"></div>
+          <p id="loginError" class="welcome-error"></p>
+          <button class="welcome-start-btn" onclick="doLogin()">ابدأ رحلة التعلم</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- === INTRO === -->
+  <div id="s-0" class="scr">
+    <div class="page-header">
+      <div class="page-icon">📖</div>
+      <div class="page-title">تمهيد المحاضرة</div>
+      <div class="page-sub">إنهاء العلاقة الزوجية في الشريعة الإسلامية</div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" style="width:14%"></div></div>
+
+    <div class="verse-block">
+      <div class="verse-text">﴿فَإِنْ خِفْتُمْ أَلَّا يُقِيمَا حُدُودَ اللَّهِ فَلَا جُنَاحَ عَلَيْهِمَا فِيمَا افْتَدَتْ بِهِ ۗ﴾</div>
+      <div class="verse-ref">سورة البقرة: ٢٢٩</div>
+    </div>
+
+    <div class="content-section">
+      <div class="section-title">نظرة عامة على أحكام الفراق</div>
+      <div class="content-text">
+        الأصل في الزواج استمرار الحياة الزوجية والمودة والرحمة، ولكن قد تعترض هذه العلاقة مشكلات تجعل الاستمرار مستحيلاً. لذلك شرع الإسلام أبواباً لإنهاء هذه العلاقة بما يرفع الضرر ويحفظ الحقوق، ومن أهمها:
+        <ul class="num-list" style="margin-top:16px">
+          <li><span class="gold-text">الخلع:</span> فرقة بطلب الزوجة مقابل عوض تدفعه لزوجها عند كراهتها له.</li>
+          <li><span class="gold-text">الطلاق:</span> حل قيد النكاح بإرادة الزوج المنفردة، وله أقسام وأنواع وضوابط.</li>
+          <li><span class="gold-text">الرجعة:</span> إمكانية تدارك الزوجين للطلاق وإعادة الحياة الزوجية في فترة العدة.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cells-grid">
+      <div class="smart-cell" onclick="openCard(0,0)"><span class="cell-icon">🎯</span><div class="cell-title">الأهداف التعليمية</div><div class="cell-hint">اضغط للتفاصيل</div></div>
+      <div class="smart-cell" onclick="openCard(0,1)"><span class="cell-icon">⚖️</span><div class="cell-title">الفرق الأساسي</div><div class="cell-hint">اضغط للتفاصيل</div></div>
+      <div class="smart-cell" onclick="openCard(0,2)"><span class="cell-icon">💡</span><div class="cell-title">حكمة التشريع</div><div class="cell-hint">اضغط للتفاصيل</div></div>
+      <div class="smart-cell" onclick="openCard(0,3)"><span class="cell-icon">📚</span><div class="cell-title">الأدلة الشرعية</div><div class="cell-hint">اضغط للتفاصيل</div></div>
+    </div>
+
+    <div class="mindmap">
+      <div class="mind-title">🧠 الخريطة المفاهيمية لإنهاء العلاقة الزوجية</div>
+      <div class="mind-center">خيارات<br>الفراق المنظمة</div>
+      <div class="mind-branches">
+        <div class="mind-branch mb-1"><h5>الخلع</h5><p>بطلب الزوجة • مع دفع عوض • فرقة بائنة</p></div>
+        <div class="mind-branch mb-2"><h5>الطلاق</h5><p>بإرادة الزوج • ألفاظ محددة • سني وبدعي</p></div>
+        <div class="mind-branch mb-3"><h5>الرجعة</h5><p>إعادة الزوجة • في العدة • بشروط معينة</p></div>
+        <div class="mind-branch mb-4"><h5>المقصد العام</h5><p>دفع الضرر • إعطاء فرصة للصلح</p></div>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <div></div>
+      <button class="nav-btn btn-navy" onclick="goSlide(1)">التالي: الخلع ➜</button>
+    </div>
+  </div>
+
+  <!-- === KHUL' === -->
+  <div id="s-1" class="scr">
+    <div class="page-header">
+      <div class="page-icon">⚖️</div>
+      <div class="page-title">الخلع</div>
+      <div class="page-sub">التعريف • المشروعية • الأحكام</div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" style="width:28%"></div></div>
+
+    <div class="verse-block">
+      <div class="verse-text">قال النبي ﷺ لامرأة ثابت بن قيس حين كرهت البقاء معه: <br>«أَتَرُدِّينَ عليه حَدِيقَتَه؟» قالت: نعم. فقال رسول الله ﷺ: «اقبَلِ الحديقةَ، وطَلِّقْهَا تَطلِيقَةً»</div>
+      <div class="verse-ref">أخرجه البخاري</div>
+    </div>
+
+    <div class="content-section">
+      <div class="section-title">مفهوم الخلع ومشروعيته</div>
+      <div class="content-text">
+        <span class="term">الخلع لغةً:</span> مأخوذ من خلع الثوب؛ لأن كلاً من الزوجين لباس للآخر.<br><br>
+        <span class="term">الخلع شرعاً:</span> فُرقَة تجري بين الزوجين على <span class="hukm">عوض تدفعه المرأة لزوجها</span> بألفاظ مخصوصة.<br><br>
+        ومشروعيته ثابتة بالكتاب والسنة عندما تكره الزوجة زوجها لسوء خلقه أو نقص دينه وتخاف ألا تقيم حدود الله.
+      </div>
+    </div>
+
+    <div class="cells-grid">
+      <div class="smart-cell" onclick="openCard(1,0)"><span class="cell-icon">📋</span><div class="cell-title">أحكام الخلع (١)</div><div class="cell-hint">اضغط للشرح التفصيلي</div></div>
+      <div class="smart-cell" onclick="openCard(1,1)"><span class="cell-icon">⚖️</span><div class="cell-title">أحكام الخلع (٢)</div><div class="cell-hint">اضغط للشرح التفصيلي</div></div>
+      <div class="smart-cell" onclick="openCard(1,2)"><span class="cell-icon">🚫</span><div class="cell-title">ما يحرم ويكره فيه</div><div class="cell-hint">اضغط للشرح التفصيلي</div></div>
+      <div class="smart-cell" onclick="openCard(1,3)"><span class="cell-icon">💡</span><div class="cell-title">الحكمة من تشريعه</div><div class="cell-hint">اضغط للشرح التفصيلي</div></div>
+    </div>
+
+    <div class="game-box">
+      <div class="game-title">🧩 تمرين الفهم: صل المفهوم بحكمه في الخلع</div>
+      <div class="game-hint">اضغط على العنصر من القائمة الكحلية ثم اختر ما يطابقه من القائمة الذهبية</div>
+      <div class="game-grid" id="game-1"></div>
+    </div>
+
+    <div class="mindmap">
+      <div class="mind-title">🧠 خريطة أحكام الخلع</div>
+      <div class="mind-center">الخلع<br>افتداء المرأة</div>
+      <div class="mind-branches">
+        <div class="mind-branch mb-1"><h5>العوض</h5><p>شرط أساسي لصحته تدفعه الزوجة</p></div>
+        <div class="mind-branch mb-2"><h5>الرجعة</h5><p>لا رجعة للزوج فيه (تملك المرأة نفسها)</p></div>
+        <div class="mind-branch mb-3"><h5>التوقيت</h5><p>يجوز إيقاعه في الحيض (خلافاً للطلاق)</p></div>
+        <div class="mind-branch mb-4"><h5>الضرر</h5><p>يحرم على الزوج الإضرار بها لتخلع نفسها</p></div>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <button class="nav-btn btn-outline" onclick="goSlide(0)">◁ التمهيد</button>
+      <button class="nav-btn btn-navy" id="next-1" disabled onclick="goSlide(2)">التالي: الطلاق وألفاظه ➜</button>
+    </div>
+  </div>
+
+  <!-- === TALAQ & ALFAZ === -->
+  <div id="s-2" class="scr">
+    <div class="page-header">
+      <div class="page-icon">🗣️</div>
+      <div class="page-title">الطلاق وألفاظه</div>
+      <div class="page-sub">التعريف • من يصح منه • الأحكام • الألفاظ</div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" style="width:42%"></div></div>
+
+    <div class="verse-block">
+      <div class="verse-text">﴿الطَّلَاقُ مَرَّتَانِ ۖ فَإِمْسَاكٌ بِمَعْرُوفٍ أَوْ تَسْرِيحٌ بِإِحْسَانٍ﴾</div>
+      <div class="verse-ref">سورة البقرة: ٢٢٩</div>
+    </div>
+
+    <div class="content-section">
+      <div class="section-title">تعريف الطلاق ومشروعيته</div>
+      <div class="content-text">
+        <span class="term">لغةً:</span> التخلية، يقال: طَلَقَت الناقة إذا سرحت حيث شاءت.<br><br>
+        <span class="term">شرعاً:</span> <span class="hukm">حل قيد النكاح أو بعضه</span>.<br><br>
+        <span class="term">حكمه:</span> الأصل فيه أنه <span class="purple-text">جائز ومباح</span>، ويُكره لغير حاجة، وقد يُندب أو يجب، ويَحرُم في بعض الأحوال (كالطلاق البدعي).
+      </div>
+    </div>
+
+    <div class="cells-grid">
+      <div class="smart-cell" onclick="openCard(2,0)"><span class="cell-icon">👤</span><div class="cell-title">مَن يصح طلاقه؟</div><div class="cell-hint">اضغط للشرح التفصيلي</div></div>
+      <div class="smart-cell" onclick="openCard(2,1)"><span class="cell-icon">🔤</span><div class="cell-title">ألفاظ صريحة</div><div class="cell-hint">اضغط للشرح التفصيلي</div></div>
+      <div class="smart-cell" onclick="openCard(2,2)"><span class="cell-icon">🧩</span><div class="cell-title">ألفاظ الكناية</div><div class="cell-hint">اضغط للشرح التفصيلي</div></div>
+      <div class="smart-cell" onclick="openCard(2,3)"><span class="cell-icon">⚖️</span><div class="cell-title">الفرق بين اللفظين</div><div class="cell-hint">اضغط للشرح التفصيلي</div></div>
+    </div>
+
+    <div class="game-box">
+      <div class="game-title">🧩 تمرين الفهم: ميّز ألفاظ وأحكام الطلاق</div>
+      <div class="game-hint">اضغط على العنصر من القائمة الكحلية ثم اختر ما يطابقه من القائمة الذهبية</div>
+      <div class="game-grid" id="game-2"></div>
+    </div>
+
+    <div class="mindmap">
+      <div class="mind-title">🧠 خريطة ألفاظ الطلاق</div>
+      <div class="mind-center">ألفاظ الطلاق</div>
+      <div class="mind-branches">
+        <div class="mind-branch mb-1"><h5>صريح</h5><p>مثل: طالق، طلقتك. (لا يحتمل غيره)</p></div>
+        <div class="mind-branch mb-2"><h5>حكم الصريح</h5><p>يقع به الطلاق ولو لم ينوه الزوج</p></div>
+        <div class="mind-branch mb-3"><h5>كناية</h5><p>مثل: الحقي بأهلك، أنت خلية.</p></div>
+        <div class="mind-branch mb-4"><h5>حكم الكناية</h5><p>لا يقع إلا بنية الطلاق مقارنة للفظ</p></div>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <button class="nav-btn btn-outline" onclick="goSlide(1)">◁ الخلع</button>
+      <button class="nav-btn btn-navy" id="next-2" disabled onclick="goSlide(3)">التالي: السني والبدعي ➜</button>
+    </div>
+  </div>
+
+  <!-- === SUNNI VS BIDI === -->
+  <div id="s-3" class="scr">
+    <div class="page-header">
+      <div class="page-icon">📅</div>
+      <div class="page-title">طلاق السنة والبدعة</div>
+      <div class="page-sub">التفريق بين الطلاق الموافق والمخالف للشرع</div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" style="width:56%"></div></div>
+
+    <div class="verse-block">
+      <div class="verse-text">﴿يَا أَيُّهَا النَّبِيُّ إِذَا طَلَّقْتُمُ النِّسَاءَ فَطَلِّقُوهُنَّ لِعِدَّتِهِنَّ﴾</div>
+      <div class="verse-ref">سورة الطلاق: ١</div>
+    </div>
+
+    <div class="content-section">
+      <div class="section-title">مفهوم طلاق السنة والبدعة</div>
+      <div class="content-text">
+        <span class="term">الطلاق السني:</span> هو الطلاق الذي أَذِن فيه الشارع مطابقاً لتعاليم الشريعة من حيث العدد وحال الزوجة.<br><br>
+        <span class="term">الطلاق البدعي:</span> هو الذي يوقعه الرجل على الوجه المحرم الذي نهى عنه الشارع لمخالفته شروط العدد أو الحالة.
+      </div>
+    </div>
+
+    <div class="cells-grid">
+      <div class="smart-cell" onclick="openCard(3,0)"><span class="cell-icon">✅</span><div class="cell-title">شروط الطلاق السني</div><div class="cell-hint">اضغط للشرح التفصيلي</div></div>
+      <div class="smart-cell" onclick="openCard(3,1)"><span class="cell-icon">❌</span><div class="cell-title">أحوال الطلاق البدعي</div><div class="cell-hint">اضغط للشرح التفصيلي</div></div>
+      <div class="smart-cell" onclick="openCard(3,2)"><span class="cell-icon">⚖️</span><div class="cell-title">حكم الطلاق البدعي</div><div class="cell-hint">اضغط للشرح التفصيلي</div></div>
+      <div class="smart-cell" onclick="openCard(3,3)"><span class="cell-icon">🎯</span><div class="cell-title">هل يقع البدعي؟</div><div class="cell-hint">اضغط للشرح التفصيلي</div></div>
+    </div>
+
+    <div class="game-box">
+      <div class="game-title">🧩 تمرين الفهم: صنف أنواع الطلاق</div>
+      <div class="game-hint">اضغط على العنصر من القائمة الكحلية ثم اختر ما يطابقه من القائمة الذهبية</div>
+      <div class="game-grid" id="game-3"></div>
+    </div>
+
+    <div class="mindmap">
+      <div class="mind-title">🧠 خريطة السني والبدعي</div>
+      <div class="mind-center">أقسام الطلاق<br>حسب الإيقاع</div>
+      <div class="mind-branches">
+        <div class="mind-branch mb-1"><h5>طلاق السنة</h5><p>طلقة واحدة + في طهر لم يجامعها فيه</p></div>
+        <div class="mind-branch mb-2"><h5>طلاق البدعة</h5><p>ثلاث طلقات بلفظ واحد + أو في حيض/طهر جامع فيه</p></div>
+        <div class="mind-branch mb-3"><h5>حكم البدعي</h5><p><span class="warn">محرم</span>، وفاعله آثم شرعاً</p></div>
+        <div class="mind-branch mb-4"><h5>أثر البدعي</h5><p>يقع وتُحسب طلقة (عند الجمهور)</p></div>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <button class="nav-btn btn-outline" onclick="goSlide(2)">◁ الطلاق وألفاظه</button>
+      <button class="nav-btn btn-navy" id="next-3" disabled onclick="goSlide(4)">التالي: الرجعة ➜</button>
+    </div>
+  </div>
+
+  <!-- === RAJ'AH === -->
+  <div id="s-4" class="scr">
+    <div class="page-header">
+      <div class="page-icon">🔄</div>
+      <div class="page-title">الرجعة</div>
+      <div class="page-sub">المشروعية • الشروط • الأحكام</div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" style="width:70%"></div></div>
+
+    <div class="verse-block">
+      <div class="verse-text">﴿وَبُعُولَتُهُنَّ أَحَقُّ بِرَدِّهِنَّ فِي ذَٰلِكَ إِنْ أَرَادُوا إِصْلَاحًا﴾</div>
+      <div class="verse-ref">سورة البقرة: ٢٢٨</div>
+    </div>
+
+    <div class="content-section">
+      <div class="section-title">تعريف الرجعة ومشروعيتها</div>
+      <div class="content-text">
+        <span class="term">الرجعة شرعاً:</span> <span class="purple-text">إعادة زوجته المطلقة طلاقاً غير بائن إلى ما كانت عليه قبل الطلاق بدون عقد جديد.</span><br><br>
+        <span class="term">حكمتها:</span> إعطاء الزوج الفرصة إذا ندم على الطلاق، وفتح باب تدارك العشرة الزوجية. والمطلقة رجعياً تُعتبر <span class="hukm">زوجة ما دامت في العدة</span> لها النفقة والسكنى ولا تخرج من بيتها.
+      </div>
+    </div>
+
+    <div class="cells-grid">
+      <div class="smart-cell" onclick="openCard(4,0)"><span class="cell-icon">📋</span><div class="cell-title">شروط الرجعة (١-٣)</div><div class="cell-hint">اضغط للشرح التفصيلي</div></div>
+      <div class="smart-cell" onclick="openCard(4,1)"><span class="cell-icon">📋</span><div class="cell-title">شروط الرجعة (٤-٦)</div><div class="cell-hint">اضغط للشرح التفصيلي</div></div>
+      <div class="smart-cell" onclick="openCard(4,2)"><span class="cell-icon">🗣️</span><div class="cell-title">كيف تحصل الرجعة؟</div><div class="cell-hint">اضغط للشرح التفصيلي</div></div>
+      <div class="smart-cell" onclick="openCard(4,3)"><span class="cell-icon">⚠️</span><div class="cell-title">أحكام مهمة</div><div class="cell-hint">اضغط للشرح التفصيلي</div></div>
+    </div>
+
+    <div class="game-box">
+      <div class="game-title">🧩 تمرين الفهم: طابق شروط وأحكام الرجعة</div>
+      <div class="game-hint">اضغط على العنصر من القائمة الكحلية ثم اختر ما يطابقه من القائمة الذهبية</div>
+      <div class="game-grid" id="game-4"></div>
+    </div>
+
+    <div class="mindmap">
+      <div class="mind-title">🧠 خريطة الرجعة</div>
+      <div class="mind-center">الرجعة<br>تدارك الفراق</div>
+      <div class="mind-branches">
+        <div class="mind-branch mb-1"><h5>شروط أساسية</h5><p>بعد طلقة ١ أو ٢ • مدخول بها • في وقت العدة</p></div>
+        <div class="mind-branch mb-2"><h5>كيفيتها</h5><p>باللفظ (راجعتك) • أو بالفعل (الوطء بنية)</p></div>
+        <div class="mind-branch mb-4"><h5>لا يشترط</h5><p>لا يشترط رضا المرأة • ولا وجود الولي</p></div>
+        <div class="mind-branch mb-3"><h5>انتهاء العدة</h5><p>إذا انتهت العدة (٣ حيضات) بانت بينونة صغرى</p></div>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <button class="nav-btn btn-outline" onclick="goSlide(3)">◁ طلاق السنة والبدعة</button>
+      <button class="nav-btn btn-gold" id="next-4" disabled onclick="finishLesson()">✓ إنهاء الدرس</button>
+    </div>
+  </div>
+
+  <!-- === NAWAZIL === -->
+  <div id="s-nawazil" class="scr">
+    <div class="page-header">
+      <div class="page-icon">⚖️</div>
+      <div class="page-title">النوازل الفقهية المعاصرة</div>
+      <div class="page-sub">اضغط على النازلة لعرض الحكم الشرعي</div>
+    </div>
+
+    <div class="essay-list">
+      
+      <div class="essay" onclick="this.classList.toggle('open')">
+        <div class="essay-h essay-navy">
+          <span class="essay-icon">❓</span>
+          <span class="essay-text">س١: ما حكم إيقاع الطلاق عبر الهاتف الثابت أو الجوال؟</span>
+          <span class="essay-arr">▼</span>
+        </div>
+        <div class="essay-body">ج١: يقع الطلاق عبر الهاتف إذا كان المتصل هو الزوج بصوته وتحقق يقين لدى الزوجة أو من يسمعه بهويته، حيث يُعد ذلك طلاقاً بالمشافهة، والأصل في الكلام بالمشافهة أنه يترتب عليه مقتضاه الشرعي متى ما صدر من أهله وصادف محلاً له.</div>
+      </div>
+
+      <div class="essay" onclick="this.classList.toggle('open')">
+        <div class="essay-h essay-gold">
+          <span class="essay-icon">❓</span>
+          <span class="essay-text">س٢: هل يقع الطلاق المكتوب عبر شبكة الإنترنت (البريد الإلكتروني أو المحادثات)؟</span>
+          <span class="essay-arr">▼</span>
+        </div>
+        <div class="essay-body">ج٢: الكتابة عبر الإنترنت تُعد من قبيل الطلاق بالكتابة، وهي عند الفقهاء "كناية" لا يقع بها الطلاق إلا بوجود النية، ولكن إذا كانت الكتابة "مرسومة" (أي واضحة ومستقرة وتُنسب للزوج بيقين) فإنها تأخذ حكم الطلاق بلفظ صريح عند بعض المعاصرين، شريطة تأكد الزوجة من مصدر الرسالة.</div>
+      </div>
+
+      <div class="essay" onclick="this.classList.toggle('open')">
+        <div class="essay-h essay-navy">
+          <span class="essay-icon">❓</span>
+          <span class="essay-text">س٣: ما حكم الطلاق عبر الرسائل النصية القصيرة (SMS)؟</span>
+          <span class="essay-arr">▼</span>
+        </div>
+        <div class="essay-body">ج٣: الرسائل النصية تأخذ حكم الطلاق بالكتابة؛ فلا يقع بها الطلاق إلا بنية الزوج، وذلك لاحتمال العبث أو التزوير في وسائل الاتصال، ويجب على القاضي أو المفتي التحقق من صدورها عن الزوج وقصده لإنهاء العلاقة الزوجية.</div>
+      </div>
+
+      <div class="essay" onclick="this.classList.toggle('open')">
+        <div class="essay-h essay-gold">
+          <span class="essay-icon">❓</span>
+          <span class="essay-text">س٤: هل يُعتد بالطلاق الذي يجريه القاضي غير المسلم في المراكز القانونية الأجنبية؟</span>
+          <span class="essay-arr">▼</span>
+        </div>
+        <div class="essay-body">ج٤: يجوز للمسلمين في البلاد غير الإسلامية اللجوء إلى القضاء غير المسلم لإنهاء الزواج من الناحية القانونية دفعاً للضرر وحفظاً للحقوق، ويُعتد بهذا الطلاق شرعاً إذا كان مبنياً على أسباب تبيح الفراق في الشريعة، وذلك من باب جلب المصالح ودرء المفاسد وحسم الفوضى في حياة الأقليات المسلمة.</div>
+      </div>
+
+      <div class="essay" onclick="this.classList.toggle('open')">
+        <div class="essay-h essay-navy">
+          <span class="essay-icon">❓</span>
+          <span class="essay-text">س٥: ما حق الزوجة في طلب فسخ النكاح بسبب إصابة الزوج بأمراض وراثية؟</span>
+          <span class="essay-arr">▼</span>
+        </div>
+        <div class="essay-body">ج٥: للزوجة الحق في طلب فسخ النكاح إذا ثبت طبياً إصابة الزوج بمرض وراثي يخشى منه انتقال العدوى أو الضرر إلى الذرية، أو كان يمنع من استقرار الحياة الزوجية، قياساً على العيوب التقليدية المنصوص عليها عند الفقهاء، لأن القاعدة الشرعية تقرر أنه "لا ضرر ولا ضرار".</div>
+      </div>
+
+      <div class="essay" onclick="this.classList.toggle('open')">
+        <div class="essay-h essay-gold">
+          <span class="essay-icon">❓</span>
+          <span class="essay-text">س٦: ما حكم "الطلاق الصوري" الذي يُجرى في الأوراق الرسمية فقط لتحقيق مصلحة مع بقاء الزوجين في الواقع؟</span>
+          <span class="essay-arr">▼</span>
+        </div>
+        <div class="essay-body">ج٦: الطلاق بالكتابة (في الأوراق الرسمية) دون نية إيقاعه حقيقة لا يقع عند جمهور الفقهاء لأنه كناية تفتقر للنية، ومع ذلك يُحذر من هذا المسلك لما فيه من الكذب والتحايل، وإذا نطق الزوج باللفظ الصريح أمام الموثق أو القاضي قاصداً استخراج الورقة فقد يقع الطلاق عند من يرى أن اللفظ الصريح لا يفتقر إلى نية.</div>
+      </div>
+
+      <div class="essay" onclick="this.classList.toggle('open')">
+        <div class="essay-h essay-navy">
+          <span class="essay-icon">❓</span>
+          <span class="essay-text">س٧: ما حكم "الزواج بنية الطلاق" (أن يتزوج وفي نيته طلاق المرأة بعد مدة معينة دون ذكر ذلك في العقد)؟</span>
+          <span class="essay-arr">▼</span>
+        </div>
+        <div class="essay-body">ج٧: اختلف العلماء المعاصرون في هذه المسألة على قولين: الأول يرى صحة العقد مع الإثم (وهو قول الجمهور) لأن الشروط الذهنية لا تؤثر في صحة العقد الظاهر، والقول الثاني يرى بطلان العقد وتحريمه لأنه يشبه نكاح المتعة، وفيه غش وخداع للمرأة وأهلها.</div>
+      </div>
+
+      <div class="essay" onclick="this.classList.toggle('open')">
+        <div class="essay-h essay-gold">
+          <span class="essay-icon">❓</span>
+          <span class="essay-text">س٨: هل يجوز طلب التفريق (الخلع) بسبب إدمان الزوج للمخدرات؟</span>
+          <span class="essay-arr">▼</span>
+        </div>
+        <div class="essay-body">ج٨: يجوز للزوجة طلب التفريق بسبب إدمان الزوج، لما يترتب على ذلك من ضرر محقق ببدنها أو دينها أو مآل أسرتها، ولأن استمرار العشرة مع وجود الإدمان يمنع من تحقيق مقاصد النكاح من المودة والرحمة والسكن، ويُقدر القاضي الضرر الواقع لإيقاع الفرقة.</div>
+      </div>
+
+      <div class="essay" onclick="this.classList.toggle('open')">
+        <div class="essay-h essay-navy">
+          <span class="essay-icon">❓</span>
+          <span class="essay-text">س٩: ما حكم إجراء التلقيح الصناعي للمرأة المطلقة طلاقاً بائناً أو رجعياً أثناء عدتها؟</span>
+          <span class="essay-arr">▼</span>
+        </div>
+        <div class="essay-body">ج٩: يمنع إجراء التلقيح الصناعي للمرأة بمجرد وقوع الفراق (الطلاق)، حتى وإن كانت لا تزال في العدة؛ وذلك لأن عقد الزوجية قد انفسخ أو هو في طريق الانفساخ النهائي، ولأن الأصل في هذا الإجراء الطبي أن يكون حال قيام الحل الزوجي يقيناً واستقراراً.</div>
+      </div>
+
+      <div class="essay" onclick="this.classList.toggle('open')">
+        <div class="essay-h essay-gold">
+          <span class="essay-icon">❓</span>
+          <span class="essay-text">س١٠: كيف يتحدد مصير النكاح إذا أسلمت الزوجة وبقي زوجها على دينه؟</span>
+          <span class="essay-arr">▼</span>
+        </div>
+        <div class="essay-body">ج١٠: إذا أسلمت الزوجة يُوقف النكاح، فإن أسلم الزوج خلال فترة العدة بقيا على نكاحهما الأول، وإن انتهت العدة ولم يسلم وقعت الفرقة (الفسخ) من وقت إسلامها، ويرى بعض المعاصرين جواز بقائها في ذمته دون تمكين له من نفسها إذا رُجي إسلامه، مراعاة لمصالح الدعوة والأبناء في المجتمعات الغربية.</div>
+      </div>
+
+    </div>
+
+    <!-- مصدر النوازل الفقهية -->
+    <div style="margin-top: 30px; padding: 16px; background: rgba(201,151,58,.08); border-right: 4px solid var(--gold); border-radius: 12px; font-size: 0.9rem; color: var(--navy); line-height: 1.8;">
+      <strong>المصدر:</strong> الموسوعة الميسرة في فقه القضايا المعاصرة (قسم فقه الأسرة) - إعداد: مركز التميز البحثي في فقه القضايا المعاصرة، جامعة الإمام محمد بن سعود الإسلامية.
+    </div>
+
+  </div>
+
+  <!-- === REVIEW === -->
+  <div id="s-review" class="scr">
+    <div class="page-header">
+      <div class="page-icon">🧠</div>
+      <div class="page-title">المراجعة الذكية</div>
+      <div class="page-sub">بطاقات المفاهيم • الأسئلة المقالية</div>
+    </div>
+
+    <h3 style="color:var(--navy);border-right:4px solid var(--gold);padding-right:12px;margin:24px 0 16px">بطاقات المفاهيم (اضغط للقلب)</h3>
+    <div class="fc-grid" id="fcBox"></div>
+
+    <h3 style="color:var(--navy);border-right:4px solid var(--gold);padding-right:12px;margin:30px 0 16px">الأسئلة المقالية (١٠ أسئلة)</h3>
+    <div class="essay-list" id="essBox"></div>
+  </div>
+
+  <!-- === QUIZ === -->
+  <div id="s-quiz" class="scr">
+    <div class="page-header">
+      <div class="page-icon">✅</div>
+      <div class="page-title">التقييم النهائي</div>
+      <div class="page-sub">٢٠ سؤالاً شاملاً</div>
+    </div>
+    <div id="qzBox"></div>
+  </div>
+</div>
+
+<!-- === BOTTOM BAR === -->
+<div class="bottom-bar" id="bottomBar">
+  <div class="bottom-inner">
+    <div class="bottom-timer">
+      <span>⏱️</span>
+      <span id="timerDisplay">00:00:00</span>
+    </div>
+    <div class="bottom-tabs">
+      <button class="btab act" data-t="lesson"><span>📚</span> الدرس</button>
+      <button class="btab" data-t="nawazil"><span>⚖️</span> النوازل</button>
+      <button class="btab" data-t="review"><span>🧠</span> المراجعة</button>
+      <button class="btab locked" data-t="quiz" id="quizTab"><span>🔒</span> التقييم</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- EXPANDED CARD OVERLAY -->
+<div id="cardOverlay" class="card-overlay">
+  <div class="expanded-card">
+    <div class="exp-header">
+      <button class="exp-close" onclick="closeCard()">✕</button>
+      <div class="exp-icon" id="expIcon"></div>
+      <div class="exp-title" id="expTitle"></div>
+    </div>
+    <div class="exp-body" id="expBody"></div>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+const CARDS_DATA = {
+  0: [
+    {icon:"🎯",title:"الأهداف التعليمية",body:`<h4>بنهاية هذه المحاضرة ستكون قادراً على:</h4><ol><li>تعريف <span class="term">الخلع والطلاق والرجعة</span> لغة وشرعاً.</li><li>التمييز بين أحوال جواز وكراهة وتحريم الطلاق.</li><li>معرفة <span class="purple-text">ألفاظ الطلاق الصريحة والكنائية</span> وحكم كل منها.</li><li>التفريق بين <span class="gold-text">طلاق السنة وطلاق البدعة</span> وأحكامهما.</li><li>معرفة <span class="hukm">شروط صحة الرجعة</span> وكيفية حصولها.</li></ol>`},
+    {icon:"⚖️",title:"الفرق الأساسي",body:`<h4>ما الفرق بين الخلع والطلاق؟</h4><ul><li><span class="gold-text">الخلع:</span> يكون بطلب المرأة، ويشترط فيه دفع العوض، وتملك به المرأة نفسها فلا يملك الزوج إرجاعها إلا بعقد جديد.</li><li><span class="gold-text">الطلاق:</span> يكون بإرادة الزوج المنفردة، ولا يشترط فيه العوض، ويملك فيه الزوج إرجاع المرأة إذا كان طلاقاً رجعياً خلال العدة.</li></ul>`},
+    {icon:"💡",title:"حكمة التشريع",body:`<h4>لماذا شُرع الفراق؟</h4><ol><li>رفع الضرر عن الزوجين عند تعذر استمرار العشرة والمودة.</li><li>تفادي الوقوع في المعاصي لقوله تعالى: ﴿فإن خفتم ألا يقيما حدود الله﴾.</li><li>إعطاء فرصة للزوجين لمراجعة أنفسهما (في حالة الرجعة).</li></ol>`},
+    {icon:"📚",title:"الأدلة الشرعية",body:`<h4>من أدلة المحاضرة:</h4><ul><li><span class="term">الخلع:</span> ﴿فَإِنْ خِفْتُمْ أَلَّا يُقِيمَا حُدُودَ اللَّهِ فَلَا جُنَاحَ عَلَيْهِمَا فِيمَا افْتَدَتْ بِهِ﴾</li><li><span class="term">الطلاق:</span> ﴿الطَّلَاقُ مَرَّتَانِ ۖ فَإِمْسَاكٌ بِمَعْرُوفٍ أَوْ تَسْرِيحٌ بِإِحْسَانٍ﴾</li><li><span class="term">الرجعة:</span> ﴿وَبُعُولَتُهُنَّ أَحَقُّ بِرَدِّهِنَّ فِي ذَٰلِكَ إِنْ أَرَادُوا إِصْلَاحًا﴾</li></ul>`}
+  ],
+  1: [
+    {icon:"📋",title:"أحكام الخلع (١)",body:`<h4>من أحكام الخلع:</h4><ol><li>الخلع جائز لسوء العشرة بين الزوجين، <span class="hukm">ولا يقع إلا بعوض مالي تفرضه الزوجة</span>.</li><li>لا يقع من غير الزوجة الرشيدة؛ لأن غير الرشيدة لا تملك التصرف لنقص الأهلية.</li><li>إذا خالع الرجل امرأته <span class="purple-text">ملكت المرأة بذلك أمر نفسها</span>، ولم يبق للزوج عليها من سلطان، ولا رجعة له عليها.</li></ol>`},
+    {icon:"⚖️",title:"أحكام الخلع (٢)",body:`<h4>تابع أحكام الخلع:</h4><ol start="4"><li>لا يلحق المخالعة طلاق، أو ظهار، أو إيلاء، أثناء عدتها؛ لأنها تصير أجنبية عن زوجها.</li><li><span class="gold-text">يجوز الخلع في الحيض والطهر الذي جامعها فيه</span>؛ لعدم الضرر عليها بذلك، فالله لم يقيده بزمن دون زمن (بخلاف الطلاق).</li></ol>`},
+    {icon:"🚫",title:"ما يحرم ويكره فيه",body:`<h4>محظورات في الخلع:</h4><ul><li><span class="warn">يحرم على الرجل:</span> أن يؤذي زوجته ويمنعها حقوقها، حتى يضطرها إلى خلع نفسها. ﴿وَلَا تَعْضُلُوهُنَّ لِتَذْهَبُوا بِبَعْضِ مَا آتَيْتُمُوهُنَّ﴾.</li><li><span class="warn">يكره للمرأة:</span> ويحظر عليها مخالعة زوجها مع استقامة الحال وبدون سبب مقتض، كأن يكون الزوج معيباً في خُلقه أو خافت ألا تقيم حدود الله.</li></ul>`},
+    {icon:"💡",title:"الحكمة من تشريعه",body:`<h4>لماذا شُرع الخلع؟</h4><p>من المعلوم أن الزواج ترابط ومودة. فإذا لم يتحقق هذا، فساءت العشرة، وتعسّر العلاج، أُمِر الزوج بالتسريح بإحسان. فإذا وجدت المحبة من جانب الزوج <span class="hukm">دون الزوجة بأن كرهت خُلق زوجها أو نقص دينه</span>، أبيح لها طلب الفراق على عوض تبذله وتفتدي به نفسها.</p>`}
+  ],
+  2: [
+    {icon:"👤",title:"مَن يصح طلاقه؟",body:`<h4>شروط المطلق:</h4><p>يصح إيقاع الطلاق من الزوج <span class="hukm">البالغ العاقل المميز المختار الذي يعقله</span>، أو من وكيله.</p><p><span class="warn">فلا يقع طلاق من:</span></p><ul><li>غير الزوج.</li><li>الصبي، المجنون، السكران.</li><li>المكره (المجبر).</li><li>الغضبان غضباً شديداً لا يدري معه ما يقول.</li></ul>`},
+    {icon:"🔤",title:"ألفاظ صريحة",body:`<h4>١- ألفاظ صريحة:</h4><p>وهي الألفاظ الموضوعة له، <span class="purple-text">التي لا تحتمل غيره</span>.</p><p>مثل لفظ الطلاق وما تصرف منه (ماضٍ، فاعل، مفعول) مثل: <b>طلقتك، أنت طالق، أنت مطلقة</b>.</p><p><span class="hukm">حكمها:</span> يقع بها الطلاق ولو لم ينوه الزوج (سواء جاداً أو هازلاً).</p>`},
+    {icon:"🧩",title:"ألفاظ الكناية",body:`<h4>٢- ألفاظ كناية:</h4><p>وهي الألفاظ <span class="purple-text">التي تحتمل الطلاق وغيره</span>.</p><p>مثل قوله لزوجته: <b>أنت خلية، وبرية، وبائن، وحبلك على غاربك، والحقي بأهلك</b> ونحوها.</p><p><span class="hukm">حكمها:</span> لا يقع بها الطلاق <span class="warn">إلا إذا نواه نية مقارنة للفظه</span>، أو وجدت قرينة تدل على نيته.</p>`},
+    {icon:"⚖️",title:"الفرق بين اللفظين",body:`<h4>الخلاصة في الفرق:</h4><table style="width:100%;border-collapse:collapse;margin-top:10px"><tr style="background:var(--gold3)"><th style="padding:10px;border:1px solid #ddd">اللفظ الصريح</th><th style="padding:10px;border:1px solid #ddd">اللفظ الكنائي</th></tr><tr><td style="padding:10px;border:1px solid #ddd">لا يحتمل غير الطلاق (طالق)</td><td style="padding:10px;border:1px solid #ddd">يحتمل الطلاق وغيره (الحقي بأهلك)</td></tr><tr><td style="padding:10px;border:1px solid #ddd">يقع بمجرد اللفظ (بدون نية)</td><td style="padding:10px;border:1px solid #ddd">يقع بالنية المقارنة للفظ فقط</td></tr></table>`}
+  ],
+  3: [
+    {icon:"✅",title:"شروط الطلاق السني",body:`<h4>الطلاق السني هو ما طابق تعاليم الشريعة، ويكون بأمرين:</h4><ol><li><span class="term">عدد الطلاق:</span> أن يطلق <span class="hukm">طلقة واحدة</span>.</li><li><span class="term">حال إيقاعه:</span> أن يطلقها <span class="hukm">في طهر لم يجامعها فيه</span>. ويتركها حتى تنقضي عدتها.</li></ol><p>الدليل: ﴿فَطَلِّقُوهُنَّ لِعِدَّتِهِنَّ﴾ أي في وقت مستقبل العدة وهو الطهر.</p>`},
+    {icon:"❌",title:"أحوال الطلاق البدعي",body:`<h4>الطلاق البدعي هو المخالف للشرع، ويكون بأحد أمرين:</h4><ol><li><span class="term">عدد الطلاق:</span> أن يطلقها <span class="warn">ثلاثاً بلفظ واحد</span>، أو متفرقات في طهر واحد.</li><li><span class="term">حال إيقاعه:</span> أن يطلقها وهي <span class="warn">حائض، أو نفساء، أو في طهر جامعها فيه</span> ولم يتبين حملها.</li></ol>`},
+    {icon:"⚖️",title:"حكم الطلاق البدعي",body:`<h4>حكمه الشرعي:</h4><p><span class="warn">يحرم على الزوج</span> أن يطلق طلاقاً بدعياً سواء في العدد أو الوقت. وفاعله <span class="warn">آثم</span>.</p><p>دليله: غضب النبي ﷺ حين أُخبر أن ابن عمر طلق زوجته وهي حائض، وأمره بمراجعتها.</p>`},
+    {icon:"🎯",title:"هل يقع البدعي؟",body:`<h4>هل يُحسب الطلاق البدعي؟</h4><p>نعم، <span class="hukm">يقع الطلاق البدعي كالطلاق السني وتُحسب طلقة</span>.</p><p>لأن النبي ﷺ أمر ابن عمر بمراجعة زوجته، <span class="purple-text">ولا تكون الرجعة إلا بعد وقوع الطلاق</span>، وحينئذ تحسب هذه التطليقة.</p>`}
+  ],
+  4: [
+    {icon:"📋",title:"شروط الرجعة (١-٣)",body:`<h4>تصح الرجعة بشروط (القسم الأول):</h4><ol><li><span class="term">عدد الطلقات:</span> أن يكون الطلاق <span class="hukm">دون العدد الذي يملكه الزوج</span> (أي الطلقة الأولى أو الثانية). فإن استوفى العدد لم تحل له حتى تنكح غيره.</li><li><span class="term">الدخول:</span> أن تكون المطلقة <span class="hukm">مدخولاً بها</span>؛ لأن غير المدخول بها لا عدة عليها تبني عليها الرجعة.</li><li><span class="term">الخلع:</span> أن يكون الطلاق <span class="hukm">بغير عوض</span>؛ لأن العوض جُعل لتفتدي المرأة نفسها (في الخلع)، فلا تحصل الرجعة إلا بعقد جديد.</li></ol>`},
+    {icon:"📋",title:"شروط الرجعة (٤-٦)",body:`<h4>تصح الرجعة بشروط (القسم الثاني):</h4><ol start="4"><li><span class="term">صحة النكاح:</span> أن يكون النكاح الأول صحيحاً.</li><li><span class="term">وقت الرجعة:</span> أن تكون الرجعة <span class="warn">في العدة</span>. لقوله تعالى: ﴿وَبُعُولَتُهُنَّ أَحَقُّ بِرَدِّهِنَّ فِي ذَلِكَ﴾ أي في العدة.</li><li><span class="term">التنجيز:</span> أن تكون الرجعة <span class="hukm">منجزة غير معلقة</span> على شرط (كقوله: إذا حصل كذا فقد راجعتك فلا يصح).</li></ol>`},
+    {icon:"🗣️",title:"كيف تحصل الرجعة؟",body:`<h4>بم تحصل الرجعة؟</h4><ol><li><span class="gold-text">باللفظ:</span> كقوله: "راجعت امرأتي"، "رددتها"، "أعدتها"، "أمسكتها".</li><li><span class="gold-text">بالفعل:</span> وتحصل <span class="hukm">بوطء الزوجة إذا نوى بذلك رجعتها</span>.</li></ol>`},
+    {icon:"⚠️",title:"أحكام مهمة",body:`<h4>من أحكام الطلاق الرجعي:</h4><ul><li>المطلقة رجعياً <span class="hukm">زوجة ما دامت في العدة</span>، لها النفقة والكسوة وعليها لزوم المسكن وتتزين له.</li><li><span class="purple-text">لا يشترط في الرجعة رضا المرأة ولا وجود وليها</span>.</li><li>إذا طهرت من الحيضة الثالثة ولم يُرجعها، <span class="warn">بانت منه بينونة صغرى</span>، ولا تحل إلا بعقد جديد.</li><li>إذا طلقها ثلاثاً بانت <span class="warn">بينونة كبرى</span> ولا تحل حتى تنكح زوجاً غيره نكاحاً صحيحاً.</li></ul>`}
+  ]
+};
+
+const GAMES = {
+  1: {pairs:[{l:"بطلب الزوجة وعلى عوض",r:"الخلع"},{l:"يقع في الحيض والطهر",r:"يجوز في الخلع"},{l:"إجبار الزوجة على الخلع",r:"يحرم على الزوج"},{l:"بعد الخلع",r:"تملك المرأة أمر نفسها"}]},
+  2: {pairs:[{l:"قوله: أنتِ طالق",r:"لفظ صريح (يقع بلا نية)"},{l:"قوله: الحقي بأهلك",r:"لفظ كناية (يحتاج لنية)"},{l:"حل قيد النكاح",r:"الطلاق شرعاً"},{l:"طلاق شديد الغضب",r:"لا يقع طلاقه"}]},
+  3: {pairs:[{l:"طلقة واحدة في طهر لم يجامع فيه",r:"طلاق سني"},{l:"ثلاث طلقات بلفظ واحد",r:"طلاق بدعي محرم"},{l:"الطلاق في الحيض",r:"طلاق بدعي محرم"},{l:"أثر الطلاق البدعي",r:"يقع وتُحسب طلقة"}]},
+  4: {pairs:[{l:"بعد الطلقة الأولى في العدة",r:"تصح الرجعة"},{l:"المطلقة قبل الدخول",r:"لا رجعة لها (لا عدة)"},{l:"طلاقها على عوض مالي",r:"لا تصح فيه الرجعة"},{l:"انتهاء العدة دون رجعة",r:"بينونة صغرى"}]}
+};
+
+const FLASHCARDS = [
+  {q:"ما الخلع شرعاً؟",a:"فرقة تجري بين الزوجين على عوض تدفعه المرأة لزوجها."},
+  {q:"هل يشترط وقت معين للخلع كالطلاق؟",a:"لا، يجوز الخلع في الحيض وفي الطهر الذي جامعها فيه."},
+  {q:"ما الطلاق شرعاً؟",a:"حل قيد النكاح أو بعضه."},
+  {q:"ما الفرق بين الطلاق الصريح والكناية؟",a:"الصريح يقع بلا نية (مثل: طالق)، والكناية تحتاج لنية (مثل: الحقي بأهلك)."},
+  {q:"ما صفة الطلاق السني؟",a:"أن يطلقها طلقة واحدة في طهر لم يجامعها فيه."},
+  {q:"هل يقع الطلاق البدعي؟",a:"نعم يقع وتُحسب طلقة، مع الإثم."},
+  {q:"ما شروط الرجعة المتعلقة بالعدد والعدة؟",a:"أن تكون بعد طلقة أولى أو ثانية، وأن تكون خلال فترة العدة."},
+  {q:"هل يشترط لزوم المرأة لبيت زوجها بعد الطلاق الرجعي؟",a:"نعم، هي زوجة لها النفقة وعليها لزوم المسكن وتتزين له."},
+  {q:"كيف تقع الرجعة بالفعل؟",a:"تقع بوطء الزوجة إذا نوى بذلك رجعتها."},
+  {q:"ماذا يحدث إذا انتهت عدة المطلقة رجعياً دون إرجاعها؟",a:"تبين منه بينونة صغرى، ولا تحل له إلا بعقد جديد وشروطه."}
+];
+
+const ESSAYS = [
+  {q:"عرف الخلع لغة وشرعاً واذكر دليلاً على مشروعيته.",a:"الخلع لغة: مأخوذ من خلع الثوب. شرعاً: فرقة بعوض تدفعه المرأة. الدليل: حديث امرأة ثابت بن قيس (اقبل الحديقة وطلقها تطليقة)."},
+  {q:"هل يحق للرجل إجبار زوجته على الخلع للحصول على المال؟ وما الدليل؟",a:"يحرم عليه ذلك لتفتدي نفسها. الدليل: ﴿ولا تعضلوهن لتذهبوا ببعض ما آتيتموهن﴾."},
+  {q:"اذكر ثلاثة ممن لا يصح إيقاع الطلاق منهم.",a:"المجنون، السكران، المكره، والغضبان غضباً شديداً لا يدري ما يقول."},
+  {q:"قارن بين حكم اللفظ الصريح واللفظ الكنائي في الطلاق.",a:"الصريح يقع به الطلاق وإن لم ينوه (جاداً أو هازلاً). الكناية لا يقع الطلاق إلا بنية مقارنة للفظ."},
+  {q:"متى يكون الطلاق سنياً من حيث الوقت والعدد؟",a:"من حيث العدد: طلقة واحدة. من حيث الوقت: في طهر لم يجامعها فيه."},
+  {q:"اذكر صورتين من صور الطلاق البدعي المحرم.",a:"١. تطليقها ثلاثاً بلفظ واحد. ٢. تطليقها وهي حائض أو في طهر جامعها فيه."},
+  {q:"هل هناك عدة للمطلقة قبل الدخول؟ وهل لها رجعة؟",a:"ليس لها عدة بنص القرآن، وبناءً عليه لا رجعة لها لعدم وجود العدة."},
+  {q:"ما هي الشروط الأربعة الأولى لصحة الرجعة؟",a:"١. الطلاق دون الثلاث. ٢. المطلقة مدخول بها. ٣. بغير عوض. ٤. نكاح صحيح."},
+  {q:"هل يشترط لصحة الرجعة رضا الزوجة أو وجود وليها؟ ولماذا؟",a:"لا يشترط؛ لأن المطلقة رجعياً تعتبر في حكم الزوجة طوال فترة العدة، والزوج أحق بردها."},
+  {q:"ما الفرق بين البينونة الصغرى والبينونة الكبرى؟",a:"الصغرى: انتهاء العدة للطلقة ١ أو ٢، تحل له بعقد جديد. الكبرى: استيفاء ٣ طلقات، لا تحل له حتى تنكح زوجاً غيره."}
+];
+
+const QUIZ = [
+  {q:"فرقة بين الزوجين بطلب المرأة مقابل عوض تدفعه:",o:["الطلاق","الخلع","الظهار","الإيلاء"],a:1},
+  {q:"حكم إيقاع الخلع أثناء فترة الحيض:",o:["يحرم","بدعي","يجوز ولا حرج","مستحب"],a:2},
+  {q:"من شروط صحة الخلع أن تكون المرأة:",o:["حاملاً","طاهراً","رشيدة تملك التصرف","آيسة"],a:2},
+  {q:"حكم من طلق زوجته وهو غضبان غضباً شديداً لا يدري ما يقول:",o:["يقع طلاقه","لا يقع طلاقه","يقع طلقة واحدة","عليه كفارة يمين"],a:1},
+  {q:"قول الزوج لزوجته (الحقي بأهلك) يعتبر من ألفاظ:",o:["الطلاق الصريح","اللعان","الظهار","الطلاق الكنائي"],a:3},
+  {q:"الطلاق باللفظ الكنائي (كـ الحقي بأهلك):",o:["يقع مطلقاً","لا يقع إطلاقاً","يقع إذا نوى به الطلاق","يقع طلقة بائنة"],a:2},
+  {q:"من صور الطلاق السني:",o:["طلقة واحدة في حيض","ثلاث طلقات متفرقة","طلقة واحدة في طهر لم يجامع فيه","تطليقها وهي نفساء"],a:2},
+  {q:"حكم من طلق زوجته ثلاثاً بلفظ واحد:",o:["مباح","سني","محرم وبدعي","مستحب"],a:2},
+  {q:"هل يُحسب الطلاق البدعي وتُحتسب طلقة؟",o:["نعم يقع ويُحسب","لا يقع أبداً","يعتبر ظهاراً","يعتبر خلعاً"],a:0},
+  {q:"إعادة الزوجة المطلقة غير البائن إلى النكاح بدون عقد:",o:["العقد الجديد","الرجعة","الخلع","التوكيل"],a:1},
+  {q:"من شروط صحة الرجعة:",o:["رضا المرأة","رضا الولي","أن تكون في فترة العدة","دفع مهر جديد"],a:2},
+  {q:"المطلقة رجعياً (قبل انتهاء العدة) تعتبر:",o:["أجنبية","زوجة لها النفقة وعليها لزوم البيت","محرمة تحريماً مؤبداً","بائنة"],a:1},
+  {q:"المطلقة قبل الدخول بها:",o:["تعتد بثلاث حيضات","تعتد ثلاثة أشهر","لا عدة عليها ولا رجعة لها","لها رجعة خلال شهرين"],a:2},
+  {q:"إذا طلق الرجل زوجته على عوض مالي (خلع):",o:["له حق إرجاعها في العدة","لا تحل له أبداً","ليس له إرجاعها إلا بعقد جديد","ترد العوض وترجع"],a:2},
+  {q:"إذا انقضت عدة المطلقة الرجعية ولم يراجعها زوجها:",o:["بانت بينونة كبرى","بانت بينونة صغرى","تبقى زوجة بلا نفقة","ترفع أمرها للقاضي"],a:1},
+  {q:"البينونة الكبرى تقع إذا طلق الرجل زوجته:",o:["طلقة واحدة وانتهت العدة","في فترة الحيض","ثلاث طلقات مستوفاة","مقابل عوض مالي"],a:2},
+  {q:"قول الزوج (راجعت امرأتي) من الرجعة بـ:",o:["اللفظ الصريح","النية فقط","الفعل","الكتابة"],a:0},
+  {q:"هل تصح الرجعة المعلقة على شرط (مثل: إذا جاء رمضان راجعتك)؟",o:["تصح","لا تصح ويجب التنجيز","تصح إن وافقت","تصح بكفارة"],a:1},
+  {q:"أثر الرجعة بالفعل (كالوطء):",o:["تصح إذا نوى بها الرجعة","لا تصح إلا بلفظ","تعتبر زنا","تصح حتى بلا نية"],a:0},
+  {q:"دليل تشريع الرجعة قوله تعالى:",o:["﴿الطلاق مرتان﴾","﴿وبعولتهن أحق بردهن﴾","﴿ولا تعضلوهن﴾","﴿فلا جناح عليهما فيما افتدت به﴾"],a:1}
+];
+
+let user={n:'',s:''},curSlide=0,score=0,answered=0,activeL=null,gamesDone={};
+let startTime=null,timerInterval=null;
+let lessonComplete=false,reviewVisited=false;
+
+const $=s=>document.querySelector(s);
+const $$=s=>document.querySelectorAll(s);
+const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),2000)};
+
+function formatTime(ms){
+  const s=Math.floor(ms/1000);
+  const h=Math.floor(s/3600);
+  const m=Math.floor((s%3600)/60);
+  const sec=s%60;
+  return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+}
+
+function startTimer(){
+  startTime=Date.now();
+  timerInterval=setInterval(()=>{
+    const elapsed=Date.now()-startTime;
+    $('#timerDisplay').textContent=formatTime(elapsed);
+  },1000);
+}
+
+function getElapsedTime(){
+  if(!startTime)return '00:00:00';
+  return formatTime(Date.now()-startTime);
+}
+
+function checkQuizUnlock(){
+  if(lessonComplete && reviewVisited){
+    const qTab=$('#quizTab');
+    qTab.classList.remove('locked');
+    qTab.innerHTML='<span>✅</span> التقييم';
+  }
+}
+
+function doLogin(){
+  const n=$('#iName').value.trim(),s=$('#iSec').value.trim();
+  const errBox = $('#loginError');
+  if(!n||!s){
+    errBox.style.display = 'block';
+    errBox.textContent = 'الرجاء إدخال الاسم والشعبة للمتابعة';
+    return;
+  }
+  errBox.style.display = 'none';
+  user={n,s};
+  $('#dName').textContent=n;
+  $('#dSec').textContent=s;
+  $('#mainHeader').style.display='flex';
+  $('#bottomBar').classList.add('on');
+  startTimer();
+  goSlide(0);
+}
+
+function goSlide(i){
+  $$('.scr').forEach(s=>s.classList.remove('on'));
+  $(`#s-${i}`).classList.add('on');
+  curSlide=i;
+  if(GAMES[i] && !$(`#game-${i}`).innerHTML.trim()) renderGame(i);
+  $$('.btab').forEach(b=>b.classList.remove('act'));
+  $$('.btab')[0].classList.add('act');
+}
+
+function finishLesson(){
+  lessonComplete=true;
+  toast('🎉 أتممت الدرس بنجاح!');
+  checkQuizUnlock();
+  switchTab('nawazil');
+}
+
+function switchTab(t){
+  if(t==='quiz'){
+    if(!lessonComplete || !reviewVisited){
+      toast('أكمل الدرس والمراجعة أولاً لفتح التقييم');
+      return;
+    }
+  }
+  $$('.scr').forEach(s=>s.classList.remove('on'));
+  $(`#s-${t}`).classList.add('on');
+  $$('.btab').forEach(b=>b.classList.remove('act'));
+  
+  const idx={nawazil:1,review:2,quiz:3}[t];
+  if(idx!==undefined) $$('.btab')[idx].classList.add('act');
+  else $$('.btab')[0].classList.add('act');
+  
+  if(t==='review'){
+    reviewVisited=true;
+    if(!$('#fcBox').innerHTML.trim()) renderReview();
+    checkQuizUnlock();
+  }
+  if(t==='quiz' && !$('#qzBox').innerHTML.trim()) {
+    renderQuiz();
+  }
+}
+
+function openCard(slide,idx){
+  const card=CARDS_DATA[slide][idx];
+  $('#expIcon').textContent=card.icon;
+  $('#expTitle').textContent=card.title;
+  $('#expBody').innerHTML=card.body;
+  $('#cardOverlay').classList.add('on');
+}
+function closeCard(){$('#cardOverlay').classList.remove('on')}
+
+function renderGame(g){
+  const game=GAMES[g];
+  if(!game)return;
+  const shuffled=[...game.pairs].sort(()=>Math.random()-.5);
+  const box=$(`#game-${g}`);
+  box.innerHTML=`
+    <div class="game-col">${game.pairs.map((p,i)=>`<div class="g-item" data-i="${i}" onclick="pickL(${g},this,${i})">${p.l}</div>`).join('')}</div>
+    <div class="game-col">${shuffled.map((p,i)=>`<div class="g-choice" data-r="${p.r}" onclick="pickR(${g},this,'${p.r.replace(/'/g,"\\'")}')">${p.r}</div>`).join('')}</div>
+  `;
+}
+
+function pickL(g,el,i){
+  $$(`#game-${g} .g-item`).forEach(e=>e.classList.remove('active'));
+  el.classList.add('active');
+  activeL={g,i,el};
+}
+
+function pickR(g,el,r){
+  if(!activeL||activeL.g!==g)return;
+  const correct=GAMES[g].pairs[activeL.i].r;
+  
+  if(r===correct){
+    activeL.el.classList.add('done');
+    el.classList.add('done');
+    toast('✅ صحيح!');
+    activeL=null; 
+    
+    const all=$$(`#game-${g} .g-item`);
+    const done=[...all].every(e=>e.classList.contains('done'));
+    if(done){
+      gamesDone[g]=true;
+      const btn=$(`#next-${g}`);
+      if(btn)btn.disabled=false;
+      toast('🎉 أكملت التمرين!');
+    }
+  }else{
+    toast('❌ حاول مرة أخرى');
+    const wrongEl = activeL.el;
+    activeL=null; 
+    setTimeout(()=>wrongEl.classList.remove('active'),300);
+  }
+}
+
+function renderReview(){
+  $('#fcBox').innerHTML=FLASHCARDS.map(c=>`
+    <div class="fc" onclick="this.classList.toggle('flip')">
+      <div class="fc-in">
+        <div class="fc-f"><div>${c.q}</div><small style="opacity:.6;margin-top:10px">اضغط للقلب</small></div>
+        <div class="fc-b"><div>${c.a}</div></div>
+      </div>
+    </div>`).join('');
+
+  $('#essBox').innerHTML=ESSAYS.map((e,i)=>`
+    <div class="essay" onclick="this.classList.toggle('open')">
+      <div class="essay-h ${i%2===0?'essay-navy':'essay-gold'}">
+        <span class="essay-icon">${i%2===0?'📘':'📙'}</span>
+        <span class="essay-text">${i+1}. ${e.q}</span>
+        <span class="essay-arr">▼</span>
+      </div>
+      <div class="essay-body">${e.a}</div>
+    </div>`).join('');
+}
+
+function renderQuiz(){
+  score=0;answered=0;
+  $('#qzBox').innerHTML=QUIZ.map((q,i)=>`
+    <div class="qz-card" id="qc-${i}">
+      <div class="qz-stem"><b>س${i+1}:</b> ${q.q}</div>
+      ${q.o.map((o,j)=>`<button class="qz-opt" onclick="pickAns(${i},${j})">${o}</button>`).join('')}
+    </div>`).join('')+`<div id="qzResult"></div>`;
+}
+
+// === دالة الإرسال إلى قوقل فورم ===
+function sendToGoogleForm(name, sec, finalScore, timeStr) {
+  const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSftptPrOgU7Y4d3tpf3piGa_UGy5sk7Q_HuCbhnJsNIzN5Mkg/formResponse";
+  const formData = new FormData();
+  formData.append("entry.1476047400", "الثالثة"); // رقم المحاضرة تم تعديله
+  formData.append("entry.1052717729", name);      // اسم الطالب
+  formData.append("entry.1846637103", sec);       // الشعبة
+  formData.append("entry.2127797316", finalScore);// الدرجة
+  formData.append("entry.92438342", timeStr);     // الوقت
+  
+  fetch(formUrl, {
+    method: "POST",
+    mode: "no-cors",
+    body: formData
+  }).then(() => console.log("تم الإرسال لـ Google Form بنجاح"))
+    .catch(err => console.error("خطأ في الإرسال:", err));
+}
+
+function pickAns(qi,oi){
+  const card=$(`#qc-${qi}`);
+  if(card.dataset.done)return;
+  card.dataset.done='1';
+  const btns=card.querySelectorAll('.qz-opt');
+  btns.forEach(b=>b.disabled=true);
+  
+  if(oi===QUIZ[qi].a){
+    btns[oi].classList.add('right');
+    score++;
+  } else {
+    btns[oi].classList.add('wrong');
+    btns[QUIZ[qi].a].classList.add('right');
+  }
+  
+  answered++;
+  if(answered===QUIZ.length){
+    const elapsed=getElapsedTime();
+    sendToGoogleForm(user.n, user.s, score, elapsed);
+
+    $('#qzResult').innerHTML=`
+      <div class="qz-result">
+        <h2 style="color:var(--gold);margin-bottom:10px">🎉 انتهى التقييم</h2>
+        <p style="font-size:2rem;font-weight:900;color:var(--navy)">${score} / ٢٠</p>
+        <p style="margin-top:10px">${user.n} — الشعبة ${user.s}</p>
+        <p style="margin-top:10px;color:var(--green)">⏱️ الوقت المستغرق: <strong>${elapsed}</strong></p>
+        <button class="nav-btn btn-navy" style="margin-top:20px" onclick="renderQuiz()">إعادة التقييم</button>
+      </div>`;
+    $('#qzResult').scrollIntoView({behavior:'smooth'});
+  }
+}
+
+$$('.btab').forEach(b=>b.addEventListener('click',function(){
+  const t=this.dataset.t;
+  if(t==='lesson') goSlide(curSlide||0);
+  else switchTab(t);
+}));
+
+</script>
+</body>
+</html>
