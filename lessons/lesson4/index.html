@@ -4,7 +4,12 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>فقه ٣ — المحاضرة الرابعة</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- خطوط الصفحة الأولى (Amiri + Tajawal) + Noto Naskh -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700;800;900&family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -14,6 +19,9 @@
   --font-q:"Amiri",serif;--font-u:"Tajawal",sans-serif;
   --font-naskh:"Noto Naskh Arabic",serif;
   --rad:20px;--sh:0 15px 40px rgba(10,22,40,.12);
+  --login-navy:#16213e;
+  --login-gold:#e2b96f;
+  --login-cream:#faf8f3;
 }
 html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:var(--navy);overflow:hidden}
 .app{height:100%;display:flex;flex-direction:column}
@@ -83,60 +91,40 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
   display:flex;align-items:center;gap:6px;font-size:.82rem;
 }
 
-/* === WELCOME SCREEN === */
-.welcome-bg{
-  position:absolute;inset:0;
-  background:
-    linear-gradient(135deg, rgba(10,22,40,0.9), rgba(21,34,56,0.95)),
-    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23c9973a' fill-opacity='0.15' d='M30 0l6 24 24 6-24 6-6 24-6-24L0 30l24-6z'/%3E%3C/svg%3E") repeat;
-  z-index:-1;
+/* === LOGIN SCREEN === */
+#s-login.scr{max-width:none;padding:0;}
+@keyframes loginFadeIn{0%{opacity:0}100%{opacity:1}}
+@keyframes loginPulse{0%,100%{opacity:1}50%{opacity:.5}}
+.welcome-wrap{
+  min-height:100%;display:flex;align-items:center;justify-content:center;padding:1rem;
+  background:url('https://www.transparenttextures.com/patterns/arabesque.png') repeat,var(--login-cream);
+  animation:loginFadeIn .5s ease-out;
 }
-.welcome-card{
-  max-width:500px;margin:0 auto;
-  background:linear-gradient(145deg,var(--navy),var(--navy2));
-  border:3px solid var(--gold);border-radius:30px;
-  padding:40px 30px;text-align:center;
-  box-shadow:0 30px 60px rgba(0,0,0,.4);
+.welcome-glass{
+  max-width:36rem;width:100%;background:rgba(255,255,255,0.85);backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);border:1px solid rgba(226,185,111,0.3);
+  box-shadow:0 8px 32px 0 rgba(31,38,135,0.07);border-radius:1.5rem;padding:2.5rem 1.875rem;
+  text-align:center;position:relative;overflow:hidden;
 }
-.logo-box-login{
-  width:180px;height:80px;border-radius:12px;
-  border:2px dashed rgba(201,151,58,.6);
-  background:rgba(255,255,255,.05);
-  display:flex;align-items:center;justify-content:center;
-  color:var(--gold2);font-size:1rem;font-weight:700;
-  margin:0 auto 20px;
-}
-.welcome-title{
-  font-family:var(--font-naskh);
-  font-size:3.2rem;
-  color:var(--gold);
-  text-shadow:0 4px 20px rgba(201,151,58,.3);
-  margin-bottom:8px;
-  line-height:1.6;
-}
-.welcome-sub{color:rgba(255,255,255,.8);font-size:1rem;margin-bottom:30px}
-.welcome-field{margin-bottom:16px}
-.welcome-field label{display:block;color:var(--gold2);font-weight:700;margin-bottom:8px;text-align:right}
-.welcome-field input{
-  width:100%;padding:14px 16px;border-radius:14px;
-  border:2px solid rgba(201,151,58,.4);background:rgba(255,255,255,.08);
-  color:#fff;font-size:1rem;font-family:var(--font-u);
-}
-.welcome-field input::placeholder{color:rgba(255,255,255,.4)}
-.welcome-btn{
-  width:100%;padding:16px;border:none;border-radius:16px;
-  background:linear-gradient(135deg,var(--gold),var(--gold2));
-  color:var(--navy);font-weight:900;font-size:1.1rem;
-  cursor:pointer;margin-top:10px;
-  box-shadow:0 10px 30px rgba(201,151,58,.3);
-}
+.welcome-deco{position:absolute;top:0;right:0;width:8rem;height:8rem;background:var(--login-gold);opacity:.2;border-bottom-left-radius:9999px;pointer-events:none;}
+.welcome-logo-wrap{display:flex;justify-content:center;margin-bottom:1.5rem;position:relative;z-index:10;width:100%;}
+.welcome-logo-wrap img{width:16rem;height:auto;object-fit:contain;filter:drop-shadow(0 1px 2px rgba(0,0,0,.1));}
+.welcome-h1{font-family:'Amiri',serif;font-size:2.25rem;font-weight:700;color:var(--login-navy);margin-bottom:.5rem;position:relative;z-index:10;}
+.welcome-h2{font-size:1.5rem;font-weight:500;color:var(--login-gold);margin-bottom:.5rem;position:relative;z-index:10;}
+.welcome-prof-line{font-size:.875rem;font-weight:700;color:#6b7280;margin-bottom:2rem;border-bottom:1px solid #e5e7eb;padding-bottom:1rem;display:inline-block;position:relative;z-index:10;}
+.welcome-fields{display:flex;flex-direction:column;gap:1.5rem;position:relative;z-index:10;}
+.welcome-input{width:100%;padding:1rem;border-radius:.75rem;border:2px solid #e5e7eb;outline:none;transition:border-color .3s;text-align:center;font-family:'Tajawal',sans-serif;font-size:1rem;color:var(--login-navy);background:#fff;}
+.welcome-input:focus{border-color:var(--login-gold);}
+.welcome-input::placeholder{color:#9ca3af;}
+.welcome-error{color:#dc2626;font-weight:700;font-size:.95rem;animation:loginPulse 2s infinite;display:none;}
+.welcome-start-btn{width:100%;background:var(--login-navy);color:#fff;font-weight:700;font-size:1.25rem;padding:1rem;border-radius:.75rem;margin-top:1rem;border:none;cursor:pointer;box-shadow:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -2px rgba(0,0,0,.05);transition:all .3s ease;font-family:'Tajawal',sans-serif;}
+.welcome-start-btn:hover{background:var(--login-gold);color:var(--login-navy);transform:scale(1.05);}
 
-/* === TYPOGRAPHY === */
+/* === TYPOGRAPHY & ELEMENTS === */
 .page-header{text-align:center;margin-bottom:30px;padding:20px;background:linear-gradient(135deg,rgba(201,151,58,.08),rgba(201,151,58,.02));border-radius:24px}
 .page-icon{font-size:3rem;margin-bottom:10px}
 .page-title{font-family:var(--font-q);font-size:2rem;color:var(--navy);margin-bottom:6px}
 .page-sub{color:var(--gold);font-weight:700;font-size:.95rem}
-
 .term{color:var(--blue);font-weight:800}
 .hukm{color:var(--green);font-weight:800}
 .warn{color:var(--red);font-weight:800}
@@ -144,97 +132,45 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
 .purple-text{color:var(--purple);font-weight:800}
 
 /* === VERSE BLOCK === */
-.verse-block{
-  background:linear-gradient(135deg,#fffdf8,#fef9ee);
-  border:2px solid var(--gold);border-radius:24px;
-  padding:28px 24px;margin:24px 0;text-align:center;position:relative;
-  box-shadow:inset 0 0 60px rgba(201,151,58,.05),0 12px 30px rgba(201,151,58,.1);
-}
+.verse-block{background:linear-gradient(135deg,#fffdf8,#fef9ee);border:2px solid var(--gold);border-radius:24px;padding:28px 24px;margin:24px 0;text-align:center;position:relative;box-shadow:inset 0 0 60px rgba(201,151,58,.05),0 12px 30px rgba(201,151,58,.1);}
 .verse-block::before{content:"﷽";display:block;color:var(--gold);font-size:1.8rem;margin-bottom:12px;font-family:var(--font-q)}
 .verse-text{font-family:var(--font-q);font-size:1.35rem;line-height:2.3;color:var(--navy)}
 .verse-ref{font-size:.8rem;color:var(--gold);margin-top:12px;font-weight:600}
 
-/* === CONTENT CARDS === */
-.content-section{
-  background:#fff;border-radius:20px;padding:24px;margin:20px 0;
-  box-shadow:var(--sh);border-right:5px solid var(--gold);
-}
-.section-title{
-  font-family:var(--font-q);font-size:1.3rem;color:var(--navy);
-  margin-bottom:16px;display:flex;align-items:center;gap:10px;
-}
+/* === CONTENT & CELLS === */
+.content-section{background:#fff;border-radius:20px;padding:24px;margin:20px 0;box-shadow:var(--sh);border-right:5px solid var(--gold);}
+.section-title{font-family:var(--font-q);font-size:1.3rem;color:var(--navy);margin-bottom:16px;display:flex;align-items:center;gap:10px;}
 .section-title::before{content:"";width:8px;height:8px;background:var(--gold);border-radius:50%}
 .content-text{line-height:2;font-size:1rem}
-
-/* === SMART CELLS === */
 .cells-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:24px 0}
-.smart-cell{
-  background:linear-gradient(145deg,#fff,#fdfcfa);
-  border:2px solid rgba(201,151,58,.2);border-radius:20px;
-  padding:24px 20px;text-align:center;cursor:pointer;
-  transition:.4s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden;
-}
+.smart-cell{background:linear-gradient(145deg,#fff,#fdfcfa);border:2px solid rgba(201,151,58,.2);border-radius:20px;padding:24px 20px;text-align:center;cursor:pointer;transition:.4s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden;}
 .smart-cell:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(201,151,58,.15);border-color:var(--gold)}
 .cell-icon{font-size:2.5rem;display:block;margin-bottom:12px}
 .cell-title{font-weight:900;font-size:1rem;color:var(--navy);margin-bottom:6px}
 .cell-hint{font-size:.75rem;color:var(--muted)}
 
 /* === EXPANDED CARD OVERLAY === */
-.card-overlay{
-  position:fixed;inset:0;background:rgba(10,22,40,.85);backdrop-filter:blur(8px);
-  z-index:500;display:none;align-items:center;justify-content:center;padding:20px;
-  opacity:0;transition:.4s;
-}
+.card-overlay{position:fixed;inset:0;background:rgba(10,22,40,.85);backdrop-filter:blur(8px);z-index:500;display:none;align-items:center;justify-content:center;padding:20px;opacity:0;transition:.4s;}
 .card-overlay.on{display:flex;opacity:1}
-.expanded-card{
-  background:#fff;width:100%;max-width:700px;max-height:85vh;overflow-y:auto;
-  border-radius:28px;padding:0;position:relative;
-  box-shadow:0 30px 60px rgba(0,0,0,.3);
-  transform:scale(.9);transition:.4s cubic-bezier(.34,1.56,.64,1);
-}
+.expanded-card{background:#fff;width:100%;max-width:700px;max-height:85vh;overflow-y:auto;border-radius:28px;padding:0;position:relative;box-shadow:0 30px 60px rgba(0,0,0,.3);transform:scale(.9);transition:.4s cubic-bezier(.34,1.56,.64,1);}
 .card-overlay.on .expanded-card{transform:scale(1)}
-.exp-header{
-  background:linear-gradient(135deg,var(--navy),var(--navy2));
-  padding:24px;border-radius:28px 28px 0 0;position:sticky;top:0;z-index:10;
-}
+.exp-header{background:linear-gradient(135deg,var(--navy),var(--navy2));padding:24px;border-radius:28px 28px 0 0;position:sticky;top:0;z-index:10;}
 .exp-icon{font-size:2.5rem;margin-bottom:8px}
 .exp-title{font-family:var(--font-q);font-size:1.5rem;color:#fff}
-.exp-close{
-  position:absolute;top:20px;left:20px;background:rgba(255,255,255,.2);
-  border:none;width:40px;height:40px;border-radius:50%;color:#fff;cursor:pointer;font-size:1.2rem;
-}
+.exp-close{position:absolute;top:20px;left:20px;background:rgba(255,255,255,.2);border:none;width:40px;height:40px;border-radius:50%;color:#fff;cursor:pointer;font-size:1.2rem;}
 .exp-body{padding:24px;line-height:2;font-size:1rem}
 .exp-body h4{color:var(--navy);margin:16px 0 10px;font-size:1.1rem;border-bottom:2px solid var(--gold3);padding-bottom:6px}
 .exp-body ol,.exp-body ul{padding-right:24px;margin:10px 0}
 .exp-body li{margin-bottom:8px}
 
-/* === NUMBERED LIST === */
 .num-list{list-style:none;padding:0;margin:16px 0;counter-reset:item}
-.num-list li{
-  counter-increment:item;padding:14px 50px 14px 14px;margin-bottom:10px;
-  background:linear-gradient(90deg,#f8f6f1,#fff);border-radius:14px;
-  border:1px solid rgba(0,0,0,.05);position:relative;line-height:1.8;
-}
-.num-list li::before{
-  content:counter(item);position:absolute;right:12px;top:12px;
-  width:30px;height:30px;border-radius:50%;background:var(--gold);color:#fff;
-  display:grid;place-items:center;font-weight:900;font-size:.85rem;
-}
+.num-list li{counter-increment:item;padding:14px 50px 14px 14px;margin-bottom:10px;background:linear-gradient(90deg,#f8f6f1,#fff);border-radius:14px;border:1px solid rgba(0,0,0,.05);position:relative;line-height:1.8;}
+.num-list li::before{content:counter(item);position:absolute;right:12px;top:12px;width:30px;height:30px;border-radius:50%;background:var(--gold);color:#fff;display:grid;place-items:center;font-weight:900;font-size:.85rem;}
 
 /* === MIND MAP === */
-.mindmap{
-  margin:30px 0;padding:30px;border-radius:28px;
-  background:linear-gradient(160deg,#f0f7ff 0%,#fef9f0 50%,#f0fdf4 100%);
-  border:1px solid rgba(201,151,58,.2);position:relative;overflow:hidden;
-}
+.mindmap{margin:30px 0;padding:30px;border-radius:28px;background:linear-gradient(160deg,#f0f7ff 0%,#fef9f0 50%,#f0fdf4 100%);border:1px solid rgba(201,151,58,.2);position:relative;overflow:hidden;}
 .mind-title{text-align:center;font-family:var(--font-q);font-size:1.2rem;color:var(--navy);margin-bottom:20px;position:relative}
-.mind-center{
-  width:160px;height:100px;margin:0 auto 24px;border-radius:50%;
-  background:linear-gradient(135deg,var(--gold2),var(--gold));
-  border:3px solid var(--gold);display:grid;place-items:center;
-  font-weight:900;font-size:1rem;color:var(--navy);position:relative;z-index:2;
-  box-shadow:0 15px 30px rgba(201,151,58,.25);
-}
+.mind-center{width:160px;height:100px;margin:0 auto 24px;border-radius:50%;background:linear-gradient(135deg,var(--gold2),var(--gold));border:3px solid var(--gold);display:grid;place-items:center;font-weight:900;font-size:1rem;color:var(--navy);position:relative;z-index:2;box-shadow:0 15px 30px rgba(201,151,58,.25);}
 .mind-branches{display:grid;grid-template-columns:1fr 1fr;gap:16px;position:relative}
 .mind-branch{padding:16px;border-radius:16px;position:relative;line-height:1.7;font-size:.88rem;border:2px solid;transition:.3s}
 .mind-branch:hover{transform:scale(1.02)}
@@ -246,36 +182,21 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
 .mb-4{background:rgba(124,58,237,.1);border-color:rgba(124,58,237,.3);color:#5b21b6}
 
 /* === MATCHING GAME === */
-.game-box{
-  background:linear-gradient(135deg,#f8f9fa,#fff);
-  border-radius:24px;padding:24px;margin:24px 0;
-  border:2px solid rgba(10,22,40,.08);
-}
+.game-box{background:linear-gradient(135deg,#f8f9fa,#fff);border-radius:24px;padding:24px;margin:24px 0;border:2px solid rgba(10,22,40,.08);}
 .game-title{font-family:var(--font-q);color:var(--navy);margin-bottom:16px;font-size:1.1rem}
 .game-hint{font-size:.8rem;color:var(--muted);margin-bottom:16px}
 .game-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .game-col{display:flex;flex-direction:column;gap:12px}
-.g-item,.g-choice{
-  padding:14px 16px;border-radius:14px;font-size:.9rem;font-weight:700;
-  cursor:pointer;text-align:center;min-height:56px;display:flex;
-  align-items:center;justify-content:center;transition:.25s;line-height:1.5;
-}
+.g-item,.g-choice{padding:14px 16px;border-radius:14px;font-size:.9rem;font-weight:700;cursor:pointer;text-align:center;min-height:56px;display:flex;align-items:center;justify-content:center;transition:.25s;line-height:1.5;}
 .g-item{background:var(--navy);color:#fff;box-shadow:0 4px 0 var(--navy2)}
 .g-choice{background:#fff;border:2px solid var(--gold);color:var(--navy);box-shadow:0 4px 0 #e6d5a8}
 .g-item.active{background:var(--gold);transform:translateY(2px);box-shadow:none}
 .g-choice.active{border-color:var(--navy);transform:translateY(2px);box-shadow:none}
 .g-item.done,.g-choice.done{opacity:.4;pointer-events:none;background:var(--green)!important;color:#fff!important;border:none!important;box-shadow:none}
 
-/* === NAWAZIL === */
-.naz-card{
-  background:linear-gradient(135deg,#fff,#fefefe);
-  border-radius:24px;padding:24px;margin:20px 0;
-  border:2px solid rgba(201,151,58,.2);box-shadow:var(--sh);
-}
-.naz-badge{
-  display:inline-block;background:var(--gold);color:#fff;padding:6px 14px;
-  border-radius:20px;font-size:.8rem;font-weight:700;margin-bottom:12px;
-}
+/* === NAWAZIL & REVIEW === */
+.naz-card{background:linear-gradient(135deg,#fff,#fefefe);border-radius:24px;padding:24px;margin:20px 0;border:2px solid rgba(201,151,58,.2);box-shadow:var(--sh);}
+.naz-badge{display:inline-block;background:var(--gold);color:#fff;padding:6px 14px;border-radius:20px;font-size:.8rem;font-weight:700;margin-bottom:12px;}
 .naz-q{font-family:var(--font-q);font-size:1.15rem;line-height:1.9;margin-bottom:16px}
 .naz-hint{background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.2);padding:14px;border-radius:14px;font-size:.9rem;line-height:1.8;margin-bottom:16px}
 .naz-ans{width:100%;min-height:120px;padding:14px;border:2px solid rgba(201,151,58,.3);border-radius:14px;font-family:var(--font-u);font-size:1rem;resize:vertical}
@@ -283,7 +204,6 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
 .naz-fb.on{display:block}
 .naz-fb.info{background:rgba(37,99,235,.1);border:1px solid rgba(37,99,235,.3);color:#1e40af}
 
-/* === REVIEW === */
 .fc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:20px 0}
 .fc{height:180px;perspective:1000px;cursor:pointer}
 .fc-in{position:relative;width:100%;height:100%;transition:.6s;transform-style:preserve-3d;border-radius:18px;box-shadow:var(--sh)}
@@ -294,10 +214,7 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
 
 .essay-list{display:flex;flex-direction:column;gap:12px}
 .essay{border-radius:16px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.06)}
-.essay-h{
-  width:100%;border:none;padding:16px 20px;display:flex;align-items:center;gap:14px;
-  font-weight:800;font-size:.95rem;cursor:pointer;transition:.2s;color:#fff;text-align:right;
-}
+.essay-h{width:100%;border:none;padding:16px 20px;display:flex;align-items:center;gap:14px;font-weight:800;font-size:.95rem;cursor:pointer;transition:.2s;color:#fff;text-align:right;}
 .essay-navy{background:linear-gradient(90deg,#0a1628,#1e3a5f)}
 .essay-gold{background:linear-gradient(90deg,#c9973a,#e0b055);color:#2a1e05!important}
 .essay-icon{font-size:1.4rem;flex-shrink:0}
@@ -307,32 +224,23 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
 .essay-body{max-height:0;overflow:hidden;transition:.4s;background:#fff;padding:0 20px;line-height:1.9;font-size:.92rem}
 .essay.open .essay-body{max-height:400px;padding:16px 20px}
 
-/* === QUIZ === */
+/* === QUIZ & CONTROLS === */
 .qz-card{background:#fff;border-radius:18px;padding:22px;margin-bottom:16px;box-shadow:var(--sh)}
 .qz-stem{font-family:var(--font-q);font-size:1.1rem;line-height:1.9;margin-bottom:14px}
-.qz-opt{
-  display:block;width:100%;padding:14px 16px;margin:10px 0;border:2px solid #e5e7eb;
-  border-radius:14px;background:#fff;cursor:pointer;text-align:right;font-size:.95rem;
-  font-family:var(--font-u);transition:.2s;
-}
+.qz-opt{display:block;width:100%;padding:14px 16px;margin:10px 0;border:2px solid #e5e7eb;border-radius:14px;background:#fff;cursor:pointer;text-align:right;font-size:.95rem;font-family:var(--font-u);transition:.2s;}
 .qz-opt:hover{border-color:var(--gold);background:#fffbf0}
 .qz-opt.right{background:var(--green);color:#fff;border-color:var(--green)}
 .qz-opt.wrong{background:var(--red);color:#fff;border-color:var(--red)}
 .qz-result{text-align:center;padding:40px;background:#fff;border-radius:24px;box-shadow:var(--sh)}
 
-/* === NAV CONTROLS === */
 .nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:30px;padding-top:20px;border-top:2px dashed rgba(201,151,58,.3)}
-.nav-btn{
-  border:none;padding:14px 28px;border-radius:30px;font-weight:800;cursor:pointer;
-  font-family:var(--font-u);transition:.2s;font-size:.95rem;
-}
+.nav-btn{border:none;padding:14px 28px;border-radius:30px;font-weight:800;cursor:pointer;font-family:var(--font-u);transition:.2s;font-size:.95rem;}
 .nav-btn:active{transform:scale(.95)}
 .btn-gold{background:var(--gold);color:#fff}
 .btn-navy{background:var(--navy);color:#fff}
 .btn-outline{background:transparent;border:2px solid var(--navy);color:var(--navy)}
 .nav-btn:disabled{opacity:.4;cursor:not-allowed}
 
-/* === MODALS === */
 .modal{position:fixed;inset:0;background:rgba(10,22,40,.8);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:600;padding:20px}
 .modal.on{display:flex}
 .modal-box{background:#fff;width:100%;max-width:480px;border-radius:24px;padding:28px;border-top:8px solid var(--gold);box-shadow:0 30px 60px rgba(0,0,0,.3)}
@@ -349,7 +257,7 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
 <body>
 <div class="app">
 
-<!-- === COMPACT HEADER === -->
+<!-- HEADER -->
 <header class="hdr" id="mainHeader" style="display:none">
   <div class="hdr-right">
     <div class="logo-box">مكان شعار الجامعة</div>
@@ -365,28 +273,27 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
 </header>
 
 <div class="main">
-  <!-- === LOGIN === -->
+
+  <!-- LOGIN -->
   <div id="s-login" class="scr on">
-    <div class="welcome-bg"></div>
-    <div style="padding-top:40px">
-      <div class="welcome-card">
-        <div class="logo-box-login">مكان شعار الجامعة</div>
-        <div class="welcome-title">مقرر فقه ٣</div>
-        <div class="welcome-sub">المحاضرة الرابعة: الإيلاء • الظهار • اللعان • العدة والإحداد</div>
-        <div class="welcome-field">
-          <label>الاسم الثلاثي</label>
-          <input id="iName" placeholder="أدخل اسمك الثلاثي">
+    <div class="welcome-wrap">
+      <div class="welcome-glass">
+        <div class="welcome-deco"></div>
+        <div class="welcome-logo-wrap"><img src="logo.png" alt="شعار الجامعة"></div>
+        <h1 class="welcome-h1">مقرر فقه ٣</h1>
+        <h2 class="welcome-h2">المحاضرة الرابعة: الإيلاء • الظهار • اللعان • العدة والإحداد</h2>
+        <div class="welcome-prof-line">إعداد: د/ باسم القرافي</div>
+        <div class="welcome-fields">
+          <div><input type="text" id="iName" class="welcome-input" placeholder="أدخل اسمك الكامل هنا..."></div>
+          <div><input type="text" id="iSec" class="welcome-input" placeholder="رقم الشعبة (مثال: YM2)"></div>
+          <p id="loginError" class="welcome-error"></p>
+          <button class="welcome-start-btn" onclick="doLogin()">ابدأ رحلة التعلم</button>
         </div>
-        <div class="welcome-field">
-          <label>رقم الشعبة</label>
-          <input id="iSec" placeholder="مثال: 3">
-        </div>
-        <button class="welcome-btn" onclick="doLogin()">ابدأ الرحلة التعليمية ➜</button>
       </div>
     </div>
   </div>
 
-  <!-- === INTRO === -->
+  <!-- INTRO -->
   <div id="s-0" class="scr">
     <div class="page-header">
       <div class="page-icon">📖</div>
@@ -394,12 +301,10 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
       <div class="page-sub">لماذا شُرعت هذه الأحكام؟</div>
     </div>
     <div class="progress-bar"><div class="progress-fill" style="width:14%"></div></div>
-
     <div class="verse-block">
       <div class="verse-text">﴿وَعَاشِرُوهُنَّ بِالْمَعْرُوفِ ۚ فَإِنْ كَرِهْتُمُوهُنَّ فَعَسَىٰ أَنْ تَكْرَهُوا شَيْئًا وَيَجْعَلَ اللَّهُ فِيهِ خَيْرًا كَثِيرًا﴾</div>
       <div class="verse-ref">سورة النساء: ١٩</div>
     </div>
-
     <div class="content-section">
       <div class="section-title">لماذا نجمع هذه الأبواب معاً؟</div>
       <div class="content-text">
@@ -412,14 +317,12 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
         </ul>
       </div>
     </div>
-
     <div class="cells-grid">
       <div class="smart-cell" onclick="openCard(0,0)"><span class="cell-icon">🎯</span><div class="cell-title">الأهداف التعليمية</div><div class="cell-hint">اضغط للتفاصيل</div></div>
       <div class="smart-cell" onclick="openCard(0,1)"><span class="cell-icon">🔗</span><div class="cell-title">الترابط بين الأبواب</div><div class="cell-hint">اضغط للتفاصيل</div></div>
       <div class="smart-cell" onclick="openCard(0,2)"><span class="cell-icon">⚖️</span><div class="cell-title">المقاصد الشرعية</div><div class="cell-hint">اضغط للتفاصيل</div></div>
       <div class="smart-cell" onclick="openCard(0,3)"><span class="cell-icon">📚</span><div class="cell-title">المصادر والأدلة</div><div class="cell-hint">اضغط للتفاصيل</div></div>
     </div>
-
     <div class="mindmap">
       <div class="mind-title">🧠 الخريطة المفاهيمية للمحاضرة</div>
       <div class="mind-center">منظومة حفظ<br>الحقوق الزوجية</div>
@@ -430,14 +333,13 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
         <div class="mind-branch mb-4"><h5>العدة والإحداد</h5><p>استبراء الرحم • حفظ الأنساب • إظهار الوفاء</p></div>
       </div>
     </div>
-
     <div class="nav-row">
       <div></div>
       <button class="nav-btn btn-navy" onclick="goSlide(1)">التالي: الإيلاء ➜</button>
     </div>
   </div>
 
-  <!-- === EILA === -->
+  <!-- EILA -->
   <div id="s-1" class="scr">
     <div class="page-header">
       <div class="page-icon">⏳</div>
@@ -445,12 +347,10 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
       <div class="page-sub">التعريف • الشروط • الأحكام • الإجراءات</div>
     </div>
     <div class="progress-bar"><div class="progress-fill" style="width:28%"></div></div>
-
     <div class="verse-block">
       <div class="verse-text">﴿لِلَّذِينَ يُؤْلُونَ مِنْ نِسَائِهِمْ تَرَبُّصُ أَرْبَعَةِ أَشْهُرٍ ۖ فَإِنْ فَاءُوا فَإِنَّ اللَّهَ غَفُورٌ رَحِيمٌ ۝ وَإِنْ عَزَمُوا الطَّلَاقَ فَإِنَّ اللَّهَ سَمِيعٌ عَلِيمٌ﴾</div>
       <div class="verse-ref">سورة البقرة: ٢٢٦-٢٢٧</div>
     </div>
-
     <div class="content-section">
       <div class="section-title">التعريف اللغوي والاصطلاحي</div>
       <div class="content-text">
@@ -458,20 +358,17 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
         <span class="term">شرعاً:</span> أن يحلف الزوج <span class="hukm">بالله تعالى أو بصفة من صفاته</span> على ترك وطء زوجته <span class="warn">مدةً تزيد على أربعة أشهر</span> أو يُطلقها.
       </div>
     </div>
-
     <div class="cells-grid">
       <div class="smart-cell" onclick="openCard(1,0)"><span class="cell-icon">📋</span><div class="cell-title">شروط الانعقاد</div><div class="cell-hint">اضغط للشرح التفصيلي</div></div>
       <div class="smart-cell" onclick="openCard(1,1)"><span class="cell-icon">⚖️</span><div class="cell-title">الحكم الشرعي</div><div class="cell-hint">اضغط للشرح التفصيلي</div></div>
       <div class="smart-cell" onclick="openCard(1,2)"><span class="cell-icon">🏛️</span><div class="cell-title">الإجراء القضائي</div><div class="cell-hint">اضغط للشرح التفصيلي</div></div>
       <div class="smart-cell" onclick="openCard(1,3)"><span class="cell-icon">💡</span><div class="cell-title">الحكمة من التشريع</div><div class="cell-hint">اضغط للشرح التفصيلي</div></div>
     </div>
-
     <div class="game-box">
       <div class="game-title">🧩 تمرين الفهم: صل الحالة بحكمها</div>
       <div class="game-hint">اضغط على العنصر من القائمة الكحلية ثم اختر ما يطابقه من القائمة الذهبية</div>
       <div class="game-grid" id="game-1"></div>
     </div>
-
     <div class="mindmap">
       <div class="mind-title">🧠 خريطة الإيلاء</div>
       <div class="mind-center">الإيلاء<br>يمين الهجر</div>
@@ -482,14 +379,13 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
         <div class="mind-branch mb-4"><h5>العلاج</h5><p>فيئة + كفارة يمين أو طلاق بأمر القاضي</p></div>
       </div>
     </div>
-
     <div class="nav-row">
       <button class="nav-btn btn-outline" onclick="goSlide(0)">◁ التمهيد</button>
       <button class="nav-btn btn-navy" id="next-1" disabled onclick="goSlide(2)">التالي: الظهار ➜</button>
     </div>
   </div>
 
-  <!-- === ZIHAR === -->
+  <!-- ZIHAR -->
   <div id="s-2" class="scr">
     <div class="page-header">
       <div class="page-icon">🗣️</div>
@@ -497,12 +393,10 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
       <div class="page-sub">التعريف • الحكم • الكفارة المرتبة</div>
     </div>
     <div class="progress-bar"><div class="progress-fill" style="width:42%"></div></div>
-
     <div class="verse-block">
       <div class="verse-text">﴿الَّذِينَ يُظَاهِرُونَ مِنْكُمْ مِنْ نِسَائِهِمْ مَا هُنَّ أُمَّهَاتِهِمْ ۖ إِنْ أُمَّهَاتُهُمْ إِلَّا اللَّائِي وَلَدْنَهُمْ ۚ وَإِنَّهُمْ لَيَقُولُونَ مُنْكَرًا مِنَ الْقَوْلِ وَزُورًا﴾</div>
       <div class="verse-ref">سورة المجادلة: ٢</div>
     </div>
-
     <div class="content-section">
       <div class="section-title">التعريف والوصف القرآني</div>
       <div class="content-text">
@@ -511,20 +405,17 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
         <span class="term">أثره:</span> <span class="hukm">يمنع الاستمتاع بالزوجة حتى أداء الكفارة</span>.
       </div>
     </div>
-
     <div class="cells-grid">
       <div class="smart-cell" onclick="openCard(2,0)"><span class="cell-icon">⛓️</span><div class="cell-title">الكفارة المرتبة</div><div class="cell-hint">اضغط للشرح التفصيلي</div></div>
       <div class="smart-cell" onclick="openCard(2,1)"><span class="cell-icon">⚠️</span><div class="cell-title">الوطء قبل التكفير</div><div class="cell-hint">اضغط للشرح التفصيلي</div></div>
       <div class="smart-cell" onclick="openCard(2,2)"><span class="cell-icon">📖</span><div class="cell-title">الدليل التفصيلي</div><div class="cell-hint">اضغط للشرح التفصيلي</div></div>
       <div class="smart-cell" onclick="openCard(2,3)"><span class="cell-icon">🔄</span><div class="cell-title">الفرق عن الطلاق</div><div class="cell-hint">اضغط للشرح التفصيلي</div></div>
     </div>
-
     <div class="game-box">
       <div class="game-title">🧩 تمرين الفهم: رتب الكفارة وأحكامها</div>
       <div class="game-hint">اضغط على العنصر من القائمة الكحلية ثم اختر ما يطابقه من القائمة الذهبية</div>
       <div class="game-grid" id="game-2"></div>
     </div>
-
     <div class="mindmap">
       <div class="mind-title">🧠 خريطة الظهار</div>
       <div class="mind-center">الظهار<br>المنكر والزور</div>
@@ -535,14 +426,13 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
         <div class="mind-branch mb-2"><h5>الأثر</h5><p>تحريم مؤقت يزول بالكفارة</p></div>
       </div>
     </div>
-
     <div class="nav-row">
       <button class="nav-btn btn-outline" onclick="goSlide(1)">◁ الإيلاء</button>
       <button class="nav-btn btn-navy" id="next-2" disabled onclick="goSlide(3)">التالي: اللعان ➜</button>
     </div>
   </div>
 
-  <!-- === LIAN === -->
+  <!-- LIAN -->
   <div id="s-3" class="scr">
     <div class="page-header">
       <div class="page-icon">🧑‍⚖️</div>
@@ -550,12 +440,10 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
       <div class="page-sub">الصفة • الآثار • الأحكام</div>
     </div>
     <div class="progress-bar"><div class="progress-fill" style="width:56%"></div></div>
-
     <div class="verse-block">
       <div class="verse-text">﴿وَالَّذِينَ يَرْمُونَ أَزْوَاجَهُمْ وَلَمْ يَكُنْ لَهُمْ شُهَدَاءُ إِلَّا أَنْفُسُهُمْ فَشَهَادَةُ أَحَدِهِمْ أَرْبَعُ شَهَادَاتٍ بِاللَّهِ ۙ إِنَّهُ لَمِنَ الصَّادِقِينَ﴾</div>
       <div class="verse-ref">سورة النور: ٦-٧</div>
     </div>
-
     <div class="content-section">
       <div class="section-title">التعريف والمشروعية</div>
       <div class="content-text">
@@ -563,20 +451,17 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
         <span class="term">مكانه:</span> يتم <span class="hukm">أمام القاضي</span> في المحكمة الشرعية.
       </div>
     </div>
-
     <div class="cells-grid">
       <div class="smart-cell" onclick="openCard(3,0)"><span class="cell-icon">🗣️</span><div class="cell-title">صفة اللعان</div><div class="cell-hint">اضغط للشرح التفصيلي</div></div>
       <div class="smart-cell" onclick="openCard(3,1)"><span class="cell-icon">🎯</span><div class="cell-title">الآثار المترتبة</div><div class="cell-hint">اضغط للشرح التفصيلي</div></div>
       <div class="smart-cell" onclick="openCard(3,2)"><span class="cell-icon">⚠️</span><div class="cell-title">حكم النكول</div><div class="cell-hint">اضغط للشرح التفصيلي</div></div>
       <div class="smart-cell" onclick="openCard(3,3)"><span class="cell-icon">💡</span><div class="cell-title">الحكمة من التشريع</div><div class="cell-hint">اضغط للشرح التفصيلي</div></div>
     </div>
-
     <div class="game-box">
       <div class="game-title">🧩 تمرين الفهم: طابق بين العناصر</div>
       <div class="game-hint">اضغط على العنصر من القائمة الكحلية ثم اختر ما يطابقه من القائمة الذهبية</div>
       <div class="game-grid" id="game-3"></div>
     </div>
-
     <div class="mindmap">
       <div class="mind-title">🧠 خريطة اللعان</div>
       <div class="mind-center">اللعان<br>المخرج القضائي</div>
@@ -587,14 +472,13 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
         <div class="mind-branch mb-4"><h5>الآثار</h5><p>سقوط الحد • فرقة مؤبدة • انتفاء النسب</p></div>
       </div>
     </div>
-
     <div class="nav-row">
       <button class="nav-btn btn-outline" onclick="goSlide(2)">◁ الظهار</button>
       <button class="nav-btn btn-navy" id="next-3" disabled onclick="goSlide(4)">التالي: العدة والإحداد ➜</button>
     </div>
   </div>
 
-  <!-- === IDDAH === -->
+  <!-- IDDAH -->
   <div id="s-4" class="scr">
     <div class="page-header">
       <div class="page-icon">🏠</div>
@@ -602,12 +486,10 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
       <div class="page-sub">الأنواع • المدد • الأحكام</div>
     </div>
     <div class="progress-bar"><div class="progress-fill" style="width:70%"></div></div>
-
     <div class="verse-block">
       <div class="verse-text">﴿وَالْمُطَلَّقَاتُ يَتَرَبَّصْنَ بِأَنْفُسِهِنَّ ثَلَاثَةَ قُرُوءٍ﴾ ۝ ﴿وَالَّذِينَ يُتَوَفَّوْنَ مِنْكُمْ وَيَذَرُونَ أَزْوَاجًا يَتَرَبَّصْنَ بِأَنْفُسِهِنَّ أَرْبَعَةَ أَشْهُرٍ وَعَشْرًا﴾</div>
       <div class="verse-ref">سورة البقرة: ٢٢٨ و ٢٣٤</div>
     </div>
-
     <div class="content-section">
       <div class="section-title">تعريف العدة والإحداد</div>
       <div class="content-text">
@@ -615,20 +497,17 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
         <span class="term">الإحداد:</span> ترك الزينة والطيب وما يدعو إلى جماع المرأة، وهو <span class="hukm">واجب على المتوفى عنها زوجها</span>.
       </div>
     </div>
-
     <div class="cells-grid">
       <div class="smart-cell" onclick="openCard(4,0)"><span class="cell-icon">🤰</span><div class="cell-title">عدة الحامل</div><div class="cell-hint">اضغط للشرح التفصيلي</div></div>
       <div class="smart-cell" onclick="openCard(4,1)"><span class="cell-icon">📅</span><div class="cell-title">عدة الوفاة والطلاق</div><div class="cell-hint">اضغط للشرح التفصيلي</div></div>
       <div class="smart-cell" onclick="openCard(4,2)"><span class="cell-icon">🖤</span><div class="cell-title">أحكام الإحداد</div><div class="cell-hint">اضغط للشرح التفصيلي</div></div>
       <div class="smart-cell" onclick="openCard(4,3)"><span class="cell-icon">💡</span><div class="cell-title">حِكَم العدة</div><div class="cell-hint">اضغط للشرح التفصيلي</div></div>
     </div>
-
     <div class="game-box">
       <div class="game-title">🧩 تمرين الفهم: حدد العدة المناسبة</div>
       <div class="game-hint">اضغط على العنصر من القائمة الكحلية ثم اختر ما يطابقه من القائمة الذهبية</div>
       <div class="game-grid" id="game-4"></div>
     </div>
-
     <div class="mindmap">
       <div class="mind-title">🧠 خريطة العدة والإحداد</div>
       <div class="mind-center">العدة والإحداد<br>صيانة الحقوق</div>
@@ -639,21 +518,19 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
         <div class="mind-branch mb-3"><h5>الإحداد</h5><p>ترك الزينة والطيب • لزوم البيت</p></div>
       </div>
     </div>
-
     <div class="nav-row">
       <button class="nav-btn btn-outline" onclick="goSlide(3)">◁ اللعان</button>
       <button class="nav-btn btn-gold" id="next-4" disabled onclick="finishLesson()">✓ إنهاء الدرس</button>
     </div>
   </div>
 
-  <!-- === NAWAZIL === -->
+  <!-- NAWAZIL -->
   <div id="s-nawazil" class="scr">
     <div class="page-header">
       <div class="page-icon">⚖️</div>
       <div class="page-title">النوازل الفقهية</div>
       <div class="page-sub">مسائل واقعية معاصرة</div>
     </div>
-
     <div class="naz-card">
       <div class="naz-badge">نازلة ١ — الإيلاء</div>
       <div class="naz-q">رجل حلف بالله ألا يقرب زوجته ستة أشهر بسبب خلاف بينهما، ثم ندم بعد شهرين وأراد الرجوع إليها.</div>
@@ -662,7 +539,6 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
       <button class="nav-btn btn-navy" onclick="checkNaz(1)">تحقق من الإجابة</button>
       <div class="naz-fb" id="fb1"></div>
     </div>
-
     <div class="naz-card">
       <div class="naz-badge">نازلة ٢ — الظهار</div>
       <div class="naz-q">قال رجل لزوجته في لحظة غضب: «أنتِ عليّ كظهر أمي»، ثم أراد معاشرتها في نفس اليوم.</div>
@@ -671,7 +547,6 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
       <button class="nav-btn btn-navy" onclick="checkNaz(2)">تحقق من الإجابة</button>
       <div class="naz-fb" id="fb2"></div>
     </div>
-
     <div class="naz-card">
       <div class="naz-badge">نازلة ٣ — اللعان</div>
       <div class="naz-q">اتهم رجل زوجته بالزنا ولم يكن لديه شهود، فرفعت الأمر للقاضي.</div>
@@ -680,7 +555,6 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
       <button class="nav-btn btn-navy" onclick="checkNaz(3)">تحقق من الإجابة</button>
       <div class="naz-fb" id="fb3"></div>
     </div>
-
     <div class="naz-card">
       <div class="naz-badge">نازلة ٤ — العدة</div>
       <div class="naz-q">توفي زوج امرأة وهي حامل في الشهر الخامس.</div>
@@ -689,7 +563,6 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
       <button class="nav-btn btn-navy" onclick="checkNaz(4)">تحقق من الإجابة</button>
       <div class="naz-fb" id="fb4"></div>
     </div>
-
     <div class="naz-card">
       <div class="naz-badge">نازلة ٥ — الإحداد</div>
       <div class="naz-q">امرأة متوفى عنها زوجها، تحتاج للخروج ليلاً لحضور عزاء قريبتها.</div>
@@ -700,22 +573,20 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
     </div>
   </div>
 
-  <!-- === REVIEW === -->
+  <!-- REVIEW -->
   <div id="s-review" class="scr">
     <div class="page-header">
       <div class="page-icon">🧠</div>
       <div class="page-title">المراجعة الذكية</div>
       <div class="page-sub">بطاقات المفاهيم • الأسئلة المقالية</div>
     </div>
-
     <h3 style="color:var(--navy);border-right:4px solid var(--gold);padding-right:12px;margin:24px 0 16px">بطاقات المفاهيم (اضغط للقلب)</h3>
     <div class="fc-grid" id="fcBox"></div>
-
     <h3 style="color:var(--navy);border-right:4px solid var(--gold);padding-right:12px;margin:30px 0 16px">الأسئلة المقالية (١٠ أسئلة)</h3>
     <div class="essay-list" id="essBox"></div>
   </div>
 
-  <!-- === QUIZ === -->
+  <!-- QUIZ -->
   <div id="s-quiz" class="scr">
     <div class="page-header">
       <div class="page-icon">✅</div>
@@ -726,12 +597,11 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
   </div>
 </div>
 
-<!-- === BOTTOM BAR === -->
+<!-- BOTTOM BAR -->
 <div class="bottom-bar" id="bottomBar">
   <div class="bottom-inner">
     <div class="bottom-timer">
-      <span>⏱️</span>
-      <span id="timerDisplay">00:00:00</span>
+      <span>⏱️</span><span id="timerDisplay">00:00:00</span>
     </div>
     <div class="bottom-tabs">
       <button class="btab act" data-t="lesson"><span>📚</span> الدرس</button>
@@ -744,7 +614,7 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
 </div>
 </div>
 
-<!-- EXPANDED CARD OVERLAY -->
+<!-- OVERLAYS -->
 <div id="cardOverlay" class="card-overlay">
   <div class="expanded-card">
     <div class="exp-header">
@@ -756,7 +626,6 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
   </div>
 </div>
 
-<!-- TEACHER MODAL -->
 <div id="mDash" class="modal">
   <div class="modal-box">
     <button class="modal-close" onclick="closeDash()">✕</button>
@@ -918,7 +787,13 @@ function checkQuizUnlock(){
 
 function doLogin(){
   const n=$('#iName').value.trim(),s=$('#iSec').value.trim();
-  if(!n||!s){alert('الرجاء إدخال الاسم والشعبة');return}
+  const errBox = $('#loginError');
+  if(!n||!s){
+    errBox.style.display = 'block';
+    errBox.textContent = 'الرجاء إدخال الاسم والشعبة للمتابعة';
+    return;
+  }
+  errBox.style.display = 'none';
   user={n,s};
   $('#dName').textContent=n;
   $('#dSec').textContent=s;
@@ -932,7 +807,9 @@ function goSlide(i){
   $$('.scr').forEach(s=>s.classList.remove('on'));
   $(`#s-${i}`).classList.add('on');
   curSlide=i;
-  if(GAMES[i]) renderGame(i);
+  
+  if(GAMES[i] && !$(`#game-${i}`).innerHTML.trim()) renderGame(i);
+  
   $$('.btab').forEach(b=>b.classList.remove('act'));
   $$('.btab')[0].classList.add('act');
 }
@@ -954,11 +831,19 @@ function switchTab(t){
   $$('.scr').forEach(s=>s.classList.remove('on'));
   $(`#s-${t}`).classList.add('on');
   $$('.btab').forEach(b=>b.classList.remove('act'));
+  
   const idx={nawazil:1,review:2,quiz:3}[t];
   if(idx!==undefined) $$('.btab')[idx].classList.add('act');
   else $$('.btab')[0].classList.add('act');
-  if(t==='review'){reviewVisited=true;renderReview();checkQuizUnlock();}
-  if(t==='quiz') renderQuiz();
+  
+  if(t==='review'){
+    reviewVisited=true;
+    if(!$('#fcBox').innerHTML.trim()) renderReview();
+    checkQuizUnlock();
+  }
+  if(t==='quiz' && !$('#qzBox').innerHTML.trim()) {
+    renderQuiz();
+  }
 }
 
 function openCard(slide,idx){
@@ -990,10 +875,13 @@ function pickL(g,el,i){
 function pickR(g,el,r){
   if(!activeL||activeL.g!==g)return;
   const correct=GAMES[g].pairs[activeL.i].r;
+  
   if(r===correct){
     activeL.el.classList.add('done');
     el.classList.add('done');
     toast('✅ صحيح!');
+    activeL=null; 
+    
     const all=$$(`#game-${g} .g-item`);
     const done=[...all].every(e=>e.classList.contains('done'));
     if(done){
@@ -1004,9 +892,10 @@ function pickR(g,el,r){
     }
   }else{
     toast('❌ حاول مرة أخرى');
-    setTimeout(()=>activeL.el.classList.remove('active'),300);
+    const wrongEl = activeL.el;
+    activeL=null; 
+    setTimeout(()=>wrongEl.classList.remove('active'),300);
   }
-  activeL=null;
 }
 
 function checkNaz(n){
@@ -1052,8 +941,15 @@ function pickAns(qi,oi){
   card.dataset.done='1';
   const btns=card.querySelectorAll('.qz-opt');
   btns.forEach(b=>b.disabled=true);
-  if(oi===QUIZ[qi].a){btns[oi].classList.add('right');score++}
-  else{btns[oi].classList.add('wrong');btns[QUIZ[qi].a].classList.add('right')}
+  
+  if(oi===QUIZ[qi].a){
+    btns[oi].classList.add('right');
+    score++;
+  } else {
+    btns[oi].classList.add('wrong');
+    btns[QUIZ[qi].a].classList.add('right');
+  }
+  
   answered++;
   if(answered===QUIZ.length){
     const elapsed=getElapsedTime();
@@ -1071,18 +967,29 @@ function pickAns(qi,oi){
 }
 
 function openDash(){$('#mDash').classList.add('on')}
-function closeDash(){$('#mDash').classList.remove('on');$('#dashPanel').style.display='none';$('#dashLogin').style.display='block'}
+function closeDash(){
+  $('#mDash').classList.remove('on');
+  $('#dashPanel').style.display='none';
+  $('#dashLogin').style.display='block';
+}
+
 function authDash(){
   if($('#dashPass').value==='1234'){
     $('#dashLogin').style.display='none';
     $('#dashPanel').style.display='block';
-    $('#recBox').innerHTML=recs.length?recs.map(r=>`<div style="border-bottom:1px solid #eee;padding:8px 0"><b>${r.name}</b> (${r.sec}) — ${r.score}/20 — ⏱️ ${r.time} — ${r.date}</div>`).join(''):'لا توجد سجلات بعد.';
-  }else alert('رمز خاطئ!');
+    $('#recBox').innerHTML=recs.length ? recs.map(r=>`<div style="border-bottom:1px solid #eee;padding:8px 0"><b>${r.name}</b> (${r.sec}) — ${r.score}/20 — ⏱️ ${r.time} — ${r.date}</div>`).join('') : 'لا توجد سجلات بعد.';
+  }else{
+    alert('رمز خاطئ!');
+  }
 }
+
 function saveCfg(){toast('تم حفظ الإعدادات')}
 function exportRecs(){
   const blob=new Blob([JSON.stringify({db:'fiqh_lecture4',records:recs},null,2)],{type:'application/json'});
-  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='fiqh_records.json';a.click();
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='fiqh_records.json';
+  a.click();
   toast('تم التصدير');
 }
 
@@ -1092,8 +999,6 @@ $$('.btab').forEach(b=>b.addEventListener('click',function(){
   else switchTab(t);
 }));
 
-renderReview();
-renderQuiz();
 </script>
 </body>
 </html>
