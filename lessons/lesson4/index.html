@@ -84,11 +84,6 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
 .btab.act{background:var(--navy);color:var(--gold2)}
 .btab.locked{opacity:.4;cursor:not-allowed}
 .btab span{font-size:1.1rem}
-.bottom-dash{
-  background:var(--navy);color:var(--gold2);border:none;
-  padding:10px 16px;border-radius:12px;font-weight:700;cursor:pointer;
-  display:flex;align-items:center;gap:6px;font-size:.82rem;
-}
 
 /* ======================================================================
    شاشة الدخول — مطابقة لتصميم الكود الأول (glass-panel)
@@ -378,24 +373,7 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
 .g-choice.active{border-color:var(--navy);transform:translateY(2px);box-shadow:none}
 .g-item.done,.g-choice.done{opacity:.4;pointer-events:none;background:var(--green)!important;color:#fff!important;border:none!important;box-shadow:none}
 
-/* === NAWAZIL === */
-.naz-card{
-  background:linear-gradient(135deg,#fff,#fefefe);
-  border-radius:24px;padding:24px;margin:20px 0;
-  border:2px solid rgba(201,151,58,.2);box-shadow:var(--sh);
-}
-.naz-badge{
-  display:inline-block;background:var(--gold);color:#fff;padding:6px 14px;
-  border-radius:20px;font-size:.8rem;font-weight:700;margin-bottom:12px;
-}
-.naz-q{font-family:var(--font-q);font-size:1.15rem;line-height:1.9;margin-bottom:16px}
-.naz-hint{background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.2);padding:14px;border-radius:14px;font-size:.9rem;line-height:1.8;margin-bottom:16px}
-.naz-ans{width:100%;min-height:120px;padding:14px;border:2px solid rgba(201,151,58,.3);border-radius:14px;font-family:var(--font-u);font-size:1rem;resize:vertical}
-.naz-fb{margin-top:16px;padding:16px;border-radius:14px;display:none;line-height:1.9}
-.naz-fb.on{display:block}
-.naz-fb.info{background:rgba(37,99,235,.1);border:1px solid rgba(37,99,235,.3);color:#1e40af}
-
-/* === REVIEW === */
+/* === REVIEW / NAWAZIL ESSAYS === */
 .fc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:20px 0}
 .fc{height:180px;perspective:1000px;cursor:pointer}
 .fc-in{position:relative;width:100%;height:100%;transition:.6s;transform-style:preserve-3d;border-radius:18px;box-shadow:var(--sh)}
@@ -444,13 +422,6 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
 .btn-outline{background:transparent;border:2px solid var(--navy);color:var(--navy)}
 .nav-btn:disabled{opacity:.4;cursor:not-allowed}
 
-/* === MODALS === */
-.modal{position:fixed;inset:0;background:rgba(10,22,40,.8);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:600;padding:20px}
-.modal.on{display:flex}
-.modal-box{background:#fff;width:100%;max-width:480px;border-radius:24px;padding:28px;border-top:8px solid var(--gold);box-shadow:0 30px 60px rgba(0,0,0,.3)}
-.modal-title{font-family:var(--font-q);font-size:1.4rem;color:var(--navy);margin-bottom:20px}
-.modal-close{float:left;background:#eee;border:none;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:1.1rem}
-
 .toast{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;padding:12px 24px;border-radius:30px;font-weight:700;z-index:700;opacity:0;transition:.3s;pointer-events:none}
 .toast.on{opacity:1}
 
@@ -464,7 +435,6 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
 <!-- === COMPACT HEADER === -->
 <header class="hdr" id="mainHeader" style="display:none">
   <div class="hdr-right">
-    <!-- تم إزالة الإطار المتقطع ووضع الصورة بدلاً من النص -->
     <div class="logo-box" style="border:none; background:transparent;">
       <img src="logo.png" alt="شعار الجامعة" style="max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 1px 2px rgba(0,0,0,.1));">
     </div>
@@ -778,54 +748,109 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
   <div id="s-nawazil" class="scr">
     <div class="page-header">
       <div class="page-icon">⚖️</div>
-      <div class="page-title">النوازل الفقهية</div>
-      <div class="page-sub">مسائل واقعية معاصرة</div>
+      <div class="page-title">النوازل الفقهية المعاصرة</div>
+      <div class="page-sub">اضغط على النازلة لعرض الحكم الشرعي</div>
     </div>
 
-    <div class="naz-card">
-      <div class="naz-badge">نازلة ١ — الإيلاء</div>
-      <div class="naz-q">رجل حلف بالله ألا يقرب زوجته ستة أشهر بسبب خلاف بينهما، ثم ندم بعد شهرين وأراد الرجوع إليها.</div>
-      <div class="naz-hint"><strong>المطلوب:</strong> ما الحكم الشرعي؟ وما الذي يلزمه عند الرجوع؟</div>
-      <textarea class="naz-ans" id="naz1" placeholder="اكتب إجابتك هنا..."></textarea>
-      <button class="nav-btn btn-navy" onclick="checkNaz(1)">تحقق من الإجابة</button>
-      <div class="naz-fb" id="fb1"></div>
+    <div class="essay-list">
+      
+      <div class="essay" onclick="this.classList.toggle('open')">
+        <div class="essay-h essay-navy">
+          <span class="essay-icon">❓</span>
+          <span class="essay-text">س١: ما حكم إجراء التلقيح الصناعي للأرملة من نطفة زوجها المتوفى وهي لا تزال في فترة العدة؟</span>
+          <span class="essay-arr">▼</span>
+        </div>
+        <div class="essay-body">ج١: لا يجوز شرعاً إجراء التلقيح الصناعي للمرأة بعد وفاة زوجها مطلقاً؛ وذلك لأن عقد الزوجية قد انفسخ بالموت، وينقطع بموت الزوج الحل الشرعي، وتصبح النطفة غير مملوكة للعلاقة الزوجية القائمة، مما يجعل هذا الإجراء محرماً لما يترتب عليه من اختلاط الأنساب وفساد الذريعة.</div>
+      </div>
+
+      <div class="essay" onclick="this.classList.toggle('open')">
+        <div class="essay-h essay-gold">
+          <span class="essay-icon">❓</span>
+          <span class="essay-text">س٢: ما حكم إجراء التلقيح الصناعي للمرأة المطلقة أثناء فترة عدتها؟</span>
+          <span class="essay-arr">▼</span>
+        </div>
+        <div class="essay-body">ج٢: يمنع إجراء التلقيح الصناعي للمرأة بعد وقوع الفراق بالطلاق، حتى وإن كانت لا تزال في فترة العدة؛ لأن عقد الزوجية في هذه الحالة قد انفسخ أو هو في سبيل الانفساخ النهائي، والأصل في التلقيح الصناعي أن يكون حال قيام العلاقة الزوجية المستقرة يقيناً.</div>
+      </div>
+
+      <div class="essay" onclick="this.classList.toggle('open')">
+        <div class="essay-h essay-navy">
+          <span class="essay-icon">❓</span>
+          <span class="essay-text">س٣: هل يغني العلم ببراءة الرحم عبر التحليل الطبي والأجهزة الحديثة عن إكمال العدة الشرعية بالمدد المنصوص عليها؟</span>
+          <span class="essay-arr">▼</span>
+        </div>
+        <div class="essay-body">ج٣: لا يغني العلم ببراءة الرحم عبر الوسائل الطبية الحديثة عن استكمال العدة الشرعية؛ ذلك أن الأصل في العدة أنها أمر تعبدي لله تعالى، والمدد المقدرة بالقروء أو الشهور هي مدد توقيفية شرعية لا يجوز تجاوزها، واليقين ببراءة الرحم وإن كان أحد حكم العدة، إلا أنه ليس العلة الوحيدة لها.</div>
+      </div>
+
+      <div class="essay" onclick="this.classList.toggle('open')">
+        <div class="essay-h essay-gold">
+          <span class="essay-icon">❓</span>
+          <span class="essay-text">س٤: ما حكم خروج المرأة المعتدة من وفاة (المُحدّة) من بيتها لمزاولة الدراسة أو العمل؟</span>
+          <span class="essay-arr">▼</span>
+        </div>
+        <div class="essay-body">ج٤: يجوز للمرأة المعتدة من وفاة الخروج من بيتها للحاجة الضرورية، ومن ذلك الخروج لطلب العلم أو كسب الرزق إذا لم يكن لها عائل، بشرط أن يكون خروجها في ساعات النهار، وأن تلتزم بضوابط الإحداد الشرعية، مع وجوب مبيتها في بيت الزوجية الذي تعتد فيه.</div>
+      </div>
+
+      <div class="essay" onclick="this.classList.toggle('open')">
+        <div class="essay-h essay-navy">
+          <span class="essay-icon">❓</span>
+          <span class="essay-text">س٥: ما حكم استعمال المرأة المعتدة من وفاة للمنظفات الحديثة (الصابون والشامبو) التي تحتوي على روائح عطرية؟</span>
+          <span class="essay-arr">▼</span>
+        </div>
+        <div class="essay-body">ج٥: يجب على المرأة المُحدة تجنب الطيب في الثياب والبدن؛ وبناءً عليه، يمنع استعمال المنظفات والمساحيق التي تحتوي على روائح عطرية نفاذة وقوية تعتبر نوعاً من الزينة المنهي عنها، أما المنظفات العادية التي تهدف للتنظيف فقط ولا تعتبر طيباً في العرف فلا حرج في استعمالها.</div>
+      </div>
+
+      <div class="essay" onclick="this.classList.toggle('open')">
+        <div class="essay-h essay-gold">
+          <span class="essay-icon">❓</span>
+          <span class="essay-text">س٦: كيف أثر الطب الحديث في تحديد أقصى مدة للحمل وعلاقة ذلك بانتهاء عدة الحامل المتوفى عنها زوجها؟</span>
+          <span class="essay-arr">▼</span>
+        </div>
+        <div class="essay-body">ج٦: يرى الطب الحديث أن مدة الحمل الطبيعية لا تتجاوز تسعة أشهر، وقد تمتد في حالات نادرة جداً إلى عشرة أشهر، وهذا الرأي الطبي ينقح الأقوال الفقهية القديمة التي كانت تمد مدة الحمل لسنوات بناءً على أخبار لم تثبت طبياً، مما يؤدي إلى ضبط نهاية العدة بوضع الحمل ضمن هذه المدد الطبيعية المعتبرة واقعياً.</div>
+      </div>
+
+      <div class="essay" onclick="this.classList.toggle('open')">
+        <div class="essay-h essay-navy">
+          <span class="essay-icon">❓</span>
+          <span class="essay-text">س٧: هل يجوز للمرأة التي انقطع حيضها (الآيسة) الاعتماد على الفحص الهرموني أو السونار لتحديد نهاية عدتها بدلاً من الأشهر الثلاثة؟</span>
+          <span class="essay-arr">▼</span>
+        </div>
+        <div class="essay-body">ج٧: المعتدة الآيسة تعتد بثلاثة أشهر بنص القرآن الكريم، والفحوصات الطبية الحديثة مثل السونار والفحوص الهرمونية وإن كانت تنفي وجود الحمل بدقة، إلا أنها لا تسقط وجوب التربص بالمدة المقدرة شرعاً (ثلاثة أشهر)، لأن العدة في حقها مرتبطة بمضي الزمن لا بوضع الحمل.</div>
+      </div>
+
+      <div class="essay" onclick="this.classList.toggle('open')">
+        <div class="essay-h essay-gold">
+          <span class="essay-icon">❓</span>
+          <span class="essay-text">س٨: ما حكم استخدام المرأة المُحدة للمساحيق والزينة الحديثة التي لم تكن معروفة عند الفقهاء المتقدمين؟</span>
+          <span class="essay-arr">▼</span>
+        </div>
+        <div class="essay-body">ج٨: يحرم على المعتدة من وفاة كل ما يعتبر زينة في العرف المعاصر ويجلب الأنظار إليها، قياساً على النهي النبوي الثابت عن الكحل، والتحلي بالحلي، ولبس الثياب المصبوغة للزينة؛ فكل ما يؤدي دور هذه المحرمات في الزينة المعاصرة يأخذ حكمها في المنع.</div>
+      </div>
+
+      <div class="essay" onclick="this.classList.toggle('open')">
+        <div class="essay-h essay-navy">
+          <span class="essay-icon">❓</span>
+          <span class="essay-text">س٩: ما حكم استخدام البصمة الوراثية (DNA) للتأكد من نسب المولود الذي وُضع أثناء فترة العدة؟</span>
+          <span class="essay-arr">▼</span>
+        </div>
+        <div class="essay-body">ج٩: لا يجوز اللجوء للبصمة الوراثية لنفي أو تأكيد نسب ثابت بالشرع (وهو الولد للفراش)، وإنما يجوز استخدامها كقرينة في حالات محددة كالتنازع على مجهول النسب، أو الاشتباه في المواليد داخل المستشفيات، أو عند الادعاء بحصول خطأ في نطف التلقيح الصناعي.</div>
+      </div>
+
+      <div class="essay" onclick="this.classList.toggle('open')">
+        <div class="essay-h essay-gold">
+          <span class="essay-icon">❓</span>
+          <span class="essay-text">س١٠: ما هو مكان العدة المعتبر للمرأة إذا توفي عنها زوجها وهي في رحلة عمل أو طلب علم بعيداً عن بلدها؟</span>
+          <span class="essay-arr">▼</span>
+        </div>
+        <div class="essay-body">ج١٠: الواجب على المعتدة من وفاة أن تعتد في بيت زوجها الذي مات وهي تسكن فيه، ولا تنتقل عنه إلا لعذر قاهر أو حاجة ملحة، لقول النبي ﷺ لفريعة بنت مالك: "امكثي في بيتك حتى يبلغ الكتاب أجله"، فإن تعذر البقاء في بيت الغربة لسبب أمني أو مادي جاز لها الانتقال لبيت أهلها.</div>
+      </div>
+
     </div>
 
-    <div class="naz-card">
-      <div class="naz-badge">نازلة ٢ — الظهار</div>
-      <div class="naz-q">قال رجل لزوجته في لحظة غضب: «أنتِ عليّ كظهر أمي»، ثم أراد معاشرتها في نفس اليوم.</div>
-      <div class="naz-hint"><strong>المطلوب:</strong> هل يجوز له ذلك؟ وما الذي يجب عليه؟</div>
-      <textarea class="naz-ans" id="naz2" placeholder="اكتب إجابتك هنا..."></textarea>
-      <button class="nav-btn btn-navy" onclick="checkNaz(2)">تحقق من الإجابة</button>
-      <div class="naz-fb" id="fb2"></div>
+    <!-- مصدر النوازل الفقهية -->
+    <div style="margin-top: 30px; padding: 16px; background: rgba(201,151,58,.08); border-right: 4px solid var(--gold); border-radius: 12px; font-size: 0.9rem; color: var(--navy); line-height: 1.8;">
+      <strong>المصدر:</strong> الموسوعة الميسرة في فقه القضايا المعاصرة (قسم فقه الأسرة) - إعداد: مركز التميز البحثي في فقه القضايا المعاصرة، جامعة الإمام محمد بن سعود الإسلامية.
     </div>
 
-    <div class="naz-card">
-      <div class="naz-badge">نازلة ٣ — اللعان</div>
-      <div class="naz-q">اتهم رجل زوجته بالزنا ولم يكن لديه شهود، فرفعت الأمر للقاضي.</div>
-      <div class="naz-hint"><strong>المطلوب:</strong> ما الإجراء الشرعي؟ وما الآثار المترتبة إذا تم اللعان؟</div>
-      <textarea class="naz-ans" id="naz3" placeholder="اكتب إجابتك هنا..."></textarea>
-      <button class="nav-btn btn-navy" onclick="checkNaz(3)">تحقق من الإجابة</button>
-      <div class="naz-fb" id="fb3"></div>
-    </div>
-
-    <div class="naz-card">
-      <div class="naz-badge">نازلة ٤ — العدة</div>
-      <div class="naz-q">توفي زوج امرأة وهي حامل في الشهر الخامس.</div>
-      <div class="naz-hint"><strong>المطلوب:</strong> متى تنتهي عدتها؟ وما الدليل؟</div>
-      <textarea class="naz-ans" id="naz4" placeholder="اكتب إجابتك هنا..."></textarea>
-      <button class="nav-btn btn-navy" onclick="checkNaz(4)">تحقق من الإجابة</button>
-      <div class="naz-fb" id="fb4"></div>
-    </div>
-
-    <div class="naz-card">
-      <div class="naz-badge">نازلة ٥ — الإحداد</div>
-      <div class="naz-q">امرأة متوفى عنها زوجها، تحتاج للخروج ليلاً لحضور عزاء قريبتها.</div>
-      <div class="naz-hint"><strong>المطلوب:</strong> ما حكم خروجها؟ ولماذا؟</div>
-      <textarea class="naz-ans" id="naz5" placeholder="اكتب إجابتك هنا..."></textarea>
-      <button class="nav-btn btn-navy" onclick="checkNaz(5)">تحقق من الإجابة</button>
-      <div class="naz-fb" id="fb5"></div>
-    </div>
   </div>
 
   <!-- === REVIEW === -->
@@ -867,7 +892,6 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
       <button class="btab" data-t="review"><span>🧠</span> المراجعة</button>
       <button class="btab locked" data-t="quiz" id="quizTab"><span>🔒</span> التقييم</button>
     </div>
-    <button class="bottom-dash" onclick="openDash()">🔐 لوحة المعلم</button>
   </div>
 </div>
 </div>
@@ -881,28 +905,6 @@ html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:va
       <div class="exp-title" id="expTitle"></div>
     </div>
     <div class="exp-body" id="expBody"></div>
-  </div>
-</div>
-
-<!-- TEACHER MODAL -->
-<div id="mDash" class="modal">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeDash()">✕</button>
-    <div class="modal-title">🔐 لوحة تحكم الأستاذ</div>
-    <div id="dashLogin">
-      <div class="field"><label style="font-weight:700;display:block;margin-bottom:6px">الرقم السري</label><input type="password" id="dashPass" placeholder="أدخل الرمز"></div>
-      <div style="display:flex;gap:10px;margin-top:16px">
-        <button class="nav-btn btn-navy" onclick="authDash()">دخول</button>
-        <button class="nav-btn btn-outline" onclick="closeDash()">إلغاء</button>
-      </div>
-    </div>
-    <div id="dashPanel" style="display:none">
-      <div class="field"><label style="font-weight:700;display:block;margin-bottom:6px">Claude API Key</label><input type="password" id="cfApi" placeholder="sk-ant-..."></div>
-      <button class="nav-btn btn-gold" style="width:100%;margin-top:12px" onclick="saveCfg()">حفظ الإعدادات</button>
-      <h4 style="margin:20px 0 10px">سجل النتائج</h4>
-      <div id="recBox" style="background:#f5f5f5;padding:14px;border-radius:14px;max-height:200px;overflow:auto;font-size:.88rem">لا توجد سجلات بعد.</div>
-      <button class="nav-btn btn-navy" style="width:100%;margin-top:12px" onclick="exportRecs()">تصدير JSON</button>
-    </div>
   </div>
 </div>
 
@@ -947,14 +949,6 @@ const GAMES = {
   2: {pairs:[{l:"المرتبة الأولى",r:"عتق رقبة مؤمنة"},{l:"المرتبة الثانية",r:"صيام شهرين متتابعين"},{l:"المرتبة الثالثة",r:"إطعام ٦٠ مسكيناً"},{l:"الوطء قبل التكفير",r:"محرم والتحريم باقٍ"}]},
   3: {pairs:[{l:"الشهادة الخامسة للزوج",r:"لعنة الله عليه إن كذب"},{l:"الشهادة الخامسة للزوجة",r:"غضب الله عليها إن صدق"},{l:"أثر اللعان على الزوجية",r:"فرقة وتحريم مؤبد"},{l:"نسب الولد بعد اللعان",r:"ينتفي عن الزوج"}]},
   4: {pairs:[{l:"مطلقة قبل الدخول",r:"لا عدة عليها"},{l:"متوفى عنها (حامل)",r:"بوضع الحمل"},{l:"مطلقة ذات حيض",r:"ثلاثة قروء"},{l:"متوفى عنها (غير حامل)",r:"٤ أشهر و١٠ أيام"}]}
-};
-
-const NAZ_ANSWERS = {
-  1: "هذا إيلاء منعقد لأنه حلف بالله على ترك الوطء أكثر من ٤ أشهر. وبما أنه رجع قبل انتهاء المدة فعليه: الفيئة + كفارة يمين.",
-  2: "لا يجوز له معاشرتها قبل أداء الكفارة. يجب عليه كفارة الظهار المرتبة: عتق رقبة، فإن لم يجد فصيام شهرين متتابعين، فإن لم يستطع فإطعام ٦٠ مسكيناً.",
-  3: "الإجراء: اللعان أمام القاضي. الآثار: سقوط الحدين، الفرقة المؤبدة، انتفاء نسب الولد إن نفاه.",
-  4: "تنتهي عدتها بوضع الحمل مباشرة. الدليل: ﴿وَأُولَاتُ الْأَحْمَالِ أَجَلُهُنَّ أَنْ يَضَعْنَ حَمْلَهُنَّ﴾",
-  5: "لا يجوز لها الخروج ليلاً إلا لضرورة قاهرة. العزاء ليس ضرورة تبيح الخروج الليلي."
 };
 
 const FLASHCARDS = [
@@ -1006,7 +1000,7 @@ const QUIZ = [
   {q:"تجمع هذه الأبواب بهدف:",o:["زيادة النزاع","رفع الضرر وتنظيم الحقوق","إلغاء القضاء","تغيير المواريث"],a:1}
 ];
 
-let user={n:'',s:''},curSlide=0,score=0,answered=0,recs=[],activeL=null,gamesDone={};
+let user={n:'',s:''},curSlide=0,score=0,answered=0,activeL=null,gamesDone={};
 let startTime=null,timerInterval=null;
 let lessonComplete=false,reviewVisited=false;
 
@@ -1155,14 +1149,6 @@ function pickR(g,el,r){
   }
 }
 
-function checkNaz(n){
-  const ans=$(`#naz${n}`).value.trim();
-  const fb=$(`#fb${n}`);
-  if(!ans){toast('اكتب إجابتك أولاً');return}
-  fb.innerHTML=`<strong>الإجابة النموذجية:</strong><br>${NAZ_ANSWERS[n]}`;
-  fb.classList.add('on','info');
-}
-
 function renderReview(){
   $('#fcBox').innerHTML=FLASHCARDS.map(c=>`
     <div class="fc" onclick="this.classList.toggle('flip')">
@@ -1232,7 +1218,6 @@ function pickAns(qi,oi){
   answered++;
   if(answered===QUIZ.length){
     const elapsed=getElapsedTime();
-    recs.push({name:user.n,sec:user.s,score,time:elapsed,date:new Date().toLocaleDateString('ar-SA')});
     
     // إرسال البيانات فوراً إلى قوقل فورم
     sendToGoogleForm(user.n, user.s, score, elapsed);
@@ -1247,40 +1232,6 @@ function pickAns(qi,oi){
       </div>`;
     $('#qzResult').scrollIntoView({behavior:'smooth'});
   }
-}
-
-function openDash(){
-  $('#cfApi').value = localStorage.getItem('claudeApi') || '';
-  $('#mDash').classList.add('on');
-}
-function closeDash(){
-  $('#mDash').classList.remove('on');
-  $('#dashPanel').style.display='none';
-  $('#dashLogin').style.display='block';
-}
-
-function authDash(){
-  if($('#dashPass').value==='1234'){
-    $('#dashLogin').style.display='none';
-    $('#dashPanel').style.display='block';
-    $('#recBox').innerHTML=recs.length ? recs.map(r=>`<div style="border-bottom:1px solid #eee;padding:8px 0"><b>${r.name}</b> (${r.sec}) — ${r.score}/20 — ⏱️ ${r.time} — ${r.date}</div>`).join('') : 'لا توجد سجلات بعد.';
-  }else{
-    alert('رمز خاطئ!');
-  }
-}
-
-function saveCfg(){
-  localStorage.setItem('claudeApi', $('#cfApi').value.trim());
-  toast('تم حفظ الإعدادات');
-}
-
-function exportRecs(){
-  const blob=new Blob([JSON.stringify({db:'fiqh_lecture4',records:recs},null,2)],{type:'application/json'});
-  const a=document.createElement('a');
-  a.href=URL.createObjectURL(blob);
-  a.download='fiqh_records.json';
-  a.click();
-  toast('تم التصدير');
 }
 
 $$('.btab').forEach(b=>b.addEventListener('click',function(){
