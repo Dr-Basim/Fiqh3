@@ -1,1 +1,781 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>فقه ٣ — المحاضرة الرابعة (نسخة الذكاء الاصطناعي)</title>
 
+<!-- خطوط الصفحة الأولى -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700;800;900&family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0a1628;--navy2:#152238;--gold:#c9973a;--gold2:#e8c678;--gold3:#f5e6c8;
+  --cream:#faf8f3;--green:#059669;--red:#dc2626;--blue:#2563eb;--purple:#7c3aed;
+  --teal:#0d9488;--orange:#ea580c;--muted:#6b7280;
+  --font-q:"Amiri",serif;--font-u:"Tajawal",sans-serif;
+  --font-naskh:"Noto Naskh Arabic",serif;
+  --rad:20px;--sh:0 15px 40px rgba(10,22,40,.12);
+  --login-navy:#16213e;
+  --login-gold:#e2b96f;
+  --login-cream:#faf8f3;
+}
+html,body{height:100%;font-family:var(--font-u);background:var(--cream);color:var(--navy);overflow:hidden}
+.app{height:100%;display:flex;flex-direction:column}
+
+/* === HEADER === */
+.hdr{background:linear-gradient(135deg,var(--navy),var(--navy2));padding:8px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid var(--gold);z-index:100;}
+.hdr-right{display:flex;flex-direction:column;align-items:center;gap:6px}
+.logo-box{width:170px;height:75px;border-radius:10px;display:flex;align-items:center;justify-content:center;}
+.hdr-prof{color:var(--gold2);font-weight:800;font-size:.85rem}
+.hdr-center{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;flex:1}
+.hdr-course{font-family:var(--font-naskh);font-size:1.8rem;color:var(--gold);margin-bottom:4px}
+.hdr-lecture{font-size:.75rem;color:var(--gold2);font-weight:600}
+.hdr-left{display:flex;align-items:center;gap:10px}
+.hdr-stu{background:rgba(201,151,58,.15);border:1px solid rgba(201,151,58,.3);padding:6px 12px;border-radius:10px;color:#fff;font-size:.78rem}
+.hdr-stu b{color:var(--gold2);margin-left:6px}
+
+/* === MAIN === */
+.main{flex:1;overflow:hidden;position:relative}
+.scr{position:absolute;inset:0;overflow-y:auto;padding:20px 20px 140px;display:none;opacity:0;transform:translateY(20px);transition:.5s cubic-bezier(.4,0,.2,1);max-width:1100px;margin:0 auto;width:100%;}
+.scr.on{display:block;opacity:1;transform:translateY(0)}
+
+/* === BOTTOM BAR === */
+.bottom-bar{position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-top:3px solid var(--gold);display:none;padding:10px 20px max(10px,env(safe-area-inset-bottom));}
+.bottom-bar.on{display:block}
+.bottom-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;}
+.bottom-timer{background:rgba(5,150,105,.12);border:1px solid rgba(5,150,105,.3);padding:8px 16px;border-radius:12px;color:#059669;font-weight:900;font-size:.9rem;display:flex;align-items:center;gap:8px;}
+.bottom-tabs{display:flex;gap:8px}
+.btab{border:none;background:rgba(10,22,40,.06);color:var(--navy);cursor:pointer;padding:10px 20px;border-radius:14px;font-weight:700;font-size:.82rem;display:flex;align-items:center;gap:6px;transition:.2s;}
+.btab.act{background:var(--navy);color:var(--gold2)}
+.btab.locked{opacity:.4;cursor:not-allowed}
+.btab span{font-size:1.1rem}
+.bottom-dash{background:var(--navy);color:var(--gold2);border:none;padding:10px 16px;border-radius:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;font-size:.82rem;}
+
+/* === LOGIN SCREEN === */
+#s-login.scr{max-width:none;padding:0;}
+@keyframes loginFadeIn{0%{opacity:0}100%{opacity:1}}
+@keyframes loginPulse{0%,100%{opacity:1}50%{opacity:.5}}
+.welcome-wrap{min-height:100%;display:flex;align-items:center;justify-content:center;padding:1rem;background:url('https://www.transparenttextures.com/patterns/arabesque.png') repeat,var(--login-cream);animation:loginFadeIn .5s ease-out;}
+.welcome-glass{max-width:36rem;width:100%;background:rgba(255,255,255,0.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(226,185,111,0.3);box-shadow:0 8px 32px 0 rgba(31,38,135,0.07);border-radius:1.5rem;padding:2.5rem 1.875rem;text-align:center;position:relative;overflow:hidden;}
+.welcome-deco{position:absolute;top:0;right:0;width:8rem;height:8rem;background:var(--login-gold);opacity:.2;border-bottom-left-radius:9999px;pointer-events:none;}
+.welcome-logo-wrap{display:flex;justify-content:center;margin-bottom:1.5rem;position:relative;z-index:10;width:100%;}
+.welcome-logo-wrap img{width:16rem;height:auto;object-fit:contain;filter:drop-shadow(0 1px 2px rgba(0,0,0,.1));}
+.welcome-h1{font-family:'Amiri',serif;font-size:2.25rem;font-weight:700;color:var(--login-navy);margin-bottom:.5rem;position:relative;z-index:10;}
+.welcome-h2{font-size:1.5rem;font-weight:500;color:var(--login-gold);margin-bottom:.5rem;position:relative;z-index:10;}
+.welcome-prof-line{font-size:.875rem;font-weight:700;color:#6b7280;margin-bottom:2rem;border-bottom:1px solid #e5e7eb;padding-bottom:1rem;display:inline-block;position:relative;z-index:10;}
+.welcome-fields{display:flex;flex-direction:column;gap:1.5rem;position:relative;z-index:10;}
+.welcome-input{width:100%;padding:1rem;border-radius:.75rem;border:2px solid #e5e7eb;outline:none;transition:border-color .3s;text-align:center;font-family:'Tajawal',sans-serif;font-size:1rem;color:var(--login-navy);background:#fff;}
+.welcome-input:focus{border-color:var(--login-gold);}
+.welcome-error{color:#dc2626;font-weight:700;font-size:.95rem;animation:loginPulse 2s infinite;display:none;}
+.welcome-start-btn{width:100%;background:var(--login-navy);color:#fff;font-weight:700;font-size:1.25rem;padding:1rem;border-radius:.75rem;margin-top:1rem;border:none;cursor:pointer;box-shadow:0 10px 15px -3px rgba(0,0,0,.1);transition:all .3s ease;font-family:'Tajawal',sans-serif;}
+.welcome-start-btn:hover{background:var(--login-gold);color:var(--login-navy);transform:scale(1.05);}
+
+/* === ELEMENTS === */
+.page-header{text-align:center;margin-bottom:30px;padding:20px;background:linear-gradient(135deg,rgba(201,151,58,.08),rgba(201,151,58,.02));border-radius:24px}
+.page-icon{font-size:3rem;margin-bottom:10px}
+.page-title{font-family:var(--font-q);font-size:2rem;color:var(--navy);margin-bottom:6px}
+.page-sub{color:var(--gold);font-weight:700;font-size:.95rem}
+.term{color:var(--blue);font-weight:800}
+.hukm{color:var(--green);font-weight:800}
+.warn{color:var(--red);font-weight:800}
+.gold-text{color:var(--gold);font-weight:800}
+.purple-text{color:var(--purple);font-weight:800}
+.verse-block{background:linear-gradient(135deg,#fffdf8,#fef9ee);border:2px solid var(--gold);border-radius:24px;padding:28px 24px;margin:24px 0;text-align:center;position:relative;box-shadow:inset 0 0 60px rgba(201,151,58,.05);}
+.verse-block::before{content:"﷽";display:block;color:var(--gold);font-size:1.8rem;margin-bottom:12px;font-family:var(--font-q)}
+.verse-text{font-family:var(--font-q);font-size:1.35rem;line-height:2.3;color:var(--navy)}
+.verse-ref{font-size:.8rem;color:var(--gold);margin-top:12px;font-weight:600}
+.content-section{background:#fff;border-radius:20px;padding:24px;margin:20px 0;box-shadow:var(--sh);border-right:5px solid var(--gold);}
+.section-title{font-family:var(--font-q);font-size:1.3rem;color:var(--navy);margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.section-title::before{content:"";width:8px;height:8px;background:var(--gold);border-radius:50%}
+.content-text{line-height:2;font-size:1rem}
+.cells-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:24px 0}
+.smart-cell{background:linear-gradient(145deg,#fff,#fdfcfa);border:2px solid rgba(201,151,58,.2);border-radius:20px;padding:24px 20px;text-align:center;cursor:pointer;transition:.4s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden;}
+.smart-cell:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(201,151,58,.15);border-color:var(--gold)}
+.cell-icon{font-size:2.5rem;display:block;margin-bottom:12px}
+.cell-title{font-weight:900;font-size:1rem;color:var(--navy);margin-bottom:6px}
+.cell-hint{font-size:.75rem;color:var(--muted)}
+.card-overlay{position:fixed;inset:0;background:rgba(10,22,40,.85);backdrop-filter:blur(8px);z-index:500;display:none;align-items:center;justify-content:center;padding:20px;opacity:0;transition:.4s;}
+.card-overlay.on{display:flex;opacity:1}
+.expanded-card{background:#fff;width:100%;max-width:700px;max-height:85vh;overflow-y:auto;border-radius:28px;padding:0;position:relative;box-shadow:0 30px 60px rgba(0,0,0,.3);transform:scale(.9);transition:.4s cubic-bezier(.34,1.56,.64,1);}
+.card-overlay.on .expanded-card{transform:scale(1)}
+.exp-header{background:linear-gradient(135deg,var(--navy),var(--navy2));padding:24px;border-radius:28px 28px 0 0;position:sticky;top:0;z-index:10;}
+.exp-icon{font-size:2.5rem;margin-bottom:8px}
+.exp-title{font-family:var(--font-q);font-size:1.5rem;color:#fff}
+.exp-close{position:absolute;top:20px;left:20px;background:rgba(255,255,255,.2);border:none;width:40px;height:40px;border-radius:50%;color:#fff;cursor:pointer;font-size:1.2rem;}
+.exp-body{padding:24px;line-height:2;font-size:1rem}
+.exp-body h4{color:var(--navy);margin:16px 0 10px;font-size:1.1rem;border-bottom:2px solid var(--gold3);padding-bottom:6px}
+.exp-body ol,.exp-body ul{padding-right:24px;margin:10px 0}
+.exp-body li{margin-bottom:8px}
+.num-list{list-style:none;padding:0;margin:16px 0;counter-reset:item}
+.num-list li{counter-increment:item;padding:14px 50px 14px 14px;margin-bottom:10px;background:linear-gradient(90deg,#f8f6f1,#fff);border-radius:14px;border:1px solid rgba(0,0,0,.05);position:relative;line-height:1.8;}
+.num-list li::before{content:counter(item);position:absolute;right:12px;top:12px;width:30px;height:30px;border-radius:50%;background:var(--gold);color:#fff;display:grid;place-items:center;font-weight:900;font-size:.85rem;}
+.mindmap{margin:30px 0;padding:30px;border-radius:28px;background:linear-gradient(160deg,#f0f7ff 0%,#fef9f0 50%,#f0fdf4 100%);border:1px solid rgba(201,151,58,.2);position:relative;overflow:hidden;}
+.mind-title{text-align:center;font-family:var(--font-q);font-size:1.2rem;color:var(--navy);margin-bottom:20px;position:relative}
+.mind-center{width:160px;height:100px;margin:0 auto 24px;border-radius:50%;background:linear-gradient(135deg,var(--gold2),var(--gold));border:3px solid var(--gold);display:grid;place-items:center;font-weight:900;font-size:1rem;color:var(--navy);position:relative;z-index:2;box-shadow:0 15px 30px rgba(201,151,58,.25);}
+.mind-branches{display:grid;grid-template-columns:1fr 1fr;gap:16px;position:relative}
+.mind-branch{padding:16px;border-radius:16px;position:relative;line-height:1.7;font-size:.88rem;border:2px solid;transition:.3s}
+.mind-branch:hover{transform:scale(1.02)}
+.mind-branch h5{font-family:var(--font-q);font-size:1rem;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.mind-branch h5::before{content:"◆";font-size:.6rem}
+.mb-1{background:rgba(5,150,105,.1);border-color:rgba(5,150,105,.3);color:#065f46}
+.mb-2{background:rgba(37,99,235,.1);border-color:rgba(37,99,235,.3);color:#1e40af}
+.mb-3{background:rgba(234,88,12,.1);border-color:rgba(234,88,12,.3);color:#9a3412}
+.mb-4{background:rgba(124,58,237,.1);border-color:rgba(124,58,237,.3);color:#5b21b6}
+.game-box{background:linear-gradient(135deg,#f8f9fa,#fff);border-radius:24px;padding:24px;margin:24px 0;border:2px solid rgba(10,22,40,.08);}
+.game-title{font-family:var(--font-q);color:var(--navy);margin-bottom:16px;font-size:1.1rem}
+.game-hint{font-size:.8rem;color:var(--muted);margin-bottom:16px}
+.game-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.game-col{display:flex;flex-direction:column;gap:12px}
+.g-item,.g-choice{padding:14px 16px;border-radius:14px;font-size:.9rem;font-weight:700;cursor:pointer;text-align:center;min-height:56px;display:flex;align-items:center;justify-content:center;transition:.25s;line-height:1.5;}
+.g-item{background:var(--navy);color:#fff;box-shadow:0 4px 0 var(--navy2)}
+.g-choice{background:#fff;border:2px solid var(--gold);color:var(--navy);box-shadow:0 4px 0 #e6d5a8}
+.g-item.active{background:var(--gold);transform:translateY(2px);box-shadow:none}
+.g-choice.active{border-color:var(--navy);transform:translateY(2px);box-shadow:none}
+.g-item.done,.g-choice.done{opacity:.4;pointer-events:none;background:var(--green)!important;color:#fff!important;border:none!important;box-shadow:none}
+.naz-card{background:linear-gradient(135deg,#fff,#fefefe);border-radius:24px;padding:24px;margin:20px 0;border:2px solid rgba(201,151,58,.2);box-shadow:var(--sh);}
+.naz-badge{display:inline-block;background:var(--gold);color:#fff;padding:6px 14px;border-radius:20px;font-size:.8rem;font-weight:700;margin-bottom:12px;}
+.naz-q{font-family:var(--font-q);font-size:1.15rem;line-height:1.9;margin-bottom:16px}
+.naz-hint{background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.2);padding:14px;border-radius:14px;font-size:.9rem;line-height:1.8;margin-bottom:16px}
+.naz-ans{width:100%;min-height:120px;padding:14px;border:2px solid rgba(201,151,58,.3);border-radius:14px;font-family:var(--font-u);font-size:1rem;resize:vertical}
+.naz-fb{margin-top:16px;padding:16px;border-radius:14px;display:none;line-height:1.9; transition: all 0.3s ease;}
+.naz-fb.on{display:block}
+.naz-fb.info{background:rgba(37,99,235,.05);border:1px solid rgba(37,99,235,.2);color:#1e40af}
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:20px 0}
+.fc{height:180px;perspective:1000px;cursor:pointer}
+.fc-in{position:relative;width:100%;height:100%;transition:.6s;transform-style:preserve-3d;border-radius:18px;box-shadow:var(--sh)}
+.fc.flip .fc-in{transform:rotateY(180deg)}
+.fc-f,.fc-b{position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:20px}
+.fc-f{background:linear-gradient(135deg,var(--navy),var(--navy2));color:var(--gold2);font-weight:700;font-size:.95rem;text-align:center;line-height:1.6}
+.fc-b{background:#fff;border:2px solid var(--gold);transform:rotateY(180deg);font-size:.88rem;line-height:1.8;text-align:center;color:var(--navy)}
+.essay-list{display:flex;flex-direction:column;gap:12px}
+.essay{border-radius:16px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.06)}
+.essay-h{width:100%;border:none;padding:16px 20px;display:flex;align-items:center;gap:14px;font-weight:800;font-size:.95rem;cursor:pointer;transition:.2s;color:#fff;text-align:right;}
+.essay-navy{background:linear-gradient(90deg,#0a1628,#1e3a5f)}
+.essay-gold{background:linear-gradient(90deg,#c9973a,#e0b055);color:#2a1e05!important}
+.essay-icon{font-size:1.4rem;flex-shrink:0}
+.essay-text{flex:1;line-height:1.5}
+.essay-arr{font-size:1rem;transition:.3s}
+.essay.open .essay-arr{transform:rotate(180deg)}
+.essay-body{max-height:0;overflow:hidden;transition:.4s;background:#fff;padding:0 20px;line-height:1.9;font-size:.92rem}
+.essay.open .essay-body{max-height:400px;padding:16px 20px}
+.qz-card{background:#fff;border-radius:18px;padding:22px;margin-bottom:16px;box-shadow:var(--sh)}
+.qz-stem{font-family:var(--font-q);font-size:1.1rem;line-height:1.9;margin-bottom:14px}
+.qz-opt{display:block;width:100%;padding:14px 16px;margin:10px 0;border:2px solid #e5e7eb;border-radius:14px;background:#fff;cursor:pointer;text-align:right;font-size:.95rem;font-family:var(--font-u);transition:.2s;}
+.qz-opt:hover{border-color:var(--gold);background:#fffbf0}
+.qz-opt.right{background:var(--green);color:#fff;border-color:var(--green)}
+.qz-opt.wrong{background:var(--red);color:#fff;border-color:var(--red)}
+.qz-result{text-align:center;padding:40px;background:#fff;border-radius:24px;box-shadow:var(--sh)}
+.nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:30px;padding-top:20px;border-top:2px dashed rgba(201,151,58,.3)}
+.nav-btn{border:none;padding:14px 28px;border-radius:30px;font-weight:800;cursor:pointer;font-family:var(--font-u);transition:.2s;font-size:.95rem;}
+.nav-btn:active{transform:scale(.95)}
+.btn-gold{background:var(--gold);color:#fff}
+.btn-navy{background:var(--navy);color:#fff}
+.btn-outline{background:transparent;border:2px solid var(--navy);color:var(--navy)}
+.nav-btn:disabled{opacity:.4;cursor:not-allowed}
+.modal{position:fixed;inset:0;background:rgba(10,22,40,.8);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:600;padding:20px}
+.modal.on{display:flex}
+.modal-box{background:#fff;width:100%;max-width:480px;border-radius:24px;padding:28px;border-top:8px solid var(--gold);box-shadow:0 30px 60px rgba(0,0,0,.3)}
+.modal-title{font-family:var(--font-q);font-size:1.4rem;color:var(--navy);margin-bottom:20px}
+.modal-close{float:left;background:#eee;border:none;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:1.1rem}
+.toast{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;padding:12px 24px;border-radius:30px;font-weight:700;z-index:700;opacity:0;transition:.3s;pointer-events:none}
+.toast.on{opacity:1}
+.progress-bar{height:6px;background:rgba(201,151,58,.2);border-radius:99px;margin:16px 0;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:99px;transition:.5s}
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- HEADER -->
+<header class="hdr" id="mainHeader" style="display:none">
+  <div class="hdr-right">
+    <div class="logo-box"><img src="logo.png" alt="شعار الجامعة" style="max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 1px 2px rgba(0,0,0,.1));"></div>
+    <div class="hdr-prof">د/ باسم القرافي</div>
+  </div>
+  <div class="hdr-center">
+    <div class="hdr-course">مقرر فقه ٣</div>
+    <div class="hdr-lecture">المحاضرة الرابعة: الإيلاء • الظهار • اللعان • العدة والإحداد</div>
+  </div>
+  <div class="hdr-left">
+    <div class="hdr-stu"><b id="dName">—</b> | الشعبة: <span id="dSec">—</span></div>
+  </div>
+</header>
+
+<div class="main">
+
+  <!-- LOGIN -->
+  <div id="s-login" class="scr on">
+    <div class="welcome-wrap">
+      <div class="welcome-glass">
+        <div class="welcome-deco"></div>
+        <div class="welcome-logo-wrap"><img src="logo.png" alt="شعار الجامعة"></div>
+        <h1 class="welcome-h1">مقرر فقه ٣</h1>
+        <h2 class="welcome-h2">المحاضرة الرابعة: الإيلاء • الظهار • اللعان • العدة والإحداد</h2>
+        <div class="welcome-prof-line">إعداد: د/ باسم القرافي</div>
+        <div class="welcome-fields">
+          <div><input type="text" id="iName" class="welcome-input" placeholder="أدخل اسمك الكامل هنا..."></div>
+          <div><input type="text" id="iSec" class="welcome-input" placeholder="رقم الشعبة (مثال: YM2)"></div>
+          <p id="loginError" class="welcome-error"></p>
+          <button class="welcome-start-btn" onclick="doLogin()">ابدأ رحلة التعلم</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <div id="s-0" class="scr">
+    <div class="page-header"><div class="page-icon">📖</div><div class="page-title">تمهيد المحاضرة</div><div class="page-sub">لماذا شُرعت هذه الأحكام؟</div></div>
+    <div class="progress-bar"><div class="progress-fill" style="width:14%"></div></div>
+    <div class="verse-block">
+      <div class="verse-text">﴿وَعَاشِرُوهُنَّ بِالْمَعْرُوفِ ۚ فَإِنْ كَرِهْتُمُوهُنَّ فَعَسَىٰ أَنْ تَكْرَهُوا شَيْئًا وَيَجْعَلَ اللَّهُ فِيهِ خَيْرًا كَثِيرًا﴾</div>
+      <div class="verse-ref">سورة النساء: ١٩</div>
+    </div>
+    <div class="content-section">
+      <div class="section-title">لماذا نجمع هذه الأبواب معاً؟</div>
+      <div class="content-text">
+        جاءت الشريعة الإسلامية لتنظم الحياة الزوجية وترفع الضرر عن الطرفين، فالزواج ميثاق غليظ يقوم على <span class="term">المودة والرحمة</span> والسكن. وقد تعترض هذه العلاقة مشكلات خطيرة تحتاج تدخلاً شرعياً حاسماً:
+        <ul class="num-list" style="margin-top:16px">
+          <li><span class="gold-text">الإيلاء:</span> يمين يُعلّق الزوجة فلا هي مطلقة ولا هي زوجة، فوضع الشرع له حداً زمنياً وإجراءً قضائياً.</li>
+          <li><span class="gold-text">الظهار:</span> لفظ جاهلي يحرّم الزوجة بتشبيهها بالمحارم، فوصفه القرآن بالمنكر والزور وأوجب الكفارة.</li>
+          <li><span class="gold-text">اللعان:</span> اتهام يهدد شرف الزوجة، فشرع الله مخرجاً قضائياً بالشهادات المؤكدة بالأيمان.</li>
+          <li><span class="gold-text">العدة والإحداد:</span> فترات انتظار تحفظ الأنساب وتراعي المشاعر بعد الفراق أو الوفاة.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="cells-grid">
+      <div class="smart-cell" onclick="openCard(0,0)"><span class="cell-icon">🎯</span><div class="cell-title">الأهداف التعليمية</div></div>
+      <div class="smart-cell" onclick="openCard(0,1)"><span class="cell-icon">🔗</span><div class="cell-title">الترابط بين الأبواب</div></div>
+      <div class="smart-cell" onclick="openCard(0,2)"><span class="cell-icon">⚖️</span><div class="cell-title">المقاصد الشرعية</div></div>
+      <div class="smart-cell" onclick="openCard(0,3)"><span class="cell-icon">📚</span><div class="cell-title">المصادر والأدلة</div></div>
+    </div>
+    <div class="mindmap">
+      <div class="mind-title">🧠 الخريطة المفاهيمية للمحاضرة</div>
+      <div class="mind-center">منظومة حفظ<br>الحقوق الزوجية</div>
+      <div class="mind-branches">
+        <div class="mind-branch mb-1"><h5>الإيلاء</h5><p>ضبط يمين الهجر • ٤ أشهر مهلة • فيئة أو طلاق</p></div>
+        <div class="mind-branch mb-2"><h5>الظهار</h5><p>منع التشبيه بالمحارم • كفارة مرتبة • تحريم مؤقت</p></div>
+        <div class="mind-branch mb-3"><h5>اللعان</h5><p>مخرج عند القذف • أيمان مغلظة • فرقة مؤبدة</p></div>
+        <div class="mind-branch mb-4"><h5>العدة والإحداد</h5><p>استبراء الرحم • حفظ الأنساب • إظهار الوفاء</p></div>
+      </div>
+    </div>
+    <div class="nav-row"><div></div><button class="nav-btn btn-navy" onclick="goSlide(1)">التالي: الإيلاء ➜</button></div>
+  </div>
+
+  <!-- EILA -->
+  <div id="s-1" class="scr">
+    <div class="page-header"><div class="page-icon">⏳</div><div class="page-title">الإيلاء</div><div class="page-sub">التعريف • الشروط • الأحكام • الإجراءات</div></div>
+    <div class="progress-bar"><div class="progress-fill" style="width:28%"></div></div>
+    <div class="verse-block">
+      <div class="verse-text">﴿لِلَّذِينَ يُؤْلُونَ مِنْ نِسَائِهِمْ تَرَبُّصُ أَرْبَعَةِ أَشْهُرٍ ۖ فَإِنْ فَاءُوا فَإِنَّ اللَّهَ غَفُورٌ رَحِيمٌ ۝ وَإِنْ عَزَمُوا الطَّلَاقَ فَإِنَّ اللَّهَ سَمِيعٌ عَلِيمٌ﴾</div>
+      <div class="verse-ref">سورة البقرة: ٢٢٦-٢٢٧</div>
+    </div>
+    <div class="content-section">
+      <div class="section-title">التعريف اللغوي والاصطلاحي</div>
+      <div class="content-text">
+        <span class="term">لغةً:</span> مأخوذ من الأَلِيّة، وهي اليمين.<br><br>
+        <span class="term">شرعاً:</span> أن يحلف الزوج <span class="hukm">بالله تعالى</span> على ترك وطء زوجته <span class="warn">مدةً تزيد على أربعة أشهر</span>.
+      </div>
+    </div>
+    <div class="cells-grid">
+      <div class="smart-cell" onclick="openCard(1,0)"><span class="cell-icon">📋</span><div class="cell-title">شروط الانعقاد</div></div>
+      <div class="smart-cell" onclick="openCard(1,1)"><span class="cell-icon">⚖️</span><div class="cell-title">الحكم الشرعي</div></div>
+      <div class="smart-cell" onclick="openCard(1,2)"><span class="cell-icon">🏛️</span><div class="cell-title">الإجراء القضائي</div></div>
+      <div class="smart-cell" onclick="openCard(1,3)"><span class="cell-icon">💡</span><div class="cell-title">الحكمة من التشريع</div></div>
+    </div>
+    <div class="game-box"><div class="game-title">🧩 تمرين الفهم</div><div class="game-grid" id="game-1"></div></div>
+    <div class="nav-row"><button class="nav-btn btn-outline" onclick="goSlide(0)">◁ التمهيد</button><button class="nav-btn btn-navy" id="next-1" disabled onclick="goSlide(2)">التالي: الظهار ➜</button></div>
+  </div>
+
+  <!-- ZIHAR -->
+  <div id="s-2" class="scr">
+    <div class="page-header"><div class="page-icon">🗣️</div><div class="page-title">الظهار</div><div class="page-sub">التعريف • الحكم • الكفارة المرتبة</div></div>
+    <div class="progress-bar"><div class="progress-fill" style="width:42%"></div></div>
+    <div class="verse-block">
+      <div class="verse-text">﴿الَّذِينَ يُظَاهِرُونَ مِنْكُمْ مِنْ نِسَائِهِمْ مَا هُنَّ أُمَّهَاتِهِمْ ۖ إِنْ أُمَّهَاتُهُمْ إِلَّا اللَّائِي وَلَدْنَهُمْ ۚ وَإِنَّهُمْ لَيَقُولُونَ مُنْكَرًا مِنَ الْقَوْلِ وَزُورًا﴾</div>
+      <div class="verse-ref">سورة المجادلة: ٢</div>
+    </div>
+    <div class="content-section">
+      <div class="section-title">التعريف والوصف القرآني</div>
+      <div class="content-text">
+        <span class="term">تعريفه:</span> أن يُشبّه الرجل زوجته في الحرمة بإحدى محارمه.<br><br>
+        <span class="term">وصف القرآن:</span> <span class="warn">«مُنْكَرًا مِنَ الْقَوْلِ وَزُورًا»</span>.<br><br>
+        <span class="term">أثره:</span> <span class="hukm">يمنع الاستمتاع بالزوجة حتى أداء الكفارة</span>.
+      </div>
+    </div>
+    <div class="cells-grid">
+      <div class="smart-cell" onclick="openCard(2,0)"><span class="cell-icon">⛓️</span><div class="cell-title">الكفارة المرتبة</div></div>
+      <div class="smart-cell" onclick="openCard(2,1)"><span class="cell-icon">⚠️</span><div class="cell-title">الوطء قبل التكفير</div></div>
+      <div class="smart-cell" onclick="openCard(2,2)"><span class="cell-icon">📖</span><div class="cell-title">الدليل التفصيلي</div></div>
+      <div class="smart-cell" onclick="openCard(2,3)"><span class="cell-icon">🔄</span><div class="cell-title">الفرق عن الطلاق</div></div>
+    </div>
+    <div class="game-box"><div class="game-title">🧩 تمرين الفهم</div><div class="game-grid" id="game-2"></div></div>
+    <div class="nav-row"><button class="nav-btn btn-outline" onclick="goSlide(1)">◁ الإيلاء</button><button class="nav-btn btn-navy" id="next-2" disabled onclick="goSlide(3)">التالي: اللعان ➜</button></div>
+  </div>
+
+  <!-- LIAN -->
+  <div id="s-3" class="scr">
+    <div class="page-header"><div class="page-icon">🧑‍⚖️</div><div class="page-title">اللعان</div><div class="page-sub">الصفة • الآثار • الأحكام</div></div>
+    <div class="progress-bar"><div class="progress-fill" style="width:56%"></div></div>
+    <div class="verse-block">
+      <div class="verse-text">﴿وَالَّذِينَ يَرْمُونَ أَزْوَاجَهُمْ وَلَمْ يَكُنْ لَهُمْ شُهَدَاءُ إِلَّا أَنْفُسُهُمْ فَشَهَادَةُ أَحَدِهِمْ أَرْبَعُ شَهَادَاتٍ بِاللَّهِ ۙ إِنَّهُ لَمِنَ الصَّادِقِينَ﴾</div>
+      <div class="verse-ref">سورة النور: ٦-٧</div>
+    </div>
+    <div class="content-section">
+      <div class="section-title">التعريف والمشروعية</div>
+      <div class="content-text">
+        <span class="term">تعريفه:</span> شهادات مؤكدة بالأيمان مقرونة باللعن والغضب.<br><br>
+        <span class="term">مكانه:</span> يتم <span class="hukm">أمام القاضي</span> في المحكمة الشرعية.
+      </div>
+    </div>
+    <div class="cells-grid">
+      <div class="smart-cell" onclick="openCard(3,0)"><span class="cell-icon">🗣️</span><div class="cell-title">صفة اللعان</div></div>
+      <div class="smart-cell" onclick="openCard(3,1)"><span class="cell-icon">🎯</span><div class="cell-title">الآثار المترتبة</div></div>
+      <div class="smart-cell" onclick="openCard(3,2)"><span class="cell-icon">⚠️</span><div class="cell-title">حكم النكول</div></div>
+      <div class="smart-cell" onclick="openCard(3,3)"><span class="cell-icon">💡</span><div class="cell-title">الحكمة من التشريع</div></div>
+    </div>
+    <div class="game-box"><div class="game-title">🧩 تمرين الفهم</div><div class="game-grid" id="game-3"></div></div>
+    <div class="nav-row"><button class="nav-btn btn-outline" onclick="goSlide(2)">◁ الظهار</button><button class="nav-btn btn-navy" id="next-3" disabled onclick="goSlide(4)">التالي: العدة والإحداد ➜</button></div>
+  </div>
+
+  <!-- IDDAH -->
+  <div id="s-4" class="scr">
+    <div class="page-header"><div class="page-icon">🏠</div><div class="page-title">العدة والإحداد</div><div class="page-sub">الأنواع • المدد • الأحكام</div></div>
+    <div class="progress-bar"><div class="progress-fill" style="width:70%"></div></div>
+    <div class="verse-block">
+      <div class="verse-text">﴿وَالْمُطَلَّقَاتُ يَتَرَبَّصْنَ بِأَنْفُسِهِنَّ ثَلَاثَةَ قُرُوءٍ﴾ ۝ ﴿وَالَّذِينَ يُتَوَفَّوْنَ مِنْكُمْ وَيَذَرُونَ أَزْوَاجًا يَتَرَبَّصْنَ بِأَنْفُسِهِنَّ أَرْبَعَةَ أَشْهُرٍ وَعَشْرًا﴾</div>
+      <div class="verse-ref">سورة البقرة: ٢٢٨ و ٢٣٤</div>
+    </div>
+    <div class="content-section">
+      <div class="section-title">تعريف العدة والإحداد</div>
+      <div class="content-text">
+        <span class="term">العدة شرعاً:</span> مدة محددة شرعاً تلزم المرأة بعد الفراق تتربص فيها عن الزواج.<br><br>
+        <span class="term">الإحداد:</span> ترك الزينة والطيب للمتوفى عنها زوجها.
+      </div>
+    </div>
+    <div class="cells-grid">
+      <div class="smart-cell" onclick="openCard(4,0)"><span class="cell-icon">🤰</span><div class="cell-title">عدة الحامل</div></div>
+      <div class="smart-cell" onclick="openCard(4,1)"><span class="cell-icon">📅</span><div class="cell-title">عدة الوفاة والطلاق</div></div>
+      <div class="smart-cell" onclick="openCard(4,2)"><span class="cell-icon">🖤</span><div class="cell-title">أحكام الإحداد</div></div>
+      <div class="smart-cell" onclick="openCard(4,3)"><span class="cell-icon">💡</span><div class="cell-title">حِكَم العدة</div></div>
+    </div>
+    <div class="game-box"><div class="game-title">🧩 تمرين الفهم</div><div class="game-grid" id="game-4"></div></div>
+    <div class="nav-row"><button class="nav-btn btn-outline" onclick="goSlide(3)">◁ اللعان</button><button class="nav-btn btn-gold" id="next-4" disabled onclick="finishLesson()">✓ إنهاء الدرس</button></div>
+  </div>
+
+  <!-- === NAWAZIL (المعدلة للذكاء الاصطناعي) === -->
+  <div id="s-nawazil" class="scr">
+    <div class="page-header">
+      <div class="page-icon">⚖️</div>
+      <div class="page-title">النوازل الفقهية (تقييم ذكي)</div>
+      <div class="page-sub">أجب بأسلوبك، وسيقوم أستاذ الذكاء الاصطناعي بتقييمك فوراً</div>
+    </div>
+
+    <!-- تم تغيير الأزرار لـ evaluateNazilah(رقم) -->
+    <div class="naz-card">
+      <div class="naz-badge">نازلة ١ — الإيلاء</div>
+      <div class="naz-q">رجل حلف بالله ألا يقرب زوجته ستة أشهر بسبب خلاف بينهما، ثم ندم بعد شهرين وأراد الرجوع إليها.</div>
+      <div class="naz-hint"><strong>المطلوب:</strong> ما الحكم الشرعي؟ وما الذي يلزمه عند الرجوع؟</div>
+      <textarea class="naz-ans" id="naz1" placeholder="اكتب إجابتك هنا..."></textarea>
+      <button class="nav-btn btn-navy" onclick="evaluateNazilah(1)">🤖 قيّم إجابتي بالذكاء الاصطناعي</button>
+      <div class="naz-fb" id="fb1"></div>
+    </div>
+
+    <div class="naz-card">
+      <div class="naz-badge">نازلة ٢ — الظهار</div>
+      <div class="naz-q">قال رجل لزوجته في لحظة غضب: «أنتِ عليّ كظهر أمي»، ثم أراد معاشرتها في نفس اليوم.</div>
+      <div class="naz-hint"><strong>المطلوب:</strong> هل يجوز له ذلك؟ وما الذي يجب عليه؟</div>
+      <textarea class="naz-ans" id="naz2" placeholder="اكتب إجابتك هنا..."></textarea>
+      <button class="nav-btn btn-navy" onclick="evaluateNazilah(2)">🤖 قيّم إجابتي بالذكاء الاصطناعي</button>
+      <div class="naz-fb" id="fb2"></div>
+    </div>
+
+    <div class="naz-card">
+      <div class="naz-badge">نازلة ٣ — اللعان</div>
+      <div class="naz-q">اتهم رجل زوجته بالزنا ولم يكن لديه شهود، فرفعت الأمر للقاضي.</div>
+      <div class="naz-hint"><strong>المطلوب:</strong> ما الإجراء الشرعي؟ وما الآثار المترتبة إذا تم اللعان؟</div>
+      <textarea class="naz-ans" id="naz3" placeholder="اكتب إجابتك هنا..."></textarea>
+      <button class="nav-btn btn-navy" onclick="evaluateNazilah(3)">🤖 قيّم إجابتي بالذكاء الاصطناعي</button>
+      <div class="naz-fb" id="fb3"></div>
+    </div>
+
+    <div class="naz-card">
+      <div class="naz-badge">نازلة ٤ — العدة</div>
+      <div class="naz-q">توفي زوج امرأة وهي حامل في الشهر الخامس.</div>
+      <div class="naz-hint"><strong>المطلوب:</strong> متى تنتهي عدتها؟ وما الدليل؟</div>
+      <textarea class="naz-ans" id="naz4" placeholder="اكتب إجابتك هنا..."></textarea>
+      <button class="nav-btn btn-navy" onclick="evaluateNazilah(4)">🤖 قيّم إجابتي بالذكاء الاصطناعي</button>
+      <div class="naz-fb" id="fb4"></div>
+    </div>
+
+    <div class="naz-card">
+      <div class="naz-badge">نازلة ٥ — الإحداد</div>
+      <div class="naz-q">امرأة متوفى عنها زوجها، تحتاج للخروج ليلاً لحضور عزاء قريبتها.</div>
+      <div class="naz-hint"><strong>المطلوب:</strong> ما حكم خروجها؟ ولماذا؟</div>
+      <textarea class="naz-ans" id="naz5" placeholder="اكتب إجابتك هنا..."></textarea>
+      <button class="nav-btn btn-navy" onclick="evaluateNazilah(5)">🤖 قيّم إجابتي بالذكاء الاصطناعي</button>
+      <div class="naz-fb" id="fb5"></div>
+    </div>
+  </div>
+
+  <!-- === REVIEW === -->
+  <div id="s-review" class="scr">
+    <div class="page-header"><div class="page-icon">🧠</div><div class="page-title">المراجعة الذكية</div></div>
+    <h3 style="color:var(--navy);border-right:4px solid var(--gold);padding-right:12px;margin:24px 0 16px">بطاقات المفاهيم (اضغط للقلب)</h3>
+    <div class="fc-grid" id="fcBox"></div>
+    <h3 style="color:var(--navy);border-right:4px solid var(--gold);padding-right:12px;margin:30px 0 16px">الأسئلة المقالية (١٠ أسئلة)</h3>
+    <div class="essay-list" id="essBox"></div>
+  </div>
+
+  <!-- === QUIZ === -->
+  <div id="s-quiz" class="scr">
+    <div class="page-header"><div class="page-icon">✅</div><div class="page-title">التقييم النهائي</div></div>
+    <div id="qzBox"></div>
+  </div>
+</div>
+
+<!-- === BOTTOM BAR === -->
+<div class="bottom-bar" id="bottomBar">
+  <div class="bottom-inner">
+    <div class="bottom-timer"><span>⏱️</span><span id="timerDisplay">00:00:00</span></div>
+    <div class="bottom-tabs">
+      <button class="btab act" data-t="lesson"><span>📚</span> الدرس</button>
+      <button class="btab" data-t="nawazil"><span>⚖️</span> النوازل</button>
+      <button class="btab" data-t="review"><span>🧠</span> المراجعة</button>
+      <button class="btab locked" data-t="quiz" id="quizTab"><span>🔒</span> التقييم</button>
+    </div>
+    <button class="bottom-dash" onclick="openDash()">🔐 لوحة المعلم</button>
+  </div>
+</div>
+</div>
+
+<!-- EXPANDED CARD OVERLAY -->
+<div id="cardOverlay" class="card-overlay"><div class="expanded-card"><div class="exp-header"><button class="exp-close" onclick="closeCard()">✕</button><div class="exp-icon" id="expIcon"></div><div class="exp-title" id="expTitle"></div></div><div class="exp-body" id="expBody"></div></div></div>
+
+<!-- TEACHER MODAL -->
+<div id="mDash" class="modal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeDash()">✕</button>
+    <div class="modal-title">🔐 لوحة تحكم الأستاذ</div>
+    <div id="dashLogin">
+      <div class="field"><label style="font-weight:700;display:block;margin-bottom:6px">الرقم السري</label><input type="password" id="dashPass" placeholder="أدخل الرمز (1234)"></div>
+      <div style="display:flex;gap:10px;margin-top:16px"><button class="nav-btn btn-navy" onclick="authDash()">دخول</button><button class="nav-btn btn-outline" onclick="closeDash()">إلغاء</button></div>
+    </div>
+    <div id="dashPanel" style="display:none">
+      <div class="field" style="margin-bottom:15px"><label style="font-weight:700;display:block;margin-bottom:6px">Claude API Key (لتقييم النوازل)</label><input type="password" id="cfApi" placeholder="sk-ant-..." style="width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;"></div>
+      <button class="nav-btn btn-gold" style="width:100%;margin-top:12px" onclick="saveCfg()">حفظ الإعدادات</button>
+      <h4 style="margin:20px 0 10px">سجل النتائج (محلياً)</h4>
+      <div id="recBox" style="background:#f5f5f5;padding:14px;border-radius:14px;max-height:200px;overflow:auto;font-size:.88rem">لا توجد سجلات بعد.</div>
+      <button class="nav-btn btn-navy" style="width:100%;margin-top:12px" onclick="exportRecs()">تصدير JSON</button>
+    </div>
+  </div>
+</div>
+<div id="toast" class="toast"></div>
+
+<!-- ===================== JAVASCRIPT ===================== -->
+<script>
+// 1. البيانات (Data)
+const CARDS_DATA = {
+  0: [
+    {icon:"🎯",title:"الأهداف التعليمية",body:`<h4>بنهاية هذه المحاضرة ستكون قادراً على:</h4><ol><li>تعريف كل من: <span class="term">الإيلاء، الظهار، اللعان، العدة، الإحداد</span>.</li><li>ذكر <span class="hukm">الأدلة الشرعية</span> من القرآن والسنة لكل باب.</li><li>بيان <span class="purple-text">شروط وأركان</span> كل حكم.</li><li>شرح <span class="gold-text">الآثار المترتبة</span> على كل منها.</li><li>فهم <span class="hukm">دور القاضي</span> في الإيلاء واللعان.</li><li>تمييز أنواع العدد ومددها.</li></ol>`},
+    {icon:"🔗",title:"الترابط بين الأبواب",body:`<h4>ما الذي يجمع هذه الأبواب؟</h4><p>كلها تتعلق بـ<span class="term">معالجة خلل في العلاقة الزوجية</span>:</p><ul><li><span class="gold-text">الإيلاء والظهار:</span> ألفاظ تصدر من الزوج تضر بالزوجة.</li><li><span class="gold-text">اللعان:</span> اتهام خطير يحتاج مخرجاً قضائياً.</li><li><span class="gold-text">العدة والإحداد:</span> تنظيم ما بعد انتهاء العلاقة.</li></ul><p>والقاسم المشترك: <span class="hukm">رفع الضرر وحفظ الحقوق</span>.</p>`},
+    {icon:"⚖️",title:"المقاصد الشرعية",body:`<h4>المقاصد العامة من هذه التشريعات:</h4><ol><li><span class="hukm">حفظ النسل:</span> من خلال العدة واستبراء الرحم.</li><li><span class="hukm">حفظ العرض:</span> من خلال اللعان وأحكام القذف.</li><li><span class="hukm">منع الظلم:</span> بوضع حدود زمنية للإيلاء وإجراءات للظهار.</li><li><span class="hukm">تحقيق العدل:</span> بإعطاء كل ذي حق حقه.</li></ol>`},
+    {icon:"📚",title:"المصادر والأدلة",body:`<h4>الأدلة الأساسية في هذه المحاضرة:</h4><ul><li><span class="term">الإيلاء:</span> البقرة ٢٢٦-٢٢٧</li><li><span class="term">الظهار:</span> المجادلة ١-٤</li><li><span class="term">اللعان:</span> النور ٦-٩</li><li><span class="term">العدة:</span> البقرة ٢٢٨، ٢٣٤، الطلاق ٤، الأحزاب ٤٩</li></ul>`}
+  ],
+  1: [
+    {icon:"📋",title:"شروط انعقاد الإيلاء",body:`<h4>لا ينعقد الإيلاء إلا بتوفر أربعة شروط:</h4><ol><li><span class="term">أن يكون الزوج قادراً على الوطء:</span> فلا يصح من العاجز عجزاً دائماً.</li><li><span class="term">أن يكون الحلف بالله أو صفة من صفاته:</span> <span class="warn">فلا ينعقد بالحلف بالطلاق أو العتق</span>.</li><li><span class="term">أن تكون المدة أكثر من أربعة أشهر.</span></li><li><span class="term">أن تكون الزوجة ممن يمكن وطؤها.</span></li></ol>`},
+    {icon:"⚖️",title:"الحكم الشرعي للإيلاء",body:`<h4>حكم الإيلاء:</h4><p>الإيلاء <span class="warn">محرم</span>؛ لأنه:</p><ul><li>يمين على ترك <span class="hukm">واجب</span> وهو إعفاف الزوجة.</li><li>فيه <span class="warn">إضرار بالغ</span> بالزوجة بتعليقها.</li></ul>`},
+    {icon:"🏛️",title:"الإجراء القضائي",body:`<h4>ما الذي يحدث بعد الإيلاء؟</h4><p><span class="gold-text">قبل انقضاء ٤ أشهر:</span></p><ul><li>إذا رجع (فاء) الزوج وجامع: لزمته <span class="hukm">كفارة يمين</span> فقط.</li></ul><p><span class="gold-text">بعد ٤ أشهر مع مطالبة الزوجة:</span></p><ol><li>يوقفه القاضي ويأمره بالفيئة أو الطلاق.</li><li>فإن <span class="warn">أبى</span>: طلّق عليه القاضي رفعاً للضرر.</li></ol>`},
+    {icon:"💡",title:"الحكمة من التشريع",body:`<h4>لماذا شُرعت أحكام الإيلاء؟</h4><ol><li><span class="hukm">إبطال عادة جاهلية:</span> كان الرجل يحلف ألا يقرب زوجته السنة والسنتين.</li><li><span class="hukm">وضع حد زمني:</span> أربعة أشهر كحد أقصى.</li><li><span class="hukm">إعطاء المرأة حق المطالبة.</span></li></ol>`}
+  ],
+  2: [
+    {icon:"⛓️",title:"الكفارة المرتبة",body:`<h4>كفارة الظهار مرتبة على ثلاث مراتب:</h4><ol><li><span class="hukm">عتق رقبة مؤمنة</span></li><li><span class="hukm">صيام شهرين متتابعين</span> <span class="term">قبل أن يمس الزوجة</span>.</li><li><span class="hukm">إطعام ستين مسكيناً</span></li></ol><p class="warn">تنبيه: يجب أداء الكفارة قبل العودة للجماع.</p>`},
+    {icon:"⚠️",title:"الوطء قبل التكفير",body:`<h4>ماذا لو جامع المظاهر زوجته قبل أداء الكفارة؟</h4><ol><li><span class="warn">أثم إثماً عظيماً</span></li><li><span class="term">تبقى الزوجة محرمة عليه</span> حتى يكفّر.</li><li><span class="hukm">لا تسقط عنه الكفارة</span></li></ol>`},
+    {icon:"📖",title:"الدليل التفصيلي",body:`<h4>النص القرآني:</h4><p class="term">﴿وَالَّذِينَ يُظَاهِرُونَ مِنْ نِسَائِهِمْ ثُمَّ يَعُودُونَ لِمَا قَالُوا فَتَحْرِيرُ رَقَبَةٍ مِنْ قَبْلِ أَنْ يَتَمَاسَّا...﴾</p><p>سورة المجادلة: ٣-٤</p>`},
+    {icon:"🔄",title:"الفرق عن الطلاق",body:`<h4>الفرق بين الظهار والطلاق:</h4><table style="width:100%;border-collapse:collapse;margin-top:10px"><tr style="background:var(--gold3)"><th style="padding:10px;border:1px solid #ddd">الظهار</th><th style="padding:10px;border:1px solid #ddd">الطلاق</th></tr><tr><td style="padding:10px;border:1px solid #ddd">لا يُزيل ملك النكاح</td><td style="padding:10px;border:1px solid #ddd">يُنهي العلاقة الزوجية</td></tr><tr><td style="padding:10px;border:1px solid #ddd">تحريم مؤقت</td><td style="padding:10px;border:1px solid #ddd">فرقة</td></tr></table>`}
+  ],
+  3: [
+    {icon:"🗣️",title:"صفة اللعان",body:`<h4>كيفية اللعان أمام القاضي:</h4><p><span class="gold-text">شهادات الزوج:</span></p><ol><li>يشهد <span class="term">أربع شهادات بالله</span></li><li>الشهادة <span class="warn">الخامسة</span>: «وأن لعنة الله عليّ إن كنت من الكاذبين».</li></ol><p><span class="gold-text">شهادات الزوجة:</span></p><ol><li>تشهد <span class="term">أربع شهادات بالله</span></li><li>الشهادة <span class="warn">الخامسة</span>: «وأن غضب الله عليّ إن كان من الصادقين».</li></ol>`},
+    {icon:"🎯",title:"الآثار المترتبة",body:`<h4>ما الذي يترتب على اللعان؟</h4><ol><li><span class="hukm">سقوط حد القذف</span> عن الزوج.</li><li><span class="hukm">سقوط حد الزنا</span> عن الزوجة.</li><li><span class="warn">ثبوت الفرقة المؤبدة</span></li><li><span class="term">انتفاء نسب الولد</span> عن الزوج.</li></ol>`},
+    {icon:"⚠️",title:"حكم النكول",body:`<h4>ماذا لو امتنع أحدهما؟</h4><p><span class="gold-text">إذا نكل الزوج:</span></p><ul><li>أُقيم عليه <span class="warn">حد القذف</span></li></ul><p><span class="gold-text">إذا نكلت الزوجة:</span></p><ul><li>أُقيم عليها <span class="warn">الحد</span> إن وُجد موجبه.</li></ul>`},
+    {icon:"💡",title:"الحكمة من التشريع",body:`<h4>لماذا شُرع اللعان؟</h4><ol><li><span class="hukm">حفظ الأعراض</span></li><li><span class="hukm">رفع الحد عن الصادق</span></li><li><span class="hukm">حفظ الأنساب</span></li></ol>`}
+  ],
+  4: [
+    {icon:"🤰",title:"عدة الحامل",body:`<h4>عدة المرأة الحامل:</h4><p style="font-size:1.2rem;text-align:center;padding:20px;background:var(--gold3);border-radius:12px;margin:16px 0"><span class="hukm">بوضع الحمل كله</span></p><p>الدليل: <span class="term">﴿وَأُولَاتُ الْأَحْمَالِ أَجَلُهُنَّ أَنْ يَضَعْنَ حَمْلَهُنَّ﴾</span></p>`},
+    {icon:"📅",title:"عدة الوفاة والطلاق",body:`<h4>أنواع العدد ومددها:</h4><p><span class="gold-text">عدة الوفاة (غير الحامل):</span></p><p style="text-align:center;font-size:1.1rem;color:var(--green);font-weight:900">أربعة أشهر وعشرة أيام</p><p><span class="gold-text">عدة الطلاق:</span></p><ul><li><span class="term">ذات الحيض:</span> <span class="hukm">ثلاثة قروء</span></li><li><span class="term">من لا تحيض:</span> <span class="hukm">ثلاثة أشهر</span></li><li><span class="term">قبل الدخول:</span> <span class="hukm">لا عدة</span></li></ul>`},
+    {icon:"🖤",title:"أحكام الإحداد",body:`<h4>الإحداد وأحكامه:</h4><p><span class="warn">واجب على المتوفى عنها زوجها فقط</span></p><h4>ما يجب على المحدّة:</h4><ol><li><span class="hukm">ترك الزينة والطيب</span></li><li><span class="hukm">لزوم البيت</span></li><li><span class="warn">لا تخرج ليلاً</span> إلا لضرورة.</li></ol>`},
+    {icon:"💡",title:"حِكَم العدة",body:`<h4>الحِكَم من تشريع العدة:</h4><ol><li><span class="hukm">استبراء الرحم</span></li><li><span class="hukm">إتاحة الرجعة</span></li><li><span class="hukm">صيانة حق الحمل</span></li><li><span class="hukm">إظهار الوفاء</span></li></ol>`}
+  ]
+};
+
+const GAMES = {
+  1: {pairs:[{l:"حلف بالله ألا يطأها سنة",r:"إيلاء منعقد"},{l:"حلف بالطلاق على الهجر",r:"ليس إيلاءً"},{l:"رجع قبل ٤ أشهر وجامع",r:"عليه كفارة يمين"},{l:"أبى الرجوع والطلاق",r:"يطلق عليه القاضي"}]},
+  2: {pairs:[{l:"المرتبة الأولى",r:"عتق رقبة مؤمنة"},{l:"المرتبة الثانية",r:"صيام شهرين متتابعين"},{l:"المرتبة الثالثة",r:"إطعام ٦٠ مسكيناً"},{l:"الوطء قبل التكفير",r:"محرم والتحريم باقٍ"}]},
+  3: {pairs:[{l:"الشهادة الخامسة للزوج",r:"لعنة الله عليه إن كذب"},{l:"الشهادة الخامسة للزوجة",r:"غضب الله عليها إن صدق"},{l:"أثر اللعان على الزوجية",r:"فرقة وتحريم مؤبد"},{l:"نسب الولد بعد اللعان",r:"ينتفي عن الزوج"}]},
+  4: {pairs:[{l:"مطلقة قبل الدخول",r:"لا عدة عليها"},{l:"متوفى عنها (حامل)",r:"بوضع الحمل"},{l:"مطلقة ذات حيض",r:"ثلاثة قروء"},{l:"متوفى عنها (غير حامل)",r:"٤ أشهر و١٠ أيام"}]}
+};
+
+// **البيانات الجديدة الخاصة بالمدرس الذكي**
+const NAWAZIL_DATA = {
+  1: {q: "رجل حلف بالله ألا يقرب زوجته ستة أشهر بسبب خلاف بينهما، ثم ندم بعد شهرين وأراد الرجوع إليها.", a: "هذا إيلاء منعقد لأنه حلف بالله على ترك الوطء أكثر من ٤ أشهر. وبما أنه رجع قبل انتهاء المدة فعليه: الفيئة + كفارة يمين."},
+  2: {q: "قال رجل لزوجته في لحظة غضب: «أنتِ عليّ كظهر أمي»، ثم أراد معاشرتها في نفس اليوم.", a: "لا يجوز له معاشرتها قبل أداء الكفارة. يجب عليه كفارة الظهار المرتبة: عتق رقبة، فإن لم يجد فصيام شهرين متتابعين، فإن لم يستطع فإطعام ٦٠ مسكيناً."},
+  3: {q: "اتهم رجل زوجته بالزنا ولم يكن لديه شهود، فرفعت الأمر للقاضي.", a: "الإجراء: اللعان أمام القاضي. الآثار: سقوط الحدين، الفرقة المؤبدة، انتفاء نسب الولد إن نفاه."},
+  4: {q: "توفي زوج امرأة وهي حامل في الشهر الخامس.", a: "تنتهي عدتها بوضع الحمل مباشرة. الدليل: ﴿وَأُولَاتُ الْأَحْمَالِ أَجَلُهُنَّ أَنْ يَضَعْنَ حَمْلَهُنَّ﴾"},
+  5: {q: "امرأة متوفى عنها زوجها، تحتاج للخروج ليلاً لحضور عزاء قريبتها.", a: "لا يجوز لها الخروج ليلاً إلا لضرورة قاهرة. العزاء ليس ضرورة تبيح الخروج الليلي."}
+};
+
+const FLASHCARDS = [
+  {q:"ما تعريف الإيلاء شرعاً؟",a:"حلف الزوج بالله على ترك وطء زوجته أكثر من ٤ أشهر."},
+  {q:"ما شروط انعقاد الإيلاء؟",a:"قدرة الزوج، يمين بالله، مدة > ٤ أشهر، زوجة يمكن وطؤها."},
+  {q:"ما حكم الإيلاء؟",a:"محرم؛ لأنه يمين على ترك واجب وإضرار بالزوجة."},
+  {q:"ما تعريف الظهار؟",a:"تشبيه الزوج زوجته بمحرم في الحرمة."},
+  {q:"ما كفارة الظهار بالترتيب؟",a:"عتق رقبة ← صيام شهرين ← إطعام ٦٠ مسكيناً."},
+  {q:"ما أثر اللعان على الزوجية؟",a:"فرقة وتحريم مؤبد بين الزوجين."},
+  {q:"عدة الوفاة لغير الحامل؟",a:"أربعة أشهر وعشرة أيام."},
+  {q:"عدة المطلقة ذات الحيض؟",a:"ثلاثة قروء."},
+  {q:"ما الإحداد؟",a:"ترك الزينة والطيب للمتوفى عنها زوجها."},
+  {q:"هل تجب العدة قبل الدخول؟",a:"لا تجب بنص الأحزاب ٤٩."}
+];
+
+const ESSAYS = [
+  {q:"عرّف الإيلاء واذكر دليله من القرآن.",a:"الإيلاء: حلف الزوج بالله على ترك وطء زوجته مدةً تزيد على أربعة أشهر. الدليل: البقرة ٢٢٦-٢٢٧."},
+  {q:"اذكر شروط انعقاد الإيلاء.",a:"١. قدرة الزوج ٢. يمين بالله ٣. مدة > ٤ أشهر ٤. زوجة يمكن وطؤها."},
+  {q:"ما إجراء القاضي في الإيلاء بعد ٤ أشهر؟",a:"يوقف الزوج ويأمره بالفيئة أو الطلاق. فإن أبى فرّق القاضي."},
+  {q:"عرّف الظهار واذكر حكمه.",a:"تشبيه الزوجة بالمحارم. حكمه: محرم ومنكر."},
+  {q:"رتب كفارة الظهار.",a:"١. عتق رقبة ٢. صيام شهرين ٣. إطعام ٦٠ مسكيناً."},
+  {q:"صف صفة اللعان.",a:"الزوج: ٤ شهادات + لعنة. الزوجة: ٤ شهادات + غضب. أمام القاضي."},
+  {q:"ما آثار اللعان؟",a:"١. سقوط الحدين ٢. فرقة مؤبدة ٣. انتفاء نسب الولد."},
+  {q:"قسّم العدة إلى أنواعها.",a:"وفاة: ٤ أشهر و١٠ أيام. طلاق: ٣ قروء أو ٣ أشهر. قبل الدخول: لا عدة."},
+  {q:"ما الإحداد وأحكامه؟",a:"ترك الزينة للمتوفى عنها. أحكامه: لزوم البيت، اجتناب الزينة والطيب."},
+  {q:"ما الحكمة من العدة؟",a:"استبراء الرحم، إتاحة الرجعة، صيانة حق الحمل، إظهار الوفاء."}
+];
+
+const QUIZ = [
+  {q:"الإيلاء شرعاً هو يمين على ترك الوطء مدة:",o:["أقل من شهر","أكثر من ٤ أشهر","عام","يومين"],a:1},
+  {q:"دليل الإيلاء من سورة:",o:["المائدة","البقرة","النور","الأحزاب"],a:1},
+  {q:"من شروط الإيلاء أن يكون الحلف:",o:["بالطلاق","بالله أو صفة له","بالعتق","بأي شيء"],a:1},
+  {q:"إذا فاء الزوج قبل ٤ أشهر لزمه:",o:["كفارة يمين","كفارة ظهار","لا شيء","إطعام ٦٠"],a:0},
+  {q:"بعد ٤ أشهر مع مطالبة الزوجة، القاضي:",o:["ينتظر سنة","يلزمه بالفيئة أو الطلاق","يسقط حقها","يحكم بالخلع"],a:1},
+  {q:"الظهار هو تشبيه الزوجة بـ:",o:["صديقة","محرم","أجنبية","جارة"],a:1},
+  {q:"لا يحل للمظاهر الاستمتاع حتى:",o:["يعتذر","يدفع مالاً","يؤدي كفارة الظهار","يستشير"],a:2},
+  {q:"المرتبة الأولى في كفارة الظهار:",o:["صيام شهرين","إطعام ٦٠","عتق رقبة","توبة فقط"],a:2},
+  {q:"الجماع قبل كفارة الظهار:",o:["لا يضر","يأثم والتحريم باقٍ","يفسخ النكاح","تسقط الكفارة"],a:1},
+  {q:"اللعان يلجأ إليه عند:",o:["خلاف مالي","اتهام الزنا بلا بينة","ترك النفقة","طلب خلع"],a:1},
+  {q:"صفة اللعان تشمل:",o:["يميناً واحداً","٤ شهادات ثم الخامسة","صيام","صدقة"],a:1},
+  {q:"من آثار اللعان:",o:["جواز الرجعة","تحريم مؤبد","كفارة ظهار","لا أثر"],a:1},
+  {q:"عدة الوفاة لغير الحامل:",o:["٣ قروء","٤ أشهر و١٠ أيام","٣ أشهر","لا عدة"],a:1},
+  {q:"عدة المطلقة ذات الحيض:",o:["٣ قروء","٤ أشهر","٦ أشهر","شهر"],a:0},
+  {q:"عدة من لا تحيض (آيسة):",o:["شهر","٣ أشهر","عام","حيضة"],a:1},
+  {q:"المطلقة قبل الدخول:",o:["عدتها ٣ أشهر","لا عدة عليها","عدتها شهران","عدة وفاة"],a:1},
+  {q:"الإحداد واجب على:",o:["كل مطلقة","المتوفى عنها زوجها","المختلعة","ذات الخلع"],a:1},
+  {q:"من محظورات الإحداد:",o:["الأكل","ترك الزينة والطيب","النوم","الكلام"],a:1},
+  {q:"الحكمة من العدة:",o:["تعذيب المرأة","استبراء الرحم","تقليل المهر","إرضاء الأهل"],a:1},
+  {q:"تجمع هذه الأبواب بهدف:",o:["زيادة النزاع","رفع الضرر وتنظيم الحقوق","إلغاء القضاء","تغيير المواريث"],a:1}
+];
+
+// 2. محرك التشغيل (Logic)
+let user={n:'',s:''},curSlide=0,score=0,answered=0,recs=[],activeL=null,gamesDone={};
+let startTime=null,timerInterval=null;
+let lessonComplete=false,reviewVisited=false;
+
+const $=s=>document.querySelector(s);
+const $$=s=>document.querySelectorAll(s);
+const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),2000)};
+
+function formatTime(ms){
+  const s=Math.floor(ms/1000);
+  const h=Math.floor(s/3600);
+  const m=Math.floor((s%3600)/60);
+  const sec=s%60;
+  return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+}
+
+function startTimer(){startTime=Date.now();timerInterval=setInterval(()=>{$('#timerDisplay').textContent=formatTime(Date.now()-startTime);},1000);}
+function getElapsedTime(){if(!startTime)return '00:00:00'; return formatTime(Date.now()-startTime);}
+
+function checkQuizUnlock(){if(lessonComplete && reviewVisited){const qTab=$('#quizTab'); qTab.classList.remove('locked'); qTab.innerHTML='<span>✅</span> التقييم';}}
+
+function doLogin(){
+  const n=$('#iName').value.trim(),s=$('#iSec').value.trim();
+  const errBox = $('#loginError');
+  if(!n||!s){errBox.style.display = 'block'; errBox.textContent = 'الرجاء إدخال الاسم والشعبة للمتابعة'; return;}
+  errBox.style.display = 'none'; user={n,s}; $('#dName').textContent=n; $('#dSec').textContent=s;
+  $('#mainHeader').style.display='flex'; $('#bottomBar').classList.add('on');
+  startTimer(); goSlide(0);
+}
+
+function goSlide(i){
+  $$('.scr').forEach(s=>s.classList.remove('on')); $(`#s-${i}`).classList.add('on'); curSlide=i;
+  if(GAMES[i] && !$(`#game-${i}`).innerHTML.trim()) renderGame(i);
+  $$('.btab').forEach(b=>b.classList.remove('act')); $$('.btab')[0].classList.add('act');
+}
+
+function finishLesson(){lessonComplete=true; toast('🎉 أتممت الدرس بنجاح!'); checkQuizUnlock(); switchTab('nawazil');}
+
+function switchTab(t){
+  if(t==='quiz'){if(!lessonComplete || !reviewVisited){toast('أكمل الدرس والمراجعة أولاً لفتح التقييم'); return;}}
+  $$('.scr').forEach(s=>s.classList.remove('on')); $(`#s-${t}`).classList.add('on');
+  $$('.btab').forEach(b=>b.classList.remove('act'));
+  const idx={nawazil:1,review:2,quiz:3}[t];
+  if(idx!==undefined) $$('.btab')[idx].classList.add('act'); else $$('.btab')[0].classList.add('act');
+  if(t==='review'){reviewVisited=true; if(!$('#fcBox').innerHTML.trim()) renderReview(); checkQuizUnlock();}
+  if(t==='quiz' && !$('#qzBox').innerHTML.trim()) {renderQuiz();}
+}
+
+function openCard(slide,idx){
+  const card=CARDS_DATA[slide][idx];
+  $('#expIcon').textContent=card.icon; $('#expTitle').textContent=card.title; $('#expBody').innerHTML=card.body;
+  $('#cardOverlay').classList.add('on');
+}
+function closeCard(){$('#cardOverlay').classList.remove('on')}
+
+function renderGame(g){
+  const game=GAMES[g]; if(!game)return;
+  const shuffled=[...game.pairs].sort(()=>Math.random()-.5);
+  const box=$(`#game-${g}`);
+  box.innerHTML=`<div class="game-col">${game.pairs.map((p,i)=>`<div class="g-item" data-i="${i}" onclick="pickL(${g},this,${i})">${p.l}</div>`).join('')}</div><div class="game-col">${shuffled.map((p,i)=>`<div class="g-choice" data-r="${p.r}" onclick="pickR(${g},this,'${p.r.replace(/'/g,"\\'")}')">${p.r}</div>`).join('')}</div>`;
+}
+
+function pickL(g,el,i){$$(`#game-${g} .g-item`).forEach(e=>e.classList.remove('active')); el.classList.add('active'); activeL={g,i,el};}
+function pickR(g,el,r){
+  if(!activeL||activeL.g!==g)return;
+  const correct=GAMES[g].pairs[activeL.i].r;
+  if(r===correct){
+    activeL.el.classList.add('done'); el.classList.add('done'); toast('✅ صحيح!'); activeL=null; 
+    const all=$$(`#game-${g} .g-item`); const done=[...all].every(e=>e.classList.contains('done'));
+    if(done){gamesDone[g]=true; const btn=$(`#next-${g}`); if(btn)btn.disabled=false; toast('🎉 أكملت التمرين!');}
+  }else{
+    toast('❌ حاول مرة أخرى'); const wrongEl = activeL.el; activeL=null; setTimeout(()=>wrongEl.classList.remove('active'),300);
+  }
+}
+
+// ** دالة التقييم الذكي الجديدة **
+async function evaluateNazilah(n) {
+  const studentAns = $(`#naz${n}`).value.trim();
+  const fbBox = $(`#fb${n}`);
+  const btn = document.querySelector(`#s-nawazil .naz-card:nth-child(${n+1}) button`);
+
+  if (!studentAns) {toast('الرجاء كتابة إجابتك أولاً ليتم تقييمها'); return;}
+
+  const apiKey = localStorage.getItem('claudeApi');
+  if (!apiKey) {
+    toast('عذراً: غير متصل بالذكاء الاصطناعي حالياً.');
+    // تصرف بديل في حال عدم وجود مفتاح (يعرض الجواب النموذجي كالسابق)
+    fbBox.innerHTML = `<strong>الإجابة النموذجية:</strong><br>${NAWAZIL_DATA[n].a}`;
+    fbBox.classList.add('on', 'info');
+    return;
+  }
+
+  const originalBtnText = btn.innerHTML;
+  btn.disabled = true; btn.innerHTML = '⏳ جاري التحليل والتقييم...'; btn.style.background = '#e8c678'; btn.style.color = '#0a1628';
+  fbBox.classList.remove('on');
+
+  const nazilah = NAWAZIL_DATA[n];
+  const systemPrompt = `أنت أستاذ جامعي خبير في الفقه الإسلامي. طُرحت هذه النازلة على الطالب: "${nazilah.q}"
+الإجابة الشرعية النموذجية المعتمدة هي: "${nazilah.a}"
+إجابة الطالب هي: "${studentAns}"
+
+المطلوب منك:
+1. خاطب الطالب مباشرة بأسلوب تربوي أكاديمي.
+2. قارن إجابته بالإجابة النموذجية، واشرح له ما أصاب فيه وما أخطأ فيه بدقة فقهية.
+3. وجهه للجواب الصحيح.
+4. في سطر مستقل في النهاية، أعطه تقييماً من 10 (مثال: التقييم: 8/10).
+5. يجب أن يكون ردك مختصراً وواضحاً (لا تتجاوز 150 كلمة).`;
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
+      body: JSON.stringify({
+        model: 'claude-3-haiku-20240307',
+        max_tokens: 400,
+        messages: [{ role: 'user', content: systemPrompt }]
+      })
+    });
+
+    const data = await response.json();
+    if (data.error) throw new Error(data.error.message);
+
+    const aiFeedback = data.content[0].text;
+    fbBox.innerHTML = `<strong>🧑‍🏫 تقييم أستاذك الذكي:</strong><br><br>${aiFeedback.replace(/\n/g, '<br>')}`;
+    fbBox.classList.add('on', 'info');
+
+  } catch (error) {
+    console.error("API Error:", error);
+    fbBox.innerHTML = `<strong>⚠️ عذراً:</strong> حدث خطأ في الاتصال بالذكاء الاصطناعي. (تأكد من صحة المفتاح)`;
+    fbBox.classList.add('on'); fbBox.style.background = '#fee2e2'; fbBox.style.color = '#991b1b';
+  } finally {
+    btn.disabled = false; btn.innerHTML = originalBtnText; btn.style.background = ''; btn.style.color = '';
+  }
+}
+
+function renderReview(){
+  $('#fcBox').innerHTML=FLASHCARDS.map(c=>`<div class="fc" onclick="this.classList.toggle('flip')"><div class="fc-in"><div class="fc-f"><div>${c.q}</div><small style="opacity:.6;margin-top:10px">اضغط للقلب</small></div><div class="fc-b"><div>${c.a}</div></div></div></div>`).join('');
+  $('#essBox').innerHTML=ESSAYS.map((e,i)=>`<div class="essay" onclick="this.classList.toggle('open')"><div class="essay-h ${i%2===0?'essay-navy':'essay-gold'}"><span class="essay-icon">${i%2===0?'📘':'📙'}</span><span class="essay-text">${i+1}. ${e.q}</span><span class="essay-arr">▼</span></div><div class="essay-body">${e.a}</div></div>`).join('');
+}
+
+function renderQuiz(){
+  score=0;answered=0;
+  $('#qzBox').innerHTML=QUIZ.map((q,i)=>`<div class="qz-card" id="qc-${i}"><div class="qz-stem"><b>س${i+1}:</b> ${q.q}</div>${q.o.map((o,j)=>`<button class="qz-opt" onclick="pickAns(${i},${j})">${o}</button>`).join('')}</div>`).join('')+`<div id="qzResult"></div>`;
+}
+
+function sendToGoogleForm(name, sec, finalScore, timeStr) {
+  const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSftptPrOgU7Y4d3tpf3piGa_UGy5sk7Q_HuCbhnJsNIzN5Mkg/formResponse";
+  const formData = new FormData();
+  formData.append("entry.1476047400", "الرابعة"); // يتغير حسب المحاضرة
+  formData.append("entry.1052717729", name);
+  formData.append("entry.1846637103", sec);
+  formData.append("entry.2127797316", finalScore);
+  formData.append("entry.92438342", timeStr);
+  
+  fetch(formUrl, {method: "POST", mode: "no-cors", body: formData})
+    .then(() => console.log("تم الإرسال لـ Google Form بنجاح")).catch(err => console.error(err));
+}
+
+function pickAns(qi,oi){
+  const card=$(`#qc-${qi}`); if(card.dataset.done)return; card.dataset.done='1';
+  const btns=card.querySelectorAll('.qz-opt'); btns.forEach(b=>b.disabled=true);
+  
+  if(oi===QUIZ[qi].a){btns[oi].classList.add('right'); score++;} else {btns[oi].classList.add('wrong'); btns[QUIZ[qi].a].classList.add('right');}
+  answered++;
+  
+  if(answered===QUIZ.length){
+    const elapsed=getElapsedTime();
+    recs.push({name:user.n,sec:user.s,score,time:elapsed,date:new Date().toLocaleDateString('ar-SA')});
+    sendToGoogleForm(user.n, user.s, score, elapsed);
+
+    $('#qzResult').innerHTML=`<div class="qz-result"><h2 style="color:var(--gold);margin-bottom:10px">🎉 انتهى التقييم</h2><p style="font-size:2rem;font-weight:900;color:var(--navy)">${score} / ٢٠</p><p style="margin-top:10px">${user.n} — الشعبة ${user.s}</p><p style="margin-top:10px;color:var(--green)">⏱️ الوقت المستغرق: <strong>${elapsed}</strong></p><button class="nav-btn btn-navy" style="margin-top:20px" onclick="renderQuiz()">إعادة التقييم</button></div>`;
+    $('#qzResult').scrollIntoView({behavior:'smooth'});
+  }
+}
+
+function openDash(){
+  $('#cfApi').value = localStorage.getItem('claudeApi') || '';
+  $('#mDash').classList.add('on');
+}
+function closeDash(){$('#mDash').classList.remove('on'); $('#dashPanel').style.display='none'; $('#dashLogin').style.display='block';}
+function authDash(){
+  if($('#dashPass').value==='1234'){
+    $('#dashLogin').style.display='none'; $('#dashPanel').style.display='block';
+    $('#recBox').innerHTML=recs.length ? recs.map(r=>`<div style="border-bottom:1px solid #eee;padding:8px 0"><b>${r.name}</b> (${r.sec}) — ${r.score}/20 — ⏱️ ${r.time} — ${r.date}</div>`).join('') : 'لا توجد سجلات بعد.';
+  }else{alert('رمز خاطئ!');}
+}
+
+function saveCfg(){localStorage.setItem('claudeApi', $('#cfApi').value.trim()); toast('تم حفظ الإعدادات');}
+function exportRecs(){
+  const blob=new Blob([JSON.stringify({db:'fiqh_lecture4',records:recs},null,2)],{type:'application/json'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='fiqh_records.json'; a.click(); toast('تم التصدير');
+}
+
+$$('.btab').forEach(b=>b.addEventListener('click',function(){const t=this.dataset.t; if(t==='lesson') goSlide(curSlide||0); else switchTab(t);}));
+</script>
+</body>
+</html>
