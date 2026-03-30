@@ -1,0 +1,2002 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>مقرر فقه ٣ — المحاضرة الخامسة (محسّن)</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@500;700;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ================= المتغيرات والألوان ================= */
+:root {
+  --navy: #0f172a;
+  --navy2: #1e293b;
+  --gold: #d4af37;
+  --gold-light: #f4e4bc;
+  --cream: #f8f9fa;
+  --blue: #2563eb;
+  --green: #10b981;
+  --red: #ef4444;
+  --text-main: #1f2937;
+  --text-muted: #6b7280;
+  --bg-card: #ffffff;
+  
+  --font-title: 'Tajawal', sans-serif;
+  --font-body: 'IBM Plex Sans Arabic', sans-serif;
+  --font-quran: 'Amiri', serif;
+  
+  --rad: 16px;
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 20px rgba(0,0,0,0.08);
+  --shadow-lg: 0 10px 30px rgba(0,0,0,0.12);
+  --border: #e5e7eb;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] {
+  --cream: #0f172a;
+  --bg-card: #1e293b;
+  --text-main: #f9fafb;
+  --text-muted: #9ca3af;
+  --border: #374151;
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.3);
+  --shadow-md: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+html, body { height: 100%; font-family: var(--font-body); background: var(--cream); color: var(--text-main); overflow: hidden; }
+.app { height: 100%; display: flex; flex-direction: column; transition: var(--transition); }
+
+/* ================= تلوين النصوص العلمي ================= */
+.term-blue { color: var(--blue); font-weight: 700; font-size: 1.1rem; background: rgba(37,99,235,0.08); padding: 2px 6px; border-radius: 4px; }
+.hl-green { color: var(--green); font-weight: 700; background: rgba(16,185,129,0.08); padding: 2px 6px; border-radius: 4px; }
+.hl-red { color: var(--red); font-weight: 700; background: rgba(239,68,68,0.08); padding: 2px 6px; border-radius: 4px; }
+.section-head { 
+  color: var(--navy); 
+  font-weight: 800; 
+  font-size: 1.25rem; 
+  margin: 25px 0 12px; 
+  display: inline-block; 
+  border-bottom: 3px solid var(--gold); 
+  padding-bottom: 6px;
+}
+
+/* ================= الهيدر المحسّن ================= */
+.hdr { 
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 8px 20px; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  border-bottom: 2px solid var(--gold); 
+  z-index: 1000; 
+  box-shadow: var(--shadow-md);
+  color: #fff;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-height: auto;
+}
+.hdr-right { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; min-width: 140px; }
+.hdr-dr { color: var(--gold); font-family: var(--font-title); font-weight: 700; font-size: 0.9rem; }
+.logo-box { height: 40px; background: transparent; display: flex; align-items: center; justify-content: center; }
+.logo-box img { max-height: 100%; object-fit: contain; filter: drop-shadow(0 0 4px rgba(0,0,0,0.2)); }
+.hdr-center { text-align: center; flex: 1; max-width: 600px; }
+.hdr-course { font-family: var(--font-quran); font-size: 1.5rem; color: var(--gold-light); font-weight: 700; margin-bottom: 2px; line-height: 1.3; }
+.hdr-lecture { font-size: 0.9rem; color: #cbd5e1; font-family: var(--font-title); font-weight: 600; }
+.hdr-stu { 
+  background: rgba(255,255,255,0.15); 
+  border: 1px solid rgba(255,255,255,0.25); 
+  padding: 4px 12px; 
+  border-radius: 20px; 
+  font-weight: 600; 
+  font-size: 0.8rem; 
+  color: #fff;
+  backdrop-filter: blur(4px);
+}
+.hdr-tools { display: flex; gap: 8px; align-items: center; }
+.tool-btn {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1rem;
+  display: grid;
+  place-items: center;
+  transition: var(--transition);
+}
+.tool-btn:hover { background: var(--gold); border-color: var(--gold); transform: scale(1.1); }
+
+/* ================= التخطيط المحسّن ================= */
+.main { flex: 1; overflow: hidden; position: relative; display: flex; flex-direction: column; }
+.scr { 
+  position: absolute; 
+  inset: 0; 
+  overflow-y: auto; 
+  padding: 25px 30px 120px;
+  display: none; 
+  opacity: 0; 
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  max-width: 1200px;
+  width: 95%;
+  margin: 0 auto; 
+  scrollbar-width: thin; 
+  scrollbar-color: var(--gold) transparent;
+}
+.scr.on { 
+  display: block; 
+  opacity: 1; 
+  animation: fadeInUp 0.5s ease forwards;
+}
+@keyframes fadeInUp { 
+  from { opacity: 0; transform: translateY(20px); } 
+  to { opacity: 1; transform: translateY(0); } 
+}
+.scr::-webkit-scrollbar { width: 8px; }
+.scr::-webkit-scrollbar-track { background: transparent; }
+.scr::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+
+/* ================= شاشة الدخول ================= */
+.welcome-wrap { 
+  min-height: 100vh; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  background: 
+    radial-gradient(circle at top right, rgba(201,151,58,0.15) 0%, transparent 50%),
+    radial-gradient(circle at bottom left, rgba(15,23,42,0.1) 0%, transparent 50%),
+    url('https://www.transparenttextures.com/patterns/arabesque.png') repeat, 
+    var(--cream); 
+}
+.welcome-box { 
+  background: var(--bg-card); 
+  padding: 45px 40px; 
+  border-radius: 24px; 
+  box-shadow: var(--shadow-lg); 
+  max-width: 480px; 
+  width: 90%; 
+  text-align: center; 
+  border-top: 6px solid var(--gold); 
+  transition: var(--transition);
+}
+.welcome-box:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
+.logo-box-login { background: transparent; height: 70px; margin-bottom: 20px; display: flex; justify-content: center; }
+.logo-box-login img { max-height: 100%; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
+.w-title { 
+  font-family: var(--font-title); 
+  color: var(--navy); 
+  font-size: 2.4rem; 
+  font-weight: 900; 
+  margin-bottom: 8px; 
+  background: linear-gradient(135deg, var(--navy), var(--gold));
+  -webkit-background-clip: text; 
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.w-sub { color: var(--gold); font-size: 1.15rem; font-weight: 700; margin-bottom: 6px; }
+.w-dr { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 30px; font-weight: 500; }
+.welcome-input { 
+  width: 100%; 
+  padding: 16px 20px; 
+  border-radius: 12px; 
+  border: 2px solid var(--border); 
+  outline: none; 
+  margin-bottom: 16px; 
+  font-family: var(--font-body); 
+  font-size: 1rem; 
+  text-align: center; 
+  background: var(--cream); 
+  transition: var(--transition);
+}
+.welcome-input:focus { border-color: var(--gold); background: #fff; box-shadow: 0 0 0 4px rgba(212,175,55,0.15); }
+.w-btn { 
+  width: 100%; 
+  background: linear-gradient(135deg, var(--navy), var(--navy2)); 
+  color: #fff; 
+  padding: 18px; 
+  border-radius: 12px; 
+  font-family: var(--font-title); 
+  font-weight: 800; 
+  font-size: 1.2rem; 
+  border: none; 
+  cursor: pointer; 
+  transition: var(--transition); 
+  margin-top: 10px; 
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+}
+.w-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: 0.5s;
+}
+.w-btn:hover::before { left: 100%; }
+.w-btn:hover { 
+  transform: translateY(-2px); 
+  box-shadow: var(--shadow-lg);
+  background: linear-gradient(135deg, var(--gold), #b8941f);
+}
+
+/* ================= الفيديو ================= */
+.video-wrapper { 
+  margin: 25px 0; 
+  border-radius: 20px; 
+  overflow: hidden; 
+  box-shadow: var(--shadow-lg); 
+  border: 3px solid var(--gold); 
+  background: #000; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  position: relative;
+  aspect-ratio: 16/9;
+}
+.video-wrapper video { width: 100%; height: 100%; object-fit: contain; display: block; }
+
+.num-list { list-style: none; padding: 0; margin: 20px 0; counter-reset: item; }
+.num-list li { 
+  counter-increment: item; 
+  padding: 16px 50px 16px 20px; 
+  margin-bottom: 12px; 
+  background: var(--bg-card); 
+  border-radius: 12px; 
+  border: 1px solid var(--border); 
+  position: relative; 
+  line-height: 1.8;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+.num-list li:hover { transform: translateX(-5px); box-shadow: var(--shadow-md); border-right: 4px solid var(--gold); }
+.num-list li::before { 
+  content: counter(item); 
+  position: absolute; 
+  right: 12px; 
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px; 
+  height: 32px; 
+  border-radius: 50%; 
+  background: var(--gold); 
+  color: #fff; 
+  display: grid; 
+  place-items: center; 
+  font-weight: 900; 
+  font-size: .9rem;
+  box-shadow: 0 2px 8px rgba(212,175,55,0.4);
+}
+.gold-text { color: var(--gold); font-weight: 800; }
+
+/* ================= البانر الرئيسي ================= */
+.hero-banner { 
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); 
+  border: 1px solid var(--gold); 
+  border-radius: var(--rad); 
+  padding: 30px 25px; 
+  text-align: center; 
+  margin-bottom: 35px; 
+  margin-top: 10px; 
+  box-shadow: var(--shadow-lg); 
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.hero-banner::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url('https://www.transparenttextures.com/patterns/stardust.png');
+  opacity: 0.08;
+}
+.hero-icon { font-size: 2.8rem; margin-bottom: 12px; color: var(--gold); filter: drop-shadow(0 0 10px rgba(212,175,55,0.4)); }
+.hero-title { font-family: var(--font-title); font-size: 2rem; color: #fff; font-weight: 900; margin-bottom: 8px; line-height: 1.3; }
+.hero-sub { color: var(--gold-light); font-weight: 600; font-size: 1.05rem; margin-bottom: 18px; }
+.hero-line { height: 3px; background: linear-gradient(to left, transparent, var(--gold), transparent); margin: 20px auto; width: 60%; }
+.hero-tags { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+.hero-tag { 
+  background: rgba(255,255,255,0.1); 
+  border: 1px solid var(--gold); 
+  padding: 6px 18px; 
+  border-radius: 20px; 
+  font-size: 0.85rem; 
+  font-weight: 700; 
+  color: var(--gold-light);
+  backdrop-filter: blur(4px);
+  transition: var(--transition);
+}
+.hero-tag:hover { background: var(--gold); color: var(--navy); transform: translateY(-2px); }
+
+/* ================= شبكات المعلومات ================= */
+.block-header { 
+  font-family: var(--font-title); 
+  font-size: 1.6rem; 
+  color: var(--navy); 
+  font-weight: 900; 
+  margin: 35px 0 18px; 
+  display: flex; 
+  align-items: center; 
+  gap: 12px;
+}
+.block-header::after { 
+  content: ''; 
+  flex: 1; 
+  height: 3px; 
+  background: linear-gradient(to left, var(--gold), transparent); 
+  border-radius: 2px; 
+}
+
+.info-grid { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+  gap: 18px; 
+  margin-bottom: 30px; 
+}
+.info-card { 
+  background: var(--bg-card); 
+  border: 1px solid var(--border); 
+  border-radius: var(--rad); 
+  padding: 22px 18px; 
+  text-align: center; 
+  box-shadow: var(--shadow-sm); 
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.info-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--gold), var(--navy));
+  opacity: 0;
+  transition: var(--transition);
+}
+.info-card:hover { 
+  transform: translateY(-8px); 
+  box-shadow: var(--shadow-lg);
+  border-color: transparent;
+}
+.info-card:hover::before { opacity: 1; }
+.info-card-icon { font-size: 2.2rem; margin-bottom: 10px; color: var(--gold); }
+.info-card-title { font-family: var(--font-title); font-weight: 800; color: var(--navy); font-size: 1.1rem; margin-bottom: 8px; }
+.info-card-desc { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; font-weight: 500; }
+
+/* ================= المدخل والآية ================= */
+.intro-text { 
+  font-size: 1.1rem; 
+  line-height: 2; 
+  color: var(--text-main); 
+  margin-bottom: 18px; 
+  border-right: 5px solid var(--gold); 
+  padding: 22px; 
+  background: var(--bg-card); 
+  border-radius: 0 var(--rad) var(--rad) 0; 
+  box-shadow: var(--shadow-sm);
+}
+.verse-box { 
+  background: linear-gradient(135deg, #fdfaf3 0%, #fff 100%); 
+  border: 2px solid var(--gold); 
+  border-radius: var(--rad); 
+  padding: 35px 25px; 
+  text-align: center; 
+  margin-bottom: 35px; 
+  box-shadow: var(--shadow-md); 
+}
+.verse-basmala { font-family: var(--font-quran); color: var(--gold); font-size: 1.8rem; margin-bottom: 12px; font-weight: 700; }
+.verse-text { font-family: var(--font-quran); font-size: 1.7rem; color: var(--navy); line-height: 2.4; margin-bottom: 12px; }
+.verse-ref { font-size: 1rem; color: var(--text-muted); font-weight: 700; font-family: var(--font-title); }
+
+/* ================= الأكورديون ================= */
+.accordion { 
+  background: var(--bg-card); 
+  border: 1px solid var(--border); 
+  border-radius: 12px; 
+  margin-bottom: 14px; 
+  box-shadow: var(--shadow-sm); 
+  overflow: hidden; 
+  transition: var(--transition);
+}
+.accordion:hover { box-shadow: var(--shadow-md); }
+.accordion-header { 
+  padding: 18px 22px; 
+  cursor: pointer; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  font-family: var(--font-title); 
+  font-weight: 800; 
+  font-size: 1.15rem; 
+  color: var(--navy); 
+  background: linear-gradient(to left, #fff, #f8fafc); 
+  transition: var(--transition);
+  border-right: 5px solid var(--gold);
+}
+.accordion-header:hover { background: var(--cream); }
+.accordion-icon { 
+  color: var(--gold); 
+  font-weight: bold; 
+  font-size: 1.3rem; 
+  transition: var(--transition);
+  background: rgba(212,175,55,0.1);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+.accordion.active .accordion-icon { transform: rotate(180deg); background: var(--gold); color: #fff; }
+.accordion-body { 
+  max-height: 0; 
+  overflow: hidden; 
+  transition: max-height 0.5s cubic-bezier(0,1,0,1), padding 0.5s ease; 
+  padding: 0 22px; 
+  font-size: 1.05rem; 
+  line-height: 2.1; 
+  color: var(--text-main); 
+  background: var(--bg-card);
+}
+.accordion.active .accordion-body { 
+  padding: 22px; 
+  max-height: 2000px; 
+  border-top: 1px solid var(--border); 
+}
+.accordion-body ul, .accordion-body ol { margin-right: 22px; margin-bottom: 14px; margin-top: 10px; }
+.accordion-body li { margin-bottom: 10px; padding-right: 8px; }
+
+/* ================= الخرائط الذهنية ================= */
+.tree-container { 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  background: var(--bg-card); 
+  border: 1px solid var(--border); 
+  border-radius: var(--rad); 
+  padding: 35px 25px; 
+  overflow-x: auto; 
+  margin-bottom: 35px; 
+  box-shadow: var(--shadow-md); 
+}
+.tree-root { 
+  background: linear-gradient(135deg, var(--navy), var(--navy2)); 
+  color: #fff; 
+  padding: 14px 35px; 
+  border-radius: 30px; 
+  font-family: var(--font-title); 
+  font-weight: 800; 
+  font-size: 1.2rem; 
+  border-bottom: 4px solid var(--gold); 
+  margin-bottom: 35px; 
+  position: relative; 
+  z-index: 2;
+  box-shadow: var(--shadow-md);
+}
+.tree-branches { 
+  display: flex; 
+  gap: 25px; 
+  position: relative; 
+  justify-content: center; 
+  flex-wrap: wrap;
+}
+.tree-branches::before { content: ''; position: absolute; top: -16px; left: 15%; right: 15%; height: 2px; background: var(--gold); }
+.tree-branches::after { content: ''; position: absolute; top: -30px; left: 50%; width: 2px; height: 16px; background: var(--gold); }
+.tree-node { 
+  position: relative; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  width: 180px; 
+  flex: 1;
+  min-width: 150px;
+}
+.tree-node::before { content: ''; position: absolute; top: -16px; left: 50%; width: 2px; height: 16px; background: var(--gold); }
+.tree-leaf { 
+  background: var(--bg-card); 
+  border: 2px solid var(--gold); 
+  color: var(--navy); 
+  padding: 18px 14px; 
+  border-radius: 14px; 
+  text-align: center; 
+  width: 100%; 
+  box-shadow: var(--shadow-sm); 
+  transition: var(--transition);
+}
+.tree-leaf:hover { 
+  transform: translateY(-5px) scale(1.02); 
+  box-shadow: var(--shadow-lg);
+  border-color: var(--navy);
+}
+.tree-leaf h4 { font-family: var(--font-title); font-size: 1.1rem; font-weight: 900; margin-bottom: 8px; color: var(--navy); }
+.tree-leaf p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; font-weight: 600; }
+
+/* ================= التمارين ================= */
+.app-scenario { 
+  background: linear-gradient(90deg, #eff6ff, var(--bg-card)); 
+  border-right: 5px solid var(--blue); 
+  padding: 18px 22px; 
+  border-radius: 12px; 
+  margin-bottom: 18px; 
+  font-size: 1.05rem; 
+  line-height: 1.8; 
+  font-weight: 600; 
+  color: var(--navy); 
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+.app-scenario::before { content: '💡'; position: absolute; left: 15px; top: 50%; transform: translateY(-50%); font-size: 1.4rem; }
+
+.ex-box { 
+  border: 1px solid var(--border); 
+  border-radius: 14px; 
+  padding: 22px; 
+  margin-bottom: 22px; 
+  background: var(--bg-card); 
+  box-shadow: var(--shadow-sm); 
+  transition: var(--transition);
+}
+.ex-box:hover { box-shadow: var(--shadow-md); }
+.ex-q { font-weight: 800; font-size: 1.15rem; margin-bottom: 16px; color: var(--navy); font-family: var(--font-title); line-height: 1.5; }
+.ex-opts { display: flex; gap: 10px; flex-wrap: wrap; }
+.ex-btn { 
+  flex: 1; 
+  min-width: 150px; 
+  background: var(--bg-card); 
+  border: 2px solid var(--border); 
+  padding: 14px 18px; 
+  border-radius: 10px; 
+  font-family: var(--font-body); 
+  font-weight: 700; 
+  cursor: pointer; 
+  transition: var(--transition); 
+  color: var(--text-main); 
+  font-size: 1rem;
+}
+.ex-btn:hover { 
+  border-color: var(--gold); 
+  background: #fff; 
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.ex-fb { 
+  display: none; 
+  margin-top: 16px; 
+  padding: 16px; 
+  border-radius: 10px; 
+  font-size: 1rem; 
+  font-weight: 700; 
+  line-height: 1.7; 
+  animation: fadeIn 0.4s ease;
+}
+.ex-fb.right { display: block; background: #d1fae5; color: #065f46; border: 2px solid var(--green); }
+.ex-fb.wrong { display: block; background: #fee2e2; color: #991b1b; border: 2px solid var(--red); }
+
+.game-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 14px; }
+.g-item, .g-choice { 
+  padding: 16px; 
+  border-radius: 10px; 
+  font-weight: 700; 
+  cursor: pointer; 
+  text-align: center; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  min-height: 65px; 
+  transition: var(--transition); 
+  font-size: 1rem; 
+  line-height: 1.5;
+  box-shadow: var(--shadow-sm);
+}
+.g-item { background: var(--navy); color: #fff; }
+.g-choice { background: #fff; border: 2px solid var(--gold); color: var(--navy); }
+.g-item.active { transform: scale(1.03); background: var(--gold); box-shadow: var(--shadow-md); }
+.g-choice:hover { background: #fdfbf7; border-color: var(--navy); transform: translateY(-2px); }
+.g-item.done, .g-choice.done { opacity: 0.7; background: var(--green) !important; border-color: var(--green) !important; color: #fff !important; pointer-events: none; }
+
+/* ================= شريط التقدم والأزرار ================= */
+.progress-tracker { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  background: var(--bg-card); 
+  padding: 16px 22px; 
+  border-radius: 14px; 
+  border: 1px solid var(--border); 
+  margin: 25px 0; 
+  font-weight: 700; 
+  color: var(--navy); 
+  box-shadow: var(--shadow-sm);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.prog-dots { display: flex; gap: 10px; }
+.prog-dot { 
+  width: 14px; 
+  height: 14px; 
+  border-radius: 50%; 
+  background: #e2e8f0; 
+  transition: var(--transition);
+}
+.prog-dot.done { 
+  background: var(--green); 
+  box-shadow: 0 0 10px rgba(16,185,129,0.5); 
+}
+
+.nav-row { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  margin-top: 25px; 
+  gap: 12px;
+}
+.nav-btn { 
+  border: none; 
+  padding: 14px 28px; 
+  border-radius: 30px; 
+  font-family: var(--font-title); 
+  font-weight: 800; 
+  font-size: 1.05rem; 
+  cursor: pointer; 
+  transition: var(--transition); 
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-gold { background: linear-gradient(135deg, var(--gold), #b8941f); color: #fff; }
+.btn-navy { background: linear-gradient(135deg, var(--navy), var(--navy2)); color: #fff; }
+.btn-outline { background: #fff; border: 2px solid var(--navy); color: var(--navy); }
+.nav-btn:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.nav-btn:disabled { 
+  background: #cbd5e1; 
+  color: #64748b; 
+  box-shadow: none; 
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* ================= التبويبات السفلية ================= */
+.bottom-bar { 
+  position: fixed; 
+  bottom: 0; 
+  left: 0; 
+  right: 0; 
+  z-index: 1000; 
+  background: rgba(255,255,255,0.98); 
+  backdrop-filter: blur(12px);
+  border-top: 3px solid var(--gold); 
+  padding: 8px 10px max(10px, env(safe-area-inset-bottom)); 
+  box-shadow: 0 -5px 25px rgba(0,0,0,0.1); 
+  display: none; 
+}
+.bottom-inner { 
+  max-width: 1200px; 
+  margin: 0 auto; 
+  display: flex; 
+  justify-content: space-around; 
+  gap: 5px; 
+  overflow-x: auto; 
+  scrollbar-width: none; 
+}
+.bottom-inner::-webkit-scrollbar { display: none; }
+.btab { 
+  flex: 1;
+  white-space: nowrap; 
+  background: transparent; 
+  border: none; 
+  color: var(--text-muted); 
+  font-family: var(--font-title); 
+  font-weight: 700; 
+  font-size: 0.9rem; 
+  padding: 12px 8px; 
+  border-radius: 12px; 
+  cursor: pointer; 
+  transition: var(--transition); 
+  display: flex; 
+  flex-direction: column;
+  align-items: center; 
+  gap: 4px;
+  min-width: 65px;
+}
+.btab span { font-size: 1.3rem; margin-bottom: 2px; }
+.btab.act { 
+  background: var(--navy); 
+  color: #fff; 
+  box-shadow: 0 -4px 12px rgba(15,23,42,0.2);
+}
+.btab.locked { opacity: 0.5; cursor: not-allowed; }
+.btab:hover:not(.locked):not(.act) { background: var(--cream); color: var(--navy); }
+
+/* ================= النوازل والمراجعة ================= */
+.essay-list { margin-top: 20px; }
+.essay-item { 
+  border-radius: 14px; 
+  margin-bottom: 18px; 
+  overflow: hidden; 
+  box-shadow: var(--shadow-sm); 
+  transition: var(--transition);
+  border: 1px solid var(--border);
+}
+.essay-item:hover { box-shadow: var(--shadow-md); transform: translateX(-5px); }
+.essay-navy .essay-q { background: linear-gradient(135deg, var(--navy), var(--navy2)); color: #fff; }
+.essay-gold .essay-q { background: linear-gradient(135deg, var(--gold), #b8941f); color: var(--navy); }
+.essay-q { 
+  padding: 18px 22px; 
+  font-family: var(--font-title); 
+  font-weight: 800; 
+  font-size: 1.1rem; 
+  cursor: pointer; 
+  display: flex; 
+  align-items: center; 
+  gap: 14px; 
+  transition: var(--transition);
+}
+.essay-q::before { 
+  content: "▼"; 
+  font-size: 0.85rem; 
+  transition: var(--transition); 
+  background: rgba(255,255,255,0.2);
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+.essay-item.open .essay-q::before { transform: rotate(180deg); }
+.essay-a { 
+  max-height: 0; 
+  overflow: hidden; 
+  transition: max-height 0.5s ease, padding 0.5s ease; 
+  background: var(--bg-card); 
+  font-size: 1.05rem; 
+  line-height: 1.9; 
+  color: var(--text-main); 
+  padding: 0 22px;
+}
+.essay-item.open .essay-a { padding: 22px; max-height: 500px; }
+
+/* ================= التقييم النهائي ================= */
+.qz-card { 
+  background: var(--bg-card); 
+  border-radius: 14px; 
+  padding: 28px; 
+  margin-bottom: 22px; 
+  border: 1px solid var(--border); 
+  box-shadow: var(--shadow-sm); 
+  transition: var(--transition);
+}
+.qz-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+.qz-opt { 
+  display: block; 
+  width: 100%; 
+  padding: 14px 18px; 
+  margin: 10px 0; 
+  border: 2px solid var(--border); 
+  border-radius: 10px; 
+  background: var(--bg-card); 
+  cursor: pointer; 
+  text-align: right; 
+  font-family: var(--font-body); 
+  font-size: 1rem; 
+  font-weight: 600; 
+  transition: var(--transition); 
+}
+.qz-opt:hover { border-color: var(--gold); background: #fff; transform: translateX(-5px); }
+.qz-opt.right { background: var(--green); color: #fff; border-color: var(--green); }
+.qz-opt.wrong { background: var(--red); color: #fff; border-color: var(--red); }
+
+.fc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 22px; margin-bottom: 30px;}
+.fc { height: 180px; perspective: 1000px; cursor: pointer; }
+.fc-in { position: relative; width: 100%; height: 100%; transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1); transform-style: preserve-3d; border-radius: 14px; box-shadow: var(--shadow-md); }
+.fc.flip .fc-in { transform: rotateY(180deg); }
+.fc-f, .fc-b { position: absolute; inset: 0; backface-visibility: hidden; border-radius: 14px; padding: 22px; display: flex; align-items: center; justify-content: center; text-align: center; line-height: 1.7; font-weight: 600; font-size: 1.05rem; }
+.fc-f { background: linear-gradient(135deg, var(--navy), var(--navy2)); color: #fff; border: 2px solid var(--gold); }
+.fc-b { background: var(--bg-card); border: 2px solid var(--gold); color: var(--navy); transform: rotateY(180deg); }
+
+/* ================= أزرار إضافية ================= */
+#backToTop {
+  position: fixed;
+  bottom: 100px;
+  left: 25px;
+  width: 48px;
+  height: 48px;
+  background: var(--gold);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  cursor: pointer;
+  display: none;
+  z-index: 999;
+  box-shadow: var(--shadow-lg);
+  transition: var(--transition);
+  align-items: center;
+  justify-content: center;
+}
+#backToTop:hover { transform: translateY(-5px) scale(1.1); background: var(--navy); }
+#backToTop.show { display: flex; }
+
+.toast { 
+  position: fixed; 
+  top: 90px; 
+  left: 50%; 
+  transform: translateX(-50%) translateY(-20px); 
+  background: var(--navy); 
+  color: var(--gold-light); 
+  padding: 14px 28px; 
+  border-radius: 30px; 
+  font-weight: 700; 
+  z-index: 2000; 
+  opacity: 0; 
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); 
+  pointer-events: none; 
+  border: 1px solid var(--gold); 
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+  min-width: 240px;
+}
+.toast.on { 
+  opacity: 1; 
+  transform: translateX(-50%) translateY(0); 
+}
+
+/* ================= Responsive ================= */
+@media (max-width: 768px) {
+  .hdr-course { font-size: 1.2rem; }
+  .hero-title { font-size: 1.4rem; }
+  .hero-banner { padding: 25px 18px; }
+  .scr { padding: 18px 15px 100px; max-width: 100%; width: 100%; }
+  .btab { font-size: 0.75rem; padding: 10px 5px; }
+  .btab span { font-size: 1.1rem; }
+  .nav-btn { padding: 12px 18px; font-size: 0.95rem; }
+  .info-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .info-card { padding: 16px 12px; }
+  .info-card-icon { font-size: 1.8rem; }
+  .tree-branches { flex-direction: column; align-items: center; gap: 18px; }
+  .tree-node { width: 100%; max-width: 280px; }
+  .game-grid { grid-template-columns: 1fr; }
+  .welcome-box { padding: 35px 25px; }
+  .hdr-tools { display: none; }
+}
+
+@media (max-width: 480px) {
+  .info-grid { grid-template-columns: 1fr; }
+  .hdr-center { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="app">
+  
+  <!-- ================= HEADER ================= -->
+  <header class="hdr" id="mainHeader" style="display:none">
+    <div class="hdr-right">
+      <div class="logo-box">
+        <img src="../../logo.png" alt="شعار الجامعة" onerror="this.style.display='none'; this.parentElement.textContent='جامعة طيبة'">
+      </div>
+      <div class="hdr-dr">د/ باسم القرافي</div>
+    </div>
+    <div class="hdr-center">
+      <div class="hdr-course">مقرر فقه ٣</div>
+      <div class="hdr-lecture">المحاضرة الخامسة: الرضاع والحضانة والنفقات</div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <div class="hdr-stu" id="stuInfo"></div>
+      <div class="hdr-tools">
+        <button class="tool-btn" onclick="toggleTheme()" title="الوضع الليلي">🌙</button>
+        <button class="tool-btn" onclick="adjustFontSize(1)" title="تكبير الخط">A+</button>
+        <button class="tool-btn" onclick="adjustFontSize(-1)" title="تصغير الخط">A-</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="main">
+    
+    <!-- ================= شاشة الدخول ================= -->
+    <div id="s-login" class="scr on" style="padding:0; max-width: none;">
+      <div class="welcome-wrap">
+        <div class="welcome-box">
+          <div class="logo-box-login">
+            <img src="../../logo.png" alt="شعار الجامعة" onerror="this.style.display='none'">
+          </div>
+          <h1 class="w-title">مقرر فقه ٣</h1>
+          <div class="w-sub">المحاضرة الخامسة: أحكام الرضاع، الحضانة، والنفقات</div>
+          <div class="w-dr">إعداد: د/ باسم القرافي</div>
+          
+          <input type="text" id="iName" class="welcome-input" placeholder="أدخل اسمك الكامل هنا...">
+          <input type="text" id="iSec" class="welcome-input" placeholder="رقم الشعبة (مثال: YM3)">
+          <button class="w-btn" onclick="doLogin()">ابدأ رحلة التعلم 🚀</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= 0. شاشة الفيديو التمهيدية ================= -->
+    <div id="s-0" class="scr">
+      <div class="hero-banner" style="background:#0a1628; border-color:var(--gold); padding:40px;">
+        <div class="hero-icon" style="color:var(--gold);">🎥</div>
+        <div class="hero-title" style="color:#fff; font-family:var(--font-quran);">تمهيد وملخص المحاضرة</div>
+        <div class="hero-sub" style="color:var(--gold-light);">شاهد هذا الملخص المرئي قبل البدء بالتفاصيل</div>
+      </div>
+
+      <div class="video-wrapper">
+        <video controls playsinline preload="metadata" poster="https://www.transparenttextures.com/patterns/arabesque.png">
+          <source src="summary.mp4" type="video/mp4">
+          عذراً، متصفحك لا يدعم تشغيل مقاطع الفيديو.
+        </video>
+      </div>
+
+      <div class="block-header">نظرة عامة على أبواب المحاضرة</div>
+      <div style="background:var(--bg-card); padding:22px; border-radius:12px; border:1px solid var(--border); box-shadow:var(--shadow-sm);">
+        <p style="font-size:1.1rem; line-height:1.8; margin-bottom:15px;">حرصت الشريعة الإسلامية على صيانة الأسرة وحفظ كيانها من التفكك، وسنتناول في هذه المحاضرة:</p>
+        <ul class="num-list">
+          <li><span class="gold-text">أحكام الرضاع:</span> شروطه وآثاره الشرعية في نشر الحرمة، وطرق إثباته في القضاء.</li>
+          <li><span class="gold-text">أحكام الحضانة:</span> أحقيتها، الشروط الموضوعية للحاضن، وأحكام السفر والسن القانوني للمحضون.</li>
+          <li><span class="gold-text">أحكام النفقات:</span> ماهيتها، مشروعيتها، وترتيب الأولويات في الإنفاق على النفس والأقارب والزوجة والضعفاء.</li>
+        </ul>
+      </div>
+
+      <div class="nav-row">
+        <div></div><button class="nav-btn btn-navy" onclick="goSlide(1)">التالي: أحكام الرضاع ➜</button>
+      </div>
+    </div>
+
+    <!-- ================= 1. أحكام الرضاع وشروطه ================= -->
+    <div id="s-1" class="scr" data-req="4">
+      <div class="hero-banner">
+        <div class="hero-icon">🍼</div>
+        <div class="hero-title">الباب الأول: أحكام الرضاع وشروطه</div>
+        <div class="hero-sub">نظام تشريعي ينشئ صلة قرابة تترتب عليها آثار حقوقية</div>
+        <div class="hero-line"></div>
+        <div class="hero-tags"><div class="hero-tag">التعريف</div><div class="hero-tag">المشروعية</div><div class="hero-tag">دون الحولين</div><div class="hero-tag">٥ رضعات</div></div>
+      </div>
+
+      <div class="block-header">مخرجات التعلم</div>
+      <div class="info-grid">
+        <div class="info-card"><div class="info-card-icon">📘</div><div class="info-card-title">مفهوم الرضاع</div><div class="info-card-desc">تعريف الرضاع لغةً واصطلاحاً.</div></div>
+        <div class="info-card"><div class="info-card-icon">💡</div><div class="info-card-title">المشروعية</div><div class="info-card-desc">معرفة أدلة الرضاع من القرآن والسنة والإجماع.</div></div>
+        <div class="info-card"><div class="info-card-icon">⏱️</div><div class="info-card-title">شرط الزمن</div><div class="info-card-desc">إدراك أهمية وقوع الرضاع في الحولين الأولين.</div></div>
+        <div class="info-card"><div class="info-card-icon">🔢</div><div class="info-card-title">شرط العدد</div><div class="info-card-desc">تحديد عدد الرضعات الموجبة للتحريم (٥ رضعات).</div></div>
+      </div>
+
+      <div class="block-header">مدخل الباب</div>
+      <div class="intro-text">يُعد الرضاع في الفقه الإسلامي نظاماً تشريعياً يتجاوز مجرد التغذية البيولوجية، ليصبح سبباً شرعياً لإنشاء صلة قرابة (لُحمة) تضاهي لحمة النسب في التحريم.</div>
+      <div class="verse-box">
+        <div class="verse-basmala">القرآن الكريم</div>
+        <div class="verse-text">﴿وَأُمَّهَاتُكُمُ اللَّاتِي أَرْضَعْنَكُمْ وَأَخَوَاتُكُم مِّنَ الرَّضَاعَةِ﴾</div>
+        <div class="verse-ref">سورة النساء: ٢٣</div>
+      </div>
+
+      <div class="block-header">افهم بسرعة</div>
+      <div class="info-grid">
+        <div class="info-card"><div class="info-card-icon">🍼</div><div class="info-card-title">التعريف</div><div class="info-card-desc">وصول لبن المرأة لجوف الطفل بضوابط مخصوصة.</div></div>
+        <div class="info-card"><div class="info-card-icon">⏱️</div><div class="info-card-title">المدة الزمنية</div><div class="info-card-desc">يجب أن يقع الرضاع خلال أول سنتين من عمر الطفل.</div></div>
+        <div class="info-card"><div class="info-card-icon">🖐️</div><div class="info-card-title">العدد</div><div class="info-card-desc">خمس رضعات مشبعات معلومات لتثبت الحرمة.</div></div>
+        <div class="info-card"><div class="info-card-icon">🧪</div><div class="info-card-title">طريقة الوصول</div><div class="info-card-desc">يثبت التحريم ولو بغير الرضاع المباشر (كالوجور أو الإناء) إن وصل للجوف.</div></div>
+      </div>
+
+      <div class="block-header">النص العلمي الكامل</div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="accordion-header">مقدمة الدرس والتعريف الاصطلاحي <span class="accordion-icon">⌄</span></div>
+        <div class="accordion-body">
+          <span class="section-head">مقدمة الموضوع:</span><br>
+          يُعد الرضاع في منظومة الفقه الإسلامي نظاماً تشريعياً متكاملاً يتجاوز في أبعاده مجرد التغذية البيولوجية للطفل، ليصبح سبباً شرعياً لإنشاء صلة قرابة تترتب عليها آثار حقوقية واجتماعية جوهرية. إذ جعل الشارع الحكيم من الرضاع لُحمة شبيهة بِلُحمة النسب، وهو سبب من أسباب التحريم المؤبد في النكاح.<br><br>
+          <span class="section-head">التعريف الاصطلاحي واللغوي:</span><br>
+          <ul>
+            <li><span class="term-blue">التعريف اللغوي:</span> الرضاع -بفتح الراء أو كسرها- هو اسم لمص اللبن من الثدي أو شربه.</li>
+            <li><span class="term-blue">التعريف الشرعي:</span> هو مص طفل دون الحولين لبناً ثاب عن حمل (أي نتج عن ولادة)، أو شربه أو نحوه. ويقيد هذا التعريف الرضاع بضوابط زمنية ومادية تجعل منه سبباً لنشر الحرمة.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="accordion-header">أدلة مشروعية الرضاع والتحريم به <span class="accordion-icon">⌄</span></div>
+        <div class="accordion-body">
+          استندت مشروعية الرضاع وكونه سبباً للتحريم إلى المصادر التشريعية الثلاثة:
+          <ul>
+            <li><span class="term-blue">من القرآن الكريم:</span> قوله تعالى: ﴿وَأُمَّهَاتُكُمُ اللَّاتِي أَرْضَعْنَكُمْ وَأَخَوَاتُكُم مِّنَ الرَّضَاعَةِ﴾. وجه الاستدلال: أن الله عز وجل قرن بين الأمهات من النسب والأمهات من الرضاع في الحكم الواحد وهو التحريم المؤبد.</li>
+            <li><span class="term-blue">من السنة النبوية:</span> أكدت السنة هذا الأصل، منها حديث عائشة: "إن الرضاعة تُحَرِّم ما تحرم الولادة". وقوله ﷺ في ابنة حمزة: "إنها لا تحل لي، إنها ابنة أخي من الرضاعة، ويحرم من الرضاعة ما يحرم من الرحم".</li>
+            <li><span class="term-blue">الإجماع:</span> انعقد إجماع علماء الأمة قاطبة على ثبوت التحريم بالرضاع ونشره للمحرمية.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="accordion-header">شروط الرضاع الموجب للتحريم <span class="accordion-icon">⌄</span></div>
+        <div class="accordion-body">
+          لا يترتب الأثر الشرعي بنشر الحرمة إلا بتوفر شرطين أساسيين، هما:
+          <ol>
+            <li><span class="hl-red">الشرط الأول (المدة الزمنية):</span> يجب أن يقع الرضاع خلال الحولين الأولين من عمر الرضيع (سنتين). لقوله ﷺ: "لا يحرم من الرضاعة إلا ما فتق الأمعاء في الثدي، وكان قبل الفطام". والتعليل الفقهي لذلك أن الرضاع في هذه المدة يقوم مقام الغذاء فينبت اللحم ويصبح جزءاً منه.</li>
+            <li><span class="hl-red">الشرط الثاني (عدد الرضعات):</span> يُشترط أن يكون الرضاع <span class="hl-green">خمس رضعات معلومات فأكثر</span>. لحديث عائشة: "كان فيما نزل من القرآن: عشر رضعات معلومات يُحَرِّمْن، ثم نُسخن بخمس معلومات، فتوفي رسول الله ﷺ وهن فيما يقرأ من القرآن".</li>
+          </ol>
+          <span class="hl-green">ملاحظة فنية بشأن وصول اللبن:</span> لا ينحصر التحريم بالالتقام المباشر للثدي، بل يثبت الحكم لو وصل لبن المرأة إلى جوف الطفل بغير الرضاع، كأن يُقطر في فمه (السعوط) أو يشربه من إناء، بشرط أن يتكرر ذلك خمس مرات في مدة الحولين.
+        </div>
+      </div>
+
+      <div class="block-header">تطبيقات عملية</div>
+      <div class="app-scenario">📌 طفل عمره ٣ سنوات، رضع من امرأة ٦ رضعات مشبعات. (التطبيق: لا يثبت التحريم، لاختلال شرط "المدة الزمنية"، فالرضاع الموجب للتحريم يجب أن يكون دون الحولين).</div>
+
+      <div class="block-header">ملخص الدرس (خريطة ذهنية)</div>
+      <div class="tree-container">
+        <div class="tree-root">شروط الرضاع المحرم</div>
+        <div class="tree-branches">
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>المدة الزمنية</h4><p>في الحولين الأولين<br>(سنتين)</p></div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>العدد</h4><p>خمس رضعات<br>معلومات ومشبعات</p></div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>طريقة الوصول</h4><p>بالالتقاط المباشر<br>أو الشرب من إناء</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-header">أسئلة الفهم (أكمل لفتح التالي)</div>
+      <div class="ex-box" id="ex-1-1">
+        <div class="ex-q">١. عدد الرضعات الموجبة للتحريم ونشر المحرمية هو:</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(1, 1, this, false, 'خاطئ.')">ثلاث رضعات</button><button class="ex-btn" onclick="act(1, 1, this, true, 'صحيح. خمس رضعات معلومات.')">خمس رضعات معلومات</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-1-2">
+        <div class="ex-q">٢. إرضاع طفل تجاوز عمره السنتين (الحولين) بخمس رضعات:</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(1, 2, this, false, 'خاطئ.')">يُنشر الحرمة</button><button class="ex-btn" onclick="act(1, 2, this, true, 'أحسنت. لأن شرط المدة الزمنية اختل (يجب أن يكون دون الحولين).')">لا ينشر الحرمة</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-1-3">
+        <div class="ex-q">٣. شرب حليب المرأة المحلوب في إناء خمس مرات للطفل الرضيع:</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(1, 3, this, true, 'صحيح. العبرة بوصول اللبن لجوف الطفل وإن لم يكن من الثدي مباشرة.')">ينشر الحرمة ويثبت الرضاع</button><button class="ex-btn" onclick="act(1, 3, this, false, 'خاطئ.')">لا يثبت الرضاع</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-1-4"><div class="ex-q">٤. صل المفاهيم:</div><div class="game-grid" id="game-1"></div></div>
+      
+      <div class="progress-tracker"><span>التقدم في هذا الموضوع:</span><div class="prog-dots" id="dots-1"><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div></div></div>
+      <div class="nav-row"><button class="nav-btn btn-outline" onclick="goSlide(0)">◁ التمهيد</button><button class="nav-btn btn-navy" id="next-1" disabled onclick="goSlide(2)">التالي: آثار الرضاع وإثباته ➜</button></div>
+    </div>
+
+    <!-- ================= 2. آثار الرضاع وإثباته ================= -->
+    <div id="s-2" class="scr" data-req="4">
+      <div class="hero-banner">
+        <div class="hero-icon">📜</div>
+        <div class="hero-title">الباب الثاني: آثار الرضاع وطرق إثباته قضائياً</div>
+        <div class="hero-sub">حكم الحرمة، حكم الحل، وشهادة النساء</div>
+        <div class="hero-line"></div>
+        <div class="hero-tags"><div class="hero-tag">حكم الحرمة</div><div class="hero-tag">حكم الحل</div><div class="hero-tag">شهادة المرأة</div></div>
+      </div>
+
+      <div class="block-header">مخرجات التعلم</div>
+      <div class="info-grid">
+        <div class="info-card"><div class="info-card-icon">🚫</div><div class="info-card-title">حكم الحرمة</div><div class="info-card-desc">فهم تحريم النكاح المؤبد بسبب الرضاع.</div></div>
+        <div class="info-card"><div class="info-card-icon">✅</div><div class="info-card-title">حكم الحل</div><div class="info-card-desc">معرفة المباحات المترتبة (الخلوة، النظر، سقوط الحجاب).</div></div>
+        <div class="info-card"><div class="info-card-icon">👩</div><div class="info-card-title">الإثبات القضائي</div><div class="info-card-desc">إدراك جواز إثبات الرضاع بشهادة امرأة واحدة.</div></div>
+        <div class="info-card"><div class="info-card-icon">🎯</div><div class="info-card-title">مقاصد الرضاع</div><div class="info-card-desc">فهم دور الرضاع في صيانة الأنساب وبناء المجتمع.</div></div>
+      </div>
+
+      <div class="block-header">مدخل الباب</div>
+      <div class="intro-text">إذا اكتملت شروط الرضاع، ترتبت عليه آثار فقهية كبرى تضاهي أحكام النسب في التحريم والحل، وتيسيراً على الناس قُبلت فيه شهادة النساء منفردات.</div>
+      
+      <div class="block-header">افهم بسرعة</div>
+      <div class="info-grid">
+        <div class="info-card"><div class="info-card-icon">🚫</div><div class="info-card-title">الحرمة</div><div class="info-card-desc">يحرم النكاح مؤبداً (يصبح الرضيع كابنها).</div></div>
+        <div class="info-card"><div class="info-card-icon">🤝</div><div class="info-card-title">الحل</div><div class="info-card-desc">تُباح الخلوة والنظر ويسقط الحجاب شرعاً.</div></div>
+        <div class="info-card"><div class="info-card-icon">⚖️</div><div class="info-card-title">الإثبات</div><div class="info-card-desc">تقبل شهادة امرأة واحدة مرضية لإثبات الرضاع.</div></div>
+        <div class="info-card"><div class="info-card-icon">🌟</div><div class="info-card-title">المقصد</div><div class="info-card-desc">حماية كيان الأسرة وصيانة الأعراض.</div></div>
+      </div>
+
+      <div class="block-header">النص العلمي الكامل</div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="accordion-header">الآثار الشرعية المترتبة على الرضاع <span class="accordion-icon">⌄</span></div>
+        <div class="accordion-body">
+          يترتب على ثبوت الرضاع بشروطه أثران فقهيان رئيسيان:
+          <ol>
+            <li><span class="hl-red">حكم الحرمة:</span> يقتضي تحريم النكاح المؤبد؛ فكل من يحرم من النسب يحرم نظيره من الرضاع. فيحرم على الرجل أمه من الرضاع، وبنته وإن سفلت، وأخته، وعمته، وخالته، وبنت أخيه، وبنت أخته.</li>
+            <li><span class="hl-green">حكم الحل:</span> يقتضي ثبوت "المحرمية"، وهي التي تبيح ما يباح للأقارب من النسب؛ كجواز الخلوة، وإباحة النظر، وسقوط الحجاب، لكون الرضيع صار ابناً للمرضعة وأخاً لأولادها.</li>
+          </ol>
+        </div>
+      </div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="accordion-header">طرق إثبات الرضاع في القضاء الفقهي <span class="accordion-icon">⌄</span></div>
+        <div class="accordion-body">
+          نظراً لخصوصية الرضاع وكونه مما لا يطلع عليه الرجال في الغالب، فقد قرر الفقه الإسلامي أحكاماً خاصة لإثباته:
+          <ul>
+            <li><span class="term-blue">شهادة النساء:</span> يثبت الرضاع بشهادة <span class="hl-green">امرأة واحدة مرضية معروفة بالصدق</span>، حتى وإن كانت هي المرضعة نفسها التي تشهد على فعلها.</li>
+            <li><span class="term-blue">الدليل النبوي:</span> حديث عقبة بن الحارث حين تزوج امرأة فجاءت امرأة سوداء وقالت: "إني قد أرضعتكما"، فذكر ذلك للنبي ﷺ فقال له: "وكيف وقد قيل؟ دعها عنك".</li>
+            <li><span class="term-blue">التعليل الفقهي:</span> تُقبل شهادة المرأة المنفردة في هذا الباب لأن الرضاع شهادة على عورة لا يطلع عليها الرجال غالباً، فتجري مجرى الشهادة على "الولادة"، وذلك تيسيراً وضبطاً للحقوق والمحرمات.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="accordion-header">خاتمة الموضوع ومقاصد الرضاع <span class="accordion-icon">⌄</span></div>
+        <div class="accordion-body">
+          صفوة القول، إن أحكام الرضاع في الشريعة الإسلامية تمثل نموذجاً لشمولية النظام الفقهي في حماية كيان الأسرة وصيانة الأعراض. فقد جعل الشارع من هذا الاتصال المادي لُحمة معنوية وقانونية تضاهي لُحمة النسب في التحريم والصلة، مما يؤكد أن التشريع يهدف إلى بناء مجتمع متراحم تضبطه أحكام الحلال والحرام بدقة متناهية، صيانةً للأنساب وتحقيقاً للمصلحة الفضلى للطفل والأسرة على حد سواء.
+        </div>
+      </div>
+
+      <div class="block-header">تطبيقات عملية</div>
+      <div class="app-scenario">📌 شهدت خادمة موثوقة (امرأة واحدة) أنها أرضعت فلانة وفلاناً ٥ رضعات في الصغر. (التطبيق: تقبل شهادتها ويثبت الرضاع، ويُحرم زواجهما).</div>
+
+      <div class="block-header">ملخص الدرس (خريطة ذهنية)</div>
+      <div class="tree-container">
+        <div class="tree-root">آثار الرضاع وإثباته</div>
+        <div class="tree-branches">
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>أثر الحرمة</h4><p>تحريم النكاح المؤبد<br>(كما في النسب)</p></div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>أثر الحل</h4><p>المحرمية، إباحة الخلوة<br>وسقوط الحجاب</p></div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>الإثبات القضائي</h4><p>بشهادة امرأة واحدة<br>موثوقة</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-header">أسئلة الفهم</div>
+      <div class="ex-box" id="ex-2-1">
+        <div class="ex-q">١. من الآثار المترتبة على الرضاع "حكم الحل"، ويقصد به:</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(2, 1, this, false, 'خاطئ.')">حل أكل ماله</button><button class="ex-btn" onclick="act(2, 1, this, true, 'صحيح. المحرمية تبيح النظر وسقوط الحجاب.')">ثبوت المحرمية (الخلوة والنظر)</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-2-2">
+        <div class="ex-q">٢. لإثبات الرضاع أمام القضاء الفقهي:</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(2, 2, this, true, 'صحيح. تيسيراً ومراعاة لطبيعة الأمر الذي لا يطّلع عليه الرجال غالباً.')">تكفي شهادة امرأة واحدة موثوقة</button><button class="ex-btn" onclick="act(2, 2, this, false, 'خاطئ.')">يشترط شهادة رجلين حصراً</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-2-3">
+        <div class="ex-q">٣. "كل من يحرم من النسب يحرم نظيره من الرضاع":</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(2, 3, this, false, 'خاطئ.')">عبارة خاطئة</button><button class="ex-btn" onclick="act(2, 3, this, true, 'أحسنت. هذا هو الأثر الشرعي المسمى بحكم الحرمة.')">عبارة صحيحة (حكم الحرمة)</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-2-4"><div class="ex-q">٤. صل المفاهيم:</div><div class="game-grid" id="game-2"></div></div>
+      
+      <div class="progress-tracker"><span>التقدم:</span><div class="prog-dots" id="dots-2"><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div></div></div>
+      <div class="nav-row"><button class="nav-btn btn-outline" onclick="goSlide(1)">◁ السابق</button><button class="nav-btn btn-navy" id="next-2" disabled onclick="goSlide(3)">التالي: أحكام الحضانة ➜</button></div>
+    </div>
+
+    <!-- ================= 3. أحكام الحضانة وشروطها ================= -->
+    <div id="s-3" class="scr" data-req="4">
+      <div class="hero-banner">
+        <div class="hero-icon">🤱</div>
+        <div class="hero-title">الباب الثالث: أحكام الحضانة ورعاية الصغار</div>
+        <div class="hero-sub">ولاية غرضها مصلحة المحضون وتعهده، والأولوية فيها للنساء</div>
+        <div class="hero-line"></div>
+        <div class="hero-tags"><div class="hero-tag">التعريف</div><div class="hero-tag">فرض كفاية</div><div class="hero-tag">أولوية النساء</div><div class="hero-tag">شروط الحاضن</div></div>
+      </div>
+
+      <div class="block-header">مخرجات التعلم</div>
+      <div class="info-grid">
+        <div class="info-card"><div class="info-card-icon">🧠</div><div class="info-card-title">المفهوم والحكم</div><div class="info-card-desc">تعريف الحضانة ومعرفة حكمها الشرعي.</div></div>
+        <div class="info-card"><div class="info-card-icon">👩‍👦</div><div class="info-card-title">الأولوية</div><div class="info-card-desc">فهم سبب تقديم النساء (الأم) في حق الحضانة.</div></div>
+        <div class="info-card"><div class="info-card-icon">🛠️</div><div class="info-card-title">المهام</div><div class="info-card-desc">معرفة مقتضيات الحضانة وواجبات الحاضن.</div></div>
+        <div class="info-card"><div class="info-card-icon">📋</div><div class="info-card-title">الشروط الموضوعية</div><div class="info-card-desc">إدراك الشروط (الإسلام، العقل، العفة، وعدم الزواج بأجنبي).</div></div>
+      </div>
+
+      <div class="block-header">المدخل والأدلة</div>
+      <div class="intro-text">شُرعت الحضانة صيانةً للمحضون من الهلاك والضياع، ورُوعي فيها تقديم الأرفق والأشفق على الطفل لتحقيق مصلحته العليا.</div>
+      <div class="verse-box">
+        <div class="verse-basmala">الحديث الشريف</div>
+        <div class="verse-text">«أنتِ أحق به ما لم تنكحي»</div>
+        <div class="verse-ref">رواه أبو داود (قاله النبي ﷺ للأم)</div>
+      </div>
+
+      <div class="block-header">افهم بسرعة</div>
+      <div class="info-grid">
+        <div class="info-card"><div class="info-card-icon">🛡️</div><div class="info-card-title">الحكم</div><div class="info-card-desc">تُعد فرض كفاية لحفظ الصغير من الهلاك.</div></div>
+        <div class="info-card"><div class="info-card-icon">👩</div><div class="info-card-title">أولوية النساء</div><div class="info-card-desc">النساء أرفق وأشفق وأقدر على تولي الصغار.</div></div>
+        <div class="info-card"><div class="info-card-icon">🚫</div><div class="info-card-title">موانع الحضانة</div><div class="info-card-desc">الفسق، المرض المعدي، العجز، أو الكفر.</div></div>
+        <div class="info-card"><div class="info-card-icon">💍</div><div class="info-card-title">زواج الأم</div><div class="info-card-desc">إذا تزوجت الأم بأجنبي سقط حقها في الحضانة.</div></div>
+      </div>
+
+      <div class="block-header">النص العلمي الكامل</div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="accordion-header">مقدمة تعريفية بالحضانة وحكمها <span class="accordion-icon">⌄</span></div>
+        <div class="accordion-body">
+          <span class="section-head">التعريف اللغوي والشرعي:</span><br>
+          تُشتق كلمة "الحضانة" في اللغة من "الحِضن"، وهو الجنب؛ وسميت بذلك لأن "المربي" يضم الطفل إلى جنبه ويحوطه برعايته في حيزه الخاص، فهي تفيد معنى الضم والاحتواء. أما في الاصطلاح الفقهي فهي: <span class="term-blue">"القيام بحفظ من لا يميز ولا يستقل بأمر نفسه، وتربيته بما يصلحه بدنياً ومعنوياً، ووقايته عما يؤذيه أو يضره"</span>، فهي ولاية غرضها مصلحة المحضون وتعهده.<br><br>
+          <span class="section-head">حكم الحضانة:</span><br>
+          تعد الحضانة واجباً شرعياً صيانةً للمحضون من الهلاك. وتأخذ حكم <span class="hl-green">"فرض الكفاية"</span> عند تعدد الحاضنين، فإذا قام بها أحدهم سقط الإثم عن الباقين، وتتعين على الفرد إذا لم يوجد غيره منعاً لتضرر الصغير.
+        </div>
+      </div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="accordion-header">مستحقو الحضانة ومهام الحاضن <span class="accordion-icon">⌄</span></div>
+        <div class="accordion-body">
+          <span class="term-blue">أولوية النساء:</span> استقر الفقه الإسلامي على تقديم النساء على الرجال في استحقاق الحضانة؛ لكونهن أشفق وأرفق بالصغار، وأقدر على الصبر على احتياجاتهم وتصريف مصلحة الصغير. ويستند هذا إلى قضاء النبي ﷺ للأم حين أراد زوجها نزع ولدها منها فقال: "أنتِ أحق به ما لم تنكحي".<br><br>
+          <span class="term-blue">مقتضى الحضانة (المهام):</span><br>
+          <ol>
+            <li>تعهد طعام المحضون وشرابه بما يصلحه.</li>
+            <li>غسل المحضون ونظافته ظاهراً وباطناً.</li>
+            <li>تعهد نومه ويقظته.</li>
+            <li>القيام بجميع حاجاته التي تضمن صلاحه وتربيته.</li>
+          </ol>
+        </div>
+      </div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="accordion-header">الشروط الفنية والموضوعية للحاضن <span class="accordion-icon">⌄</span></div>
+        <div class="accordion-body">
+          يُشترط فيمن يتولى الحضانة جملة من الشروط لضمان مصلحة المحضون:
+          <ul>
+            <li><span class="hl-red">الإسلام:</span> لأنه لا ولاية لكافر على مسلم، ولخشية الفتنة في دينه.</li>
+            <li><span class="term-blue">البلوغ والعقل:</span> العاجز عن إدارة نفسه أعجز عن غيره.</li>
+            <li><span class="term-blue">الأمانة والعفة:</span> الفاسق في دينه غير مؤتمن (فالمدمن تسقط حضانته).</li>
+            <li><span class="term-blue">القدرة البدنية والمالية:</span> فلا حضانة لعاجز أو مريض أو مشغول يضيع مصلحة الطفل.</li>
+            <li><span class="term-blue">السلامة من الأمراض المعدية:</span> وقايةً لصحة المحضون.</li>
+            <li><span class="term-blue">الرشد والحرية.</span></li>
+            <li><span class="hl-red">شرط خاص بالمرأة:</span> ألا تكون متزوجة من أجنبي عن المحضور؛ لأنها ستنشغل بحق الزوج عن رعاية المحضور، لقوله ﷺ: "أنتِ أحق به ما لم تنكحي".</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="block-header">تطبيقات عملية</div>
+      <div class="app-scenario">📌 أم تطلب حضانة أطفالها بعد الطلاق، ثم تزوجت من رجل آخر (أجنبي عن الأطفال). (التطبيق: يسقط حقها في الحضانة فور الزواج لانشغالها بحق الزوج الجديد).</div>
+
+      <div class="block-header">ملخص الدرس (خريطة ذهنية)</div>
+      <div class="tree-container">
+        <div class="tree-root">أحكام وشروط الحضانة</div>
+        <div class="tree-branches">
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>الأولوية</h4><p>للنساء (الأم) لأنهن أشفق وأرفق</p></div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>الشروط العامة</h4><p>الإسلام، العقل، الأمانة، والقدرة الصحية</p></div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>شرط المرأة</h4><p>عدم الزواج بأجنبي عن المحضور</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-header">أسئلة الفهم</div>
+      <div class="ex-box" id="ex-3-1">
+        <div class="ex-q">١. حكم الحضانة شرعاً إذا تعدد المستحقون القادرون عليها:</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(3, 1, this, false, 'خاطئ.')">سنة مؤكدة</button><button class="ex-btn" onclick="act(3, 1, this, true, 'صحيح. فهي تكفي بقيام أحدهم.')">فرض كفاية</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-3-2">
+        <div class="ex-q">٢. إذا تزوجت الأم المطلقة برجل أجنبي عن أطفالها:</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(3, 2, this, true, 'أحسنت! (أنتِ أحق به ما لم تنكحي).')">يسقط حقها في الحضانة</button><button class="ex-btn" onclick="act(3, 2, this, false, 'خاطئ.')">تزداد أحقيتها بالحضانة</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-3-3">
+        <div class="ex-q">٣. الأولوية في تولي حضانة الصغار في الفقه الإسلامي تكون لـ:</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(3, 3, this, false, 'خاطئ.')">الرجال لكونهم أقوى</button><button class="ex-btn" onclick="act(3, 3, this, true, 'صحيح. لكونهن أشفق وأقدر على الصبر والرعاية.')">النساء لكونهن أشفق وأرفق</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-3-4"><div class="ex-q">٤. صل المفاهيم:</div><div class="game-grid" id="game-3"></div></div>
+      
+      <div class="progress-tracker"><span>التقدم:</span><div class="prog-dots" id="dots-3"><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div></div></div>
+      <div class="nav-row"><button class="nav-btn btn-outline" onclick="goSlide(2)">◁ السابق</button><button class="nav-btn btn-navy" id="next-3" disabled onclick="goSlide(4)">التالي: السفر وانقضاء الحضانة ➜</button></div>
+    </div>
+
+    <!-- ================= 4. السفر وانقضاء الحضانة ================= -->
+    <div id="s-4" class="scr" data-req="4">
+      <div class="hero-banner">
+        <div class="hero-icon">⚖️</div>
+        <div class="hero-title">الباب الرابع: السفر بالمحضور وانقضاء الحضانة</div>
+        <div class="hero-sub">أحكام السفر، سن التخيير، وأجرة الحضانة</div>
+        <div class="hero-line"></div>
+        <div class="hero-tags"><div class="hero-tag">السفر الطويل</div><div class="hero-tag">سن السابعة</div><div class="hero-tag">تخيير الغلام</div><div class="hero-tag">أجرة الحضانة</div></div>
+      </div>
+
+      <div class="block-header">مخرجات التعلم</div>
+      <div class="info-grid">
+        <div class="info-card"><div class="info-card-icon">✈️</div><div class="info-card-title">أحكام السفر</div><div class="info-card-desc">أثر السفر الطويل والقصير على الحضانة.</div></div>
+        <div class="info-card"><div class="info-card-icon">🎂</div><div class="info-card-title">سن انتهاء الحضانة</div><div class="info-card-desc">تحديد سن السابعة كموعد لانتهاء الحضانة التلقائية.</div></div>
+        <div class="info-card"><div class="info-card-icon">👦👧</div><div class="info-card-title">أحكام الجنسين</div><div class="info-card-desc">التفريق بين تخيير الغلام وحكم الأنثى بعد السابعة.</div></div>
+        <div class="info-card"><div class="info-card-icon">💵</div><div class="info-card-title">أجرة الحاضن</div><div class="info-card-desc">معرفة أن الحضانة عمل يستحق أجرة شرعية.</div></div>
+      </div>
+
+      <div class="block-header">المدخل والخاتمة</div>
+      <div class="intro-text">تُراعي الشريعة مآلات الأمور، فتنظم حضانة الطفل عند سفر أحد الأبوين، وتضع سن السابعة حداً تبدأ بعده أحكام التخيير للغلام والولاية للأنثى.</div>
+      <div class="verse-box">
+        <div class="verse-basmala">الحديث الشريف</div>
+        <div class="verse-text">«يا غلام! هذا أبوك وهذه أمك؛ فخذ بيد أيهما شئت»</div>
+        <div class="verse-ref">رواه أحمد والنسائي</div>
+      </div>
+
+      <div class="block-header">افهم بسرعة</div>
+      <div class="info-grid">
+        <div class="info-card"><div class="info-card-icon">✈️</div><div class="info-card-title">السفر الطويل</div><div class="info-card-desc">الحضانة فيه للأب حمايةً للطفل وتأديباً له.</div></div>
+        <div class="info-card"><div class="info-card-icon">🎂</div><div class="info-card-title">سن السابعة</div><div class="info-card-desc">تنتهي مدة الحضانة التلقائية ببلوغ ٧ سنوات.</div></div>
+        <div class="info-card"><div class="info-card-icon">👦</div><div class="info-card-title">الغلام</div><div class="info-card-desc">يُخيّر بين أبويه إن كانا عاقلين صالحين.</div></div>
+        <div class="info-card"><div class="info-card-icon">👧</div><div class="info-card-title">الأنثى</div><div class="info-card-desc">تعود للأب وجوباً بعد السابعة لأنه أحفظ لها.</div></div>
+      </div>
+
+      <div class="block-header">النص العلمي الكامل</div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="accordion-header">أحكام سفر الوالدين بالمحضور <span class="accordion-icon">⌄</span></div>
+        <div class="accordion-body">
+          بالنظر في المآلات الشرعية لحالات السفر، فصّل الفقهاء أحكامها كالآتي:
+          <ul>
+            <li><span class="hl-red">السفر الطويل الآمن:</span> إذا سافر أحد الأبوين سفراً طويلاً لغير قصد المضارة وكان الطريق آمناً، فإن الحضانة <span class="hl-green">تؤول للأب</span> (سواء كان هو المسافر أو المقيم)؛ لأنه هو الذي يقوم بـ "تأديب" الولد والمحافظة عليه صيانة له من الضياع.</li>
+            <li><span class="term-blue">السفر القريب:</span> إذا كان السفر لبلد قريب (دون مسافة القصر)، تظل الحضانة للأم؛ لتمام شفقتها، ولأن الأب يتمكن في هذه الحالة من الإشراف على الولد وتعهد حاله.</li>
+            <li><span class="term-blue">الحالات الاستثنائية:</span> في حال كان الطريق غير آمن أو كان السفر لحاجة طارئة، فإن الحضانة تؤول للمقيم منهما ضماناً لسلامة المحضور.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="accordion-header">انتهاء الحضانة وأحكام التخيير بعد السابعة <span class="accordion-icon">⌄</span></div>
+        <div class="accordion-body">
+          <span class="term-blue">السن القانوني وانتهاء الحضانة:</span> تنتهي مدة الحضانة ببلوغ الصغير <span class="hl-red">سن السابعة</span>، وهي السن التي أمر الشارع فيها بمخاطبة الصغير بالصلاة، وعندها يبدأ "التخيير".<br><br>
+          <span class="section-head">أحكام الغلام (الذكر):</span><br>
+          يُخير الغلام بعد السابعة بين أبوين بشرط أن يكون الأبوان "عاقلين"، لقوله ﷺ: «يا غلام! هذا أبوك وهذه أمك؛ فخذ بيد أيهما شئت».
+          <ul>
+            <li>إذا اختار أباه: يكون عنده ليلاً ونهاراً ليقوم على تأديبه وتربيته.</li>
+            <li>إذا اختار أمه: يبقى عندها ليلاً، ويكون عند أبيه نهاراً ليعلمه الصنعة أو الكتابة (التأديب)، ولا يمنع الأب من زيارة ابنه عند أمه.</li>
+          </ul>
+          <span class="section-head">أحكام الأنثى:</span><br>
+          يوجب الفقه بقاء الأنثى عند أبيها وجوباً بعد سن السابعة؛ لأنه أحفظ لها، وهو وليها في النكاح، وهو الأبصر والأعلم بـ "الكفء" لها. ويستثنى من ذلك حالات تؤول فيها للأم (كعجز الأب عن حفظها).
+        </div>
+      </div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="accordion-header">الحقوق المالية المرتبطة بالحضانة <span class="accordion-icon">⌄</span></div>
+        <div class="accordion-body">
+          <span class="term-blue">أجرة الحضانة:</span> تعد أجرة الحضانة حقاً "مستحقاً" للحاضن، سواء كانت الحاضنة أماً أو غيرها. <br>
+          وتُدفع هذه الأجرة من مال المحضور نفسه إن كان له مال، فإن لم يكن له مال، وجبت الأجرة على من تلزمه نفقته من الأولياء المنفقين (كالأب).
+        </div>
+      </div>
+
+      <div class="block-header">تطبيقات عملية</div>
+      <div class="app-scenario">📌 أم ترعى ابنتها بعد الطلاق، فلما بلغت البنت ٧ سنوات طلب الأب أخذها. (التطبيق: يحق للأب ذلك، فالأنثى بعد السابعة تكون عند أبيها وجوباً لأنه أحفظ لها).</div>
+      <div class="app-scenario">📌 أب سافر سفراً طويلاً دائماً للعمل في الخارج وأراد أخذ ابنه البالغ ٤ سنوات. (التطبيق: الحضانة تنتقل للأب في السفر الطويل صيانة للولد وتأديباً له).</div>
+
+      <div class="block-header">ملخص الدرس (خريطة ذهنية)</div>
+      <div class="tree-container">
+        <div class="tree-root">انتهاء الحضانة والسفر</div>
+        <div class="tree-branches">
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>السفر الطويل الآمن</h4><p>تؤول الحضانة للأب<br>للتأديب والحفظ</p></div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>سن السابعة (للذكر)</h4><p>يُخيّر بين الأب والأم</p></div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>سن السابعة (للأنثى)</h4><p>تنتقل للأب وجوباً<br>لأنه أحفظ لها</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-header">أسئلة الفهم</div>
+      <div class="ex-box" id="ex-4-1">
+        <div class="ex-q">١. السن الذي تنتهي به مدة الحضانة التلقائية ويبدأ التخيير هو:</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(4, 1, this, false, 'خاطئ. سن البلوغ متأخر.')">سن البلوغ</button><button class="ex-btn" onclick="act(4, 1, this, true, 'صحيح. سن السابعة هو بداية التمييز.')">سن السابعة</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-4-2">
+        <div class="ex-q">٢. إذا بلغ الغلام (الذكر) سبع سنين وكان أبواه عاقلين صالحين:</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(4, 2, this, true, 'أحسنت! (فخذ بيد أيهما شئت).')">يُخيّر بين أبويه</button><button class="ex-btn" onclick="act(4, 2, this, false, 'خاطئ.')">يذهب للأب وجوباً</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-4-3">
+        <div class="ex-q">٣. هل تستحق الحاضنة (كالأم المطلقة) أجرة مالية مقابل الحضانة؟</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(4, 3, this, false, 'خاطئ.')">لا تستحق لأنه واجب مجاني</button><button class="ex-btn" onclick="act(4, 3, this, true, 'صحيح. الحضانة حق مستحق بأجرة من مال الولد أو أبيه.')">نعم، تستحق أجرة حضانة</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-4-4"><div class="ex-q">٤. صل المفاهيم:</div><div class="game-grid" id="game-4"></div></div>
+      
+      <div class="progress-tracker"><span>التقدم:</span><div class="prog-dots" id="dots-4"><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div></div></div>
+      <div class="nav-row"><button class="nav-btn btn-outline" onclick="goSlide(3)">◁ السابق</button><button class="nav-btn btn-navy" id="next-4" disabled onclick="goSlide(5)">التالي: أحكام النفقات ➜</button></div>
+    </div>
+
+    <!-- ================= 5. أحكام النفقات ومشروعيتها ================= -->
+    <div id="s-5" class="scr" data-req="4">
+      <div class="hero-banner">
+        <div class="hero-icon">💰</div>
+        <div class="hero-title">الباب الخامس: أحكام النفقات ومشروعيتها</div>
+        <div class="hero-sub">التزام مالي يهدف إلى صيانة الأنفس وحفظ كيان الأسرة</div>
+        <div class="hero-line"></div>
+        <div class="hero-tags">
+          <div class="hero-tag">تعريف النفقة</div><div class="hero-tag">ترتيب الأولويات</div><div class="hero-tag">الفروع والأصول</div>
+        </div>
+      </div>
+
+      <div class="block-header">مخرجات التعلم</div>
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="info-card-icon">📘</div>
+          <div class="info-card-title">مفهوم النفقة</div>
+          <div class="info-card-desc">فهم ماهية النفقة وضابط "المعروف" فيها.</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon">🔢</div>
+          <div class="info-card-title">ترتيب الأولويات</div>
+          <div class="info-card-desc">معرفة تقديم النفس في الإنفاق ثم الأقارب.</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon">👨‍👩‍👧‍👦</div>
+          <div class="info-card-title">نفقة الأقارب</div>
+          <div class="info-card-desc">التمييز بين نفقة الفروع (الأبناء) ونفقة الأصول (الوالدين).</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon">⚖️</div>
+          <div class="info-card-title">أحكام الدين</div>
+          <div class="info-card-desc">فهم أثر اختلاف الدين على وجوب النفقة للوالدين.</div>
+        </div>
+      </div>
+
+      <div class="block-header">مدخل الباب</div>
+      <div class="intro-text">
+        تمثل النفقة في التشريع الإسلامي التزاماً مالياً يهدف إلى صيانة الأنفس وحفظ كيان الأسرة من التفكك والعوز، وقد ضُبطت بمعيار "المعروف" الذي يراعي حال المنفق وحاجة المنفق عليه.
+      </div>
+      <div class="verse-box">
+        <div class="verse-basmala">الحديث الشريف</div>
+        <div class="verse-text">«ابدأ بنفسك فتصدق عليها، فإن فضل شيء فلأهلك، فإن فضل عن أهلك شيء فلذي قرابتك»</div>
+        <div class="verse-ref">رواه مسلم</div>
+      </div>
+
+      <div class="block-header">افهم بسرعة</div>
+      <div class="info-grid">
+        <div class="info-card"><div class="info-card-icon">🏠</div><div class="info-card-title">مكونات النفقة</div><div class="info-card-desc">تشمل القوت، الكسوة، المسكن، والتوابع المعتادة.</div></div>
+        <div class="info-card"><div class="info-card-icon">👤</div><div class="info-card-title">الأولوية</div><div class="info-card-desc">يبدأ الإنسان بنفسه أولاً في الإنفاق إن كان ماله محدوداً.</div></div>
+        <div class="info-card"><div class="info-card-icon">👦</div><div class="info-card-title">نفقة الفروع</div><div class="info-card-desc">تجب للأبناء بشرط فقرهم وعجزهم عن الكسب.</div></div>
+        <div class="info-card"><div class="info-card-icon">👴</div><div class="info-card-title">نفقة الأصول</div><div class="info-card-desc">تجب للوالدين من أعظم البر، وتجب حتى مع اختلاف الدين.</div></div>
+      </div>
+
+      <div class="block-header">النص العلمي الكامل</div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="accordion-header">مقدمة تأصيلية: ماهية النفقة ومشروعيتها <span class="accordion-icon">⌄</span></div>
+        <div class="accordion-body">
+          <span class="section-head">التعريف اللغوي والاصطلاحي:</span><br>
+          النفقة من الناحية اللغوية مأخوذة من "الإنفاق"، وأصلها "الإخراج والنفاذ"، ولا تُستعمل في العرف الشرعي إلا في أبواب الخير والبر. أما في الاصطلاح الفقهي، فهي: <span class="term-blue">"كفاية من يموُنه الشخص بالمعروف، قوتاً، وكسوةً، ومسكناً، وتوابعها"</span>.<br><br>
+          <span class="section-head">ضابط (المعروف):</span><br>
+          يتحقق ضابط الإنفاق في الشريعة بلفظ <span class="hl-green">"المعروف"</span>، وهو معيار مرن ينضبط بعرف المجتمع، ويُراعى فيه حال المنفق سعةً وضيقاً، وحاجة المنفق عليه، ومكانهما وزمانهما؛ إذ إن الغرض هو الكفاية التامة التي تشمل أربعة جوانب أساسية: القوت (الطعام والشراب)، والكسوة (الملابس)، والمسكن (المأوى الملائم)، والتوابع (كل ما تقتضيه العادة لاستقامة المعيشة).
+        </div>
+      </div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="accordion-header">ترتيب الأولويات: نفقة الإنسان على نفسه <span class="accordion-icon">⌄</span></div>
+        <div class="accordion-body">
+          أقامت الشريعة الإسلامية نظام النفقات على تراتبية دقيقة تبدأ بالدائرة الأضيق ثم الأوسع، فأوجبت على المرء أن <span class="hl-red">يبدأ بنفسه في الإنفاق</span> إذا كان قادراً على ذلك، فلا يُطالب بالإنفاق على غيره إلا إذا فضل عن حاجته الأساسية ما يكفي لغيره؛ إعمالاً لمبدأ "المسؤولية الفردية".<br>
+          وقد تظاهرت الأدلة الشرعية على هذه الأولوية، ومن ذلك ما ورد في قصة الرجل الذي أعتق عبداً له عن دُبُر ولم يكن له مال غيره، فباع النبي ﷺ العبد وأعطى ثمنه للرجل مراعاةً لحاجته: عن جابر رضي الله عنه قال: "أعتق رجل من بني عُذرة عبداً له عن دُبُر، فبلغ ذلك رسول الله ﷺ فقال: <span class="term-blue">(ابدأ بنفسك فتصدق عليها، فإن فضل شيء فلأهلك، فإن فضل عن أهلك شيء فلذي قرابتك...)</span>".
+        </div>
+      </div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="accordion-header">نفقات القرابة (الفروع والأصول) <span class="accordion-icon">⌄</span></div>
+        <div class="accordion-body">
+          أوجب الإسلام النفقة بين الأقارب بناءً على صلة الرحم وما تقتضيه رابطة الدم من التكافل، وتفصيلها كالتالي:
+          <ul>
+            <li><span class="term-blue">نفقة الفروع (الأبناء وإن نزلوا):</span> يجب على الوالد الإنفاق على ولده وتوفير كافة احتياجاته بالمعروف. ومن السنة حديث هند بنت عتبة حين شكت شُحّ أبي سفيان، فقال لها النبي ﷺ: "خذي ما يكفيك وولدك بالمعروف". <span class="hl-red">الشرط والضابط:</span> يُشترط فقر الأبناء وعجزهم عن الكسب.</li>
+            <li><span class="term-blue">نفقة الأصول (الوالدين وإن علوا):</span> تُعد نفقة الوالدين من أعظم وجوه الإحسان الواجبة شرعاً، <span class="hl-green">وتجب حتى مع اختلاف الدين</span>؛ لقوله تعالى: ﴿وَصَاحِبْهُمَا فِي الدُّنْيَا مَعْرُوفًا﴾ لقمان: ١٥، فالمصاحبة بالمعروف تشمل كفايتهما مالياً.</li>
+          </ul>
+          وقد أورد المصدر تعليلاً فقهياً لهذا الوجوب في قول النبي ﷺ: "إن أطيب ما أكل الرجل من كسبه، وولده من كسبه، فكلوا من كسب أولادكم"؛ فباعتبار الولد من كسب والده، استحق الوالد النفقة في ماله عند الحاجة.
+        </div>
+      </div>
+
+      <div class="block-header">تطبيقات عملية</div>
+      <div class="app-scenario">📌 رجل له مال قليل يكفي بالكاد لطعامه وشرابه، وطالبه أخوه بالنفقة عليه. (التطبيق: لا يلزمه الإنفاق على أخيه، بل يجب أن يبدأ بنفسه أولاً إعمالاً لمبدأ المسؤولية الفردية).</div>
+      <div class="app-scenario">📌 شخص أسلم وبقي والداه على دينهما وهما فقيران. (التطبيق: تجب عليه النفقة لهما بالمعروف، فاختلاف الدين لا يسقط نفقة الأصول).</div>
+
+      <div class="block-header">ملخص الدرس (خريطة ذهنية)</div>
+      <div class="tree-container">
+        <div class="tree-root">أحكام النفقات والأولويات</div>
+        <div class="tree-branches">
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>المرء لنفسه</h4><p>البداية بالنفس إعمالاً للمسؤولية الفردية</p></div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>للفروع (الأبناء)</h4><p>بشرط فقرهم وعجزهم عن الكسب</p></div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>للأصول (الوالدين)</h4><p>تجب مطلقاً حتى مع اختلاف الدين</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-header">أسئلة الفهم</div>
+      <div class="ex-box" id="ex-5-1">
+        <div class="ex-q">١. المعيار المرن الذي ضبطت به الشريعة مقدار النفقة هو:</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(5, 1, this, false, 'خاطئ.')">التساوي المطلق بين الناس</button><button class="ex-btn" onclick="act(5, 1, this, true, 'أحسنت! المعروف يراعي حال المنفق وحاجة المنفق عليه.')">ضابط "المعروف"</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-5-2">
+        <div class="ex-q">٢. إذا كان للإنسان مال محدود لا يكفي إلا لواحد، فبمن يبدأ بالإنفاق؟</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(5, 2, this, true, 'صحيح. (ابدأ بنفسك فتصدق عليها).')">يبدأ بنفسه أولاً</button><button class="ex-btn" onclick="act(5, 2, this, false, 'خاطئ.')">يبدأ بأخيه</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-5-3">
+        <div class="ex-q">٣. نفقة الابن على والديه الفقيرين تختلف في وجوبها إذا اختلف دينهما؟</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(5, 3, this, true, 'صحيح. تجب النفقة للأصول حتى مع اختلاف الدين.')">لا تختلف وتجب النفقة</button><button class="ex-btn" onclick="act(5, 3, this, false, 'خاطئ.')">تسقط النفقة باختلاف الدين</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-5-4"><div class="ex-q">٤. صل المفاهيم:</div><div class="game-grid" id="game-5"></div></div>
+      
+      <div class="progress-tracker"><span>التقدم:</span><div class="prog-dots" id="dots-5"><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div></div></div>
+      <div class="nav-row"><button class="nav-btn btn-outline" onclick="goSlide(4)">◁ السابق</button><button class="nav-btn btn-navy" id="next-5" disabled onclick="goSlide(6)">التالي: نفقة الزوجة والمماليك ➜</button></div>
+    </div>
+
+    <!-- ================= 6. نفقة الزوجة والمماليك والبهائم ================= -->
+    <div id="s-6" class="scr" data-req="4">
+      <div class="hero-banner">
+        <div class="hero-icon">💍</div>
+        <div class="hero-title">الباب السادس: نفقة الزوجة وحقوق الضعفاء</div>
+        <div class="hero-sub">أحكام نفقة الزوجات، المطلقات، المماليك، والبهائم</div>
+        <div class="hero-line"></div>
+        <div class="hero-tags"><div class="hero-tag">الزوجة</div><div class="hero-tag">المطلقة البائن</div><div class="hero-tag">المماليك</div><div class="hero-tag">البهائم</div></div>
+      </div>
+
+      <div class="block-header">مخرجات التعلم</div>
+      <div class="info-grid">
+        <div class="info-card"><div class="info-card-icon">💍</div><div class="info-card-title">نفقة الزوجة</div><div class="info-card-desc">معرفة ثبوت النفقة للزوجة بمجرد العقد الصحيح.</div></div>
+        <div class="info-card"><div class="info-card-icon">💔</div><div class="info-card-title">أحكام المطلقات</div><div class="info-card-desc">التفريق بين المطلقة الرجعية والبائن في النفقة.</div></div>
+        <div class="info-card"><div class="info-card-icon">👥</div><div class="info-card-title">المماليك</div><div class="info-card-desc">إدراك وجوب الإطعام وعدم الإرهاق.</div></div>
+        <div class="info-card"><div class="info-card-icon">🐈</div><div class="info-card-title">حقوق البهائم</div><div class="info-card-desc">معرفة تدخل القضاء لحماية الحيوان من التجويع.</div></div>
+      </div>
+
+      <div class="block-header">المدخل والخاتمة</div>
+      <div class="intro-text">شملت الرحمة التشريعية في نظام النفقات الإسلامي جميع من هم تحت ولاية الإنسان، بدءاً بالزوجة والمطلقات بحسب حالهن، وصولاً إلى أضعف الكائنات كالمماليك والحيوانات.</div>
+      <div class="verse-box">
+        <div class="verse-basmala">الحديث الشريف</div>
+        <div class="verse-text">«دخلت امرأة النار في هرة ربطتها، فلا هي أطعمتها، ولا هي أرسلتها تأكل من خشاش الأرض»</div>
+        <div class="verse-ref">متفق عليه</div>
+      </div>
+
+      <div class="block-header">افهم بسرعة</div>
+      <div class="info-grid">
+        <div class="info-card"><div class="info-card-icon">💍</div><div class="info-card-title">الزوجة</div><div class="info-card-desc">تجب نفقتها بمجرد العقد الصحيح شاملة القوت والسكنى.</div></div>
+        <div class="info-card"><div class="info-card-icon">💔</div><div class="info-card-title">المطلقة البائن</div><div class="info-card-desc">إن كانت حاملاً تجب النفقة، وإن لم تكن حاملاً فلا نفقة لها.</div></div>
+        <div class="info-card"><div class="info-card-icon">👤</div><div class="info-card-title">المماليك</div><div class="info-card-desc">يحرم تكليفهم بما يشق عليهم، ويجبر القاضي السيد على تقديم حقوقهم.</div></div>
+        <div class="info-card"><div class="info-card-icon">🐈</div><div class="info-card-title">البهائم</div><div class="info-card-desc">يُجبر المالك عند العجز على: بيعها، أو تأجيرها، أو ذبحها إن كانت تؤكل.</div></div>
+      </div>
+
+      <div class="block-header">النص العلمي الكامل</div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="accordion-header">أحكام نفقة الزوجة وما في حكمها <span class="accordion-icon">⌄</span></div>
+        <div class="accordion-body">
+          <span class="term-blue">نفقة الزوجة:</span> تجب النفقة للزوجة بمجرد العقد الصحيح، وهي شاملة للقوت والكسوة والسكنى، لقوله تعالى: ﴿الرِّجَالُ قَوَّامُونَ عَلَى النِّسَاءِ بِمَا فَضَّلَ اللَّهُ بَعْضَهُمْ عَلَىٰ بَعْضٍ وَبِمَا أَنفَقُوا مِنْ أَمْوَالِهِمْ﴾، وقوله ﷺ في حجة الوداع: "ولهن عليكم رزقهن وكسوتهن بالمعروف".<br><br>
+          <span class="section-head">بخصوص المطلقات، فقد صنف الفقه أحكامهن وفقاً لحالة الطلاق والحمل:</span>
+          <ol>
+            <li><span class="hl-green">المطلقة الرجعية:</span> تجب لها النفقة والسكنى طيلة مدة العدة لكون الزوجية قائمة حكماً.</li>
+            <li><span class="hl-green">المطلقة البائن الحامل:</span> تجب لها النفقة والسكنى حتى تضع حملها، لقوله تعالى: ﴿وَإِن كُنَّ أُولَاتِ حَمْلٍ فَأَنفِقُوا عَلَيْهِنَّ حَتَّىٰ يَضَعْنَ حَمْلَهُنَّ﴾.</li>
+            <li><span class="hl-red">المطلقة البائن غير الحامل:</span> لا تجب لها نفقة ولا سكنى؛ لانقطاع أسباب الوجوب شرعاً بمجرد البينونة ما لم تكن حاملاً.</li>
+          </ol>
+        </div>
+      </div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="accordion-header">نفقة المماليك والبهائم (حقوق الضعفاء) <span class="accordion-icon">⌄</span></div>
+        <div class="accordion-body">
+          شملت الرحمة التشريعية الرقيق والحيوان، فأوجبت على المالك نفقاتهم ورعايتهم كالتالي:
+          <ul>
+            <li><span class="term-blue">أحكام المماليك:</span> يجب على السيد كفايتهم بالمعروف من القوت والكسوة، لقوله ﷺ: "للمملوك طعامه وكسوته". ويحرم تكليفهم بما يشق عليهم، لقوله ﷺ: "ولا تكلفوهم ما يغلبهم، فإن كلفتموهم فأعينوهم". كما يجب على السيد تزويج مملوكه إذا طلب ذلك إعفافاً له، فإذا امتنع السيد؛ <span class="hl-green">أجبره القاضي</span> على تزويجه أو بيعه أو تقديم حقوقه له إزالةً للضرر.</li>
+            <li><span class="term-blue">أحكام البهائم:</span> أوجب الشرع على مالك البهيمة إطعامها وسقيها والقيام بشؤونها، <span class="hl-red">وحرم حبسها أو تجويعها</span>؛ واستدل المصدر بالوعيد الشديد في قوله ﷺ: "دخلت امرأة النار في هرة ربطتها...".</li>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="accordion-header">التدخل القضائي عند عجز المالك <span class="accordion-icon">⌄</span></div>
+        <div class="accordion-body">
+          <span class="section-head">الإجراء القضائي عند العجز:</span><br>
+          في حال عجز المالك عن الإنفاق على بهيمته، فإن القضاء يتدخل لإزالة الظلم عنها عبر إجبار المالك على أحد حلول ثلاثة:
+          <ol>
+            <li>بيع البهيمة لمالك قادر على نفقتها.</li>
+            <li>تأجيرها لتنفق على نفسها من أجرتها.</li>
+            <li>ذبحها إن كانت مما يؤكل لحمه؛ وذلك لأن بقاءها في ملكه مع عدم الإنفاق عليها ظلم والظلم تجب إزالته.</li>
+          </ol>
+          <span class="section-head">الخاتمة: مقاصد الشريعة من نظام النفقات:</span><br>
+          إن المتأمل في نظام النفقات يدرك عمق التكافل الاجتماعي؛ فهو نظام يتجاوز مجرد سد الرمق إلى صون الكرامة الإنسانية وحماية الضعفاء. فبإيجاب النفقة على النفس ثم الأهل ثم الأقارب، تتقلص دوائر الفقر. كما أن شمول هذه النفقات للمماليك والبهائم، وإحاطتها بسياج من الرقابة القضائية، يعكس شمولية الرحمة في هذا التشريع الذي لم يترك كبداً رطبة إلا وجعل لها حقاً معلوماً.
+        </div>
+      </div>
+
+      <div class="block-header">تطبيقات عملية</div>
+      <div class="app-scenario">📌 طلق رجل زوجته طلاقاً بائناً (لا رجعة فيه) وهي غير حامل وطالبته بالنفقة في العدة. (التطبيق: لا نفقة ولا سكنى لها، لانقطاع سبب الوجوب بالبينونة وعدم الحمل).</div>
+
+      <div class="block-header">ملخص الدرس (خريطة ذهنية)</div>
+      <div class="tree-container">
+        <div class="tree-root">أحكام نفقة الزوجة والضعفاء</div>
+        <div class="tree-branches">
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>المطلقات</h4><p>الرجعية: لها نفقة<br>البائن الحامل: لها نفقة<br>البائن غير الحامل: لا نفقة</p></div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>المماليك</h4><p>كفايتهم وعدم إرهاقهم<br>تزويجهم إعفافاً</p></div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>المرء والبهائم</h4><p>تحريم التجويع<br>إجبار القاضي للمالك العاجز</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-header">أسئلة الفهم</div>
+      <div class="ex-box" id="ex-6-1">
+        <div class="ex-q">١. المطلقة طلاقاً (بائناً) وهي (غير حامل):</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(6, 1, this, true, 'صحيح. لانقطاع أسباب الوجوب.')">لا تجب لها نفقة ولا سكنى</button><button class="ex-btn" onclick="act(6, 1, this, false, 'خاطئ.')">تجب لها النفقة طيلة العدة</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-6-2">
+        <div class="ex-q">٢. إذا عجز مالك البهيمة عن الإنفاق عليها، فما هو موقف القضاء؟</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(6, 2, this, false, 'خاطئ.')">يتركه وشأنه</button><button class="ex-btn" onclick="act(6, 2, this, true, 'أحسنت! يجبره على بيعها أو تأجيرها أو ذبحها.')">يجبره على حلول تزيل الظلم</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-6-3">
+        <div class="ex-q">٣. تكليف المماليك (الخدم والعمال) بما لا يطيقون من الأعمال الشاقة:</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(6, 3, this, true, 'صحيح. (ولا تكلفوهم ما يغلبهم).')">يحرم شرعاً</button><button class="ex-btn" onclick="act(6, 3, this, false, 'خاطئ.')">جائز إن أعطاهم أجرهم</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-6-4"><div class="ex-q">٤. صل المفاهيم:</div><div class="game-grid" id="game-6"></div></div>
+      
+      <div class="progress-tracker"><span>التقدم:</span><div class="prog-dots" id="dots-6"><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div></div></div>
+      <div class="nav-row"><button class="nav-btn btn-outline" onclick="goSlide(5)">◁ السابق</button><button class="nav-btn btn-gold" id="next-6" disabled onclick="finishLesson()">✓ إتمام الدروس والانتقال</button></div>
+    </div>
+
+    <!-- ================= TAB: NAWAZIL (النوازل المعاصرة) ================= -->
+    <div id="s-nawazil" class="scr">
+      <div class="hero-banner" style="background:linear-gradient(135deg, #1e293b, #334155); border-color:var(--gold);">
+        <div class="hero-icon">⚖️</div>
+        <div class="hero-title" style="font-family:var(--font-quran);">النوازل الفقهية المعاصرة</div>
+        <div class="hero-sub">اضغط على النازلة لعرض الحكم الشرعي الخاص بها</div>
+      </div>
+      
+      <div class="essay-list">
+        <div class="essay-item essay-navy" onclick="this.classList.toggle('open')">
+          <div class="essay-q">س١: هل يؤدي تناول الطفل للحليب من "بنوك الحليب" إلى ثبوت التحريم والمحرمية؟</div>
+          <div class="essay-a">لا يثبت التحريم عبر بنوك الحليب؛ لأن الحليب فيها يكون مجهول المصدر ومختلطاً من نساء شتى، ولا تتحقق فيه شروط الرضاع المحرم الذي يتطلب معرفة المرضعة واليقين بعدد الرضعات المشبعات من امرأة معينة.</div>
+        </div>
+        <div class="essay-item essay-gold" onclick="this.classList.toggle('open')">
+          <div class="essay-q">س٢: كيف يمكن للمسلمين في بلاد الاغتراب كفالة طفل يتيم مع ضمان المحرمية؟</div>
+          <div class="essay-a">يتم ذلك عبر "الرضاع المحرم"، فإذا أرضعت الزوجة الطفل أو أرضعته إحدى قريبات الزوج أو الزوجة خمس رضعات مشبعات وهو دون سن السنتين، يثبت الرضاع وتتحقق المحرمية الشرعية.</div>
+        </div>
+        <div class="essay-item essay-navy" onclick="this.classList.toggle('open')">
+          <div class="essay-q">س٣: هل يسقط حق الأم في حضانة أطفالها إذا كانت تخرج من البيت يومياً للعمل أو الدراسة؟</div>
+          <div class="essay-a">لا يسقط حقها في الحضانة ما دامت قادرة على رعاية الطفل وتوفير من يقوم بشؤونه في فترة غيابها، وبشرط ألا يؤدي ذلك إلى ضياع المحضور أو إلحاق الضرر به.</div>
+        </div>
+        <div class="essay-item essay-gold" onclick="this.classList.toggle('open')">
+          <div class="essay-q">س٤: إذا ثبت إدمان الأب أو الأم على المواد المخدرة، فهل يسقط حقهما في الحضانة؟</div>
+          <div class="essay-a">نعم، يسقط حق المدمن في الحضانة فوراً؛ لأن من شروط الحاضن "الأمانة والعفة" والقدرة على الرعاية، والإدمان يخل بهذه الشروط ويجعل المحضور في خطر وضرر محقق.</div>
+        </div>
+        <div class="essay-item essay-navy" onclick="this.classList.toggle('open')">
+          <div class="essay-q">س٥: هل يجوز للقضاء استخدام تقنيات تحديد الموقع (كالجوال) لتحديد مكان الحاضن الهارب؟</div>
+          <div class="essay-a">نعم، يجوز الاعتماد على هذه الوسائل قرائن ومعلومات تساعد في البحث عن الوالد المفقود أو الممتنع عن تسليم المحضور، حمايةً لحق الصغير في الرعاية.</div>
+        </div>
+        <div class="essay-item essay-gold" onclick="this.classList.toggle('open')">
+          <div class="essay-q">س٦: هل يجب على الزوج توفير "خادمة" لزوجته في المنزل كجزء من النفقة؟</div>
+          <div class="essay-a">نعم، يجب عليه ذلك إذا كانت الزوجة ممن يُخدم أمثالها (اعتادت على ذلك في بيت أهلها) أو كانت عاجزة عن القيام بأعمال المنزل لمرض، وتعد أجرة الخادمة جزءاً من النفقة بالمعروف.</div>
+        </div>
+        <div class="essay-item essay-navy" onclick="this.classList.toggle('open')">
+          <div class="essay-q">س٧: هل يحق للزوج أن يقوم بأعمال المنزل وخدمة زوجته بنفسه بدلاً من إحضار خادمة؟</div>
+          <div class="essay-a">نعم، يجوز له ذلك، فإذا قام الزوج بكفاية زوجته في شؤون المنزل سقط عنه وجوب إحضار خادمة، ولا يحق للزوجة المطالبة بغير ذلك ما دامت كفايتها قد تحققت.</div>
+        </div>
+        <div class="essay-item essay-gold" onclick="this.classList.toggle('open')">
+          <div class="essay-q">س٨: ما حكم اتفاق الزوجين في "زواج المسيار" على تنازل المرأة عن النفقة والسكن؟</div>
+          <div class="essay-a">الاتفاق جائز وصحيح، وللمرأة أن تسقط حقها برضاها، لكن يبقى لها الحق في الرجوع عن هذا التنازل ومطالبة الزوج بالنفقة مستقبلاً إذا أرادت.</div>
+        </div>
+        <div class="essay-item essay-navy" onclick="this.classList.toggle('open')">
+          <div class="essay-q">س٩: هل يعتبر "الراتب التقاعدي" للمتوفى حقاً للورثة ينفق منه عليهم؟</div>
+          <div class="essay-a">نعم، الراتب التقاعدي يعد مالاً ينتقل للمستحقين الذين كان المتوفى يعولهم في حياته، ويصرف منه على نفقاتهم وحاجاتهم.</div>
+        </div>
+        <div class="essay-item essay-gold" onclick="this.classList.toggle('open')">
+          <div class="essay-q">س١٠: هل يلتزم الزوج بدفع تكاليف الأدوية والعمليات الجراحية لزوجته كجزء من النفقة؟</div>
+          <div class="essay-a">نعم، ذهب كثير من الفقهاء المعاصرين إلى أن تكاليف العلاج والدواء ضرورة لا تقل عن الطعام والكساء، لذا تدخل ضمن النفقة الواجبة بالمعروف.</div>
+        </div>
+        <div class="essay-item essay-navy" onclick="this.classList.toggle('open')">
+          <div class="essay-q">س١١: متى تبدأ أحكام الحضانة والنفقة إذا وقع الطلاق عبر الوسائل الإلكترونية (كالواتساب)؟</div>
+          <div class="essay-a">تبدأ فور وقوع الطلاق وثبوته، وتنتقل الحضانة لمن هو أحق بها بمجرد الانفصال، وتجب نفقة المحضور على الأب منذ لحظة الانفصال.</div>
+        </div>
+        <div class="essay-item essay-gold" onclick="this.classList.toggle('open')">
+          <div class="essay-q">س١٢: هل تجب النفقة للزوجة في الزواج الذي يعقده الرجل وهو ينوي الطلاق بعد فترة (كالمبتعث)؟</div>
+          <div class="essay-a">نعم، تجب النفقة كاملة طوال فترة بقاء العقد، لأن العقد ظاهره الصحة والاستمرار، ولا يؤثر إضمار نية الطلاق على الحقوق المالية للزوجة.</div>
+        </div>
+        <div class="essay-item essay-navy" onclick="this.classList.toggle('open')">
+          <div class="essay-q">س١٣: لمن تكون الحضانة إذا اختلف الزوجان المسلمان في الغرب ورفض أحدهما الاحتكام للشرع؟</div>
+          <div class="essay-a">تكون لمن هو أصلح للمحضور وأقدر على حفظ دينه، ويجوز اللجوء للمراكز الإسلامية للتحكيم، فإن تعذر جاز اللجوء للقضاء المدني للضرورة مع الحرص على تطبيق روح العدل الشرعي.</div>
+        </div>
+      </div>
+      
+      <div style="margin-top:30px; padding:18px; background:linear-gradient(135deg, var(--navy), var(--navy2)); color:var(--gold-light); border-radius:14px; text-align:center; font-family:var(--font-title); font-size:1.05rem; box-shadow:var(--shadow-md);">
+        📚 المرجع: الموسوعة الميسرة في فقه القضايا المعاصرة (قسم فقه الأسرة)، إعداد: مركز التميز البحثي، جامعة الإمام محمد بن سعود الإسلامية، الطبعة الأولى، 1435هـ.
+      </div>
+
+    </div>
+
+    <!-- ================= TAB: REVIEW (المراجعة الشاملة) ================= -->
+    <div id="s-review" class="scr">
+      
+      <div class="hero-banner" style="background:linear-gradient(135deg, #0f172a, #1e293b); color:#fff; border:none;">
+        <div class="hero-icon" style="color:var(--gold);">🧠</div>
+        <div class="hero-title" style="color:#fff;">المراجعة الشاملة</div>
+        <div class="hero-sub" style="color:var(--gold-light);">بطاقات المفاهيم والأسئلة المقالية لترسيخ الفهم</div>
+      </div>
+      
+      <div class="block-header">أولاً: بطاقات المفاهيم (اضغط للقلب)</div>
+      <div class="fc-grid" id="fcBox"></div>
+
+      <div class="block-header" style="margin-top:40px;">ثانياً: الأسئلة المقالية (١٠ أسئلة)</div>
+      <div class="essay-list">
+        <div class="essay-item essay-navy" onclick="this.classList.toggle('open')"><div class="essay-q">١. اذكر الشرطين الأساسيين لثبوت التحريم بالرضاع.</div><div class="essay-a">١. أن يكون الرضاع في الحولين الأولين (قبل الفطام). ٢. أن يكون عدد الرضعات خمس رضعات مشبعات ومعلومات.</div></div>
+        <div class="essay-item essay-gold" onclick="this.classList.toggle('open')"><div class="essay-q">٢. ما المقصود بحكم "الحل" المترتب على الرضاع؟</div><div class="essay-a">هو ثبوت المحرمية الشرعية التي تبيح ما يُباح للأقارب من النسب؛ كجواز الخلوة، وإباحة النظر، وسقوط الحجاب عن المرأة.</div></div>
+        <div class="essay-item essay-navy" onclick="this.classList.toggle('open')"><div class="essay-q">٣. كيف يتم إثبات الرضاع في القضاء الفقهي؟ ولماذا؟</div><div class="essay-a">يثبت بشهادة امرأة واحدة مرضية وموثوقة (ولو كانت هي المرضعة). والعلة: تيسيراً وضبطاً للحقوق لأن الرضاع أمر لا يطّلع عليه الرجال غالباً.</div></div>
+        <div class="essay-item essay-gold" onclick="this.classList.toggle('open')"><div class="essay-q">٤. ما هو الشرط الخاص بالمرأة لاستحقاق حضانة طفلها بعد الطلاق؟</div><div class="essay-a">ألا تتزوج برجل أجنبي عن المحضور، فإن تزوجت سقط حقها في الحضانة لانشغالها بحق الزوج الجديد؛ لقوله ﷺ: "أنتِ أحق به ما لم تنكحي".</div></div>
+        <div class="essay-item essay-navy" onclick="this.classList.toggle('open')"><div class="essay-q">٥. ماذا يحدث لحضانة الأنثى (البنت) إذا بلغت سن السابعة؟</div><div class="essay-a">تنتقل حضانتها إلى الأب وجوباً في الفقه؛ لأنه أحفظ لها وهو وليها في النكاح والأعلم بالكفء، بخلاف الذكر الذي يُخيّر.</div></div>
+        <div class="essay-item essay-gold" onclick="this.classList.toggle('open')"><div class="essay-q">٦. ما هو الضابط الشرعي لتحديد مقدار النفقة الواجبة؟</div><div class="essay-a">الضابط هو "المعروف"، وهو معيار مرن يراعي حال المنفق سعةً وضيقاً، وحاجة المنفق عليه، وعُرف المجتمع في القوت والكسوة والسكنى.</div></div>
+        <div class="essay-item essay-navy" onclick="this.classList.toggle('open')"><div class="essay-q">٧. كيف رتبت الشريعة أولويات الإنفاق للشخص الذي يملك مالاً محدوداً؟</div><div class="essay-a">يبدأ بنفسه أولاً، ثم بزوجته وأولاده (أهله)، ثم بوالديه وقرابته الأقرب فالأقرب، إعمالاً لمبدأ المسؤولية الفردية.</div></div>
+        <div class="essay-item essay-gold" onclick="this.classList.toggle('open')"><div class="essay-q">٨. هل تسقط نفقة الوالدين (الأصول) باختلاف الدين؟ ولماذا؟</div><div class="essay-a">لا تسقط، بل تجب النفقة للوالدين حتى وإن كانا على غير دين الإسلام؛ لقوله تعالى: ﴿وَصَاحِبْهُمَا فِي الدُّنْيَا مَعْرُوفًا﴾ والمصاحبة بالمعروف تشمل الكفاية المالية.</div></div>
+        <div class="essay-item essay-navy" onclick="this.classList.toggle('open')"><div class="essay-q">٩. ما الفرق بين المطلقة الرجعية والبائن (غير الحامل) في استحقاق النفقة؟</div><div class="essay-a">المطلقة الرجعية تجب لها النفقة طيلة العدة. أما المطلقة البائن غير الحامل فلا تجب لها نفقة ولا سكنى لانقطاع أسباب الوجوب شرعاً.</div></div>
+        <div class="essay-item essay-gold" onclick="this.classList.toggle('open')"><div class="essay-q">١٠. ما هو الإجراء الشرعي (القضائي) لمن عجز عن إطعام بهيمته؟</div><div class="essay-a">يتدخل القاضي لإزالة الظلم ويجبر المالك على أحد ثلاثة أمور: بيعها لقادر، أو تأجيرها لينفق عليها من أجرتها، أو ذبحها إن كانت تؤكل.</div></div>
+      </div>
+    </div>
+
+    <!-- ================= TAB: QUIZ (التقييم النهائي) ================= -->
+    <div id="s-quiz" class="scr">
+      <div class="hero-banner" style="background:linear-gradient(135deg, #fef3c7, #fde68a); border-color:#b45309;">
+        <div class="hero-icon">🎓</div>
+        <div class="hero-title">التقييم الشامل والنهائي</div>
+        <div class="hero-sub">يحتوي على ٢٠ سؤالاً لتقييم فهمك للمحاضرة (النتيجة تُرسل للدكتور آلياً)</div>
+        <div class="hero-line" style="background:linear-gradient(to left, transparent, #b45309, transparent);"></div>
+      </div>
+      <div id="qzBox"></div>
+    </div>
+
+  </div>
+
+  <!-- ================= BOTTOM NAVIGATION BAR ================= -->
+  <div class="bottom-bar" id="bottomBar">
+    <div class="bottom-inner">
+      <button class="btab act" data-t="lesson" onclick="switchTab('lesson')"><span>📚</span> الدرس</button>
+      <button class="btab locked" id="tab-nawazil" data-t="nawazil" onclick="switchTab('nawazil')"><span>⚖️</span> النوازل</button>
+      <button class="btab locked" id="tab-review" data-t="review" onclick="switchTab('review')"><span>🧠</span> المراجعة</button>
+      <button class="btab locked" id="tab-quiz" data-t="quiz" onclick="switchTab('quiz')"><span>📝</span> التقييم</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- زر العودة للأعلى -->
+<button id="backToTop" onclick="window.scrollTo({top:0, behavior:'smooth'})" title="العودة للأعلى">↑</button>
+
+<div id="toast" class="toast"></div>
+
+<script>
+/* ================= DATA ================= */
+const GAMES = {
+  1: {pairs:[{l:"شرط الرضاع الزمني",r:"أن يكون دون الحولين"},{l:"العدد الموجب للتحريم",r:"خمس رضعات معلومات"},{l:"شرب لبن المرأة من إناء ٥ مرات",r:"يثبت التحريم (وصول للجوف)"}]},
+  2: {pairs:[{l:"حكم الحرمة (آثار الرضاع)",r:"تحريم النكاح المؤبد"},{l:"حكم الحل (آثار الرضاع)",r:"إباحة الخلوة والنظر"},{l:"الإثبات القضائي للرضاع",r:"تقبل شهادة امرأة واحدة"}]},
+  3: {pairs:[{l:"حكم الحضانة",r:"فرض كفاية"},{l:"أولوية الحضانة للصغار",r:"النساء لكونهن أشفق وأرفق"},{l:"شرط الحضانة للمرأة المطلقة",r:"ألا تتزوج بأجنبي عن المحضور"}]},
+  4: {pairs:[{l:"السفر الطويل بالمحضور",r:"الحضانة للأب للتأديب والصيانة"},{l:"بلوغ الصغير السابعة",r:"تنتهي مدة الحضانة التلقائية"},{l:"الغلام بعد السابعة",r:"يخير بين أبويه العاقلين"},{l:"أجرة الحضانة",r:"حق مستحق تدفع من مال المحضور أو أبيه"}]},
+  5: {pairs:[{l:"ضابط النفقة",r:"المعروف بحسب العرف"},{l:"أولوية الإنفاق",r:"يبدأ المرء بنفسه أولاً"},{l:"نفقة الوالدين (الأصول)",r:"تجب حتى مع اختلاف الدين"},{l:"نفقة الفروع (الأبناء)",r:"تجب بشرط الفقر والعجز"}]},
+  6: {pairs:[{l:"نفقة الزوجة",r:"تجب بالعقد الصحيح"},{l:"المطلقة البائن غير الحامل",r:"لا تجب لها نفقة ولا سكنى"},{l:"المماليك",r:"يحرم تكليفهم بما يشق عليهم"},{l:"المالك العاجز عن إطعام بهيمته",r:"يجبره القاضي على بيعها"}]}
+};
+
+const FLASHCARDS =[
+  {q:"ما هي شروط الرضاع الموجب للتحريم؟",a:"شرطان: أن يكون في الحولين الأولين (سنتين)، وأن يكون خمس رضعات معلومات."},
+  {q:"كيف يثبت الرضاع أمام القاضي؟",a:"يثبت بشهادة امرأة واحدة ثقة (ولو كانت هي المرضعة) تيسيراً وحفظاً للحقوق."},
+  {q:"ما هو الحكم التكليفي للحضانة؟",a:"فرض كفاية لحفظ الصغير من الهلاك والضياع."},
+  {q:"من الأحق بالحضانة، الأب أم الأم؟ ولماذا؟",a:"الأم والنساء عموماً أحق؛ لكونهن أشفق وأرفق وأقدر على الصبر والرعاية."},
+  {q:"متى يسقط حق الأم المطلقة في الحضانة؟",a:"يسقط إذا تزوجت برجل أجنبي عن المحضور (أنتِ أحق به ما لم تنكحي)."},
+  {q:"لمن تؤول الحضانة في حالة السفر الطويل للعمل؟",a:"تؤول للأب؛ لأنه أقدر على حفظ الولد وتأديبه وصيانته من الضياع في السفر."},
+  {q:"ماذا يحدث للغلام (الذكر) إذا بلغ سبع سنين؟",a:"يُخيّر بين أبيه وأمه (إذا كانا عاقلين صالحين) ويكون عند من يختار."},
+  {q:"هل للحاضن الحق في طلب أجرة مالية؟",a:"نعم، أجرة الحضانة حق مستحق وتُدفع من مال الطفل أو مال أبيه."},
+  {q:"ما هو المعيار الذي يحدد مقدار النفقة؟",a:"معيار (المعروف)، ويراعي حال المنفق وحاجة المنفق عليه."},
+  {q:"هل تجب النفقة للوالدين إذا كانا كافرين والابن مسلم؟",a:"نعم، تجب النفقة للأصول حتى مع اختلاف الدين لعموم (وصاحبهما في الدنيا معروفاً)."},
+  {q:"ما حكم النفقة للمطلقة البائن غير الحامل؟",a:"لا تجب لها نفقة ولا سكنى لانقطاع سبب الوجوب بالبينونة."},
+  {q:"كيف يتصرف القضاء مع من يجوع بهيمته؟",a:"يجبره القاضي على بيعها، أو تأجيرها للإنفاق عليها، أو ذبحها إن كانت تؤكل."}
+];
+
+const QUIZ = [
+  {q:"عدد الرضعات التي تشترط لثبوت التحريم ونشر المحرمية:",o:["رضعة واحدة","ثلاث رضعات","خمس رضعات معلومات","عشر رضعات"],a:2},
+  {q:"يُشترط أن يقع الرضاع المحرّم خلال مدة زمنية محددة هي:",o:["دون الحولين (سنتين)","أول سنة فقط","حتى سن الفطام الفعلي (٣ سنوات)","في أي عمر"],a:0},
+  {q:"إثبات الرضاع في القضاء الفقهي يتم عبر:",o:["شهادة رجلين","شهادة امرأة واحدة معروفة بالصدق","شهادة أربع نساء","التحليل الطبي فقط"],a:1},
+  {q:"شرب لبن المرأة من إناء (غير التقام الثدي) وتكرر ذلك خمس مرات في الحولين:",o:["ينشر الحرمة ويثبت الرضاع","لا يثبت الرضاع أبداً","يثبت الحرمة ولا يثبت الحل","مكروه شرعاً"],a:0},
+  {q:"من آثار الرضاع الشرعية (حكم الحل)، ويعني:",o:["تحريم الزواج أبداً","إباحة الخلوة والنظر وسقوط الحجاب","حل الميراث المالي","إسقاط النفقة"],a:1},
+  {q:"حكم الحضانة التكليفي عند تعدد المستحقين القادرين عليها:",o:["فرض عين","فرض كفاية","سنة مؤكدة","مباح"],a:1},
+  {q:"في أولوية استحقاق الحضانة، قدم الفقه الإسلامي:",o:["الرجال لقوتهم","النساء لكونهن أشفق وأرفق","الجد دائماً","القاضي"],a:1},
+  {q:"إذا تزوجت الأم الحاضنة برجل أجنبي عن المحضور:",o:["تستمر حضانتها","يسقط حقها في الحضانة","يُخير الطفل فوراً","تزيد أجرتها"],a:1},
+  {q:"السن القانوني الذي تنتهي عنده الحضانة التلقائية ويبدأ التخيير هو:",o:["خمس سنوات","سبع سنوات","عشر سنوات","خمسة عشر عاماً"],a:1},
+  {q:"إذا بلغ الغلام (الذكر) السابعة وكان أبواه عاقلين:",o:["يُخيّر بين أبويه","يذهب للأب وجوباً","يبقى عند الأم وجوباً","تأخذه الخالة"],a:0},
+  {q:"حضانة الأنثى (البنت) بعد بلوغها سن السابعة في الفقه:",o:["تُخير كالغلام","تنتقل للأب وجوباً لأنه أحفظ لها","تبقى عند الأم وجوباً","تُرسل لدار الرعاية"],a:1},
+  {q:"سفر أحد الأبوين سفراً طويلاً آمناً لغير الإضرار، يجعل الحضانة تؤول لـ:",o:["الأم","الأب (لأجل التأديب والحفظ)","الجدة","المقيم منهما دائماً"],a:1},
+  {q:"هل تُعد أجرة الحضانة حقاً مستحقاً للحاضن؟",o:["لا، فهي عمل خيري مجاني","نعم، وتُدفع من مال المحضور أو وليه","مستحبة فقط","لا تجوز للأم"],a:1},
+  {q:"المعيار الشرعي المرن الذي يضبط مقدار النفقة هو معيار:",o:["التساوي بين الناس","المعروف","الإنفاق الأدنى","عطاء الدولة"],a:1},
+  {q:"إذا كان لدى الشخص مال محدود، فبمن يبدأ بالإنفاق أولاً إعمالاً للمسؤولية الفردية؟",o:["بوالديه","بنفسه","بأولاده","بزوجته"],a:1},
+  {q:"نفقة الوالدين (الأصول) الفقيرين إذا اختلف دينهما عن دين ابنهما المسلم:",o:["تجب ولا يؤثر اختلاف الدين","تسقط باختلاف الدين","مستحبة فقط","مكروهة"],a:0},
+  {q:"المطلقة طلاقاً بائناً وهي غير حامل، حكم نفقتها وسكناها:",o:["تجب طيلة العدة","لا تجب لها نفقة ولا سكنى","لها السكنى دون النفقة","لها النفقة دون السكنى"],a:1},
+  {q:"الشخص الذي يحبس هرة ولا يطعمها، حكم فعله شرعاً:",o:["مكروه","محرم وفيه وعيد شديد بالدخول للنار","خلاف الأولى","جائز إن كانت مؤذية"],a:1},
+  {q:"المطلقة طلاقاً بائناً وهي (حامل)، حكم نفقتها:",o:["لا نفقة لها","تجب لها النفقة حتى تضع حملها","لها نصف النفقة","تجب النفقة للمولود فقط"],a:1},
+  {q:"إذا عجز مالك البهيمة عن الإنفاق عليها، يتدخل القضاء لـ:",o:["تأنيبه فقط","إجباره على بيعها أو تأجيرها لتُطعم","حبسه وسجنه","مصادرتها لبيت المال"],a:1}
+];
+
+/* ================= STATE & LOGIC ================= */
+let user={n:'',s:''}, curSlide=0, startTime=null;
+let progress = { 1:new Set(), 2:new Set(), 3:new Set(), 4:new Set(), 5:new Set(), 6:new Set() };
+let activeL = null;
+let fontSizeLevel = 0;
+
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+
+// استرجاع التقدم من LocalStorage
+const savedProgress = localStorage.getItem('fiqh3_progress');
+if(savedProgress) {
+  const parsed = JSON.parse(savedProgress);
+  for(let key in parsed) {
+    progress[key] = new Set(parsed[key]);
+  }
+}
+
+const toast = m => { 
+  const t=$('#toast'); 
+  t.textContent=m; 
+  t.classList.add('on'); 
+  setTimeout(()=>t.classList.remove('on'), 3500); 
+};
+
+// زر العودة للأعلى
+window.addEventListener('scroll', () => {
+  const btn = $('#backToTop');
+  if(window.scrollY > 400) btn.classList.add('show');
+  else btn.classList.remove('show');
+});
+
+// استرجاع الوضع الليلي
+if(localStorage.getItem('fiqh3_theme') === 'dark') {
+  document.documentElement.setAttribute('data-theme', 'dark');
+}
+
+function doLogin(){
+  const n=$('#iName').value.trim(), s=$('#iSec').value.trim();
+  if(!n||!s) return toast('⚠️ يرجى إدخال الاسم الكامل والشعبة');
+  user={n,s}; 
+  $('#stuInfo').textContent=`${n} | ${s}`;
+  $('#mainHeader').style.display='flex'; 
+  $('#bottomBar').style.display='flex';
+  startTime = Date.now();
+  renderGames(); 
+  renderReview(); 
+  renderQuiz();
+  
+  // استعادة التقدم المرئي
+  restoreProgressVisuals();
+  
+  // استعادة آخر شريحة
+  const lastSlide = localStorage.getItem('fiqh3_lastSlide') || 0;
+  goSlide(parseInt(lastSlide));
+}
+
+function restoreProgressVisuals() {
+  for(let slide in progress) {
+    progress[slide].forEach(exNum => {
+      const dots = $$(`#dots-${slide} .prog-dot`);
+      if(dots[exNum-1]) dots[exNum-1].classList.add('done');
+    });
+    
+    // تفعيل زر التالي إن اكتمل المطلوب
+    const scr = $(`#s-${slide}`);
+    if(scr) {
+      const req = parseInt(scr.dataset.req);
+      if(progress[slide].size >= req) {
+        const nextBtn = $(`#next-${slide}`);
+        if(nextBtn) nextBtn.disabled = false;
+      }
+    }
+  }
+}
+
+function goSlide(i){
+  $$('.scr').forEach(s=>s.classList.remove('on'));
+  $(`#s-${i}`).classList.add('on');
+  curSlide = i; 
+  window.scrollTo({top:0, behavior:'smooth'});
+  localStorage.setItem('fiqh3_lastSlide', i);
+  
+  const vid = document.querySelector('video');
+  if(vid && i !== 0) vid.pause();
+}
+
+function switchTab(t){
+  const btn = $(`#tab-${t}`);
+  if(btn && btn.classList.contains('locked')) return toast('🔒 أكمل الدروس الستة أولاً لفتح هذه الأقسام');
+  
+  const vid = document.querySelector('video');
+  if(vid) vid.pause();
+
+  $$('.scr').forEach(s=>s.classList.remove('on'));
+  if(t==='lesson') $(`#s-${curSlide}`).classList.add('on');
+  else $(`#s-${t}`).classList.add('on');
+  
+  $$('.btab').forEach(b=>b.classList.remove('act'));
+  $(`.btab[data-t="${t}"]`).classList.add('act');
+  window.scrollTo(0,0);
+}
+
+function toggleAcc(el){ el.classList.toggle('active'); }
+
+/* ================= الوضع الليلي وتكبير الخط ================= */
+function toggleTheme() {
+  const html = document.documentElement;
+  if(html.getAttribute('data-theme') === 'dark') {
+    html.removeAttribute('data-theme');
+    localStorage.setItem('fiqh3_theme', 'light');
+    toast('☀️ الوضع النهاري مفعل');
+  } else {
+    html.setAttribute('data-theme', 'dark');
+    localStorage.setItem('fiqh3_theme', 'dark');
+    toast('🌙 الوضع الليلي مفعل');
+  }
+}
+
+function adjustFontSize(delta) {
+  fontSizeLevel += delta;
+  if(fontSizeLevel > 3) fontSizeLevel = 3;
+  if(fontSizeLevel < -2) fontSizeLevel = -2;
+  const scale = 1 + (fontSizeLevel * 0.1);
+  document.documentElement.style.fontSize = (16 * scale) + 'px';
+}
+
+/* ================= PROGRESSION ================= */
+function saveProgress() {
+  const toSave = {};
+  for(let key in progress) {
+    toSave[key] = Array.from(progress[key]);
+  }
+  localStorage.setItem('fiqh3_progress', JSON.stringify(toSave));
+}
+
+function act(slide, exNum, btn, isCorrect, msg){
+  const box = btn.closest('.ex-box');
+  const fb = box.querySelector('.ex-fb');
+  box.querySelectorAll('.ex-btn').forEach(b => b.style.display='none');
+  fb.textContent = msg;
+  fb.className = 'ex-fb ' + (isCorrect ? 'right' : 'wrong');
+  markDone(slide, exNum);
+}
+
+function markDone(slide, exNum){
+  progress[slide].add(exNum);
+  saveProgress();
+  const dots = $$(`#dots-${slide} .prog-dot`);
+  if(dots[exNum-1]) dots[exNum-1].classList.add('done');
+  if(progress[slide].size === parseInt($(`#s-${slide}`).dataset.req)){
+    const nextBtn = $(`#next-${slide}`);
+    if(nextBtn) { 
+      nextBtn.disabled = false; 
+      toast('🎉 أكملت هذا الموضوع! يمكنك المتابعة.'); 
+    }
+  }
+}
+
+function finishLesson(){
+  toast('🎊 مبروك! لقد أنهيت المقرر بالكامل. تم فتح جميع الأقسام.');
+  $$('.btab.locked').forEach(b => b.classList.remove('locked'));
+  switchTab('nawazil');
+  localStorage.setItem('fiqh3_completed', 'true');
+}
+
+/* ================= GAMES ================= */
+function renderGames(){
+  for(let i=1; i<=6; i++){
+    if(!GAMES[i]) continue;
+    const g = GAMES[i], sh =[...g.pairs].sort(()=>Math.random()-.5);
+    $(`#game-${i}`).innerHTML = `
+      <div style="display:flex;flex-direction:column;gap:10px">${g.pairs.map((p,idx)=>`<div class="g-item" onclick="pickL(${i},this,${idx})">${p.l}</div>`).join('')}</div>
+      <div style="display:flex;flex-direction:column;gap:10px">${sh.map((p)=>`<div class="g-choice" onclick="pickR(${i},this,'${p.r}')">${p.r}</div>`).join('')}</div>`;
+  }
+}
+
+function pickL(s, el, idx){ $$(`#game-${s} .g-item`).forEach(e=>e.classList.remove('active')); el.classList.add('active'); activeL={s, el, idx}; }
+function pickR(s, el, txt){
+  if(!activeL || activeL.s !== s) return;
+  if(txt === GAMES[s].pairs[activeL.idx].r){
+    activeL.el.classList.add('done'); el.classList.add('done'); activeL = null;
+    if([...$$(`#game-${s} .g-item`)].every(e=>e.classList.contains('done'))) markDone(s, 4);
+  } else { toast('❌ غير مطابق، حاول مجدداً'); activeL.el.classList.remove('active'); activeL = null; }
+}
+
+/* ================= REVIEW & QUIZ ================= */
+function renderReview(){
+  $('#fcBox').innerHTML = FLASHCARDS.map(c=>`<div class="fc" onclick="this.classList.toggle('flip')"><div class="fc-in"><div class="fc-f">${c.q}</div><div class="fc-b">${c.a}</div></div></div>`).join('');
+}
+
+let score=0, answered=0;
+function renderQuiz(){
+  $('#qzBox').innerHTML = QUIZ.map((q,i)=>`<div class="qz-card" id="qc-${i}"><h3 style="margin-bottom:20px;color:var(--navy);font-family:var(--font-title);line-height:1.6;">س${i+1}: ${q.q}</h3>${q.o.map((o,j)=>`<button class="qz-opt" onclick="ansQ(${i},${j},this)">${o}</button>`).join('')}</div>`).join('') + `<div id="qzRes"></div>`;
+}
+
+function ansQ(qi, oi, btn){
+  const card = $(`#qc-${qi}`); if(card.dataset.done) return;
+  card.dataset.done = '1';
+  const btns = card.querySelectorAll('.qz-opt'); btns.forEach(b => b.disabled = true);
+  if(oi === QUIZ[qi].a){ btn.classList.add('right'); score++; } 
+  else { btn.classList.add('wrong'); btns[QUIZ[qi].a].classList.add('right'); }
+  answered++; if(answered === QUIZ.length) finishQuiz();
+}
+
+function finishQuiz(){
+  const s = Math.floor((Date.now() - startTime)/1000);
+  const timeStr = `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;
+  
+  const fd = new FormData();
+  fd.append("entry.1186146438", "الخامسة - فقه ٣"); 
+  fd.append("entry.598195891", user.n);       
+  fd.append("entry.583802758", user.s);        
+  fd.append("entry.2010697018", score);
+  fd.append("entry.1329211307", timeStr);   
+  fetch("https://docs.google.com/forms/d/e/1FAIpQLSe0zGzyfo7FfGHta0Ae-J5NYmFFCCLK4W2NdnG92dHH51IcBg/formResponse", { method: "POST", mode: "no-cors", body: fd }).catch(e=>console.log(e));
+
+  $('#qzRes').innerHTML = `<div style="text-align:center; padding:40px; background:linear-gradient(135deg, #f0fdf4, #dcfce7); border-radius:16px; border:2px solid var(--green); margin-top:30px; box-shadow:var(--shadow-md);"><h2 style="color:var(--navy);font-family:var(--font-title);font-size:1.8rem;">انتهى التقييم! 🎉</h2><div style="font-size:4rem;font-weight:900;color:var(--green);margin:15px 0;">${score} / ${QUIZ.length}</div><p style="font-size:1.1rem;color:var(--text-main);"><strong>${user.n}</strong> | الشعبة: <strong>${user.s}</strong></p><p style="margin-top:15px; color:var(--text-muted); font-weight:700;">✅ تم إرسال نتيجتك للدكتور. وقت التعلم: ${timeStr}</p></div>`;
+  $('#qzRes').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>
