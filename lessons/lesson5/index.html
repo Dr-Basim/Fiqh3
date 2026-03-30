@@ -207,7 +207,7 @@ html, body { height: 100%; font-family: var(--font-body); background: var(--crea
     </div>
     <div class="hdr-center">
       <div class="hdr-course">مقرر فقه ٣</div>
-      <div class="hdr-lecture">المحاضرة الخامسة: النفقات والرضاع والحضانة</div>
+      <div class="hdr-lecture">المحاضرة الخامسة: الرضاع والحضانة والنفقات</div>
     </div>
     <div class="hdr-stu" id="stuInfo"></div>
   </header>
@@ -222,7 +222,7 @@ html, body { height: 100%; font-family: var(--font-body); background: var(--crea
             <img src="../../logo.png" alt="شعار الجامعة" onerror="this.style.display='none'">
           </div>
           <h1 class="w-title">مقرر فقه ٣</h1>
-          <div class="w-sub">المحاضرة الخامسة: أحكام النفقات والرضاع والحضانة</div>
+          <div class="w-sub">المحاضرة الخامسة: أحكام الرضاع، الحضانة، والنفقات</div>
           <div class="w-dr">إعداد: د/ باسم القرافي</div>
           
           <input type="text" id="iName" class="welcome-input" placeholder="أدخل اسمك الكامل هنا...">
@@ -249,25 +249,447 @@ html, body { height: 100%; font-family: var(--font-body); background: var(--crea
 
       <div class="block-header">نظرة عامة على أبواب المحاضرة</div>
       <div style="background:#fff; padding:20px; border-radius:12px; border:1px solid var(--border);">
-        <p style="font-size:1.1rem; line-height:1.8; margin-bottom:15px;">حرصت الشريعة الإسلامية على صيانة الأسرة وحفظ كيانها من التفكك والعوز، وسنتناول في هذه المحاضرة:</p>
+        <p style="font-size:1.1rem; line-height:1.8; margin-bottom:15px;">حرصت الشريعة الإسلامية على صيانة الأسرة وحفظ كيانها من التفكك، وسنتناول في هذه المحاضرة:</p>
         <ul class="num-list">
-          <li><span class="gold-text">أحكام النفقات:</span> ماهيتها، مشروعيتها، وترتيب الأولويات في الإنفـاق على النفس والأقارب والزوجة والضعفاء.</li>
           <li><span class="gold-text">أحكام الرضاع:</span> شروطه وآثاره الشرعية في نشر الحرمة، وطرق إثباته في القضاء.</li>
           <li><span class="gold-text">أحكام الحضانة:</span> أحقيتها، الشروط الموضوعية للحاضن، وأحكام السفر والسن القانوني للمحضون.</li>
+          <li><span class="gold-text">أحكام النفقات:</span> ماهيتها، مشروعيتها، وترتيب الأولويات في الإنفـاق على النفس والأقارب والزوجة والضعفاء.</li>
         </ul>
       </div>
 
       <div class="nav-row">
-        <div></div><button class="nav-btn btn-navy" onclick="goSlide(1)">التالي: أحكام النفقات ➜</button>
+        <div></div><button class="nav-btn btn-navy" onclick="goSlide(1)">التالي: أحكام الرضاع ➜</button>
       </div>
     </div>
 
-    <!-- ================= 1. أحكام النفقات ومشروعيتها ================= -->
+    <!-- ================= 1. أحكام الرضاع وشروطه ================= -->
     <div id="s-1" class="scr" data-req="4">
+      <div class="hero-banner">
+        <div class="hero-icon">🍼</div>
+        <div class="hero-title">الباب الأول: أحكام الرضاع وشروطه</div>
+        <div class="hero-sub">نظام تشريعي ينشئ صلة قرابة تترتب عليها آثار حقوقية</div>
+        <div class="hero-line"></div>
+        <div class="hero-tags"><div class="hero-tag">التعريف</div><div class="hero-tag">المشروعية</div><div class="hero-tag">دون الحولين</div><div class="hero-tag">٥ رضعات</div></div>
+      </div>
+
+      <div class="block-header">مخرجات التعلم</div>
+      <div class="info-grid">
+        <div class="info-card"><div class="info-card-icon">📘</div><div class="info-card-title">مفهوم الرضاع</div><div class="info-card-desc">تعريف الرضاع لغةً واصطلاحاً.</div></div>
+        <div class="info-card"><div class="info-card-icon">💡</div><div class="info-card-title">المشروعية</div><div class="info-card-desc">معرفة أدلة الرضاع من القرآن والسنة والإجماع.</div></div>
+        <div class="info-card"><div class="info-card-icon">⏱️</div><div class="info-card-title">شرط الزمن</div><div class="info-card-desc">إدراك أهمية وقوع الرضاع في الحولين الأولين.</div></div>
+        <div class="info-card"><div class="info-card-icon">🔢</div><div class="info-card-title">شرط العدد</div><div class="info-card-desc">تحديد عدد الرضعات الموجبة للتحريم (٥ رضعات).</div></div>
+      </div>
+
+      <div class="block-header">مدخل الباب</div>
+      <div class="intro-text">يُعد الرضاع في الفقه الإسلامي نظاماً تشريعياً يتجاوز مجرد التغذية البيولوجية، ليصبح سبباً شرعياً لإنشاء صلة قرابة (لُحمة) تضاهي لحمة النسب في التحريم.</div>
+      <div class="verse-box">
+        <div class="verse-basmala">القرآن الكريم</div>
+        <div class="verse-text">﴿وَأُمَّهَاتُكُمُ اللَّاتِي أَرْضَعْنَكُمْ وَأَخَوَاتُكُم مِّنَ الرَّضَاعَةِ﴾</div>
+        <div class="verse-ref">سورة النساء: ٢٣</div>
+      </div>
+
+      <div class="block-header">افهم بسرعة</div>
+      <div class="info-grid">
+        <div class="info-card"><div class="info-card-icon">🍼</div><div class="info-card-title">التعريف</div><div class="info-card-desc">وصول لبن المرأة لجوف الطفل بضوابط مخصوصة.</div></div>
+        <div class="info-card"><div class="info-card-icon">⏱️</div><div class="info-card-title">المدة الزمنية</div><div class="info-card-desc">يجب أن يقع الرضاع خلال أول سنتين من عمر الطفل.</div></div>
+        <div class="info-card"><div class="info-card-icon">🖐️</div><div class="info-card-title">العدد</div><div class="info-card-desc">خمس رضعات مشبعات معلومات لتثبت الحرمة.</div></div>
+        <div class="info-card"><div class="info-card-icon">🧪</div><div class="info-card-title">طريقة الوصول</div><div class="info-card-desc">يثبت التحريم ولو بغير الرضاع المباشر (كالوجور أو الإناء) إن وصل للجوف.</div></div>
+      </div>
+
+      <div class="block-header">النص العلمي الكامل</div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="accordion-header">مقدمة الدرس والتعريف الاصطلاحي <span class="accordion-icon">+</span></div>
+        <div class="accordion-body">
+          <span class="section-head">مقدمة الموضوع:</span><br>
+          يُعد الرضاع في منظومة الفقه الإسلامي نظاماً تشريعياً متكاملاً يتجاوز في أبعاده مجرد التغذية البيولوجية للطفل، ليصبح سبباً شرعياً لإنشاء صلة قرابة تترتب عليها آثار حقوقية واجتماعية جوهرية. إذ جعل الشارع الحكيم من الرضاع لُحمة شبيهة بِلُحمة النسب، وهو سبب من أسباب التحريم المؤبد في النكاح.<br><br>
+          <span class="section-head">التعريف الاصطلاحي واللغوي:</span><br>
+          <ul>
+            <li><span class="term-blue">التعريف اللغوي:</span> الرضاع -بفتح الراء أو كسرها- هو اسم لمص اللبن من الثدي أو شربه.</li>
+            <li><span class="term-blue">التعريف الشرعي:</span> هو مص طفل دون الحولين لبناً ثاب عن حمل (أي نتج عن ولادة)، أو شربه أو نحوه. ويقيد هذا التعريف الرضاع بضوابط زمنية ومادية تجعل منه سبباً لنشر الحرمة.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="accordion-header">أدلة مشروعية الرضاع والتحريم به <span class="accordion-icon">+</span></div>
+        <div class="accordion-body">
+          استندت مشروعية الرضاع وكونه سبباً للتحريم إلى المصادر التشريعية الثلاثة:
+          <ul>
+            <li><span class="term-blue">من القرآن الكريم:</span> قوله تعالى: ﴿وَأُمَّهَاتُكُمُ اللَّاتِي أَرْضَعْنَكُمْ وَأَخَوَاتُكُم مِّنَ الرَّضَاعَةِ﴾. وجه الاستدلال: أن الله عز وجل قرن بين الأمهات من النسب والأمهات من الرضاع في الحكم الواحد وهو التحريم المؤبد.</li>
+            <li><span class="term-blue">من السنة النبوية:</span> أكدت السنة هذا الأصل، منها حديث عائشة: "إن الرضاعة تُحَرِّم ما تحرم الولادة". وقوله ﷺ في ابنة حمزة: "إنها لا تحل لي، إنها ابنة أخي من الرضاعة، ويحرم من الرضاعة ما يحرم من الرحم".</li>
+            <li><span class="term-blue">الإجماع:</span> انعقد إجماع علماء الأمة قاطبة على ثبوت التحريم بالرضاع ونشره للمحرمية.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="accordion-header">شروط الرضاع الموجب للتحريم <span class="accordion-icon">+</span></div>
+        <div class="accordion-body">
+          لا يترتب الأثر الشرعي بنشر الحرمة إلا بتوفر شرطين أساسيين، هما:
+          <ol>
+            <li><span class="hl-red">الشرط الأول (المدة الزمنية):</span> يجب أن يقع الرضاع خلال الحولين الأولين من عمر الرضيع (سنتين). لقوله ﷺ: "لا يحرم من الرضاعة إلا ما فتق الأمعاء في الثدي، وكان قبل الفطام". والتعليل الفقهي لذلك أن الرضاع في هذه المدة يقوم مقام الغذاء فينبت اللحم ويصبح جزءاً منه.</li>
+            <li><span class="hl-red">الشرط الثاني (عدد الرضعات):</span> يُشترط أن يكون الرضاع <span class="hl-green">خمس رضعات معلومات فأكثر</span>. لحديث عائشة: "كان فيما نزل من القرآن: عشر رضعات معلومات يُحَرِّمْن، ثم نُسخن بخمس معلومات، فتوفي رسول الله ﷺ وهن فيما يقرأ من القرآن".</li>
+          </ol>
+          <span class="hl-green">ملاحظة فنية بشأن وصول اللبن:</span> لا ينحصر التحريم بالالتقام المباشر للثدي، بل يثبت الحكم لو وصل اللبن إلى جوف الطفل بغير الرضاع، كأن يُقطر في فمه (السعوط) أو يشربه من إناء، بشرط أن يتكرر ذلك خمس مرات في مدة الحولين.
+        </div>
+      </div>
+
+      <div class="block-header">تطبيقات عملية</div>
+      <div class="app-scenario">📌 طفل عمره ٣ سنوات، رضع من امرأة ٦ رضعات مشبعات. (التطبيق: لا يثبت التحريم، لاختلال شرط "المدة الزمنية"، فالرضاع الموجب للتحريم يجب أن يكون دون الحولين).</div>
+
+      <div class="block-header">ملخص الدرس (خريطة ذهنية)</div>
+      <div class="tree-container">
+        <div class="tree-root">شروط الرضاع المحرم</div>
+        <div class="tree-branches">
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>المدة الزمنية</h4><p>في الحولين الأولين<br>(سنتين)</p></div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>العدد</h4><p>خمس رضعات<br>معلومات ومشبعات</p></div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>طريقة الوصول</h4><p>بالالتقام المباشر<br>أو الشرب من إناء</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-header">أسئلة الفهم (أكمل لفتح التالي)</div>
+      <div class="ex-box" id="ex-1-1">
+        <div class="ex-q">١. عدد الرضعات الموجبة للتحريم ونشر المحرمية هو:</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(1, 1, this, false, 'خاطئ.')">ثلاث رضعات</button><button class="ex-btn" onclick="act(1, 1, this, true, 'صحيح. خمس رضعات معلومات.')">خمس رضعات معلومات</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-1-2">
+        <div class="ex-q">٢. إرضاع طفل تجاوز عمره السنتين (الحولين) بخمس رضعات:</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(1, 2, this, false, 'خاطئ.')">يُنشر الحرمة</button><button class="ex-btn" onclick="act(1, 2, this, true, 'أحسنت. لأن شرط المدة الزمنية اختل (يجب أن يكون دون الحولين).')">لا ينشر الحرمة</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-1-3">
+        <div class="ex-q">٣. شرب حليب المرأة المحلوب في إناء خمس مرات للطفل الرضيع:</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(1, 3, this, true, 'صحيح. العبرة بوصول اللبن لجوف الطفل وإن لم يكن من الثدي مباشرة.')">ينشر الحرمة ويثبت الرضاع</button><button class="ex-btn" onclick="act(1, 3, this, false, 'خاطئ.')">لا يثبت الرضاع</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-1-4"><div class="ex-q">٤. صل المفاهيم:</div><div class="game-grid" id="game-1"></div></div>
       
+      <div class="progress-tracker"><span>التقدم في هذا الموضوع:</span><div class="prog-dots" id="dots-1"><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div></div></div>
+      <div class="nav-row"><button class="nav-btn btn-outline" onclick="goSlide(0)">◁ التمهيد</button><button class="nav-btn btn-navy" id="next-1" disabled onclick="goSlide(2)">التالي: آثار الرضاع وإثباته ➜</button></div>
+    </div>
+
+    <!-- ================= 2. آثار الرضاع وإثباته ================= -->
+    <div id="s-2" class="scr" data-req="4">
+      <div class="hero-banner">
+        <div class="hero-icon">📜</div>
+        <div class="hero-title">الباب الثاني: آثار الرضاع وطرق إثباته قضائياً</div>
+        <div class="hero-sub">حكم الحرمة، حكم الحل، وشهادة النساء</div>
+        <div class="hero-line"></div>
+        <div class="hero-tags"><div class="hero-tag">حكم الحرمة</div><div class="hero-tag">حكم الحل</div><div class="hero-tag">شهادة المرأة</div></div>
+      </div>
+
+      <div class="block-header">مخرجات التعلم</div>
+      <div class="info-grid">
+        <div class="info-card"><div class="info-card-icon">🚫</div><div class="info-card-title">حكم الحرمة</div><div class="info-card-desc">فهم تحريم النكاح المؤبد بسبب الرضاع.</div></div>
+        <div class="info-card"><div class="info-card-icon">✅</div><div class="info-card-title">حكم الحل</div><div class="info-card-desc">معرفة المباحات المترتبة (الخلوة، النظر، سقوط الحجاب).</div></div>
+        <div class="info-card"><div class="info-card-icon">👩</div><div class="info-card-title">الإثبات القضائي</div><div class="info-card-desc">إدراك جواز إثبات الرضاع بشهادة امرأة واحدة.</div></div>
+        <div class="info-card"><div class="info-card-icon">🎯</div><div class="info-card-title">مقاصد الرضاع</div><div class="info-card-desc">فهم دور الرضاع في صيانة الأنساب وبناء المجتمع.</div></div>
+      </div>
+
+      <div class="block-header">مدخل الباب</div>
+      <div class="intro-text">إذا اكتملت شروط الرضاع، ترتبت عليه آثار فقهية كبرى تضاهي أحكام النسب في التحريم والحل، وتيسيراً على الناس قُبلت فيه شهادة النساء منفردات.</div>
+      
+      <div class="block-header">افهم بسرعة</div>
+      <div class="info-grid">
+        <div class="info-card"><div class="info-card-icon">🚫</div><div class="info-card-title">الحرمة</div><div class="info-card-desc">يحرم النكاح مؤبداً (يصبح الرضيع كابنها).</div></div>
+        <div class="info-card"><div class="info-card-icon">🤝</div><div class="info-card-title">الحل</div><div class="info-card-desc">تُباح الخلوة والنظر ويسقط الحجاب شرعاً.</div></div>
+        <div class="info-card"><div class="info-card-icon">⚖️</div><div class="info-card-title">الإثبات</div><div class="info-card-desc">تقبل شهادة امرأة واحدة مرضية لإثبات الرضاع.</div></div>
+        <div class="info-card"><div class="info-card-icon">🌟</div><div class="info-card-title">المقصد</div><div class="info-card-desc">حماية كيان الأسرة وصيانة الأعراض.</div></div>
+      </div>
+
+      <div class="block-header">النص العلمي الكامل</div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="accordion-header">الآثار الشرعية المترتبة على الرضاع <span class="accordion-icon">+</span></div>
+        <div class="accordion-body">
+          يترتب على ثبوت الرضاع بشروطه أثران فقهيان رئيسيان:
+          <ol>
+            <li><span class="hl-red">حكم الحرمة:</span> يقتضي تحريم النكاح المؤبد؛ فكل من يحرم من النسب يحرم نظيره من الرضاع. فيحرم على الرجل أمه من الرضاع، وبنته وإن سفلت، وأخته، وعمته، وخالته، وبنت أخيه، وبنت أخته.</li>
+            <li><span class="hl-green">حكم الحل:</span> يقتضي ثبوت "المحرمية"، وهي التي تبيح ما يباح للأقارب من النسب؛ كجواز الخلوة، وإباحة النظر، وسقوط الحجاب، لكون الرضيع صار ابناً للمرضعة وأخاً لأولادها.</li>
+          </ol>
+        </div>
+      </div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="accordion-header">طرق إثبات الرضاع في القضاء الفقهي <span class="accordion-icon">+</span></div>
+        <div class="accordion-body">
+          نظراً لخصوصية الرضاع وكونه مما لا يطلع عليه الرجال في الغالب، فقد قرر الفقه الإسلامي أحكاماً خاصة لإثباته:
+          <ul>
+            <li><span class="term-blue">شهادة النساء:</span> يثبت الرضاع بشهادة <span class="hl-green">امرأة واحدة مرضية معروفة بالصدق</span>، حتى وإن كانت هي المرضعة نفسها التي تشهد على فعلها.</li>
+            <li><span class="term-blue">الدليل النبوي:</span> حديث عقبة بن الحارث حين تزوج امرأة فجاءت امرأة سوداء وقالت: "إني قد أرضعتكما"، فذكر ذلك للنبي ﷺ فقال له: "وكيف وقد قيل؟ دعها عنك".</li>
+            <li><span class="term-blue">التعليل الفقهي:</span> تُقبل شهادة المرأة المنفردة في هذا الباب لأن الرضاع شهادة على عورة لا يطلع عليها الرجال غالباً، فتجري مجرى الشهادة على "الولادة"، وذلك تيسيراً وضبطاً للحقوق والمحرمات.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="accordion-header">خاتمة الدرس ومقاصد الرضاع <span class="accordion-icon">+</span></div>
+        <div class="accordion-body">
+          صفوة القول، إن أحكام الرضاع في الشريعة الإسلامية تمثل نموذجاً لشمولية النظام الفقهي في حماية كيان الأسرة وصيانة الأعراض. فقد جعل الشارع من هذا الاتصال المادي لُحمة معنوية وقانونية تضاهي لُحمة النسب في التحريم والصلة، مما يؤكد أن التشريع يهدف إلى بناء مجتمع متراحم تضبطه أحكام الحلال والحرام بدقة متناهية، صيانةً للأنساب وتحقيقاً للمصلحة الفضلى للطفل والأسرة على حد سواء.
+        </div>
+      </div>
+
+      <div class="block-header">تطبيقات عملية</div>
+      <div class="app-scenario">📌 شهدت خادمة موثوقة (امرأة واحدة) أنها أرضعت فلانة وفلاناً ٥ رضعات في الصغر. (التطبيق: تقبل شهادتها ويثبت الرضاع، ويُحرم زواجهما).</div>
+
+      <div class="block-header">ملخص الدرس (خريطة ذهنية)</div>
+      <div class="tree-container">
+        <div class="tree-root">آثار الرضاع وإثباته</div>
+        <div class="tree-branches">
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>أثر الحرمة</h4><p>تحريم النكاح المؤبد<br>(كما في النسب)</p></div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>أثر الحل</h4><p>المحرمية، إباحة الخلوة<br>وسقوط الحجاب</p></div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>الإثبات القضائي</h4><p>بشهادة امرأة واحدة<br>موثوقة</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-header">أسئلة الفهم</div>
+      <div class="ex-box" id="ex-2-1">
+        <div class="ex-q">١. من الآثار المترتبة على الرضاع "حكم الحل"، ويقصد به:</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(2, 1, this, false, 'خاطئ.')">حل أكل ماله</button><button class="ex-btn" onclick="act(2, 1, this, true, 'صحيح. المحرمية تبيح النظر وسقوط الحجاب.')">ثبوت المحرمية (الخلوة والنظر)</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-2-2">
+        <div class="ex-q">٢. لإثبات الرضاع أمام القضاء الفقهي:</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(2, 2, this, true, 'صحيح. تيسيراً ومراعاة لطبيعة الأمر الذي لا يطّلع عليه الرجال غالباً.')">تكفي شهادة امرأة واحدة موثوقة</button><button class="ex-btn" onclick="act(2, 2, this, false, 'خاطئ.')">يشترط شهادة رجلين حصراً</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-2-3">
+        <div class="ex-q">٣. "كل من يحرم من النسب يحرم نظيره من الرضاع":</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(2, 3, this, false, 'خاطئ.')">عبارة خاطئة</button><button class="ex-btn" onclick="act(2, 3, this, true, 'أحسنت. هذا هو الأثر الشرعي المسمى بحكم الحرمة.')">عبارة صحيحة (حكم الحرمة)</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-2-4"><div class="ex-q">٤. صل المفاهيم:</div><div class="game-grid" id="game-2"></div></div>
+      
+      <div class="progress-tracker"><span>التقدم:</span><div class="prog-dots" id="dots-2"><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div></div></div>
+      <div class="nav-row"><button class="nav-btn btn-outline" onclick="goSlide(1)">◁ السابق</button><button class="nav-btn btn-navy" id="next-2" disabled onclick="goSlide(3)">التالي: أحكام الحضانة ➜</button></div>
+    </div>
+
+    <!-- ================= 3. أحكام الحضانة وشروطها ================= -->
+    <div id="s-3" class="scr" data-req="4">
+      <div class="hero-banner">
+        <div class="hero-icon">🤱</div>
+        <div class="hero-title">الباب الثالث: أحكام الحضانة ورعاية الصغار</div>
+        <div class="hero-sub">ولاية غرضها مصلحة المحضون وتعهده، والأولوية فيها للنساء</div>
+        <div class="hero-line"></div>
+        <div class="hero-tags"><div class="hero-tag">التعريف</div><div class="hero-tag">فرض كفاية</div><div class="hero-tag">أولوية النساء</div><div class="hero-tag">شروط الحاضن</div></div>
+      </div>
+
+      <div class="block-header">مخرجات التعلم</div>
+      <div class="info-grid">
+        <div class="info-card"><div class="info-card-icon">🧠</div><div class="info-card-title">المفهوم والحكم</div><div class="info-card-desc">تعريف الحضانة ومعرفة حكمها الشرعي.</div></div>
+        <div class="info-card"><div class="info-card-icon">👩‍👦</div><div class="info-card-title">الأولوية</div><div class="info-card-desc">فهم سبب تقديم النساء (الأم) في حق الحضانة.</div></div>
+        <div class="info-card"><div class="info-card-icon">🛠️</div><div class="info-card-title">المهام</div><div class="info-card-desc">معرفة مقتضيات الحضانة وواجبات الحاضن.</div></div>
+        <div class="info-card"><div class="info-card-icon">📋</div><div class="info-card-title">الشروط الموضوعية</div><div class="info-card-desc">إدراك الشروط (الإسلام، العقل، العفة، وعدم الزواج بأجنبي).</div></div>
+      </div>
+
+      <div class="block-header">المدخل والأدلة</div>
+      <div class="intro-text">شُرعت الحضانة صيانةً للمحضون من الهلاك والضياع، ورُوعي فيها تقديم الأرفق والأشفق على الطفل لتحقيق مصلحته العليا.</div>
+      <div class="verse-box">
+        <div class="verse-basmala">الحديث الشريف</div>
+        <div class="verse-text">«أنتِ أحق به ما لم تنكحي»</div>
+        <div class="verse-ref">رواه أبو داود (قاله النبي ﷺ للأم)</div>
+      </div>
+
+      <div class="block-header">افهم بسرعة</div>
+      <div class="info-grid">
+        <div class="info-card"><div class="info-card-icon">🛡️</div><div class="info-card-title">الحكم</div><div class="info-card-desc">تُعد فرض كفاية لحفظ الصغير من الهلاك.</div></div>
+        <div class="info-card"><div class="info-card-icon">👩</div><div class="info-card-title">أولوية النساء</div><div class="info-card-desc">النساء أرفق وأشفق وأقدر على تولي الصغار.</div></div>
+        <div class="info-card"><div class="info-card-icon">🚫</div><div class="info-card-title">موانع الحضانة</div><div class="info-card-desc">الفسق، المرض المعدي، العجز، أو الكفر.</div></div>
+        <div class="info-card"><div class="info-card-icon">💍</div><div class="info-card-title">زواج الأم</div><div class="info-card-desc">إذا تزوجت الأم بأجنبي سقط حقها في الحضانة.</div></div>
+      </div>
+
+      <div class="block-header">النص العلمي الكامل</div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="accordion-header">مقدمة تعريفية بالحضانة وحكمها <span class="accordion-icon">+</span></div>
+        <div class="accordion-body">
+          <span class="section-head">التعريف اللغوي والشرعي:</span><br>
+          تُشتق كلمة "الحضانة" في اللغة من "الحِضن"، وهو الجنب؛ وسميت بذلك لأن "المربي" يضم الطفل إلى جنبه ويحوطه برعايته في حيزه الخاص، فهي تفيد معنى الضم والاحتواء. أما في الاصطلاح الفقهي فهي: <span class="term-blue">"القيام بحفظ من لا يميز ولا يستقل بأمر نفسه، وتربيته بما يصلحه بدنياً ومعنوياً، ووقايته عما يؤذيه أو يضره"</span>، فهي ولاية غرضها مصلحة المحضون وتعهده.<br><br>
+          <span class="section-head">حكم الحضانة:</span><br>
+          تعد الحضانة واجباً شرعياً صيانةً للمحضون من الهلاك. وتأخذ حكم <span class="hl-green">"فرض الكفاية"</span> عند تعدد الحاضنين، فإذا قام بها أحدهم سقط الإثم عن الباقين، وتتعين على الفرد إذا لم يوجد غيره منعاً لتضرر الصغير.
+        </div>
+      </div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="accordion-header">مستحقو الحضانة ومهام الحاضن <span class="accordion-icon">+</span></div>
+        <div class="accordion-body">
+          <span class="term-blue">أولوية النساء:</span> استقر الفقه الإسلامي على تقديم النساء على الرجال في استحقاق الحضانة؛ لكونهن أشفق وأرفق بالصغار، وأقدر على الصبر على احتياجاتهم وتصريف مصلحة الصغير. ويستند هذا إلى قضاء النبي ﷺ للأم حين أراد زوجها نزع ولدها منها فقال: "أنتِ أحق به ما لم تنكحي".<br><br>
+          <span class="term-blue">مقتضى الحضانة (المهام):</span><br>
+          <ol>
+            <li>تعهد طعام المحضون وشرابه بما يصلحه.</li>
+            <li>غسل المحضون ونظافته ظاهراً وباطناً.</li>
+            <li>تعهد نومه ويقظته.</li>
+            <li>القيام بجميع حاجاته التي تضمن صلاحه وتربيته.</li>
+          </ol>
+        </div>
+      </div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="accordion-header">الشروط الفنية والموضوعية للحاضن <span class="accordion-icon">+</span></div>
+        <div class="accordion-body">
+          يُشترط فيمن يتولى الحضانة جملة من الشروط لضمان مصلحة المحضون:
+          <ul>
+            <li><span class="hl-red">الإسلام:</span> لأنه لا ولاية لكافر على مسلم، ولخشية الفتنة في دينه.</li>
+            <li><span class="term-blue">البلوغ والعقل:</span> العاجز عن إدارة نفسه أعجز عن غيره.</li>
+            <li><span class="term-blue">الأمانة والعفة:</span> الفاسق في دينه غير مؤتمن (فالمدمن تسقط حضانته).</li>
+            <li><span class="term-blue">القدرة البدنية والمالية:</span> فلا حضانة لعاجز أو مريض أو مشغول يضيع مصلحة الطفل.</li>
+            <li><span class="term-blue">السلامة من الأمراض المعدية:</span> وقايةً لصحة المحضون.</li>
+            <li><span class="term-blue">الرشد والحرية.</span></li>
+            <li><span class="hl-red">شرط خاص بالمرأة:</span> ألا تكون متزوجة من أجنبي عن المحضون؛ لأنها ستنشغل بحق الزوج عن رعاية المحضون، لقوله ﷺ: "أنتِ أحق به ما لم تنكحي".</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="block-header">تطبيقات عملية</div>
+      <div class="app-scenario">📌 أم تطلب حضانة أطفالها بعد الطلاق، ثم تزوجت من رجل آخر (أجنبي عن الأطفال). (التطبيق: يسقط حقها في الحضانة فور الزواج لانشغالها بحق الزوج الجديد).</div>
+
+      <div class="block-header">ملخص الدرس (خريطة ذهنية)</div>
+      
+      <div class="tree-container">
+        <div class="tree-root">أحكام وشروط الحضانة</div>
+        <div class="tree-branches">
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>الأولوية</h4><p>للنساء (الأم) لأنهن أشفق وأرفق</p></div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>الشروط العامة</h4><p>الإسلام، العقل، الأمانة، والقدرة الصحية</p></div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>شرط المرأة</h4><p>عدم الزواج بأجنبي عن المحضون</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-header">أسئلة الفهم</div>
+      <div class="ex-box" id="ex-3-1">
+        <div class="ex-q">١. حكم الحضانة شرعاً إذا تعدد المستحقون القادرون عليها:</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(3, 1, this, false, 'خاطئ.')">سنة مؤكدة</button><button class="ex-btn" onclick="act(3, 1, this, true, 'صحيح. فهي تكفي بقيام أحدهم.')">فرض كفاية</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-3-2">
+        <div class="ex-q">٢. إذا تزوجت الأم المطلقة برجل أجنبي عن أطفالها:</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(3, 2, this, true, 'أحسنت! (أنتِ أحق به ما لم تنكحي).')">يسقط حقها في الحضانة</button><button class="ex-btn" onclick="act(3, 2, this, false, 'خاطئ.')">تزداد أحقيتها بالحضانة</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-3-3">
+        <div class="ex-q">٣. الأولوية في تولي حضانة الصغار في الفقه الإسلامي تكون لـ:</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(3, 3, this, false, 'خاطئ.')">الرجال لكونهم أقوى</button><button class="ex-btn" onclick="act(3, 3, this, true, 'صحيح. لكونهن أشفق وأقدر على الصبر والرعاية.')">النساء لكونهن أشفق وأرفق</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-3-4"><div class="ex-q">٤. صل المفاهيم:</div><div class="game-grid" id="game-3"></div></div>
+      
+      <div class="progress-tracker"><span>التقدم:</span><div class="prog-dots" id="dots-3"><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div></div></div>
+      <div class="nav-row"><button class="nav-btn btn-outline" onclick="goSlide(2)">◁ السابق</button><button class="nav-btn btn-navy" id="next-3" disabled onclick="goSlide(4)">التالي: السفر وانقضاء الحضانة ➜</button></div>
+    </div>
+
+    <!-- ================= 4. السفر وانقضاء الحضانة ================= -->
+    <div id="s-4" class="scr" data-req="4">
+      <div class="hero-banner">
+        <div class="hero-icon">⚖️</div>
+        <div class="hero-title">الباب الرابع: السفر بالمحضون وانقضاء الحضانة</div>
+        <div class="hero-sub">أحكام السفر، سن التخيير، وأجرة الحضانة</div>
+        <div class="hero-line"></div>
+        <div class="hero-tags"><div class="hero-tag">السفر الطويل</div><div class="hero-tag">سن السابعة</div><div class="hero-tag">تخيير الغلام</div><div class="hero-tag">أجرة الحضانة</div></div>
+      </div>
+
+      <div class="block-header">مخرجات التعلم</div>
+      <div class="info-grid">
+        <div class="info-card"><div class="info-card-icon">✈️</div><div class="info-card-title">أحكام السفر</div><div class="info-card-desc">أثر السفر الطويل والقصير على الحضانة.</div></div>
+        <div class="info-card"><div class="info-card-icon">🎂</div><div class="info-card-title">سن انتهاء الحضانة</div><div class="info-card-desc">تحديد سن السابعة كموعد لانتهاء الحضانة التلقائية.</div></div>
+        <div class="info-card"><div class="info-card-icon">👦👧</div><div class="info-card-title">أحكام الجنسين</div><div class="info-card-desc">التفريق بين تخيير الغلام وحكم الأنثى بعد السابعة.</div></div>
+        <div class="info-card"><div class="info-card-icon">💵</div><div class="info-card-title">أجرة الحاضن</div><div class="info-card-desc">معرفة أن الحضانة عمل يستحق أجرة شرعية.</div></div>
+      </div>
+
+      <div class="block-header">المدخل والخاتمة</div>
+      <div class="intro-text">تُراعي الشريعة مآلات الأمور، فتنظم حضانة الطفل عند سفر أحد الأبوين، وتضع سن السابعة حداً تبدأ بعده أحكام التخيير للغلام والولاية للأنثى.</div>
+      <div class="verse-box">
+        <div class="verse-basmala">الحديث الشريف</div>
+        <div class="verse-text">«يا غلام! هذا أبوك وهذه أمك؛ فخذ بيد أيهما شئت»</div>
+        <div class="verse-ref">رواه أحمد والنسائي</div>
+      </div>
+
+      <div class="block-header">افهم بسرعة</div>
+      <div class="info-grid">
+        <div class="info-card"><div class="info-card-icon">✈️</div><div class="info-card-title">السفر الطويل</div><div class="info-card-desc">الحضانة فيه للأب حمايةً للطفل وتأديباً له.</div></div>
+        <div class="info-card"><div class="info-card-icon">🎂</div><div class="info-card-title">سن السابعة</div><div class="info-card-desc">تنتهي مدة الحضانة التلقائية ببلوغ ٧ سنوات.</div></div>
+        <div class="info-card"><div class="info-card-icon">👦</div><div class="info-card-title">الغلام</div><div class="info-card-desc">يُخيّر بين أبويه إن كانا عاقلين صالحين.</div></div>
+        <div class="info-card"><div class="info-card-icon">👧</div><div class="info-card-title">الأنثى</div><div class="info-card-desc">تعود للأب وجوباً بعد السابعة لأنه أحفظ لها.</div></div>
+      </div>
+
+      <div class="block-header">النص العلمي الكامل</div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="accordion-header">أحكام سفر الوالدين بالمحضون <span class="accordion-icon">+</span></div>
+        <div class="accordion-body">
+          بالنظر في المآلات الشرعية لحالات السفر، فصّل الفقهاء أحكامها كالآتي:
+          <ul>
+            <li><span class="hl-red">السفر الطويل الآمن:</span> إذا سافر أحد الأبوين سفراً طويلاً لغير قصد المضارة وكان الطريق آمناً، فإن الحضانة <span class="hl-green">تؤول للأب</span> (سواء كان هو المسافر أو المقيم)؛ لأنه هو الذي يقوم بـ "تأديب" الولد والمحافظة عليه صيانة له من الضياع.</li>
+            <li><span class="term-blue">السفر القريب:</span> إذا كان السفر لبلد قريب (دون مسافة القصر)، تظل الحضانة للأم؛ لتمام شفقتها، ولأن الأب يتمكن في هذه الحالة من الإشراف على الولد وتعهد حاله.</li>
+            <li><span class="term-blue">الحالات الاستثنائية:</span> في حال كان الطريق غير آمن أو كان السفر لحاجة طارئة، فإن الحضانة تؤول للمقيم منهما ضماناً لسلامة المحضون.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="accordion-header">انتهاء الحضانة وأحكام التخيير بعد السابعة <span class="accordion-icon">+</span></div>
+        <div class="accordion-body">
+          <span class="term-blue">السن القانوني وانتهاء الحضانة:</span> تنتهي مدة الحضانة ببلوغ الصغير <span class="hl-red">سن السابعة</span>، وهي السن التي أمر الشارع فيها بمخاطبة الصغير بالصلاة، وعندها يبدأ "التخيير".<br><br>
+          <span class="section-head">أحكام الغلام (الذكر):</span><br>
+          يُخير الغلام بعد السابعة بين أبوين بشرط أن يكون الأبوان "عاقلين"، لقوله ﷺ: «يا غلام! هذا أبوك وهذه أمك؛ فخذ بيد أيهما شئت».
+          <ul>
+            <li>إذا اختار أباه: يكون عنده ليلاً ونهاراً ليقوم على تأديبه وتربيته.</li>
+            <li>إذا اختار أمه: يبقى عندها ليلاً، ويكون عند أبيه نهاراً ليعلمه الصنعة أو الكتابة (التأديب)، ولا يمنع الأب من زيارة ابنه عند أمه.</li>
+          </ul>
+          <span class="section-head">أحكام الأنثى:</span><br>
+          يوجب الفقه بقاء الأنثى عند أبيها وجوباً بعد سن السابعة؛ لأنه أحفظ لها، وهو وليها في النكاح، وهو الأبصر والأعلم بـ "الكفء" لها. ويستثنى من ذلك حالات تؤول فيها للأم (كعجز الأب عن حفظها).
+        </div>
+      </div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="accordion-header">الحقوق المالية المرتبطة بالحضانة <span class="accordion-icon">+</span></div>
+        <div class="accordion-body">
+          <span class="term-blue">أجرة الحضانة:</span> تعد أجرة الحضانة حقاً "مستحقاً" للحاضن، سواء كانت الحاضنة أماً أو غيرها. <br>
+          وتُدفع هذه الأجرة من مال المحضون نفسه إن كان له مال، فإن لم يكن له مال، وجبت الأجرة على من تلزمه نفقته من الأولياء المنفقين (كالأب).
+        </div>
+      </div>
+
+      <div class="block-header">تطبيقات عملية</div>
+      <div class="app-scenario">📌 أم ترعى ابنتها بعد الطلاق، فلما بلغت البنت ٧ سنوات طلب الأب أخذها. (التطبيق: يحق للأب ذلك، فالأنثى بعد السابعة تكون عند أبيها وجوباً لأنه أحفظ لها).</div>
+      <div class="app-scenario">📌 أب سافر سفراً طويلاً دائماً للعمل في الخارج وأراد أخذ ابنه البالغ ٤ سنوات. (التطبيق: الحضانة تنتقل للأب في السفر الطويل صيانة للولد وتأديباً له).</div>
+
+      <div class="block-header">ملخص الدرس (خريطة ذهنية)</div>
+      <div class="tree-container">
+        <div class="tree-root">انتهاء الحضانة والسفر</div>
+        <div class="tree-branches">
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>السفر الطويل الآمن</h4><p>تؤول الحضانة للأب<br>للتأديب والحفظ</p></div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>سن السابعة (للذكر)</h4><p>يُخيّر بين الأب والأم</p></div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>سن السابعة (للأنثى)</h4><p>تنتقل للأب وجوباً<br>لأنه أحفظ لها</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-header">أسئلة الفهم</div>
+      <div class="ex-box" id="ex-4-1">
+        <div class="ex-q">١. السن الذي تنتهي به مدة الحضانة التلقائية ويبدأ التخيير هو:</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(4, 1, this, false, 'خاطئ. سن البلوغ متأخر.')">سن البلوغ</button><button class="ex-btn" onclick="act(4, 1, this, true, 'صحيح. سن السابعة هو بداية التمييز.')">سن السابعة</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-4-2">
+        <div class="ex-q">٢. إذا بلغ الغلام (الذكر) سبع سنين وكان أبواه عاقلين صالحين:</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(4, 2, this, true, 'أحسنت! (فخذ بيد أيهما شئت).')">يُخيّر بين أبويه</button><button class="ex-btn" onclick="act(4, 2, this, false, 'خاطئ.')">يذهب للأب وجوباً</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-4-3">
+        <div class="ex-q">٣. هل تستحق الحاضنة (كالأم المطلقة) أجرة مالية مقابل الحضانة؟</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(4, 3, this, false, 'خاطئ.')">لا تستحق لأنه واجب مجاني</button><button class="ex-btn" onclick="act(4, 3, this, true, 'صحيح. الحضانة حق مستحق بأجرة من مال الولد أو أبيه.')">نعم، تستحق أجرة حضانة</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-4-4"><div class="ex-q">٤. صل المفاهيم:</div><div class="game-grid" id="game-4"></div></div>
+      
+      <div class="progress-tracker"><span>التقدم:</span><div class="prog-dots" id="dots-4"><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div></div></div>
+      <div class="nav-row"><button class="nav-btn btn-outline" onclick="goSlide(3)">◁ السابق</button><button class="nav-btn btn-navy" id="next-4" disabled onclick="goSlide(5)">التالي: أحكام النفقات ➜</button></div>
+    </div>
+
+    <!-- ================= 5. أحكام النفقات ومشروعيتها ================= -->
+    <div id="s-5" class="scr" data-req="4">
       <div class="hero-banner">
         <div class="hero-icon">💰</div>
-        <div class="hero-title">الباب الأول: أحكام النفقات ومشروعيتها</div>
+        <div class="hero-title">الباب الخامس: أحكام النفقات ومشروعيتها</div>
         <div class="hero-sub">التزام مالي يهدف إلى صيانة الأنفس وحفظ كيان الأسرة</div>
         <div class="hero-line"></div>
         <div class="hero-tags">
@@ -366,30 +788,30 @@ html, body { height: 100%; font-family: var(--font-body); background: var(--crea
         </div>
       </div>
 
-      <div class="block-header">أسئلة الفهم (أكمل لفتح التالي)</div>
-      <div class="ex-box" id="ex-1-1">
+      <div class="block-header">أسئلة الفهم</div>
+      <div class="ex-box" id="ex-5-1">
         <div class="ex-q">١. المعيار المرن الذي ضبطت به الشريعة مقدار النفقة هو:</div>
-        <div class="ex-opts"><button class="ex-btn" onclick="act(1, 1, this, false, 'خاطئ.')">التساوي المطلق بين الناس</button><button class="ex-btn" onclick="act(1, 1, this, true, 'أحسنت! المعروف يراعي حال المنفق وحاجة المنفق عليه.')">ضابط "المعروف"</button></div><div class="ex-fb"></div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(5, 1, this, false, 'خاطئ.')">التساوي المطلق بين الناس</button><button class="ex-btn" onclick="act(5, 1, this, true, 'أحسنت! المعروف يراعي حال المنفق وحاجة المنفق عليه.')">ضابط "المعروف"</button></div><div class="ex-fb"></div>
       </div>
-      <div class="ex-box" id="ex-1-2">
+      <div class="ex-box" id="ex-5-2">
         <div class="ex-q">٢. إذا كان للإنسان مال محدود لا يكفي إلا لواحد، فبمن يبدأ بالإنفاق؟</div>
-        <div class="ex-opts"><button class="ex-btn" onclick="act(1, 2, this, true, 'صحيح. (ابدأ بنفسك فتصدق عليها).')">يبدأ بنفسه أولاً</button><button class="ex-btn" onclick="act(1, 2, this, false, 'خاطئ.')">يبدأ بأخيه</button></div><div class="ex-fb"></div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(5, 2, this, true, 'صحيح. (ابدأ بنفسك فتصدق عليها).')">يبدأ بنفسه أولاً</button><button class="ex-btn" onclick="act(5, 2, this, false, 'خاطئ.')">يبدأ بأخيه</button></div><div class="ex-fb"></div>
       </div>
-      <div class="ex-box" id="ex-1-3">
+      <div class="ex-box" id="ex-5-3">
         <div class="ex-q">٣. نفقة الابن على والديه الفقيرين تختلف في وجوبها إذا اختلف دينهما؟</div>
-        <div class="ex-opts"><button class="ex-btn" onclick="act(1, 3, this, true, 'صحيح. تجب النفقة للأصول حتى مع اختلاف الدين.')">لا تختلف وتجب النفقة</button><button class="ex-btn" onclick="act(1, 3, this, false, 'خاطئ.')">تسقط النفقة باختلاف الدين</button></div><div class="ex-fb"></div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(5, 3, this, true, 'صحيح. تجب النفقة للأصول حتى مع اختلاف الدين.')">لا تختلف وتجب النفقة</button><button class="ex-btn" onclick="act(5, 3, this, false, 'خاطئ.')">تسقط النفقة باختلاف الدين</button></div><div class="ex-fb"></div>
       </div>
-      <div class="ex-box" id="ex-1-4"><div class="ex-q">٤. صل المفاهيم:</div><div class="game-grid" id="game-1"></div></div>
+      <div class="ex-box" id="ex-5-4"><div class="ex-q">٤. صل المفاهيم:</div><div class="game-grid" id="game-5"></div></div>
       
-      <div class="progress-tracker"><span>التقدم في هذا الموضوع:</span><div class="prog-dots" id="dots-1"><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div></div></div>
-      <div class="nav-row"><button class="nav-btn btn-outline" onclick="goSlide(0)">◁ التمهيد</button><button class="nav-btn btn-navy" id="next-1" disabled onclick="goSlide(2)">التالي: نفقة الزوجة والمماليك ➜</button></div>
+      <div class="progress-tracker"><span>التقدم:</span><div class="prog-dots" id="dots-5"><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div></div></div>
+      <div class="nav-row"><button class="nav-btn btn-outline" onclick="goSlide(4)">◁ السابق</button><button class="nav-btn btn-navy" id="next-5" disabled onclick="goSlide(6)">التالي: نفقة الزوجة والمماليك ➜</button></div>
     </div>
 
-    <!-- ================= 2. نفقة الزوجة والمماليك والبهائم ================= -->
-    <div id="s-2" class="scr" data-req="4">
+    <!-- ================= 6. نفقة الزوجة والمماليك والبهائم ================= -->
+    <div id="s-6" class="scr" data-req="4">
       <div class="hero-banner">
         <div class="hero-icon">💍</div>
-        <div class="hero-title">الباب الثاني: نفقة الزوجة وحقوق الضعفاء</div>
+        <div class="hero-title">الباب السادس: نفقة الزوجة وحقوق الضعفاء</div>
         <div class="hero-sub">أحكام نفقة الزوجات، المطلقات، المماليك، والبهائم</div>
         <div class="hero-line"></div>
         <div class="hero-tags"><div class="hero-tag">الزوجة</div><div class="hero-tag">المطلقة البائن</div><div class="hero-tag">المماليك</div><div class="hero-tag">البهائم</div></div>
@@ -403,7 +825,7 @@ html, body { height: 100%; font-family: var(--font-body); background: var(--crea
         <div class="info-card"><div class="info-card-icon">🐈</div><div class="info-card-title">حقوق البهائم</div><div class="info-card-desc">معرفة تدخل القضاء لحماية الحيوان من التجويع.</div></div>
       </div>
 
-      <div class="block-header">مدخل الباب</div>
+      <div class="block-header">المدخل والخاتمة</div>
       <div class="intro-text">شملت الرحمة التشريعية في نظام النفقات الإسلامي جميع من هم تحت ولاية الإنسان، بدءاً بالزوجة والمطلقات بحسب حالهن، وصولاً إلى أضعف الكائنات كالمماليك والحيوانات.</div>
       <div class="verse-box">
         <div class="verse-basmala">الحديث الشريف</div>
@@ -443,7 +865,7 @@ html, body { height: 100%; font-family: var(--font-body); background: var(--crea
         </div>
       </div>
       <div class="accordion" onclick="toggleAcc(this)">
-        <div class="accordion-header">التدخل القضائي عند عجز المالك والنتيجة <span class="accordion-icon">+</span></div>
+        <div class="accordion-header">التدخل القضائي عند عجز المالك <span class="accordion-icon">+</span></div>
         <div class="accordion-body">
           <span class="section-head">الإجراء القضائي عند العجز:</span><br>
           في حال عجز المالك عن الإنفاق على بهيمته، فإن القضاء يتدخل لإزالة الظلم عنها عبر إجبار المالك على أحد حلول ثلاثة:
@@ -477,440 +899,17 @@ html, body { height: 100%; font-family: var(--font-body); background: var(--crea
       </div>
 
       <div class="block-header">أسئلة الفهم</div>
-      <div class="ex-box" id="ex-2-1">
-        <div class="ex-q">١. المطلقة طلاقاً (بائناً) وهي (غير حامل):</div>
-        <div class="ex-opts"><button class="ex-btn" onclick="act(2, 1, this, true, 'صحيح. لانقطاع أسباب الوجوب.')">لا تجب لها نفقة ولا سكنى</button><button class="ex-btn" onclick="act(2, 1, this, false, 'خاطئ.')">تجب لها النفقة طيلة العدة</button></div><div class="ex-fb"></div>
-      </div>
-      <div class="ex-box" id="ex-2-2">
-        <div class="ex-q">٢. إذا عجز مالك البهيمة عن الإنفاق عليها، فما هو موقف القضاء؟</div>
-        <div class="ex-opts"><button class="ex-btn" onclick="act(2, 2, this, false, 'خاطئ.')">يتركه وشأنه</button><button class="ex-btn" onclick="act(2, 2, this, true, 'أحسنت! يجبره على بيعها أو تأجيرها أو ذبحها.')">يجبره على حلول تزيل الظلم</button></div><div class="ex-fb"></div>
-      </div>
-      <div class="ex-box" id="ex-2-3">
-        <div class="ex-q">٣. تكليف المماليك (الخدم والعمال) بما لا يطيقون من الأعمال الشاقة:</div>
-        <div class="ex-opts"><button class="ex-btn" onclick="act(2, 3, this, true, 'صحيح. (ولا تكلفوهم ما يغلبهم).')">يحرم شرعاً</button><button class="ex-btn" onclick="act(2, 3, this, false, 'خاطئ.')">جائز إن أعطاهم أجرهم</button></div><div class="ex-fb"></div>
-      </div>
-      <div class="ex-box" id="ex-2-4"><div class="ex-q">٤. صل المفاهيم:</div><div class="game-grid" id="game-2"></div></div>
-      
-      <div class="progress-tracker"><span>التقدم:</span><div class="prog-dots" id="dots-2"><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div></div></div>
-      <div class="nav-row"><button class="nav-btn btn-outline" onclick="goSlide(1)">◁ السابق</button><button class="nav-btn btn-navy" id="next-2" disabled onclick="goSlide(3)">التالي: أحكام الرضاع ➜</button></div>
-    </div>
-
-    <!-- ================= 3. أحكام الرضاع وشروطه ================= -->
-    <div id="s-3" class="scr" data-req="4">
-      <div class="hero-banner">
-        <div class="hero-icon">🍼</div>
-        <div class="hero-title">الباب الثالث: أحكام الرضاع وشروطه</div>
-        <div class="hero-sub">نظام تشريعي ينشئ صلة قرابة تترتب عليها آثار حقوقية</div>
-        <div class="hero-line"></div>
-        <div class="hero-tags"><div class="hero-tag">التعريف</div><div class="hero-tag">المشروعية</div><div class="hero-tag">دون الحولين</div><div class="hero-tag">٥ رضعات</div></div>
-      </div>
-
-      <div class="block-header">مخرجات التعلم</div>
-      <div class="info-grid">
-        <div class="info-card"><div class="info-card-icon">📘</div><div class="info-card-title">مفهوم الرضاع</div><div class="info-card-desc">تعريف الرضاع لغةً واصطلاحاً.</div></div>
-        <div class="info-card"><div class="info-card-icon">💡</div><div class="info-card-title">المشروعية</div><div class="info-card-desc">معرفة أدلة الرضاع من القرآن والسنة والإجماع.</div></div>
-        <div class="info-card"><div class="info-card-icon">⏱️</div><div class="info-card-title">شرط الزمن</div><div class="info-card-desc">إدراك أهمية وقوع الرضاع في الحولين الأولين.</div></div>
-        <div class="info-card"><div class="info-card-icon">🔢</div><div class="info-card-title">شرط العدد</div><div class="info-card-desc">تحديد عدد الرضعات الموجبة للتحريم (٥ رضعات).</div></div>
-      </div>
-
-      <div class="block-header">مدخل الباب</div>
-      <div class="intro-text">يُعد الرضاع في الفقه الإسلامي نظاماً تشريعياً يتجاوز مجرد التغذية البيولوجية، ليصبح سبباً شرعياً لإنشاء صلة قرابة (لُحمة) تضاهي لحمة النسب في التحريم.</div>
-      <div class="verse-box">
-        <div class="verse-basmala">القرآن الكريم</div>
-        <div class="verse-text">﴿وَأُمَّهَاتُكُمُ اللَّاتِي أَرْضَعْنَكُمْ وَأَخَوَاتُكُم مِّنَ الرَّضَاعَةِ﴾</div>
-        <div class="verse-ref">سورة النساء: ٢٣</div>
-      </div>
-
-      <div class="block-header">افهم بسرعة</div>
-      <div class="info-grid">
-        <div class="info-card"><div class="info-card-icon">🍼</div><div class="info-card-title">التعريف</div><div class="info-card-desc">وصول لبن المرأة لجوف الطفل بضوابط مخصوصة.</div></div>
-        <div class="info-card"><div class="info-card-icon">⏱️</div><div class="info-card-title">المدة الزمنية</div><div class="info-card-desc">يجب أن يقع الرضاع خلال أول سنتين من عمر الطفل.</div></div>
-        <div class="info-card"><div class="info-card-icon">🖐️</div><div class="info-card-title">العدد</div><div class="info-card-desc">خمس رضعات مشبعات معلومات لتثبت الحرمة.</div></div>
-        <div class="info-card"><div class="info-card-icon">🧪</div><div class="info-card-title">طريقة الوصول</div><div class="info-card-desc">يثبت التحريم ولو بغير الرضاع المباشر (كالوجور أو الإناء) إن وصل للجوف.</div></div>
-      </div>
-
-      <div class="block-header">النص العلمي الكامل</div>
-      <div class="accordion" onclick="toggleAcc(this)">
-        <div class="accordion-header">مقدمة التقرير والتعريف الاصطلاحي <span class="accordion-icon">+</span></div>
-        <div class="accordion-body">
-          <span class="section-head">مقدمة التقرير:</span><br>
-          يُعد الرضاع في منظومة الفقه الإسلامي نظاماً تشريعياً متكاملاً يتجاوز في أبعاده مجرد التغذية البيولوجية للطفل، ليصبح سبباً شرعياً لإنشاء صلة قرابة تترتب عليها آثار حقوقية واجتماعية جوهرية. إذ جعل الشارع الحكيم من الرضاع لُحمة شبيهة بِلُحمة النسب، وهو سبب من أسباب التحريم المؤبد في النكاح.<br><br>
-          <span class="section-head">التعريف الاصطلاحي واللغوي:</span><br>
-          <ul>
-            <li><span class="term-blue">التعريف اللغوي:</span> الرضاع -بفتح الراء أو كسرها- هو اسم لمص اللبن من الثدي أو شربه.</li>
-            <li><span class="term-blue">التعريف الشرعي:</span> هو مص طفل دون الحولين لبناً ثاب عن حمل (أي نتج عن ولادة)، أو شربه أو نحوه. ويقيد هذا التعريف الرضاع بضوابط زمنية ومادية تجعل منه سبباً لنشر الحرمة.</li>
-          </ul>
-        </div>
-      </div>
-      <div class="accordion" onclick="toggleAcc(this)">
-        <div class="accordion-header">أدلة مشروعية الرضاع والتحريم به <span class="accordion-icon">+</span></div>
-        <div class="accordion-body">
-          استندت مشروعية الرضاع وكونه سبباً للتحريم إلى المصادر التشريعية الثلاثة:
-          <ul>
-            <li><span class="term-blue">من القرآن الكريم:</span> قوله تعالى: ﴿وَأُمَّهَاتُكُمُ اللَّاتِي أَرْضَعْنَكُمْ وَأَخَوَاتُكُم مِّنَ الرَّضَاعَةِ﴾. وجه الاستدلال: أن الله عز وجل قرن بين الأمهات من النسب والأمهات من الرضاع في الحكم الواحد وهو التحريم المؤبد.</li>
-            <li><span class="term-blue">من السنة النبوية:</span> أكدت السنة هذا الأصل، منها حديث عائشة: "إن الرضاعة تُحَرِّم ما تحرم الولادة". وقوله ﷺ في ابنة حمزة: "إنها لا تحل لي، إنها ابنة أخي من الرضاعة، ويحرم من الرضاعة ما يحرم من الرحم".</li>
-            <li><span class="term-blue">الإجماع:</span> انعقد إجماع علماء الأمة قاطبة على ثبوت التحريم بالرضاع ونشره للمحرمية.</li>
-          </ul>
-        </div>
-      </div>
-      <div class="accordion" onclick="toggleAcc(this)">
-        <div class="accordion-header">شروط الرضاع الموجب للتحريم <span class="accordion-icon">+</span></div>
-        <div class="accordion-body">
-          لا يترتب الأثر الشرعي بنشر الحرمة إلا بتوفر شرطين أساسيين، هما:
-          <ol>
-            <li><span class="hl-red">الشرط الأول (المدة الزمنية):</span> يجب أن يقع الرضاع خلال الحولين الأولين من عمر الرضيع (سنتين). لقوله ﷺ: "لا يحرم من الرضاعة إلا ما فتق الأمعاء في الثدي، وكان قبل الفطام". والتعليل الفقهي لذلك أن الرضاع في هذه المدة يقوم مقام الغذاء فينبت اللحم ويصبح جزءاً منه.</li>
-            <li><span class="hl-red">الشرط الثاني (عدد الرضعات):</span> يُشترط أن يكون الرضاع <span class="hl-green">خمس رضعات معلومات فأكثر</span>. لحديث عائشة: "كان فيما نزل من القرآن: عشر رضعات معلومات يُحَرِّمْن، ثم نُسخن بخمس معلومات، فتوفي رسول الله ﷺ وهن فيما يقرأ من القرآن".</li>
-          </ol>
-          <span class="hl-green">ملاحظة فنية بشأن وصول اللبن:</span> لا ينحصر التحريم بالالتقام المباشر للثدي، بل يثبت الحكم لو وصل اللبن إلى جوف الطفل بغير الرضاع، كأن يُقطر في فمه (السعوط) أو يشربه من إناء، بشرط أن يتكرر ذلك خمس مرات في مدة الحولين.
-        </div>
-      </div>
-
-      <div class="block-header">تطبيقات عملية</div>
-      <div class="app-scenario">📌 طفل عمره ٣ سنوات، رضع من امرأة ٦ رضعات مشبعات. (التطبيق: لا يثبت التحريم، لاختلال شرط "المدة الزمنية"، فالرضاع الموجب للتحريم يجب أن يكون دون الحولين).</div>
-
-      <div class="block-header">ملخص الدرس (خريطة ذهنية)</div>
-      <div class="tree-container">
-        <div class="tree-root">شروط الرضاع المحرم</div>
-        <div class="tree-branches">
-          <div class="tree-node">
-            <div class="tree-leaf"><h4>المدة الزمنية</h4><p>في الحولين الأولين<br>(سنتين)</p></div>
-          </div>
-          <div class="tree-node">
-            <div class="tree-leaf"><h4>العدد</h4><p>خمس رضعات<br>معلومات ومشبعات</p></div>
-          </div>
-          <div class="tree-node">
-            <div class="tree-leaf"><h4>طريقة الوصول</h4><p>بالالتقام المباشر<br>أو الشرب من إناء</p></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="block-header">أسئلة الفهم</div>
-      <div class="ex-box" id="ex-3-1">
-        <div class="ex-q">١. عدد الرضعات الموجبة للتحريم ونشر المحرمية هو:</div>
-        <div class="ex-opts"><button class="ex-btn" onclick="act(3, 1, this, false, 'خاطئ.')">ثلاث رضعات</button><button class="ex-btn" onclick="act(3, 1, this, true, 'صحيح. خمس رضعات معلومات.')">خمس رضعات معلومات</button></div><div class="ex-fb"></div>
-      </div>
-      <div class="ex-box" id="ex-3-2">
-        <div class="ex-q">٢. إرضاع طفل تجاوز عمره السنتين (الحولين) بخمس رضعات:</div>
-        <div class="ex-opts"><button class="ex-btn" onclick="act(3, 2, this, false, 'خاطئ.')">يُنشر الحرمة</button><button class="ex-btn" onclick="act(3, 2, this, true, 'أحسنت. لأن شرط المدة الزمنية اختل (يجب أن يكون دون الحولين).')">لا ينشر الحرمة</button></div><div class="ex-fb"></div>
-      </div>
-      <div class="ex-box" id="ex-3-3">
-        <div class="ex-q">٣. شرب حليب المرأة المحلوب في إناء خمس مرات للطفل الرضيع:</div>
-        <div class="ex-opts"><button class="ex-btn" onclick="act(3, 3, this, true, 'صحيح. العبرة بوصول اللبن لجوف الطفل وإن لم يكن من الثدي مباشرة.')">ينشر الحرمة ويثبت الرضاع</button><button class="ex-btn" onclick="act(3, 3, this, false, 'خاطئ.')">لا يثبت الرضاع</button></div><div class="ex-fb"></div>
-      </div>
-      <div class="ex-box" id="ex-3-4"><div class="ex-q">٤. صل المفاهيم:</div><div class="game-grid" id="game-3"></div></div>
-      
-      <div class="progress-tracker"><span>التقدم:</span><div class="prog-dots" id="dots-3"><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div></div></div>
-      <div class="nav-row"><button class="nav-btn btn-outline" onclick="goSlide(2)">◁ السابق</button><button class="nav-btn btn-navy" id="next-3" disabled onclick="goSlide(4)">التالي: آثار الرضاع وإثباته ➜</button></div>
-    </div>
-
-    <!-- ================= 4. آثار الرضاع وإثباته ================= -->
-    <div id="s-4" class="scr" data-req="4">
-      <div class="hero-banner">
-        <div class="hero-icon">📜</div>
-        <div class="hero-title">الباب الرابع: آثار الرضاع وطرق إثباته قضائياً</div>
-        <div class="hero-sub">حكم الحرمة، حكم الحل، وشهادة النساء</div>
-        <div class="hero-line"></div>
-        <div class="hero-tags"><div class="hero-tag">حكم الحرمة</div><div class="hero-tag">حكم الحل</div><div class="hero-tag">شهادة المرأة</div></div>
-      </div>
-
-      <div class="block-header">مخرجات التعلم</div>
-      <div class="info-grid">
-        <div class="info-card"><div class="info-card-icon">🚫</div><div class="info-card-title">حكم الحرمة</div><div class="info-card-desc">فهم تحريم النكاح المؤبد بسبب الرضاع.</div></div>
-        <div class="info-card"><div class="info-card-icon">✅</div><div class="info-card-title">حكم الحل</div><div class="info-card-desc">معرفة المباحات المترتبة (الخلوة، النظر، سقوط الحجاب).</div></div>
-        <div class="info-card"><div class="info-card-icon">👩</div><div class="info-card-title">الإثبات القضائي</div><div class="info-card-desc">إدراك جواز إثبات الرضاع بشهادة امرأة واحدة.</div></div>
-        <div class="info-card"><div class="info-card-icon">🎯</div><div class="info-card-title">مقاصد الرضاع</div><div class="info-card-desc">فهم دور الرضاع في صيانة الأنساب وبناء المجتمع.</div></div>
-      </div>
-
-      <div class="block-header">مدخل الباب</div>
-      <div class="intro-text">إذا اكتملت شروط الرضاع، ترتبت عليه آثار فقهية كبرى تضاهي أحكام النسب في التحريم والحل، وتيسيراً على الناس قُبلت فيه شهادة النساء منفردات.</div>
-      
-      <div class="block-header">افهم بسرعة</div>
-      <div class="info-grid">
-        <div class="info-card"><div class="info-card-icon">🚫</div><div class="info-card-title">الحرمة</div><div class="info-card-desc">يحرم النكاح مؤبداً (يصبح الرضيع كابنها).</div></div>
-        <div class="info-card"><div class="info-card-icon">🤝</div><div class="info-card-title">الحل</div><div class="info-card-desc">تُباح الخلوة والنظر ويسقط الحجاب شرعاً.</div></div>
-        <div class="info-card"><div class="info-card-icon">⚖️</div><div class="info-card-title">الإثبات</div><div class="info-card-desc">تقبل شهادة امرأة واحدة مرضية لإثبات الرضاع.</div></div>
-        <div class="info-card"><div class="info-card-icon">🌟</div><div class="info-card-title">المقصد</div><div class="info-card-desc">حماية كيان الأسرة وصيانة الأعراض.</div></div>
-      </div>
-
-      <div class="block-header">النص العلمي الكامل</div>
-      <div class="accordion" onclick="toggleAcc(this)">
-        <div class="accordion-header">الآثار الشرعية المترتبة على الرضاع <span class="accordion-icon">+</span></div>
-        <div class="accordion-body">
-          يترتب على ثبوت الرضاع بشروطه أثران فقهيان رئيسيان:
-          <ol>
-            <li><span class="hl-red">حكم الحرمة:</span> يقتضي تحريم النكاح المؤبد؛ فكل من يحرم من النسب يحرم نظيره من الرضاع. فيحرم على الرجل أمه من الرضاع، وبنته وإن سفلت، وأخته، وعمته، وخالته، وبنت أخيه، وبنت أخته.</li>
-            <li><span class="hl-green">حكم الحل:</span> يقتضي ثبوت "المحرمية"، وهي التي تبيح ما يباح للأقارب من النسب؛ كجواز الخلوة، وإباحة النظر، وسقوط الحجاب، لكون الرضيع صار ابناً للمرضعة وأخاً لأولادها.</li>
-          </ol>
-        </div>
-      </div>
-      <div class="accordion" onclick="toggleAcc(this)">
-        <div class="accordion-header">طرق إثبات الرضاع في القضاء الفقهي <span class="accordion-icon">+</span></div>
-        <div class="accordion-body">
-          نظراً لخصوصية الرضاع وكونه مما لا يطلع عليه الرجال في الغالب، فقد قرر الفقه الإسلامي أحكاماً خاصة لإثباته:
-          <ul>
-            <li><span class="term-blue">شهادة النساء:</span> يثبت الرضاع بشهادة <span class="hl-green">امرأة واحدة مرضية معروفة بالصدق</span>، حتى وإن كانت هي المرضعة نفسها التي تشهد على فعلها.</li>
-            <li><span class="term-blue">الدليل النبوي:</span> حديث عقبة بن الحارث حين تزوج امرأة فجاءت امرأة سوداء وقالت: "إني قد أرضعتكما"، فذكر ذلك للنبي ﷺ فقال له: "وكيف وقد قيل؟ دعها عنك".</li>
-            <li><span class="term-blue">التعليل الفقهي:</span> تُقبل شهادة المرأة المنفردة في هذا الباب لأن الرضاع شهادة على عورة لا يطلع عليها الرجال غالباً، فتجري مجرى الشهادة على "الولادة"، وذلك تيسيراً وضبطاً للحقوق والمحرمات.</li>
-          </ul>
-        </div>
-      </div>
-      <div class="accordion" onclick="toggleAcc(this)">
-        <div class="accordion-header">خاتمة التقرير ومقاصد الرضاع <span class="accordion-icon">+</span></div>
-        <div class="accordion-body">
-          صفوة القول، إن أحكام الرضاع في الشريعة الإسلامية تمثل نموذجاً لشمولية النظام الفقهي في حماية كيان الأسرة وصيانة الأعراض. فقد جعل الشارع من هذا الاتصال المادي لُحمة معنوية وقانونية تضاهي لُحمة النسب في التحريم والصلة، مما يؤكد أن التشريع يهدف إلى بناء مجتمع متراحم تضبطه أحكام الحلال والحرام بدقة متناهية، صيانةً للأنساب وتحقيقاً للمصلحة الفضلى للطفل والأسرة على حد سواء.
-        </div>
-      </div>
-
-      <div class="block-header">تطبيقات عملية</div>
-      <div class="app-scenario">📌 شهدت خادمة موثوقة (امرأة واحدة) أنها أرضعت فلانة وفلاناً ٥ رضعات في الصغر. (التطبيق: تقبل شهادتها ويثبت الرضاع، ويُحرم زواجهما).</div>
-
-      <div class="block-header">ملخص الدرس (خريطة ذهنية)</div>
-      <div class="tree-container">
-        <div class="tree-root">آثار الرضاع وإثباته</div>
-        <div class="tree-branches">
-          <div class="tree-node">
-            <div class="tree-leaf"><h4>أثر الحرمة</h4><p>تحريم النكاح المؤبد<br>(كما في النسب)</p></div>
-          </div>
-          <div class="tree-node">
-            <div class="tree-leaf"><h4>أثر الحل</h4><p>المحرمية، إباحة الخلوة<br>وسقوط الحجاب</p></div>
-          </div>
-          <div class="tree-node">
-            <div class="tree-leaf"><h4>الإثبات القضائي</h4><p>بشهادة امرأة واحدة<br>موثوقة</p></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="block-header">أسئلة الفهم</div>
-      <div class="ex-box" id="ex-4-1">
-        <div class="ex-q">١. من الآثار المترتبة على الرضاع "حكم الحل"، ويقصد به:</div>
-        <div class="ex-opts"><button class="ex-btn" onclick="act(4, 1, this, false, 'خاطئ.')">حل أكل ماله</button><button class="ex-btn" onclick="act(4, 1, this, true, 'صحيح. المحرمية تبيح النظر وسقوط الحجاب.')">ثبوت المحرمية (الخلوة والنظر)</button></div><div class="ex-fb"></div>
-      </div>
-      <div class="ex-box" id="ex-4-2">
-        <div class="ex-q">٢. لإثبات الرضاع أمام القضاء الفقهي:</div>
-        <div class="ex-opts"><button class="ex-btn" onclick="act(4, 2, this, true, 'صحيح. تيسيراً ومراعاة لطبيعة الأمر الذي لا يطّلع عليه الرجال غالباً.')">تكفي شهادة امرأة واحدة موثوقة</button><button class="ex-btn" onclick="act(4, 2, this, false, 'خاطئ.')">يشترط شهادة رجلين حصراً</button></div><div class="ex-fb"></div>
-      </div>
-      <div class="ex-box" id="ex-4-3">
-        <div class="ex-q">٣. "كل من يحرم من النسب يحرم نظيره من الرضاع":</div>
-        <div class="ex-opts"><button class="ex-btn" onclick="act(4, 3, this, false, 'خاطئ.')">عبارة خاطئة</button><button class="ex-btn" onclick="act(4, 3, this, true, 'أحسنت. هذا هو الأثر الشرعي المسمى بحكم الحرمة.')">عبارة صحيحة (حكم الحرمة)</button></div><div class="ex-fb"></div>
-      </div>
-      <div class="ex-box" id="ex-4-4"><div class="ex-q">٤. صل المفاهيم:</div><div class="game-grid" id="game-4"></div></div>
-      
-      <div class="progress-tracker"><span>التقدم:</span><div class="prog-dots" id="dots-4"><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div></div></div>
-      <div class="nav-row"><button class="nav-btn btn-outline" onclick="goSlide(3)">◁ السابق</button><button class="nav-btn btn-navy" id="next-4" disabled onclick="goSlide(5)">التالي: أحكام الحضانة ➜</button></div>
-    </div>
-
-    <!-- ================= 5. أحكام الحضانة وشروطها ================= -->
-    <div id="s-5" class="scr" data-req="4">
-      <div class="hero-banner">
-        <div class="hero-icon">🤱</div>
-        <div class="hero-title">الباب الخامس: أحكام الحضانة ورعاية الصغار</div>
-        <div class="hero-sub">ولاية غرضها مصلحة المحضون وتعهده، والأولوية فيها للنساء</div>
-        <div class="hero-line"></div>
-        <div class="hero-tags"><div class="hero-tag">التعريف</div><div class="hero-tag">فرض كفاية</div><div class="hero-tag">أولوية النساء</div><div class="hero-tag">شروط الحاضن</div></div>
-      </div>
-
-      <div class="block-header">مخرجات التعلم</div>
-      <div class="info-grid">
-        <div class="info-card"><div class="info-card-icon">🧠</div><div class="info-card-title">المفهوم والحكم</div><div class="info-card-desc">تعريف الحضانة ومعرفة حكمها الشرعي.</div></div>
-        <div class="info-card"><div class="info-card-icon">👩‍👦</div><div class="info-card-title">الأولوية</div><div class="info-card-desc">فهم سبب تقديم النساء (الأم) في حق الحضانة.</div></div>
-        <div class="info-card"><div class="info-card-icon">🛠️</div><div class="info-card-title">المهام</div><div class="info-card-desc">معرفة مقتضيات الحضانة وواجبات الحاضن.</div></div>
-        <div class="info-card"><div class="info-card-icon">📋</div><div class="info-card-title">الشروط الموضوعية</div><div class="info-card-desc">إدراك الشروط (الإسلام، العقل، العفة، وعدم الزواج بأجنبي).</div></div>
-      </div>
-
-      <div class="block-header">المدخل والأدلة</div>
-      <div class="intro-text">شُرعت الحضانة صيانةً للمحضون من الهلاك والضياع، ورُوعي فيها تقديم الأرفق والأشفق على الطفل لتحقيق مصلحته العليا.</div>
-      <div class="verse-box">
-        <div class="verse-basmala">الحديث الشريف</div>
-        <div class="verse-text">«أنتِ أحق به ما لم تنكحي»</div>
-        <div class="verse-ref">رواه أبو داود (قاله النبي ﷺ للأم)</div>
-      </div>
-
-      <div class="block-header">افهم بسرعة</div>
-      <div class="info-grid">
-        <div class="info-card"><div class="info-card-icon">🛡️</div><div class="info-card-title">الحكم</div><div class="info-card-desc">تُعد فرض كفاية لحفظ الصغير من الهلاك.</div></div>
-        <div class="info-card"><div class="info-card-icon">👩</div><div class="info-card-title">أولوية النساء</div><div class="info-card-desc">النساء أرفق وأشفق وأقدر على تولي الصغار.</div></div>
-        <div class="info-card"><div class="info-card-icon">🚫</div><div class="info-card-title">موانع الحضانة</div><div class="info-card-desc">الفسق، المرض المعدي، العجز، أو الكفر.</div></div>
-        <div class="info-card"><div class="info-card-icon">💍</div><div class="info-card-title">زواج الأم</div><div class="info-card-desc">إذا تزوجت الأم بأجنبي سقط حقها في الحضانة.</div></div>
-      </div>
-
-      <div class="block-header">النص العلمي الكامل</div>
-      <div class="accordion" onclick="toggleAcc(this)">
-        <div class="accordion-header">مقدمة تعريفية بالحضانة وحكمها <span class="accordion-icon">+</span></div>
-        <div class="accordion-body">
-          <span class="section-head">التعريف اللغوي والشرعي:</span><br>
-          تُشتق كلمة "الحضانة" في اللغة من "الحِضن"، وهو الجنب؛ وسميت بذلك لأن "المربي" يضم الطفل إلى جنبه ويحوطه برعايته في حيزه الخاص، فهي تفيد معنى الضم والاحتواء. أما في الاصطلاح الفقهي فهي: <span class="term-blue">"القيام بحفظ من لا يميز ولا يستقل بأمر نفسه، وتربيته بما يصلحه بدنياً ومعنوياً، ووقايته عما يؤذيه أو يضره"</span>، فهي ولاية غرضها مصلحة المحضون وتعهده.<br><br>
-          <span class="section-head">حكم الحضانة:</span><br>
-          تعد الحضانة واجباً شرعياً صيانةً للمحضون من الهلاك. وتأخذ حكم <span class="hl-green">"فرض الكفاية"</span> عند تعدد الحاضنين، فإذا قام بها أحدهم سقط الإثم عن الباقين، وتتعين على الفرد إذا لم يوجد غيره منعاً لتضرر الصغير.
-        </div>
-      </div>
-      <div class="accordion" onclick="toggleAcc(this)">
-        <div class="accordion-header">مستحقو الحضانة ومهام الحاضن <span class="accordion-icon">+</span></div>
-        <div class="accordion-body">
-          <span class="term-blue">أولوية النساء:</span> استقر الفقه الإسلامي على تقديم النساء على الرجال في استحقاق الحضانة؛ لكونهن أشفق وأرفق بالصغار، وأقدر على الصبر على احتياجاتهم وتصريف مصلحة الصغير. ويستند هذا إلى قضاء النبي ﷺ للأم حين أراد زوجها نزع ولدها منها فقال: "أنتِ أحق به ما لم تنكحي".<br><br>
-          <span class="term-blue">مقتضى الحضانة (المهام):</span><br>
-          <ol>
-            <li>تعهد طعام المحضون وشرابه بما يصلحه.</li>
-            <li>غسل المحضون ونظافته ظاهراً وباطناً.</li>
-            <li>تعهد نومه ويقظته.</li>
-            <li>القيام بجميع حاجاته التي تضمن صلاحه وتربيته.</li>
-          </ol>
-        </div>
-      </div>
-      <div class="accordion" onclick="toggleAcc(this)">
-        <div class="accordion-header">الشروط الفنية والموضوعية للحاضن <span class="accordion-icon">+</span></div>
-        <div class="accordion-body">
-          يُشترط فيمن يتولى الحضانة جملة من الشروط لضمان مصلحة المحضون:
-          <ul>
-            <li><span class="hl-red">الإسلام:</span> لأنه لا ولاية لكافر على مسلم، ولخشية الفتنة في دينه.</li>
-            <li><span class="term-blue">البلوغ والعقل:</span> العاجز عن إدارة نفسه أعجز عن غيره.</li>
-            <li><span class="term-blue">الأمانة والعفة:</span> الفاسق في دينه غير مؤتمن (فالمدمن تسقط حضانته).</li>
-            <li><span class="term-blue">القدرة البدنية والمالية:</span> فلا حضانة لعاجز أو مريض أو مشغول يضيع مصلحة الطفل.</li>
-            <li><span class="term-blue">السلامة من الأمراض المعدية:</span> وقايةً لصحة المحضون.</li>
-            <li><span class="term-blue">الرشد والحرية.</span></li>
-            <li><span class="hl-red">شرط خاص بالمرأة:</span> ألا تكون متزوجة من أجنبي عن المحضون؛ لأنها ستنشغل بحق الزوج عن رعاية المحضون، لقوله ﷺ: "أنتِ أحق به ما لم تنكحي".</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="block-header">تطبيقات عملية</div>
-      <div class="app-scenario">📌 أم تطلب حضانة أطفالها بعد الطلاق، ثم تزوجت من رجل آخر (أجنبي عن الأطفال). (التطبيق: يسقط حقها في الحضانة فور الزواج لانشغالها بحق الزوج الجديد).</div>
-
-      <div class="block-header">ملخص الدرس (خريطة ذهنية)</div>
-      
-      <div class="tree-container">
-        <div class="tree-root">أحكام وشروط الحضانة</div>
-        <div class="tree-branches">
-          <div class="tree-node">
-            <div class="tree-leaf"><h4>الأولوية</h4><p>للنساء (الأم) لأنهن أشفق وأرفق</p></div>
-          </div>
-          <div class="tree-node">
-            <div class="tree-leaf"><h4>الشروط العامة</h4><p>الإسلام، العقل، الأمانة، والقدرة الصحية</p></div>
-          </div>
-          <div class="tree-node">
-            <div class="tree-leaf"><h4>شرط المرأة</h4><p>عدم الزواج بأجنبي عن المحضون</p></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="block-header">أسئلة الفهم</div>
-      <div class="ex-box" id="ex-5-1">
-        <div class="ex-q">١. حكم الحضانة شرعاً إذا تعدد المستحقون القادرون عليها:</div>
-        <div class="ex-opts"><button class="ex-btn" onclick="act(5, 1, this, false, 'خاطئ.')">سنة مؤكدة</button><button class="ex-btn" onclick="act(5, 1, this, true, 'صحيح. فهي تكفي بقيام أحدهم.')">فرض كفاية</button></div><div class="ex-fb"></div>
-      </div>
-      <div class="ex-box" id="ex-5-2">
-        <div class="ex-q">٢. إذا تزوجت الأم المطلقة برجل أجنبي عن أطفالها:</div>
-        <div class="ex-opts"><button class="ex-btn" onclick="act(5, 2, this, true, 'أحسنت! (أنتِ أحق به ما لم تنكحي).')">يسقط حقها في الحضانة</button><button class="ex-btn" onclick="act(5, 2, this, false, 'خاطئ.')">تزداد أحقيتها بالحضانة</button></div><div class="ex-fb"></div>
-      </div>
-      <div class="ex-box" id="ex-5-3">
-        <div class="ex-q">٣. الأولوية في تولي حضانة الصغار في الفقه الإسلامي تكون لـ:</div>
-        <div class="ex-opts"><button class="ex-btn" onclick="act(5, 3, this, false, 'خاطئ.')">الرجال لكونهم أقوى</button><button class="ex-btn" onclick="act(5, 3, this, true, 'صحيح. لكونهن أشفق وأقدر على الصبر والرعاية.')">النساء لكونهن أشفق وأرفق</button></div><div class="ex-fb"></div>
-      </div>
-      <div class="ex-box" id="ex-5-4"><div class="ex-q">٤. صل المفاهيم:</div><div class="game-grid" id="game-5"></div></div>
-      
-      <div class="progress-tracker"><span>التقدم:</span><div class="prog-dots" id="dots-5"><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div></div></div>
-      <div class="nav-row"><button class="nav-btn btn-outline" onclick="goSlide(4)">◁ السابق</button><button class="nav-btn btn-navy" id="next-5" disabled onclick="goSlide(6)">التالي: السفر وانقضاء الحضانة ➜</button></div>
-    </div>
-
-    <!-- ================= 6. السفر وانقضاء الحضانة ================= -->
-    <div id="s-6" class="scr" data-req="4">
-      <div class="hero-banner">
-        <div class="hero-icon">⚖️</div>
-        <div class="hero-title">الباب السادس: السفر بالمحضون وانقضاء الحضانة</div>
-        <div class="hero-sub">أحكام السفر، سن التخيير، وأجرة الحضانة</div>
-        <div class="hero-line"></div>
-        <div class="hero-tags"><div class="hero-tag">السفر الطويل</div><div class="hero-tag">سن السابعة</div><div class="hero-tag">تخيير الغلام</div><div class="hero-tag">أجرة الحضانة</div></div>
-      </div>
-
-      <div class="block-header">مخرجات التعلم</div>
-      <div class="info-grid">
-        <div class="info-card"><div class="info-card-icon">✈️</div><div class="info-card-title">أحكام السفر</div><div class="info-card-desc">أثر السفر الطويل والقصير على الحضانة.</div></div>
-        <div class="info-card"><div class="info-card-icon">🎂</div><div class="info-card-title">سن انتهاء الحضانة</div><div class="info-card-desc">تحديد سن السابعة كموعد لانتهاء الحضانة التلقائية.</div></div>
-        <div class="info-card"><div class="info-card-icon">👦👧</div><div class="info-card-title">أحكام الجنسين</div><div class="info-card-desc">التفريق بين تخيير الغلام وحكم الأنثى بعد السابعة.</div></div>
-        <div class="info-card"><div class="info-card-icon">💵</div><div class="info-card-title">أجرة الحاضن</div><div class="info-card-desc">معرفة أن الحضانة عمل يستحق أجرة شرعية.</div></div>
-      </div>
-
-      <div class="block-header">المدخل والخاتمة</div>
-      <div class="intro-text">تُراعي الشريعة مآلات الأمور، فتنظم حضانة الطفل عند سفر أحد الأبوين، وتضع سن السابعة حداً تبدأ بعده أحكام التخيير للغلام والولاية للأنثى.</div>
-      <div class="verse-box">
-        <div class="verse-basmala">الحديث الشريف</div>
-        <div class="verse-text">«يا غلام! هذا أبوك وهذه أمك؛ فخذ بيد أيهما شئت»</div>
-        <div class="verse-ref">رواه أحمد والنسائي</div>
-      </div>
-
-      <div class="block-header">افهم بسرعة</div>
-      <div class="info-grid">
-        <div class="info-card"><div class="info-card-icon">✈️</div><div class="info-card-title">السفر الطويل</div><div class="info-card-desc">الحضانة فيه للأب حمايةً للطفل وتأديباً له.</div></div>
-        <div class="info-card"><div class="info-card-icon">🎂</div><div class="info-card-title">سن السابعة</div><div class="info-card-desc">تنتهي مدة الحضانة التلقائية ببلوغ ٧ سنوات.</div></div>
-        <div class="info-card"><div class="info-card-icon">👦</div><div class="info-card-title">الغلام</div><div class="info-card-desc">يُخيّر بين أبويه إن كانا عاقلين صالحين.</div></div>
-        <div class="info-card"><div class="info-card-icon">👧</div><div class="info-card-title">الأنثى</div><div class="info-card-desc">تعود للأب وجوباً بعد السابعة لأنه أحفظ لها.</div></div>
-      </div>
-
-      <div class="block-header">النص العلمي الكامل</div>
-      <div class="accordion" onclick="toggleAcc(this)">
-        <div class="accordion-header">أحكام سفر الوالدين بالمحضون <span class="accordion-icon">+</span></div>
-        <div class="accordion-body">
-          بالنظر في المآلات الشرعية لحالات السفر، فصّل الفقهاء أحكامها كالآتي:
-          <ul>
-            <li><span class="hl-red">السفر الطويل الآمن:</span> إذا سافر أحد الأبوين سفراً طويلاً لغير قصد المضارة وكان الطريق آمناً، فإن الحضانة <span class="hl-green">تؤول للأب</span> (سواء كان هو المسافر أو المقيم)؛ لأنه هو الذي يقوم بـ "تأديب" الولد والمحافظة عليه صيانة له من الضياع.</li>
-            <li><span class="term-blue">السفر القريب:</span> إذا كان السفر لبلد قريب (دون مسافة القصر)، تظل الحضانة للأم؛ لتمام شفقتها، ولأن الأب يتمكن في هذه الحالة من الإشراف على الولد وتعهد حاله.</li>
-            <li><span class="term-blue">الحالات الاستثنائية:</span> في حال كان الطريق غير آمن أو كان السفر لحاجة طارئة، فإن الحضانة تؤول للمقيم منهما ضماناً لسلامة المحضون.</li>
-          </ul>
-        </div>
-      </div>
-      <div class="accordion" onclick="toggleAcc(this)">
-        <div class="accordion-header">انتهاء الحضانة وأحكام التخيير بعد السابعة <span class="accordion-icon">+</span></div>
-        <div class="accordion-body">
-          <span class="term-blue">السن القانوني وانتهاء الحضانة:</span> تنتهي مدة الحضانة ببلوغ الصغير <span class="hl-red">سن السابعة</span>، وهي السن التي أمر الشارع فيها بمخاطبة الصغير بالصلاة، وعندها يبدأ "التخيير".<br><br>
-          <span class="section-head">أحكام الغلام (الذكر):</span><br>
-          يُخير الغلام بعد السابعة بين أبوين بشرط أن يكون الأبوان "عاقلين"، لقوله ﷺ: «يا غلام! هذا أبوك وهذه أمك؛ فخذ بيد أيهما شئت».
-          <ul>
-            <li>إذا اختار أباه: يكون عنده ليلاً ونهاراً ليقوم على تأديبه وتربيته.</li>
-            <li>إذا اختار أمه: يبقى عندها ليلاً، ويكون عند أبيه نهاراً ليعلمه الصنعة أو الكتابة (التأديب)، ولا يمنع الأب من زيارة ابنه عند أمه.</li>
-          </ul>
-          <span class="section-head">أحكام الأنثى:</span><br>
-          يوجب الفقه بقاء الأنثى عند أبيها وجوباً بعد سن السابعة؛ لأنه أحفظ لها، وهو وليها في النكاح، وهو الأبصر والأعلم بـ "الكفء" لها. ويستثنى من ذلك حالات تؤول فيها للأم (كعجز الأب عن حفظها).
-        </div>
-      </div>
-      <div class="accordion" onclick="toggleAcc(this)">
-        <div class="accordion-header">الحقوق المالية المرتبطة بالحضانة <span class="accordion-icon">+</span></div>
-        <div class="accordion-body">
-          <span class="term-blue">أجرة الحضانة:</span> تعد أجرة الحضانة حقاً "مستحقاً" للحاضن، سواء كانت الحاضنة أماً أو غيرها. <br>
-          وتُدفع هذه الأجرة من مال المحضون نفسه إن كان له مال، فإن لم يكن له مال، وجبت الأجرة على من تلزمه نفقته من الأولياء المنفقين (كالأب).
-        </div>
-      </div>
-
-      <div class="block-header">تطبيقات عملية</div>
-      <div class="app-scenario">📌 أم ترعى ابنتها بعد الطلاق، فلما بلغت البنت ٧ سنوات طلب الأب أخذها. (التطبيق: يحق للأب ذلك، فالأنثى بعد السابعة تكون عند أبيها وجوباً لأنه أحفظ لها).</div>
-      <div class="app-scenario">📌 أب سافر سفراً طويلاً دائماً للعمل في الخارج وأراد أخذ ابنه البالغ ٤ سنوات. (التطبيق: الحضانة تنتقل للأب في السفر الطويل صيانة للولد وتأديباً له).</div>
-
-      <div class="block-header">ملخص الدرس (خريطة ذهنية)</div>
-      <div class="tree-container">
-        <div class="tree-root">انتهاء الحضانة والسفر</div>
-        <div class="tree-branches">
-          <div class="tree-node">
-            <div class="tree-leaf"><h4>السفر الطويل الآمن</h4><p>تؤول الحضانة للأب<br>للتأديب والحفظ</p></div>
-          </div>
-          <div class="tree-node">
-            <div class="tree-leaf"><h4>سن السابعة (للذكر)</h4><p>يُخيّر بين الأب والأم</p></div>
-          </div>
-          <div class="tree-node">
-            <div class="tree-leaf"><h4>سن السابعة (للأنثى)</h4><p>تنتقل للأب وجوباً<br>لأنه أحفظ لها</p></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="block-header">أسئلة الفهم</div>
       <div class="ex-box" id="ex-6-1">
-        <div class="ex-q">١. السن الذي تنتهي به مدة الحضانة التلقائية ويبدأ التخيير هو:</div>
-        <div class="ex-opts"><button class="ex-btn" onclick="act(6, 1, this, false, 'خاطئ. سن البلوغ متأخر.')">سن البلوغ</button><button class="ex-btn" onclick="act(6, 1, this, true, 'صحيح. سن السابعة هو بداية التمييز.')">سن السابعة</button></div><div class="ex-fb"></div>
+        <div class="ex-q">١. المطلقة طلاقاً (بائناً) وهي (غير حامل):</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(6, 1, this, true, 'صحيح. لانقطاع أسباب الوجوب.')">لا تجب لها نفقة ولا سكنى</button><button class="ex-btn" onclick="act(6, 1, this, false, 'خاطئ.')">تجب لها النفقة طيلة العدة</button></div><div class="ex-fb"></div>
       </div>
       <div class="ex-box" id="ex-6-2">
-        <div class="ex-q">٢. إذا بلغ الغلام (الذكر) سبع سنين وكان أبواه عاقلين صالحين:</div>
-        <div class="ex-opts"><button class="ex-btn" onclick="act(6, 2, this, true, 'أحسنت! (فخذ بيد أيهما شئت).')">يُخيّر بين أبويه</button><button class="ex-btn" onclick="act(6, 2, this, false, 'خاطئ.')">يذهب للأب وجوباً</button></div><div class="ex-fb"></div>
+        <div class="ex-q">٢. إذا عجز مالك البهيمة عن الإنفاق عليها، فما هو موقف القضاء؟</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(6, 2, this, false, 'خاطئ.')">يتركه وشأنه</button><button class="ex-btn" onclick="act(6, 2, this, true, 'أحسنت! يجبره على بيعها أو تأجيرها أو ذبحها.')">يجبره على حلول تزيل الظلم</button></div><div class="ex-fb"></div>
       </div>
       <div class="ex-box" id="ex-6-3">
-        <div class="ex-q">٣. هل تستحق الحاضنة (كالأم المطلقة) أجرة مالية مقابل الحضانة؟</div>
-        <div class="ex-opts"><button class="ex-btn" onclick="act(6, 3, this, false, 'خاطئ.')">لا تستحق لأنه واجب مجاني</button><button class="ex-btn" onclick="act(6, 3, this, true, 'صحيح. الحضانة حق مستحق بأجرة من مال الولد أو أبيه.')">نعم، تستحق أجرة حضانة</button></div><div class="ex-fb"></div>
+        <div class="ex-q">٣. تكليف المماليك (الخدم والعمال) بما لا يطيقون من الأعمال الشاقة:</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(6, 3, this, true, 'صحيح. (ولا تكلفوهم ما يغلبهم).')">يحرم شرعاً</button><button class="ex-btn" onclick="act(6, 3, this, false, 'خاطئ.')">جائز إن أعطاهم أجرهم</button></div><div class="ex-fb"></div>
       </div>
       <div class="ex-box" id="ex-6-4"><div class="ex-q">٤. صل المفاهيم:</div><div class="game-grid" id="game-6"></div></div>
       
@@ -1045,19 +1044,15 @@ html, body { height: 100%; font-family: var(--font-body); background: var(--crea
 <script>
 /* ================= DATA ================= */
 const GAMES = {
-  1: {pairs:[{l:"ضابط النفقة",r:"المعروف بحسب العرف"},{l:"أولوية الإنفاق",r:"يبدأ المرء بنفسه أولاً"},{l:"نفقة الوالدين (الأصول)",r:"تجب حتى مع اختلاف الدين"},{l:"نفقة الفروع (الأبناء)",r:"تجب بشرط الفقر والعجز"}]},
-  2: {pairs:[{l:"نفقة الزوجة",r:"تجب بالعقد الصحيح"},{l:"المطلقة البائن غير الحامل",r:"لا تجب لها نفقة ولا سكنى"},{l:"المماليك",r:"يحرم تكليفهم بما يشق عليهم"},{l:"المالك العاجز عن إطعام بهيمته",r:"يجبره القاضي على بيعها"}]},
-  3: {pairs:[{l:"شرط الرضاع الزمني",r:"أن يكون دون الحولين"},{l:"العدد الموجب للتحريم",r:"خمس رضعات معلومات"},{l:"شرب لبن المرأة من إناء ٥ مرات",r:"يثبت التحريم (وصول للجوف)"}]},
-  4: {pairs:[{l:"حكم الحرمة (آثار الرضاع)",r:"تحريم النكاح المؤبد"},{l:"حكم الحل (آثار الرضاع)",r:"إباحة الخلوة والنظر"},{l:"الإثبات القضائي للرضاع",r:"تقبل شهادة امرأة واحدة"}]},
-  5: {pairs:[{l:"حكم الحضانة",r:"فرض كفاية"},{l:"أولوية الحضانة للصغار",r:"النساء لكونهن أشفق وأرفق"},{l:"شرط الحضانة للمرأة المطلقة",r:"ألا تتزوج بأجنبي عن المحضون"}]},
-  6: {pairs:[{l:"السفر الطويل بالمحضون",r:"الحضانة للأب للتأديب والصيانة"},{l:"بلوغ الصغير السابعة",r:"تنتهي مدة الحضانة التلقائية"},{l:"الغلام بعد السابعة",r:"يخير بين أبويه العاقلين"},{l:"أجرة الحضانة",r:"حق مستحق تدفع من مال المحضون أو أبيه"}]}
+  1: {pairs:[{l:"شرط الرضاع الزمني",r:"أن يكون دون الحولين"},{l:"العدد الموجب للتحريم",r:"خمس رضعات معلومات"},{l:"شرب لبن المرأة من إناء ٥ مرات",r:"يثبت التحريم (وصول للجوف)"}]},
+  2: {pairs:[{l:"حكم الحرمة (آثار الرضاع)",r:"تحريم النكاح المؤبد"},{l:"حكم الحل (آثار الرضاع)",r:"إباحة الخلوة والنظر"},{l:"الإثبات القضائي للرضاع",r:"تقبل شهادة امرأة واحدة"}]},
+  3: {pairs:[{l:"حكم الحضانة",r:"فرض كفاية"},{l:"أولوية الحضانة للصغار",r:"النساء لكونهن أشفق وأرفق"},{l:"شرط الحضانة للمرأة المطلقة",r:"ألا تتزوج بأجنبي عن المحضون"}]},
+  4: {pairs:[{l:"السفر الطويل بالمحضون",r:"الحضانة للأب للتأديب والصيانة"},{l:"بلوغ الصغير السابعة",r:"تنتهي مدة الحضانة التلقائية"},{l:"الغلام بعد السابعة",r:"يخير بين أبويه العاقلين"},{l:"أجرة الحضانة",r:"حق مستحق تدفع من مال المحضون أو أبيه"}]},
+  5: {pairs:[{l:"ضابط النفقة",r:"المعروف بحسب العرف"},{l:"أولوية الإنفاق",r:"يبدأ المرء بنفسه أولاً"},{l:"نفقة الوالدين (الأصول)",r:"تجب حتى مع اختلاف الدين"},{l:"نفقة الفروع (الأبناء)",r:"تجب بشرط الفقر والعجز"}]},
+  6: {pairs:[{l:"نفقة الزوجة",r:"تجب بالعقد الصحيح"},{l:"المطلقة البائن غير الحامل",r:"لا تجب لها نفقة ولا سكنى"},{l:"المماليك",r:"يحرم تكليفهم بما يشق عليهم"},{l:"المالك العاجز عن إطعام بهيمته",r:"يجبره القاضي على بيعها"}]}
 };
 
 const FLASHCARDS =[
-  {q:"ما هو المعيار الذي يحدد مقدار النفقة؟",a:"معيار (المعروف)، ويراعي حال المنفق وحاجة المنفق عليه."},
-  {q:"هل تجب النفقة للوالدين إذا كانا كافرين والابن مسلم؟",a:"نعم، تجب النفقة للأصول حتى مع اختلاف الدين لعموم (وصاحبهما في الدنيا معروفاً)."},
-  {q:"ما حكم النفقة للمطلقة البائن غير الحامل؟",a:"لا تجب لها نفقة ولا سكنى لانقطاع سبب الوجوب بالبينونة."},
-  {q:"كيف يتصرف القضاء مع من يجوع بهيمته؟",a:"يجبره القاضي على بيعها، أو تأجيرها للإنفاق عليها، أو ذبحها إن كانت تؤكل."},
   {q:"ما هي شروط الرضاع الموجب للتحريم؟",a:"شرطان: أن يكون في الحولين الأولين (سنتين)، وأن يكون خمس رضعات معلومات."},
   {q:"كيف يثبت الرضاع أمام القاضي؟",a:"يثبت بشهادة امرأة واحدة ثقة (ولو كانت هي المرضعة) تيسيراً وحفظاً للحقوق."},
   {q:"ما هو الحكم التكليفي للحضانة؟",a:"فرض كفاية لحفظ الصغير من الهلاك والضياع."},
@@ -1065,18 +1060,19 @@ const FLASHCARDS =[
   {q:"متى يسقط حق الأم المطلقة في الحضانة؟",a:"يسقط إذا تزوجت برجل أجنبي عن المحضون (أنتِ أحق به ما لم تنكحي)."},
   {q:"لمن تؤول الحضانة في حالة السفر الطويل للعمل؟",a:"تؤول للأب؛ لأنه أقدر على حفظ الولد وتأديبه وصيانته من الضياع في السفر."},
   {q:"ماذا يحدث للغلام (الذكر) إذا بلغ سبع سنين؟",a:"يُخيّر بين أبيه وأمه (إذا كانا عاقلين صالحين) ويكون عند من يختار."},
-  {q:"هل للحاضن الحق في طلب أجرة مالية؟",a:"نعم، أجرة الحضانة حق مستحق وتُدفع من مال الطفل أو مال أبيه."}
+  {q:"هل للحاضن الحق في طلب أجرة مالية؟",a:"نعم، أجرة الحضانة حق مستحق وتُدفع من مال الطفل أو مال أبيه."},
+  {q:"ما هو المعيار الذي يحدد مقدار النفقة؟",a:"معيار (المعروف)، ويراعي حال المنفق وحاجة المنفق عليه."},
+  {q:"هل تجب النفقة للوالدين إذا كانا كافرين والابن مسلم؟",a:"نعم، تجب النفقة للأصول حتى مع اختلاف الدين لعموم (وصاحبهما في الدنيا معروفاً)."},
+  {q:"ما حكم النفقة للمطلقة البائن غير الحامل؟",a:"لا تجب لها نفقة ولا سكنى لانقطاع سبب الوجوب بالبينونة."},
+  {q:"كيف يتصرف القضاء مع من يجوع بهيمته؟",a:"يجبره القاضي على بيعها، أو تأجيرها للإنفاق عليها، أو ذبحها إن كانت تؤكل."}
 ];
 
 const QUIZ = [
-  {q:"المعيار الشرعي المرن الذي يضبط مقدار النفقة هو معيار:",o:["التساوي بين الناس","المعروف","الإنفاق الأدنى","عطاء الدولة"],a:1},
-  {q:"إذا كان لدى الشخص مال محدود، فبمن يبدأ بالإنفاق أولاً إعمالاً للمسؤولية الفردية؟",o:["بوالديه","بنفسه","بأولاده","بزوجته"],a:1},
-  {q:"نفقة الوالدين (الأصول) الفقيرين إذا اختلف دينهما عن دين ابنهما المسلم:",o:["تجب ولا يؤثر اختلاف الدين","تسقط باختلاف الدين","مستحبة فقط","مكروهة"],a:0},
-  {q:"المطلقة طلاقاً بائناً وهي غير حامل، حكم نفقتها وسكناها:",o:["تجب طيلة العدة","لا تجب لها نفقة ولا سكنى","لها السكنى دون النفقة","لها النفقة دون السكنى"],a:1},
-  {q:"الشخص الذي يحبس هرة ولا يطعمها، حكم فعله شرعاً:",o:["مكروه","محرم وفيه وعيد شديد بالدخول للنار","خلاف الأولى","جائز إن كانت مؤذية"],a:1},
   {q:"عدد الرضعات التي تشترط لثبوت التحريم ونشر المحرمية:",o:["رضعة واحدة","ثلاث رضعات","خمس رضعات معلومات","عشر رضعات"],a:2},
   {q:"يُشترط أن يقع الرضاع المحرّم خلال مدة زمنية محددة هي:",o:["دون الحولين (سنتين)","أول سنة فقط","حتى سن الفطام الفعلي (٣ سنوات)","في أي عمر"],a:0},
   {q:"إثبات الرضاع في القضاء الفقهي يتم عبر:",o:["شهادة رجلين","شهادة امرأة واحدة معروفة بالصدق","شهادة أربع نساء","التحليل الطبي فقط"],a:1},
+  {q:"شرب لبن المرأة من إناء (غير التقام الثدي) وتكرر ذلك خمس مرات في الحولين:",o:["ينشر الحرمة ويثبت الرضاع","لا يثبت الرضاع أبداً","يثبت الحرمة ولا يثبت الحل","مكروه شرعاً"],a:0},
+  {q:"من آثار الرضاع الشرعية (حكم الحل)، ويعني:",o:["تحريم الزواج أبداً","إباحة الخلوة والنظر وسقوط الحجاب","حل الميراث المالي","إسقاط النفقة"],a:1},
   {q:"حكم الحضانة التكليفي عند تعدد المستحقين القادرين عليها:",o:["فرض عين","فرض كفاية","سنة مؤكدة","مباح"],a:1},
   {q:"في أولوية استحقاق الحضانة، قدم الفقه الإسلامي:",o:["الرجال لقوتهم","النساء لكونهن أشفق وأرفق","الجد دائماً","القاضي"],a:1},
   {q:"إذا تزوجت الأم الحاضنة برجل أجنبي عن المحضون:",o:["تستمر حضانتها","يسقط حقها في الحضانة","يُخير الطفل فوراً","تزيد أجرتها"],a:1},
@@ -1085,10 +1081,13 @@ const QUIZ = [
   {q:"حضانة الأنثى (البنت) بعد بلوغها سن السابعة في الفقه:",o:["تُخير كالغلام","تنتقل للأب وجوباً لأنه أحفظ لها","تبقى عند الأم وجوباً","تُرسل لدار الرعاية"],a:1},
   {q:"سفر أحد الأبوين سفراً طويلاً آمناً لغير الإضرار، يجعل الحضانة تؤول لـ:",o:["الأم","الأب (لأجل التأديب والحفظ)","الجدة","المقيم منهما دائماً"],a:1},
   {q:"هل تُعد أجرة الحضانة حقاً مستحقاً للحاضن؟",o:["لا، فهي عمل خيري مجاني","نعم، وتُدفع من مال المحضون أو وليه","مستحبة فقط","لا تجوز للأم"],a:1},
-  {q:"شرب لبن المرأة من إناء (غير التقام الثدي) وتكرر ذلك خمس مرات في الحولين:",o:["ينشر الحرمة ويثبت الرضاع","لا يثبت الرضاع أبداً","يثبت الحرمة ولا يثبت الحل","مكروه شرعاً"],a:0},
+  {q:"المعيار الشرعي المرن الذي يضبط مقدار النفقة هو معيار:",o:["التساوي بين الناس","المعروف","الإنفاق الأدنى","عطاء الدولة"],a:1},
+  {q:"إذا كان لدى الشخص مال محدود، فبمن يبدأ بالإنفاق أولاً إعمالاً للمسؤولية الفردية؟",o:["بوالديه","بنفسه","بأولاده","بزوجته"],a:1},
+  {q:"نفقة الوالدين (الأصول) الفقيرين إذا اختلف دينهما عن دين ابنهما المسلم:",o:["تجب ولا يؤثر اختلاف الدين","تسقط باختلاف الدين","مستحبة فقط","مكروهة"],a:0},
+  {q:"المطلقة طلاقاً بائناً وهي غير حامل، حكم نفقتها وسكناها:",o:["تجب طيلة العدة","لا تجب لها نفقة ولا سكنى","لها السكنى دون النفقة","لها النفقة دون السكنى"],a:1},
+  {q:"الشخص الذي يحبس هرة ولا يطعمها، حكم فعله شرعاً:",o:["مكروه","محرم وفيه وعيد شديد بالدخول للنار","خلاف الأولى","جائز إن كانت مؤذية"],a:1},
   {q:"المطلقة طلاقاً بائناً وهي (حامل)، حكم نفقتها:",o:["لا نفقة لها","تجب لها النفقة حتى تضع حملها","لها نصف النفقة","تجب النفقة للمولود فقط"],a:1},
-  {q:"إذا عجز مالك البهيمة عن الإنفاق عليها، يتدخل القضاء لـ:",o:["تأنيبه فقط","إجباره على بيعها أو تأجيرها لتُطعم","حبسه وسجنه","مصادرتها لبيت المال"],a:1},
-  {q:"من آثار الرضاع الشرعية (حكم الحل)، ويعني:",o:["تحريم الزواج أبداً","إباحة الخلوة والنظر وسقوط الحجاب","حل الميراث المالي","إسقاط النفقة"],a:1}
+  {q:"إذا عجز مالك البهيمة عن الإنفاق عليها، يتدخل القضاء لـ:",o:["تأنيبه فقط","إجباره على بيعها أو تأجيرها لتُطعم","حبسه وسجنه","مصادرتها لبيت المال"],a:1}
 ];
 
 /* ================= STATE & LOGIC ================= */
