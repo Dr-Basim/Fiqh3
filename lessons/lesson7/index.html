@@ -1,0 +1,1099 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>مقرر فقه ٣ — المحاضرة السابعة</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@500;700;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ================= المتغيرات والألوان ================= */
+:root {
+  --navy: #0a1628;
+  --navy2: #152238;
+  --gold: #c9973a;
+  --gold-light: #e8c678;
+  --cream: #f9f8f4; 
+  --blue: #1d4ed8;
+  --green: #059669;
+  --red: #dc2626;
+  --text-main: #1e293b;
+  --text-muted: #475569;
+  
+  --font-title: 'Tajawal', sans-serif;
+  --font-body: 'IBM Plex Sans Arabic', sans-serif;
+  --font-quran: 'Amiri', serif;
+  
+  --rad: 12px;
+  --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  --border: #e2e8f0;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; font-family: var(--font-body); background: var(--cream); color: var(--text-main); overflow: hidden; }
+.app { height: 100%; display: flex; flex-direction: column; }
+
+/* ================= تلوين النصوص العلمي ================= */
+.term-blue { color: var(--blue); font-weight: 700; font-size: 1.05rem; }
+.hl-green { color: var(--green); font-weight: 700; }
+.hl-red { color: var(--red); font-weight: 700; }
+.section-head { color: var(--navy); font-weight: 800; font-size: 1.1rem; margin-top: 15px; margin-bottom: 5px; display: inline-block; border-bottom: 2px solid var(--gold); }
+
+/* ================= الهيدر ================= */
+.hdr { background: var(--navy); padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid var(--gold); z-index: 100; box-shadow: 0 4px 15px rgba(0,0,0,0.15); color: #fff; }
+.hdr-right { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.hdr-dr { color: var(--gold); font-family: var(--font-title); font-weight: 700; font-size: 0.95rem; }
+.logo-box { height: 45px; background: transparent; display: flex; align-items: center; justify-content: center; }
+.logo-box img { max-height: 100%; object-fit: contain; }
+.hdr-center { text-align: center; flex: 1; }
+.hdr-course { font-family: var(--font-quran); font-size: 1.8rem; color: var(--gold-light); font-weight: 700; margin-bottom: 2px; }
+.hdr-lecture { font-size: 0.95rem; color: #cbd5e1; font-family: var(--font-title); }
+.hdr-stu { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 6px 12px; border-radius: 8px; font-weight: 600; font-size: 0.85rem; color: #fff; }
+
+/* ================= التخطيط ================= */
+.main { flex: 1; overflow: hidden; position: relative; }
+.scr { position: absolute; inset: 0; overflow-y: auto; padding: 20px 20px 120px; display: none; opacity: 0; transition: 0.4s ease; max-width: 1000px; margin: 0 auto; width: 100%; scrollbar-width: thin; }
+.scr.on { display: block; opacity: 1; animation: fadeIn 0.4s; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ================= شاشة الدخول ================= */
+.welcome-wrap { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: url('https://www.transparenttextures.com/patterns/arabesque.png') repeat, var(--cream); }
+.welcome-box { background: #fff; padding: 40px 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); max-width: 500px; width: 100%; text-align: center; border-top: 5px solid var(--navy); }
+.welcome-box .logo-box-login { background: transparent; height: 80px; margin-bottom: 15px; display: flex; justify-content: center; }
+.welcome-box .logo-box-login img { max-height: 100%; }
+.w-title { font-family: var(--font-title); color: var(--navy); font-size: 2.2rem; font-weight: 900; margin-bottom: 10px; }
+.w-sub { color: var(--gold); font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
+.w-dr { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 30px; }
+.welcome-input { width: 100%; padding: 16px; border-radius: 8px; border: 1px solid var(--border); outline: none; margin-bottom: 15px; font-family: var(--font-body); font-size: 1rem; text-align: center; background: #fdfbf7; transition: 0.3s; }
+.welcome-input:focus { border-color: var(--gold); background: #fff; }
+.w-btn { width: 100%; background: var(--navy); color: #fff; padding: 16px; border-radius: 8px; font-family: var(--font-title); font-weight: 800; font-size: 1.2rem; border: none; cursor: pointer; transition: 0.3s; margin-top: 10px; }
+.w-btn:hover { background: var(--gold); color: var(--navy); }
+
+/* ================= 0. شاشة الفيديو التمهيدية ================= */
+.video-wrapper { margin: 20px 0; border-radius: 20px; overflow: hidden; box-shadow: var(--shadow); border: 3px solid var(--gold); background: #0a1628; display: flex; justify-content: center; align-items: center; position: relative; }
+.video-wrapper video { width: 100%; max-height: 500px; display: block; object-fit: cover; }
+.num-list { list-style: none; padding: 0; margin: 16px 0; counter-reset: item; }
+.num-list li { counter-increment: item; padding: 14px 50px 14px 14px; margin-bottom: 10px; background: linear-gradient(90deg, #f8f6f1, #fff); border-radius: 14px; border: 1px solid rgba(0,0,0,.05); position: relative; line-height: 1.8; }
+.num-list li::before { content: counter(item); position: absolute; right: 12px; top: 12px; width: 30px; height: 30px; border-radius: 50%; background: var(--gold); color: #fff; display: grid; place-items: center; font-weight: 900; font-size: .85rem; }
+.gold-text { color: var(--gold); font-weight: 800; }
+
+/* ================= 1. البانر الرئيسي ================= */
+.hero-banner { background: #fcf9f2; border: 1px solid #eaddc4; border-radius: var(--rad); padding: 30px; text-align: center; margin-bottom: 30px; margin-top: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
+.hero-icon { font-size: 2.5rem; margin-bottom: 10px; }
+.hero-title { font-family: var(--font-title); font-size: 2.2rem; color: var(--navy); font-weight: 900; margin-bottom: 10px; }
+.hero-sub { color: var(--gold); font-weight: 700; font-size: 1.1rem; margin-bottom: 20px; }
+.hero-line { height: 3px; background: linear-gradient(to left, transparent, var(--gold), transparent); margin: 20px auto; width: 80%; }
+.hero-tags { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.hero-tag { background: #fff; border: 1px solid #eaddc4; padding: 6px 18px; border-radius: 20px; font-size: 0.9rem; font-weight: 700; color: var(--navy); }
+
+/* ================= 2. شبكات المعلومات ================= */
+.block-header { font-family: var(--font-title); font-size: 1.6rem; color: var(--navy); font-weight: 900; margin: 30px 0 15px; }
+.info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-bottom: 30px; }
+.info-card { background: #fff; border: 1px solid var(--border); border-radius: var(--rad); padding: 20px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+.info-card-icon { font-size: 2rem; margin-bottom: 10px; }
+.info-card-title { font-family: var(--font-title); font-weight: 900; color: var(--navy); font-size: 1.1rem; margin-bottom: 8px; }
+.info-card-desc { color: var(--text-main); font-size: 0.95rem; line-height: 1.6; }
+
+/* ================= 3. المدخل والآية ================= */
+.intro-text { font-size: 1.1rem; line-height: 1.8; color: var(--text-main); margin-bottom: 15px; border-right: 4px solid var(--gold); padding-right: 15px; background: #fff; padding: 15px; border-radius: 8px; }
+.verse-box { background: #fdfaf3; border: 2px solid #eaddc4; border-radius: var(--rad); padding: 30px; text-align: center; margin-bottom: 30px; box-shadow: inset 0 0 20px rgba(201,151,58,0.05); }
+.verse-basmala { font-family: var(--font-quran); color: var(--gold); font-size: 1.8rem; margin-bottom: 10px; }
+.verse-text { font-family: var(--font-quran); font-size: 1.6rem; color: var(--navy); line-height: 2.2; margin-bottom: 15px; }
+.verse-ref { font-size: 1rem; color: var(--gold); font-weight: 700; font-family: var(--font-title); }
+
+/* ================= 4. النص الشامل (الأكورديون) ================= */
+.accordion { background: #fff; border: 1px solid var(--border); border-radius: 12px; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); overflow: hidden; }
+.accordion-header { padding: 18px 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-family: var(--font-title); font-weight: 800; font-size: 1.15rem; color: var(--navy); background: linear-gradient(to left, #fff, #fdfbf7); transition: 0.3s; border-right: 4px solid var(--gold); }
+.accordion-header:hover { background: var(--cream); }
+.accordion-icon { color: var(--gold); font-weight: bold; font-size: 1.2rem; transition: 0.3s; }
+.accordion.active .accordion-icon { transform: rotate(45deg); }
+.accordion-body { max-height: 0; overflow: hidden; transition: 0.5s ease; padding: 0 20px; font-size: 1.05rem; line-height: 2.1; color: var(--text-main); }
+.accordion.active .accordion-body { padding: 25px 20px; max-height: 4000px; border-top: 1px solid var(--border); }
+.accordion-body ul, .accordion-body ol { margin-right: 25px; margin-bottom: 15px; margin-top: 10px; }
+.accordion-body li { margin-bottom: 10px; padding-right: 5px; }
+
+/* ================= 5. الخرائط الذهنية ================= */
+.tree-container { display: flex; flex-direction: column; align-items: center; background: #fff; border: 1px solid var(--border); border-radius: var(--rad); padding: 30px; overflow-x: auto; margin-bottom: 30px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+.tree-root { background: var(--navy); color: #fff; padding: 12px 30px; border-radius: 8px; font-family: var(--font-title); font-weight: 800; font-size: 1.2rem; border-bottom: 3px solid var(--gold); margin-bottom: 30px; position: relative; z-index: 2; }
+.tree-branches { display: flex; gap: 20px; position: relative; justify-content: center; }
+.tree-branches::before { content: ''; position: absolute; top: -16px; left: 15%; right: 15%; height: 2px; background: var(--gold); }
+.tree-branches::after { content: ''; position: absolute; top: -30px; left: 50%; width: 2px; height: 16px; background: var(--gold); }
+.tree-node { position: relative; display: flex; flex-direction: column; align-items: center; width: 180px; }
+.tree-node::before { content: ''; position: absolute; top: -16px; left: 50%; width: 2px; height: 16px; background: var(--gold); }
+.tree-leaf { background: #fdfbf7; border: 1px solid var(--gold); color: var(--navy); padding: 15px; border-radius: 8px; text-align: center; width: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+.tree-leaf h4 { font-family: var(--font-title); font-size: 1.05rem; font-weight: 900; margin-bottom: 8px; }
+.tree-leaf p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; font-weight: 600; }
+
+/* ================= 6. التمارين ================= */
+.app-scenario { background: #f8fafc; border-right: 4px solid var(--blue); padding: 15px 20px; border-radius: 8px; margin-bottom: 15px; font-size: 1.05rem; line-height: 1.7; font-weight: 600; color: var(--navy); }
+.ex-box { border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 20px; background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+.ex-q { font-weight: 700; font-size: 1.1rem; margin-bottom: 15px; color: var(--navy); }
+.ex-opts { display: flex; gap: 10px; flex-wrap: wrap; }
+.ex-btn { flex: 1; min-width: 140px; background: #f8fafc; border: 1px solid var(--border); padding: 12px; border-radius: 8px; font-family: var(--font-body); font-weight: 600; cursor: pointer; transition: 0.2s; color: var(--navy); }
+.ex-btn:hover { border-color: var(--gold); background: #fff; }
+.ex-fb { display: none; margin-top: 15px; padding: 15px; border-radius: 8px; font-size: 0.95rem; font-weight: 700; line-height: 1.6; }
+.ex-fb.right { display: block; background: #d1fae5; color: #065f46; border: 1px solid var(--green); }
+.ex-fb.wrong { display: block; background: #fee2e2; color: #991b1b; border: 1px solid var(--red); }
+
+.game-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.g-item, .g-choice { padding: 15px; border-radius: 8px; font-weight: 700; cursor: pointer; text-align: center; display: flex; align-items: center; justify-content: center; min-height: 60px; transition: 0.2s; font-size: 0.95rem; line-height: 1.5; }
+.g-item { background: var(--navy); color: #fff; }
+.g-choice { background: #fff; border: 2px solid var(--gold); color: var(--navy); }
+.g-item.active { transform: scale(1.05); background: var(--gold); }
+.g-choice:hover { background: #fdfbf7; }
+.g-item.done, .g-choice.done { opacity: 0.5; background: var(--green) !important; border-color: var(--green) !important; color: #fff !important; pointer-events: none; }
+
+/* ================= شريط التقدم والأزرار ================= */
+.progress-tracker { display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 15px 20px; border-radius: 12px; border: 1px solid var(--border); margin: 20px 0; font-weight: 700; color: var(--navy); }
+.prog-dots { display: flex; gap: 8px; }
+.prog-dot { width: 14px; height: 14px; border-radius: 50%; background: #e2e8f0; transition: 0.3s; }
+.prog-dot.done { background: var(--green); box-shadow: 0 0 8px rgba(5,150,105,0.4); }
+
+.nav-row { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; }
+.nav-btn { border: none; padding: 14px 28px; border-radius: 30px; font-family: var(--font-title); font-weight: 800; font-size: 1.1rem; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+.btn-gold { background: var(--gold); color: #fff; }
+.btn-navy { background: var(--navy); color: #fff; }
+.btn-outline { background: #fff; border: 2px solid var(--navy); color: var(--navy); }
+.nav-btn:disabled { background: #cbd5e1; color: #64748b; box-shadow: none; cursor: not-allowed; }
+
+/* ================= التبويبات السفلية والنوازل ================= */
+.bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.98); border-top: 3px solid var(--gold); padding: 10px 20px max(10px, env(safe-area-inset-bottom)); box-shadow: 0 -5px 20px rgba(0,0,0,0.05); display: none; }
+.bottom-inner { max-width: 1000px; margin: 0 auto; display: flex; justify-content: center; gap: 15px; }
+.btab { background: transparent; border: none; color: var(--text-muted); font-family: var(--font-title); font-weight: 800; font-size: 1.05rem; padding: 10px 20px; border-radius: 12px; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
+.btab.act { background: var(--navy); color: var(--gold-light); }
+.btab.locked { opacity: 0.4; cursor: not-allowed; }
+
+.essay-item { border-radius: 12px; margin-bottom: 15px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: 0.3s; }
+.essay-navy .essay-q { background: var(--navy); color: #fff; border-bottom: 3px solid var(--gold); }
+.essay-gold .essay-q { background: var(--gold); color: var(--navy); border-bottom: 3px solid var(--navy); }
+.essay-q { padding: 18px 20px; font-family: var(--font-title); font-weight: 800; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; gap: 15px; }
+.essay-q::before { content: "▼"; font-size: 0.9rem; transition: 0.3s; }
+.essay-item.open .essay-q::before { transform: rotate(180deg); }
+.essay-a { max-height: 0; overflow: hidden; transition: 0.4s ease; background: #fff; font-size: 1.05rem; line-height: 1.9; color: var(--text-main); }
+.essay-item.open .essay-a { padding: 20px; max-height: 1000px; }
+
+/* التقييم النهائي والمراجعة */
+.qz-card { background: #fff; border-radius: 12px; padding: 30px; margin-bottom: 20px; border: 1px solid var(--border); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+.qz-opt { display: block; width: 100%; padding: 16px; margin: 10px 0; border: 2px solid #e2e8f0; border-radius: 8px; background: #fff; cursor: pointer; text-align: right; font-family: var(--font-body); font-size: 1rem; font-weight: 600; transition: 0.2s; }
+.qz-opt:hover { border-color: var(--navy); background: #f8fafc; }
+.qz-opt.right { background: var(--green); color: #fff; border-color: var(--green); }
+.qz-opt.wrong { background: var(--red); color: #fff; border-color: var(--red); }
+
+.fc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 30px;}
+.fc { height: 180px; perspective: 1000px; cursor: pointer; }
+.fc-in { position: relative; width: 100%; height: 100%; transition: 0.6s; transform-style: preserve-3d; border-radius: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+.fc.flip .fc-in { transform: rotateY(180deg); }
+.fc-f, .fc-b { position: absolute; inset: 0; backface-visibility: hidden; border-radius: 16px; padding: 20px; display: flex; align-items: center; justify-content: center; text-align: center; line-height: 1.6; }
+.fc-f { background: var(--navy); color: #fff; font-weight: 700; font-size: 1.1rem; border: 2px solid var(--gold); }
+.fc-b { background: #fff; border: 2px solid var(--navy); color: var(--navy); transform: rotateY(180deg); font-weight: 600; }
+
+.toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: var(--navy); color: var(--gold-light); padding: 12px 25px; border-radius: 30px; font-weight: 700; z-index: 1000; opacity: 0; transition: 0.3s; pointer-events: none; border: 1px solid var(--gold); }
+.toast.on { opacity: 1; }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <!-- ================= HEADER ================= -->
+  <header class="hdr" id="mainHeader" style="display:none">
+    <div class="hdr-right">
+      <div class="logo-box">
+        <img src="../../logo.png" alt="شعار الجامعة" onerror="this.style.display='none'; this.parentElement.textContent='جامعة طيبة'">
+      </div>
+      <div class="hdr-dr">د/ باسم القرافي</div>
+    </div>
+    <div class="hdr-center">
+      <div class="hdr-course">مقرر فقه ٣</div>
+      <div class="hdr-lecture">المحاضرة السابعة: الجناية على ما دون النفس والديات</div>
+    </div>
+    <div class="hdr-stu" id="stuInfo"></div>
+  </header>
+
+  <div class="main">
+    
+    <!-- ================= شاشة الدخول ================= -->
+    <div id="s-login" class="scr on" style="padding:0; max-width: none;">
+      <div class="welcome-wrap">
+        <div class="welcome-box">
+          <div class="logo-box-login">
+            <img src="../../logo.png" alt="شعار الجامعة" onerror="this.style.display='none'">
+          </div>
+          <h1 class="w-title">مقرر فقه ٣</h1>
+          <div class="w-sub">المحاضرة السابعة: الجناية على ما دون النفس والديات</div>
+          <div class="w-dr">إعداد: د/ باسم القرافي</div>
+          
+          <input type="text" id="iName" class="welcome-input" placeholder="أدخل اسمك الكامل هنا...">
+          <input type="text" id="iSec" class="welcome-input" placeholder="رقم الشعبة (مثال: YM3)">
+          <button class="w-btn" onclick="doLogin()">ابدأ رحلة التعلم</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= 0. شاشة الفيديو التمهيدية ================= -->
+    <div id="s-0" class="scr">
+      <div class="hero-banner" style="background:#0a1628; border-color:var(--gold); padding:40px;">
+        <div class="hero-icon" style="color:var(--gold);">🎥</div>
+        <div class="hero-title" style="color:#fff; font-family:var(--font-quran);">تمهيد وملخص المحاضرة</div>
+        <div class="hero-sub" style="color:var(--gold-light);">شاهد هذا الملخص المرئي قبل البدء بالتفاصيل</div>
+      </div>
+
+      <div class="video-wrapper">
+        <video controls playsinline preload="metadata" poster="https://www.transparenttextures.com/patterns/arabesque.png">
+          <source src="summary.mp4" type="video/mp4">
+          عذراً، متصفحك لا يدعم تشغيل مقاطع الفيديو.
+        </video>
+      </div>
+
+      <div class="block-header">نظرة عامة على أبواب المحاضرة</div>
+      <div style="background:#fff; padding:20px; border-radius:12px; border:1px solid var(--border);">
+        <p style="font-size:1.1rem; line-height:1.8; margin-bottom:15px;">تتناول هذه المحاضرة أبواباً مهمة في الفقه الجنائي الإسلامي تتعلق بالجنايات التي لا تصل إلى النفس وأحكام التعويضات المالية:</p>
+        <ul class="num-list">
+          <li><span class="gold-text">مفهوم الجناية على ما دون النفس وأدلتها:</span> تعريفها، وأدلة وجوب القصاص من الكتاب والسنة والإجماع.</li>
+          <li><span class="gold-text">أنواع الجناية (الجرح، قطع الطرف، إبطال المنفعة):</span> وتشمل الشجاج العشرة وأحكامها، وشروط القصاص في الأطراف.</li>
+          <li><span class="gold-text">أحكام الديات ومقاديرها:</span> تعريف الدية، الحكمة منها، المسؤولية عنها، ومقاديرها بحسب نوع المجني عليه.</li>
+        </ul>
+      </div>
+
+      <div class="nav-row">
+        <div></div><button class="nav-btn btn-navy" onclick="goSlide(1)">التالي: مفهوم الجناية وأدلتها ➜</button>
+      </div>
+    </div>
+
+    <!-- ================= 1. مفهوم الجناية على ما دون النفس وأدلتها ================= -->
+    <div id="s-1" class="scr" data-req="4">
+      
+      <div class="hero-banner">
+        <div class="hero-icon">⚖️</div>
+        <div class="hero-title">الباب الأول: الجناية على ما دون النفس</div>
+        <div class="hero-sub">المفهوم والأدلة الشرعية</div>
+        <div class="hero-line"></div>
+        <div class="hero-tags">
+          <div class="hero-tag">التعريف</div><div class="hero-tag">القصاص</div><div class="hero-tag">الأدلة</div>
+        </div>
+      </div>
+
+      <div class="block-header">مخرجات التعلم</div>
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="info-card-icon">📘</div>
+          <div class="info-card-title">التعريف</div>
+          <div class="info-card-desc">أن يعرّف الطالب أنواع الجناية على ما دون النفس.</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon">🕌</div>
+          <div class="info-card-title">الأدلة</div>
+          <div class="info-card-desc">يستدل من الكتاب والسنة على وجوب القصاص فيما دون النفس.</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon">📋</div>
+          <div class="info-card-title">الأنواع</div>
+          <div class="info-card-desc">يميّز بين الأنواع الرئيسية للجناية على ما دون النفس.</div>
+        </div>
+      </div>
+
+      <div class="block-header">مدخل الباب</div>
+      <div class="intro-text">
+        الجناية على ما دون النفس تشمل كل أذى يلحق بالإنسان ولا يؤدي إلى وفاته، وقد وضع الشرع الحكيم لها أحكاماً دقيقة تضمن حق المجني عليه وتحقق العدالة، سواء بالقصاص المماثل أو بالديات والمقدرات الشرعية أو الحكومات القضائية.
+      </div>
+      <div class="verse-box">
+        <div class="verse-basmala">﷽</div>
+        <div class="verse-text">﴿وَكَتَبْنَا عَلَيْهِمْ فِيهَا أَنَّ النَّفْسَ بِالنَّفْسِ وَالْعَيْنَ بِالْعَيْنِ وَالْأَنْفَ بِالْأَنْفِ وَالْأُذُنَ بِالْأُذُنِ وَالسِّنَّ بِالسِّنِّ وَالْجُرُوحَ قِصَاصٌ﴾</div>
+        <div class="verse-ref">سورة المائدة: ٤٥</div>
+      </div>
+
+      <div class="block-header">افهم بسرعة</div>
+      <div class="info-grid">
+        <div class="info-card"><div class="info-card-icon">📘</div><div class="info-card-title">التعريف</div><div class="info-card-desc">كل أذى يقع على الإنسان مما لا يودي بحياته من الجراح وقطع الأعضاء.</div></div>
+        <div class="info-card"><div class="info-card-icon">⚖️</div><div class="info-card-title">الحكم</div><div class="info-card-desc">يجب القصاص لثبوت ذلك بالكتاب والسنة والإجماع إن أمكن الاستيفاء بلا حيف.</div></div>
+        <div class="info-card"><div class="info-card-icon">📋</div><div class="info-card-title">أنواعها</div><div class="info-card-desc">الجناية بالجرح، وقطع الطرف، وإبطال منفعة العضو.</div></div>
+        <div class="info-card"><div class="info-card-icon">🔍</div><div class="info-card-title">الشجاج</div><div class="info-card-desc">الجراحات الواقعة في الرأس والوجه خاصة، وهي عشرة أنواع.</div></div>
+      </div>
+
+      <div class="block-header">النص العلمي الكامل</div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="accordion-header">مفهوم الجناية على ما دون النفس وأدلتها <span class="accordion-icon">+</span></div>
+        <div class="accordion-body">
+          <span class="section-head">التعريف:</span><br>
+          هي <span class="term-blue">كل أذى يقع على الإنسان مما لا يودي بحياته</span>، من الجراح وقطع الأعضاء ونحو ذلك.<br><br>
+          <span class="section-head">الأدلة على وجوب القصاص فيها:</span><br>
+          <ul>
+            <li><span class="hl-green">من الكتاب:</span> قوله تعالى: {وَكَتَبْنَا عَلَيْهِمْ فِيهَا أَنَّ النَّفْسَ بِالنَّفْسِ وَالْعَيْنَ بِالْعَيْنِ وَالْأَنْفَ بِالْأَنْفِ وَالْأُذُنَ بِالْأُذُنِ وَالسِّنَّ بِالسِّنِّ وَالْجُرُوحَ قِصَاصٌ}.</li>
+            <li><span class="hl-green">من السنة:</span> قوله ﷺ في قصة كسر الرَّبِيع ثنية جارية: (كتاب الله القصاص).</li>
+            <li><span class="hl-green">الإجماع:</span> أجمع العلماء على وجوب القصاص فيما دون النفس إن أمكن.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="block-header">تطبيقات عملية</div>
+      <div class="app-scenario">📌 جنى شخص على آخر فشج رأسه شجة كشفت العظم (موضحة) عمداً. (التطبيق: يجب فيها القصاص لتيسر ضبطها واستيفاء مثلها، أو دفع خمس من الإبل).</div>
+
+      <div class="block-header">ملخص الدرس (خريطة ذهنية)</div>
+      <div class="tree-container">
+        <div class="tree-root">الجناية على ما دون النفس</div>
+        <div class="tree-branches">
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>التعريف</h4><p>أذى لا يودي بالحياة<br>جراح وقطع أعضاء</p></div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>الحكم</h4><p>وجوب القصاص<br>إن أمكن بلا حيف</p></div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>الأنواع</h4><p>جرح – قطع طرف<br>إبطال منفعة</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-header">أسئلة الفهم</div>
+      <div class="ex-box" id="ex-1-1">
+        <div class="ex-q">١. الجناية على ما دون النفس هي:</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(1, 1, this, true, 'أحسنت! هي كل أذى لا يؤدي إلى الوفاة.')">كل أذى يقع على الإنسان مما لا يودي بحياته</button><button class="ex-btn" onclick="act(1, 1, this, false, 'خاطئ.')">القتل العمد فقط</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-1-2">
+        <div class="ex-q">٢. الدليل على وجوب القصاص فيما دون النفس من القرآن:</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(1, 2, this, false, 'خاطئ.')">آية الكرسي</button><button class="ex-btn" onclick="act(1, 2, this, true, 'صحيح. قوله تعالى: {والجروح قصاص}.')">قوله تعالى: {والجروح قصاص}</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-1-3">
+        <div class="ex-q">٣. حكم القصاص فيما دون النفس عند الفقهاء:</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(1, 3, this, true, 'صحيح. أجمع العلماء على وجوبه إن أمكن.')">واجب بالإجماع إن أمكن</button><button class="ex-btn" onclick="act(1, 3, this, false, 'خاطئ.')">مندوب فقط</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-1-4"><div class="ex-q">٤. صل المفاهيم:</div><div class="game-grid" id="game-1"></div></div>
+      
+      <div class="progress-tracker"><span>التقدم في هذا الموضوع:</span><div class="prog-dots" id="dots-1"><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div></div></div>
+      <div class="nav-row"><button class="nav-btn btn-outline" onclick="goSlide(0)">◁ التمهيد</button><button class="nav-btn btn-navy" id="next-1" disabled onclick="goSlide(2)">التالي: الجراح والشجاج ➜</button></div>
+    </div>
+
+    <!-- ================= 2. الجناية بالجرح (الشجاج والجروح) ================= -->
+    <div id="s-2" class="scr" data-req="4">
+      <div class="hero-banner">
+        <div class="hero-icon">🔪</div>
+        <div class="hero-title">الباب الثاني: الجناية بالجرح</div>
+        <div class="hero-sub">الشجاج العشرة والجروح في سائر البدن</div>
+        <div class="hero-line"></div>
+        <div class="hero-tags"><div class="hero-tag">الشجاج</div><div class="hero-tag">الموضحة</div><div class="hero-tag">الحكومة</div><div class="hero-tag">الدية</div></div>
+      </div>
+
+      <div class="block-header">مخرجات التعلم</div>
+      <div class="info-grid">
+        <div class="info-card"><div class="info-card-icon">🧠</div><div class="info-card-title">أنواع الشجاج</div><div class="info-card-desc">أن يميّز بين أنواع الشجاج العشرة وأحكامها.</div></div>
+        <div class="info-card"><div class="info-card-icon">💰</div><div class="info-card-title">المقدرات</div><div class="info-card-desc">معرفة دية كل نوع من الشجاج (الموضحة، الهاشمة...).</div></div>
+        <div class="info-card"><div class="info-card-icon">⚖️</div><div class="info-card-title">القصاص</div><div class="info-card-desc">معرفة أن القصاص لا يجب إلا في الموضحة فقط.</div></div>
+        <div class="info-card"><div class="info-card-icon">📋</div><div class="info-card-title">سائر البدن</div><div class="info-card-desc">التفريق بين الشجاج والجروح في باقي الجسد.</div></div>
+      </div>
+
+      <div class="block-header">مدخل الباب</div>
+      <div class="intro-text">تنقسم الجناية بالجرح إلى قسمين: الشجاج (خاصة بالرأس والوجه) والجروح في سائر البدن. وقد فصل الفقهاء أنواع الشجاج إلى عشرة أنواع لكل منها حكمه الخاص.</div>
+
+      <div class="block-header">افهم بسرعة</div>
+      <div class="info-grid">
+        <div class="info-card"><div class="info-card-icon">🔢</div><div class="info-card-title">الشجاج</div><div class="info-card-desc">جراحات الرأس والوجه خاصة، وهي عشرة أنواع.</div></div>
+        <div class="info-card"><div class="info-card-icon">🩸</div><div class="info-card-title">الخمس الأولى</div><div class="info-card-desc">من الحارصة إلى السمحاق: فيها حكومة (لا قصاص ولا دية مقدرة).</div></div>
+        <div class="info-card"><div class="info-card-icon">🦴</div><div class="info-card-title">الموضحة</div><div class="info-card-desc">تكشف العظم، فيها 5 من الإبل، وفيها القصاص.</div></div>
+        <div class="info-card"><div class="info-card-icon">🧠</div><div class="info-card-title">المأمومة والدامغة</div><div class="info-card-desc">تصل إلى جلدة الدماغ أو تخرقها، فيها ثلث الدية.</div></div>
+      </div>
+
+      <div class="block-header">النص العلمي الكامل</div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="accordion-header">أنواع الشجاج العشرة وأحكامها <span class="accordion-icon">+</span></div>
+        <div class="accordion-body">
+          <span class="section-head">الشجاج: هي جراحات الرأس والوجه، وهي عشرة أنواع:</span><br>
+          <ol>
+            <li><span class="term-blue">الحارصة:</span> خدش الجلد ولا تدميه.</li>
+            <li><span class="term-blue">الدامية:</span> تدمي الجلد ويخرج منها دم يسير.</li>
+            <li><span class="term-blue">الباضعة:</span> تشق اللحم شقاً خفيفاً ولا تبلغ العظم.</li>
+            <li><span class="term-blue">المتلاحمة:</span> تغوص في اللحم ولا تبلغ السمحاق.</li>
+            <li><span class="term-blue">السمحاق:</span> تصل إلى القشرة الرقيقة التي بين اللحم والعظم.</li>
+          </ol>
+          <span class="hl-red">(هذه الخمس ليس فيها قصاص ولا دية مقدرة، بل فيها "حكومة" يقدرها القاضي).</span><br><br>
+          <ol start="6">
+            <li><span class="term-blue">الموضحة:</span> تكشف العظم، وفيها <span class="hl-green">خمس من الإبل</span>، وفيها القصاص.</li>
+            <li><span class="term-blue">الهاشمة:</span> تكسر العظم، وفيها <span class="hl-green">عشر من الإبل</span>.</li>
+            <li><span class="term-blue">المنقلة:</span> تكسر العظم وتنقله من مكانه، وفيها <span class="hl-green">خمس عشرة من الإبل</span>.</li>
+            <li><span class="term-blue">المأمومة:</span> تصل إلى جلدة الدماغ، وفيها <span class="hl-green">ثلث الدية</span>.</li>
+            <li><span class="term-blue">الدامغة:</span> تخرق جلدة الدماغ، وفيها <span class="hl-green">ثلث الدية</span>.</li>
+          </ol>
+        </div>
+      </div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="accordion-header">الجراحات في سائر البدن <span class="accordion-icon">+</span></div>
+        <div class="accordion-body">
+          تسمى جرحاً لا شجة، ولا قصاص فيها إلا في <span class="hl-red">الموضحة التي تقطع جزءاً من أجزاء البدن</span> كالصدر.
+        </div>
+      </div>
+
+      <div class="block-header">تطبيقات عملية</div>
+      <div class="app-scenario">📌 جنى شخص على آخر فشج رأسه شجة كشفت العظم (موضحة) عمداً. (التطبيق: يجب فيها القصاص لتيسر ضبطها واستيفاء مثلها، أو دفع خمس من الإبل).</div>
+
+      <div class="block-header">ملخص الدرس (خريطة ذهنية)</div>
+      <div class="tree-container">
+        <div class="tree-root">مقدرات الشجاج (أهمها)</div>
+        <div class="tree-branches">
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>الموضحة</h4><p>5 من الإبل<br>فيها قصاص</p></div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>الهاشمة</h4><p>10 من الإبل</p></div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>المنقلة</h4><p>15 من الإبل</p></div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>المأمومة والجائفة</h4><p>ثلث الدية</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-header">أسئلة الفهم</div>
+      <div class="ex-box" id="ex-2-1">
+        <div class="ex-q">١. ما هي الموضحة؟</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(2, 1, this, true, 'صحيح. الموضحة تكشف العظم وفيها 5 من الإبل.')">الجراحة التي تكشف العظم، وفيها خمس من الإبل</button><button class="ex-btn" onclick="act(2, 1, this, false, 'خاطئ.')">الجراحة التي تكسر العظم</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-2-2">
+        <div class="ex-q">٢. لماذا لا يجب القصاص في الشجاج إلا في الموضحة فقط؟</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(2, 2, this, false, 'خاطئ.')">لأنها الأكثر ألماً</button><button class="ex-btn" onclick="act(2, 2, this, true, 'أحسنت! لعدم إمكان الاستيفاء بلا حيف في غيرها.')">لعدم إمكان الاستيفاء بلا حيف في غيرها</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-2-3">
+        <div class="ex-q">٣. ما مقدار دية الهاشمة؟</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(2, 3, this, true, 'صحيح. الهاشمة فيها عشر من الإبل.')">عشر من الإبل</button><button class="ex-btn" onclick="act(2, 3, this, false, 'خاطئ.')">خمس عشرة من الإبل</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-2-4"><div class="ex-q">٤. صل المفاهيم:</div><div class="game-grid" id="game-2"></div></div>
+      
+      <div class="progress-tracker"><span>التقدم:</span><div class="prog-dots" id="dots-2"><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div></div></div>
+      <div class="nav-row"><button class="nav-btn btn-outline" onclick="goSlide(1)">◁ السابق</button><button class="nav-btn btn-navy" id="next-2" disabled onclick="goSlide(3)">التالي: قطع الطرف ➜</button></div>
+    </div>
+
+    <!-- ================= 3. قطع الطرف ================= -->
+    <div id="s-3" class="scr" data-req="4">
+      <div class="hero-banner">
+        <div class="hero-icon">🖐️</div>
+        <div class="hero-title">الباب الثالث: النوع الثاني (قطع الطرف)</div>
+        <div class="hero-sub">شروط وجوب القصاص في الأطراف</div>
+        <div class="hero-line"></div>
+        <div class="hero-tags"><div class="hero-tag">إمكان الاستيفاء</div><div class="hero-tag">التماثل</div><div class="hero-tag">الاستواء في الصحة</div></div>
+      </div>
+
+      <div class="block-header">مخرجات التعلم</div>
+      <div class="info-grid">
+        <div class="info-card"><div class="info-card-icon">📋</div><div class="info-card-title">الشروط</div><div class="info-card-desc">أن يطبق شروط وجوب القصاص في قطع الأطراف.</div></div>
+        <div class="info-card"><div class="info-card-icon">⚖️</div><div class="info-card-title">إمكان الاستيفاء</div><div class="info-card-desc">أن يكون القطع من مفصل أو له حد ينتهي إليه.</div></div>
+        <div class="info-card"><div class="info-card-icon">🤝</div><div class="info-card-title">التماثل</div><div class="info-card-desc">التماثل في الاسم والموضع (يمين بيمين).</div></div>
+        <div class="info-card"><div class="info-card-icon">✅</div><div class="info-card-title">الصحة والكمال</div><div class="info-card-desc">فلا تؤخذ صحيحة بشلاء.</div></div>
+      </div>
+
+      <div class="block-header">مدخل الباب</div>
+      <div class="intro-text">يجب القصاص في قطع الأطراف عمداً بثلاثة شروط جوهرية تحقق العدالة وتمنع الحيف.</div>
+
+      <div class="block-header">افهم بسرعة</div>
+      <div class="info-grid">
+        <div class="info-card"><div class="info-card-icon">📐</div><div class="info-card-title">الشرط الأول</div><div class="info-card-desc">إمكان الاستيفاء بلا حيف: أن يكون القطع من مفصل أو له حد ينتهي إليه.</div></div>
+        <div class="info-card"><div class="info-card-icon">↔️</div><div class="info-card-title">الشرط الثاني</div><div class="info-card-desc">التماثل بين عضوي الجاني والمجني عليه في الاسم والموضع (يمين بيمين).</div></div>
+        <div class="info-card"><div class="info-card-icon">💪</div><div class="info-card-title">الشرط الثالث</div><div class="info-card-desc">الاستواء في الصحة والكمال: فلا تؤخذ صحيحة بشلاء.</div></div>
+      </div>
+
+      <div class="block-header">النص العلمي الكامل</div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="accordion-header">شروط وجوب القصاص في قطع الأطراف <span class="accordion-icon">+</span></div>
+        <div class="accordion-body">
+          يجب القصاص في العمد منها بثلاثة شروط:
+          <ol>
+            <li><span class="term-blue">إمكان الاستيفاء بلا حيف:</span> بأن يكون القطع من مفصل أو له حد ينتهي إليه.</li>
+            <li><span class="term-blue">التماثل:</span> بين عضوي الجاني والمجني عليه في الاسم والموضع (يمين بيمين).</li>
+            <li><span class="term-blue">الاستواء في الصحة والكمال:</span> فلا تؤخذ صحيحة بشلاء.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="block-header">تطبيقات عملية</div>
+      <div class="app-scenario">📌 تسبب شخص بقطع إصبع آخر خطأً. (التطبيق: لا قصاص في الخطأ، وتجب الدية على العاقلة).</div>
+
+      <div class="block-header">ملخص الدرس (خريطة ذهنية)</div>
+      <div class="tree-container">
+        <div class="tree-root">شروط القصاص في الأطراف</div>
+        <div class="tree-branches">
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>إمكان الاستيفاء</h4><p>القطع من مفصل<br>بلا حيف</p></div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>التماثل</h4><p>في الاسم والموضع<br>يمين بيمين</p></div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>الاستواء</h4><p>في الصحة والكمال<br>لا شلاء بصحيحة</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-header">أسئلة الفهم</div>
+      <div class="ex-box" id="ex-3-1">
+        <div class="ex-q">١. الشرط الأول للقصاص في الأطراف هو:</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(3, 1, this, true, 'صحيح. يجب إمكان الاستيفاء بلا حيف.')">إمكان الاستيفاء بلا حيف</button><button class="ex-btn" onclick="act(3, 1, this, false, 'خاطئ.')">رضا الجاني</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-3-2">
+        <div class="ex-q">٢. هل يقتص من الصحيحة بالشلاء؟</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(3, 2, this, false, 'خاطئ.')">نعم</button><button class="ex-btn" onclick="act(3, 2, this, true, 'أحسنت! لا، من شروط القصاص الاستواء في الصحة والكمال.')">لا، لعدم الاستواء في الصحة والكمال</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-3-3">
+        <div class="ex-q">٣. التماثل في القصاص يعني:</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(3, 3, this, true, 'صحيح. يمين بيمين، وخنصر بخنصر.')">يمين بيمين، خنصر بخنصر</button><button class="ex-btn" onclick="act(3, 3, this, false, 'خاطئ.')">يجوز يمين بيسار</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-3-4"><div class="ex-q">٤. صل المفاهيم:</div><div class="game-grid" id="game-3"></div></div>
+      
+      <div class="progress-tracker"><span>التقدم:</span><div class="prog-dots" id="dots-3"><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div></div></div>
+      <div class="nav-row"><button class="nav-btn btn-outline" onclick="goSlide(2)">◁ السابق</button><button class="nav-btn btn-navy" id="next-3" disabled onclick="goSlide(4)">التالي: إبطال المنفعة ➜</button></div>
+    </div>
+
+    <!-- ================= 4. إبطال منفعة العضو ================= -->
+    <div id="s-4" class="scr" data-req="4">
+      <div class="hero-banner">
+        <div class="hero-icon">👁️</div>
+        <div class="hero-title">الباب الرابع: النوع الثالث (إبطال منفعة العضو)</div>
+        <div class="hero-sub">إتلاف المنافع دون إزالة الأعضاء</div>
+        <div class="hero-line"></div>
+        <div class="hero-tags"><div class="hero-tag">السمع</div><div class="hero-tag">البصر</div><div class="hero-tag">العقل</div><div class="hero-tag">الدية الكاملة</div></div>
+      </div>
+
+      <div class="block-header">مخرجات التعلم</div>
+      <div class="info-grid">
+        <div class="info-card"><div class="info-card-icon">🧠</div><div class="info-card-title">الحكم</div><div class="info-card-desc">معرفة حكم إبطال منافع الأعضاء.</div></div>
+        <div class="info-card"><div class="info-card-icon">💰</div><div class="info-card-title">الدية</div><div class="info-card-desc">تجب دية كاملة أو قسطها بحسب النقص.</div></div>
+        <div class="info-card"><div class="info-card-icon">🚫</div><div class="info-card-title">لا قصاص</div><div class="info-card-desc">لا قصاص لعدم إمكان الاستيفاء بلا حيف.</div></div>
+        <div class="info-card"><div class="info-card-icon">⚖️</div><div class="info-card-title">التقدير</div><div class="info-card-desc">دية كاملة لكل منفعة ذهبت بالكلية.</div></div>
+      </div>
+
+      <div class="block-header">مدخل الباب</div>
+      <div class="intro-text">إذا أبطل الجاني منفعة عضو (كالسمع أو البصر أو العقل) دون إزالة العضو نفسه، فلا قصاص لعدم إمكان الاستيفاء بلا حيف، وتجب فيها دية كاملة.</div>
+
+      <div class="block-header">افهم بسرعة</div>
+      <div class="info-grid">
+        <div class="info-card"><div class="info-card-icon">👂</div><div class="info-card-title">السمع</div><div class="info-card-desc">إذا ذهب السمع بالكلية ففيه دية كاملة.</div></div>
+        <div class="info-card"><div class="info-card-icon">👁️</div><div class="info-card-title">البصر</div><div class="info-card-desc">ذهاب البصر بالكلية يوجب دية كاملة.</div></div>
+        <div class="info-card"><div class="info-card-icon">🧠</div><div class="info-card-title">العقل</div><div class="info-card-desc">ذهاب العقل يوجب دية كاملة.</div></div>
+        <div class="info-card"><div class="info-card-icon">📉</div><div class="info-card-title">النقص الجزئي</div><div class="info-card-desc">فيه قسط من الدية بحسب النقص.</div></div>
+      </div>
+
+      <div class="block-header">النص العلمي الكامل</div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="accordion-header">حكم إبطال منفعة العضو <span class="accordion-icon">+</span></div>
+        <div class="accordion-body">
+          إذا أبطل الجاني منفعة عضو (كالسمع أو البصر أو العقل) دون إزالة العضو نفسه، فلا قصاص لعدم إمكان الاستيفاء بلا حيف، وتجب فيها <span class="hl-red">دية كاملة</span>، أو قسطها بحسب النقص.
+        </div>
+      </div>
+
+      <div class="block-header">تطبيقات عملية</div>
+      <div class="app-scenario">📌 ضرب شخص آخر على رأسه فأذهب سمعه وبصره وبقي العضوان سليمان في الظاهر. (التطبيق: لا قصاص هنا لعدم العضو المماثل للقطع، وتجب دية كاملة لكل منفعة ذهبت).</div>
+
+      <div class="block-header">ملخص الدرس (خريطة ذهنية)</div>
+      <div class="tree-container">
+        <div class="tree-root">إبطال منفعة العضو</div>
+        <div class="tree-branches">
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>الحكم</h4><p>لا قصاص (لعدم الإمكان)<br>تجب الدية</p></div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>الكامل</h4><p>دية كاملة<br>سمع، بصر، عقل</p></div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>النقص</h4><p>قسط من الدية<br>بحسب التقدير</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-header">أسئلة الفهم</div>
+      <div class="ex-box" id="ex-4-1">
+        <div class="ex-q">١. ما دية إبطال منفعة السمع بالكامل؟</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(4, 1, this, true, 'صحيح. دية كاملة (مائة من الإبل).')">دية كاملة (مائة من الإبل)</button><button class="ex-btn" onclick="act(4, 1, this, false, 'خاطئ.')">نصف الدية</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-4-2">
+        <div class="ex-q">٢. لماذا لا يجب القصاص في إبطال المنافع؟</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(4, 2, this, true, 'أحسنت! لعدم إمكان الاستيفاء بلا حيف.')">لعدم إمكان الاستيفاء بلا حيف</button><button class="ex-btn" onclick="act(4, 2, this, false, 'خاطئ.')">لأنها منافع وليست أعضاء</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-4-3">
+        <div class="ex-q">٣. إذا ذهب نصف السمع بسبب الجناية:</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(4, 3, this, true, 'صحيح. قسط من الدية بحسب النقص.')">قسط من الدية بحسب النقص</button><button class="ex-btn" onclick="act(4, 3, this, false, 'خاطئ.')">لا شيء</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-4-4"><div class="ex-q">٤. صل المفاهيم:</div><div class="game-grid" id="game-4"></div></div>
+      
+      <div class="progress-tracker"><span>التقدم:</span><div class="prog-dots" id="dots-4"><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div></div></div>
+      <div class="nav-row"><button class="nav-btn btn-outline" onclick="goSlide(3)">◁ السابق</button><button class="nav-btn btn-navy" id="next-4" disabled onclick="goSlide(5)">التالي: الديات ومشروعيتها ➜</button></div>
+    </div>
+
+    <!-- ================= 5. الديات (المشروعية والمسؤولية) ================= -->
+    <div id="s-5" class="scr" data-req="4">
+      <div class="hero-banner">
+        <div class="hero-icon">💰</div>
+        <div class="hero-title">الباب الخامس: الديات</div>
+        <div class="hero-sub">التعريف، المشروعية، والمسؤولية عن الدية</div>
+        <div class="hero-line"></div>
+        <div class="hero-tags"><div class="hero-tag">العقل</div><div class="hero-tag">العاقلة</div><div class="hero-tag">الكفارة</div></div>
+      </div>
+
+      <div class="block-header">مخرجات التعلم</div>
+      <div class="info-grid">
+        <div class="info-card"><div class="info-card-icon">📘</div><div class="info-card-title">التعريف</div><div class="info-card-desc">أن يعرّف الطالب الدية لغة وشرعاً.</div></div>
+        <div class="info-card"><div class="info-card-icon">🕌</div><div class="info-card-title">الحكمة</div><div class="info-card-desc">يوضّح الحكمة من مشروعية الدية وعلاقتها بحقن الدماء.</div></div>
+        <div class="info-card"><div class="info-card-icon">👥</div><div class="info-card-title">العاقلة</div><div class="info-card-desc">يميّز بين من تجب عليه الدية في قتل العمد والخطأ.</div></div>
+        <div class="info-card"><div class="info-card-icon">📋</div><div class="info-card-title">الكفارة</div><div class="info-card-desc">معرفة أحكام كفارة القتل الخطأ.</div></div>
+      </div>
+
+      <div class="block-header">مدخل الباب</div>
+      <div class="intro-text">الدية هي المال الذي يدفعه الجاني أو عاقلته جبراً لضرر الجناية، وهي بديل شرعي عن القصاص في العمد عند العفو، وأصل أصيل في الخطأ وشبه العمد، شرعها الله رحمة بالخلق وحفظاً لأرواحهم.</div>
+      <div class="verse-box">
+        <div class="verse-basmala">﷽</div>
+        <div class="verse-text">﴿وَمَنْ قَتَلَ مُؤْمِنًا خَطَأً فَتَحْرِيرُ رَقَبَةٍ مُؤْمِنَةٍ وَدِيَّةٌ مُسَلَّمَةٌ إِلَى أَهْلِهِ﴾</div>
+        <div class="verse-ref">سورة النساء: ٩٢</div>
+      </div>
+
+      <div class="block-header">افهم بسرعة</div>
+      <div class="info-grid">
+        <div class="info-card"><div class="info-card-icon">📘</div><div class="info-card-title">التعريف</div><div class="info-card-desc">المال المؤدى للمجني عليه أو وليه بسبب الجناية، وتسمى "العقل".</div></div>
+        <div class="info-card"><div class="info-card-icon">🐪</div><div class="info-card-title">الأصل في الدية</div><div class="info-card-desc">الأصل هو الإبل (مائة من الإبل)، ويجوز تقويمها بالذهب أو الفضة.</div></div>
+        <div class="info-card"><div class="info-card-icon">👥</div><div class="info-card-title">العاقلة</div><div class="info-card-desc">عصبة الجاني الذين يتحملون دية الخطأ وشبه العمد تخفيفاً عنه.</div></div>
+        <div class="info-card"><div class="info-card-icon">✅</div><div class="info-card-title">الكفارة</div><div class="info-card-desc">عتق رقبة، فإن لم يجد فصيام شهرين متتابعين. ولا يجزئ الإطعام.</div></div>
+      </div>
+
+      <div class="block-header">النص العلمي الكامل</div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="accordion-header">تعريف الدية ومشروعيتها <span class="accordion-icon">+</span></div>
+        <div class="accordion-body">
+          <span class="section-head">لغة:</span> من وَدَيْتُ القتيل، أي أعطيت ديته.<br>
+          <span class="section-head">شرعاً:</span> <span class="term-blue">المال المؤدى للمجني عليه أو وليه بسبب الجناية.</span><br>
+          <span class="section-head">الأدلة:</span>
+          <ul>
+            <li>القرآن: {وَمَنْ قَتَلَ مُؤْمِنًا خَطَأً فَتَحْرِيرُ رَقَبَةٍ مُؤْمِنَةٍ وَدِيَّةٌ مُسَلَّمَةٌ إِلَى أَهْلِهِ}.</li>
+            <li>السنة: (من قتل له قتيل فهو بخير النظريين: إما أن يفدى، وإما أن يقتل).</li>
+          </ul>
+          <span class="section-head">الحكمة منها:</span> حفظ الأرواح، والزجر عن الاستهانة بالأنفس، وتطييب نفوس أولياء المقتول.
+        </div>
+      </div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="accordion-header">المسؤولية عن الدية <span class="accordion-icon">+</span></div>
+        <div class="accordion-body">
+          <ul>
+            <li><span class="hl-red">في العمد المحض:</span> تجب الدية في مال القاتل نفسه إذا سقط القصاص بالعفو.</li>
+            <li><span class="hl-green">في الخطأ وشبه العمد:</span> تجب الدية على <span class="term-blue">"العاقلة"</span> (العصبة)، لحديث المرأة من بني لحيان. الحكمة: مواساة الجاني المخطئ وتخفيف العبء عنه.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="accordion-header">كفارة القتل <span class="accordion-icon">+</span></div>
+        <div class="accordion-body">
+          يجب على من قتل مؤمناً خطأً:
+          <ol>
+            <li>عتق رقبة مؤمنة سليمة.</li>
+            <li>فإن لم يجد: صيام شهرين متتابعين. <span class="hl-red">(ولا يجزئ الإطعام لعدم النص عليه).</span></li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="block-header">تطبيقات عملية</div>
+      <div class="app-scenario">📌 قتل رجل آخر خطأً في حادث سيارة. (التطبيق: تجب الدية مائة من الإبل على عاقلة القاتل، وتجب الكفارة في مال القاتل).</div>
+      <div class="app-scenario">📌 عفى أولياء مقتول عمداً عن الجاني على أن يأخذوا الدية. (التطبيق: تجب الدية مغلظة في مال الجاني خاصة، لا تحملها العاقلة لأن القتل عمد).</div>
+
+      <div class="block-header">ملخص الدرس (خريطة ذهنية)</div>
+      <div class="tree-container">
+        <div class="tree-root">أحكام الديات العامة</div>
+        <div class="tree-branches">
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>التعريف والحكمة</h4><p>مال مؤدى للمجني عليه<br>حفظ الأرواح</p></div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>من يتحملها</h4><p>مال القاتل (العمد)<br>العاقلة (الخطأ)</p></div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>الكفارة</h4><p>عتق رقبة<br>أو صيام شهرين</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-header">أسئلة الفهم</div>
+      <div class="ex-box" id="ex-5-1">
+        <div class="ex-q">١. لماذا سميت الدية "عقلاً"؟</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(5, 1, this, true, 'صحيح. لأنها تعقل الدماء وتمنع إراقتها.')">لأنها تعقل الدماء وتمنع إراقتها</button><button class="ex-btn" onclick="act(5, 1, this, false, 'خاطئ.')">لأنها تدفع للعقلاء فقط</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-5-2">
+        <div class="ex-q">٢. متى تكون الدية في مال الجاني ومتى تكون على عاقلته؟</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(5, 2, this, true, 'أحسنت! في العمد: مال الجاني. في الخطأ: العاقلة.')">في العمد: مال الجاني. في الخطأ: العاقلة.</button><button class="ex-btn" onclick="act(5, 2, this, false, 'خاطئ.')">دائماً على العاقلة</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-5-3">
+        <div class="ex-q">٣. ما حكم تقديم الإطعام في كفارة القتل؟</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(5, 3, this, true, 'صحيح. لا يجزئ، بل يجب العتق فإن لم يجد فصيام شهرين.')">لا يجزئ، بل يجب العتق فإن لم يجد فصيام شهرين</button><button class="ex-btn" onclick="act(5, 3, this, false, 'خاطئ.')">يجوز</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-5-4"><div class="ex-q">٤. صل المفاهيم:</div><div class="game-grid" id="game-5"></div></div>
+      
+      <div class="progress-tracker"><span>التقدم:</span><div class="prog-dots" id="dots-5"><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div></div></div>
+      <div class="nav-row"><button class="nav-btn btn-outline" onclick="goSlide(4)">◁ السابق</button><button class="nav-btn btn-navy" id="next-5" disabled onclick="goSlide(6)">التالي: مقادير الديات ➜</button></div>
+    </div>
+
+    <!-- ================= 6. مقادير الديات ================= -->
+    <div id="s-6" class="scr" data-req="4">
+      <div class="hero-banner">
+        <div class="hero-icon">📊</div>
+        <div class="hero-title">الباب السادس: مقادير الديات</div>
+        <div class="hero-sub">تفصيل الديات بحسب نوع المجني عليه</div>
+        <div class="hero-line"></div>
+        <div class="hero-tags"><div class="hero-tag">الرجل</div><div class="hero-tag">المرأة</div><div class="hero-tag">الكتابي</div><div class="hero-tag">الجنين</div></div>
+      </div>
+
+      <div class="block-header">مخرجات التعلم</div>
+      <div class="info-grid">
+        <div class="info-card"><div class="info-card-icon">👨</div><div class="info-card-title">دية الرجل</div><div class="info-card-desc">مائة من الإبل، وتغلظ في العمد.</div></div>
+        <div class="info-card"><div class="info-card-icon">👩</div><div class="info-card-title">دية المرأة</div><div class="info-card-desc">نصف دية الرجل الحر المسلم.</div></div>
+        <div class="info-card"><div class="info-card-icon">📖</div><div class="info-card-title">الكتابي والمجوسي</div><div class="info-card-desc">نصف دية المسلم للكتابي، و800 درهم للمجوسي.</div></div>
+        <div class="info-card"><div class="info-card-icon">👶</div><div class="info-card-title">دية الجنين</div><div class="info-card-desc">غرة (عبد أو أمة) وتقدر بـ 5 من الإبل.</div></div>
+      </div>
+
+      <div class="block-header">مدخل الباب</div>
+      <div class="intro-text">تختلف مقادير الديات بحسب نوع المجني عليه؛ فالرجل له دية كاملة، والمرأة نصفها، والكتابي نصفها، والجنين غرة.</div>
+
+      <div class="block-header">افهم بسرعة</div>
+      <div class="info-grid">
+        <div class="info-card"><div class="info-card-icon">🐪</div><div class="info-card-title">الرجل المسلم</div><div class="info-card-desc">100 من الإبل (تغلظ في العمد: 40 خلفة).</div></div>
+        <div class="info-card"><div class="info-card-icon">👩</div><div class="info-card-title">المرأة المسلمة</div><div class="info-card-desc">50 من الإبل (نصف دية الرجل).</div></div>
+        <div class="info-card"><div class="info-card-icon">📖</div><div class="info-card-title">الكتابي</div><div class="info-card-desc">نصف دية المسلم (50 من الإبل).</div></div>
+        <div class="info-card"><div class="info-card-icon">👶</div><div class="info-card-title">الجنين</div><div class="info-card-desc">غرة (5 من الإبل = عشر دية أمه).</div></div>
+      </div>
+
+      <div class="block-header">النص العلمي الكامل</div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="accordion-header">مقادير الديات بحسب نوع المجني عليه <span class="accordion-icon">+</span></div>
+        <div class="accordion-body">
+          <ol>
+            <li><span class="term-blue">دية الحر المسلم:</span> مائة من الإبل. تغلظ في العمد (تكون 40 منها خلفات أي حوامل).</li>
+            <li><span class="term-blue">دية الحر الكتابي:</span> نصف دية المسلم.</li>
+            <li><span class="term-blue">دية المرأة المسلمة:</span> نصف دية الرجل.</li>
+            <li><span class="term-blue">دية المجوسي والوثني:</span> 800 درهم، ونساؤهم على النصف من ذلك.</li>
+            <li><span class="term-blue">دية الجنين:</span> "غرة" (عبد أو أمة)، وتقدر بخمس من الإبل (عشر دية أمه).</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="block-header">تطبيقات عملية</div>
+      <div class="app-scenario">📌 تسببت امرأة في سقوط جنين جارتها ميتاً. (التطبيق: يجب دفع "غرة" (قيمة 5 من الإبل) وتورث عن الجنين).</div>
+
+      <div class="block-header">ملخص الدرس (خريطة ذهنية)</div>
+      <div class="tree-container">
+        <div class="tree-root">مقادير الديات</div>
+        <div class="tree-branches">
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>الرجل المسلم</h4><p>100 إبل</p></div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>المرأة المسلمة</h4><p>50 إبل</p></div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>الكتابي</h4><p>50 إبل</p></div>
+          </div>
+          <div class="tree-node">
+            <div class="tree-leaf"><h4>الجنين</h4><p>5 إبل (غرة)</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-header">أسئلة الفهم</div>
+      <div class="ex-box" id="ex-6-1">
+        <div class="ex-q">١. ما مقدار دية المرأة المسلمة؟</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(6, 1, this, true, 'صحيح. نصف دية الرجل (50 من الإبل).')">نصف دية الرجل (50 من الإبل)</button><button class="ex-btn" onclick="act(6, 1, this, false, 'خاطئ.')">مثل الرجل (100 من الإبل)</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-6-2">
+        <div class="ex-q">٢. ما المقدار الشرعي لدية الجنين إذا سقط ميتاً؟</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(6, 2, this, true, 'أحسنت! غرة (عبد أو أمة) وتعادل 5 من الإبل.')">غرة (5 من الإبل)</button><button class="ex-btn" onclick="act(6, 2, this, false, 'خاطئ.')">دية كاملة (100 من الإبل)</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-6-3">
+        <div class="ex-q">٣. ما مقدار دية الكتابي (الذمي)؟</div>
+        <div class="ex-opts"><button class="ex-btn" onclick="act(6, 3, this, true, 'صحيح. نصف دية المسلم.')">نصف دية المسلم</button><button class="ex-btn" onclick="act(6, 3, this, false, 'خاطئ.')">مثل دية المسلم</button></div><div class="ex-fb"></div>
+      </div>
+      <div class="ex-box" id="ex-6-4"><div class="ex-q">٤. صل المفاهيم:</div><div class="game-grid" id="game-6"></div></div>
+      
+      <div class="progress-tracker"><span>التقدم:</span><div class="prog-dots" id="dots-6"><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div></div></div>
+      <div class="nav-row"><button class="nav-btn btn-outline" onclick="goSlide(5)">◁ السابق</button><button class="nav-btn btn-gold" id="next-6" disabled onclick="finishLesson()">✓ إتمام الدروس والانتقال</button></div>
+    </div>
+
+    <!-- ================= TAB: NAWAZIL (النوازل المعاصرة) ================= -->
+    <div id="s-nawazil" class="scr">
+      <div class="hero-banner" style="background:#fdfbf7; border-color:var(--gold);">
+        <div class="hero-icon">⚖️</div>
+        <div class="hero-title" style="font-family:var(--font-quran);">النوازل الفقهية المعاصرة</div>
+        <div class="hero-sub">اضغط على النازلة لعرض الحكم الشرعي الخاص بها</div>
+      </div>
+      
+      <div class="essay-list">
+        <div class="essay-item essay-navy" onclick="this.classList.toggle('open')">
+          <div class="essay-q">س١: ما حكم الاعتماد على التقارير الطبية الحديثة في تقدير "الأرُش" للجروح التي ليس فيها دية مقدرة (الحكومة)؟</div>
+          <div class="essay-a">يجوز ويجب الرجوع إلى أهل الخبرة من الأطباء لتقدير نسبة الضرر، حيث حلت التقارير الطبية المعاصرة محل نظام التقويم القديم (تقويم المجني عليه كعبد) لضبط الحقوق بدقة. الدليل: قوله تعالى: (فَاسْأَلُوا أَهْلَ الذِّكْرِ إِن كُنتُمْ لَا تَعْلَمُونَ).</div>
+        </div>
+        <div class="essay-item essay-gold" onclick="this.classList.toggle('open')">
+          <div class="essay-q">س٢: هل يجوز إجراء عملية "تخدير" للجاني عند استيفاء القصاص منه في الأطراف أو الجروح (الموضحة)؟</div>
+          <div class="essay-a">يجوز استخدام التخدير عند تنفيذ القصاص لتجنب زيادة الحيف أو التسبب في آلام تفوق قدر الجناية، ولضمان ثبات العضو أثناء القطع أو الجرح مما يحقق التماثل. الدليل: قوله ﷺ: (فإذا قتلتم فأحسنوا القتلة، وإذا ذبحتم فأحسنوا الذبحة).</div>
+        </div>
+        <div class="essay-item essay-navy" onclick="this.classList.toggle('open')">
+          <div class="essay-q">س٣: ما الحكم إذا أدت الجناية إلى إبطال منفعة "الإحبال" (العقم) أو "الإمناء" نتيجة حادث أو اعتداء؟</div>
+          <div class="essay-a">تجب فيها دية كاملة (دية نفس)، لأن ذهاب المنفعة بالكلية مع بقاء العضو كذهاب العضو نفسه، وفي حال النقص الجزئي تقدر حكومة. الدليل: حديث عمرو بن حزم في مقادير الديات، والقياس على زوال العقل والسمع.</div>
+        </div>
+        <div class="essay-item essay-gold" onclick="this.classList.toggle('open')">
+          <div class="essay-q">س٤: هل يجب القصاص في كسر العظام الكبيرة كالفخذ أو الذراع باستخدام الأجهزة الطبية الحديثة؟</div>
+          <div class="essay-a">لا يجب القصاص في كسر العظام (غير السن) ولو وُجدت آلات دقيقة، لعدم أمن الحيف والزيادة في باطن البدن، وتجب فيها الدية أو الأرش. الدليل: قوله تعالى: (والجروح قصاص)، والاشتراط النبوي للمماثلة.</div>
+        </div>
+        <div class="essay-item essay-navy" onclick="this.classList.toggle('open')">
+          <div class="essay-q">س٥: ما حكم مطالبة المجني عليه بالتعويض المالي عن الأضرار النفسية أو التعطل عن العمل الناتج عن الجرح؟</div>
+          <div class="essay-a">الأصل في الفقه وجوب الدية أو الحكومة عن الجرح، أما التعويض عن "فوات الكسب" ففيه خلاف معاصر، والأرجح دخوله ضمن التقدير العام للحكومة (الأرش) لجبر ضرر المجني عليه. الدليل: قوله ﷺ: (لا ضرر ولا ضرار).</div>
+        </div>
+        <div class="essay-item essay-gold" onclick="this.classList.toggle('open')">
+          <div class="essay-q">س٦: ما حكم الغرامات المالية التي تفرضها أنظمة المرور في حوادث السير (التي لا تصل للوفاة) هل تغني عن الدية؟</div>
+          <div class="essay-a">الغرامة المرورية حق عام للدولة (تعزير)، ولا تسقط حق المجني عليه في الدية أو الأرش (الحق الخاص) الناتج عن الإصابات والجروح. الدليل: قوله تعالى: (وَدِيَةٌ مُّسَلَّمَةٌ إِلَىٰ أَهْلِهِ).</div>
+        </div>
+        <div class="essay-item essay-navy" onclick="this.classList.toggle('open')">
+          <div class="essay-q">س٧: إذا تسببت الجناية في شلل الطرف (عضو أشل) مع بقاء صورته، فما الواجب؟</div>
+          <div class="essay-a">تجب فيها دية كاملة لأن الشلل في حكم العدم للمنفعة، ولا يقاد (لا قصاص) من عضو صحيح بعضو أشل لعدم التماثل في الصحة والكمال. الدليل: عموم قوله ﷺ: (وفي اليد خمسون).</div>
+        </div>
+        <div class="essay-item essay-gold" onclick="this.classList.toggle('open')">
+          <div class="essay-q">س٨: هل تتحمل شركات التأمين التعاوني "الدية" في حوادث الخطأ المعاصرة؟</div>
+          <div class="essay-a">نعم، تأخذ شركات التأمين في العصر الحاضر حكم "العاقلة" في تحمل الديات في قتل الخطأ وما دون النفس، تخفيفاً عن الجاني وتحقيقاً للمصلحة. الدليل: حديث قضى رسول الله ﷺ أن "العقل على عصبتها".</div>
+        </div>
+        <div class="essay-item essay-navy" onclick="this.classList.toggle('open')">
+          <div class="essay-q">س٩: ما الحكم لو سقط الجنين حياً ثم مات بسبب حادث سيارة أو اعتداء بجرح؟</div>
+          <div class="essay-a">إذا سقط حياً ثم مات وجبت فيه الدية الكاملة والكفارة، أما إذا سقط ميتاً ففيه "الغرة" (نصف عشر دية الأب). الدليل: حديث أبي هريرة في قضاء النبي ﷺ في جنين امرأة من بني لحيان بغرة.</div>
+        </div>
+        <div class="essay-item essay-gold" onclick="this.classList.toggle('open')">
+          <div class="essay-q">س١٠: في حال عجز القاتل خطأً عن الصيام لكبر سنه، هل يجزئه الإطعام في الكفارة؟</div>
+          <div class="essay-a">الراجح بقاء الكفارة في ذمته ولا يجزئ الإطعام لعدم النص عليه في كفارة القتل، بخلاف كفارة الظهار والإفطار في رمضان. الدليل: قوله تعالى: (فَمَن لَّمْ يَجِدْ فَصِيَامُ شَهْرَيْنِ مُتَتَابِعَيْنِ).</div>
+        </div>
+      </div>
+      
+      <div style="margin-top:30px; padding:15px; background:var(--navy); color:var(--gold-light); border-radius:12px; text-align:center; font-family:var(--font-title); font-size:1.1rem;">
+        المرجع: الموسوعة الميسرة في فقه القضايا المعاصرة (فقه الجنايات والديات)
+      </div>
+    </div>
+
+    <!-- ================= TAB: REVIEW (المراجعة الشاملة) ================= -->
+    <div id="s-review" class="scr">
+      
+      <div class="hero-banner" style="background:var(--navy); color:#fff; border:none;">
+        <div class="hero-icon" style="color:var(--gold);">🧠</div>
+        <div class="hero-title" style="color:#fff;">المراجعة الشاملة</div>
+        <div class="hero-sub" style="color:var(--gold-light);">بطاقات المفاهيم والأسئلة المقالية لترسيخ الفهم</div>
+      </div>
+      
+      <div class="block-header">أولاً: بطاقات المفاهيم (اضغط للقلب)</div>
+      <div class="fc-grid" id="fcBox"></div>
+
+      <div class="block-header" style="margin-top:40px;">ثانياً: الأسئلة المقالية (١٠ أسئلة)</div>
+      <div class="essay-list">
+        <div class="essay-item essay-navy" onclick="this.classList.toggle('open')"><div class="essay-q">١. قارن بين الشجاج الخمس الأولى (الحارصة إلى السمحاق) والشجاج الخمس الأخيرة من حيث الدية.</div><div class="essay-a">الخمس الأولى فيها حكومة (يقدرها القاضي)، والأخيرة فيها مقدرات شرعية (الموضحة 5، الهاشمة 10، المنقلة 15، المأمومة والدامغة ثلث الدية).</div></div>
+        <div class="essay-item essay-gold" onclick="this.classList.toggle('open')"><div class="essay-q">٢. ما أثر عدم وجود الرقيق والفقر على من وجبت عليه كفارة القتل؟</div><div class="essay-a">ينتقل لصيام شهرين متتابعين، فإن عجز بقيت في ذمته ولا يطعم.</div></div>
+        <div class="essay-item essay-navy" onclick="this.classList.toggle('open')"><div class="essay-q">٣. ما حكم القصاص في كسر العظام (غير السن)؟</div><div class="essay-a">لا قصاص فيها لعدم أمن الحيف، وتجب فيها الدية أو الحكومة.</div></div>
+        <div class="essay-item essay-gold" onclick="this.classList.toggle('open')"><div class="essay-q">٤. علل: وجوب دية الخطأ على العاقلة لا على الجاني وحده.</div><div class="essay-a">لمواساته وتخفيف العبء عنه لأن الجنايات تكثر في الخطأ والجاني معذور.</div></div>
+        <div class="essay-item essay-navy" onclick="this.classList.toggle('open')"><div class="essay-q">٥. متى يجب في إبطال منفعة العضو "حكومة" بدلاً من قسط الدية؟</div><div class="essay-a">إذا لم يمكن معرفة قدر الذاهب من المنفعة بدقة.</div></div>
+        <div class="essay-item essay-gold" onclick="this.classList.toggle('open')"><div class="essay-q">٦. ما حكم القصاص في الجراحات التي تقع في سائر البدن (غير الرأس)؟</div><div class="essay-a">لا قصاص فيها إلا في الموضحة التي تقطع جزءاً من أجزاء البدن.</div></div>
+        <div class="essay-item essay-navy" onclick="this.classList.toggle('open')"><div class="essay-q">٧. استدل من السنة على أن الأصل في الدية "الإبل" وتجوز قيمتها.</div><div class="essay-a">حديث عمر رضي الله عنه حين غلت الإبل ففرضها من الذهب والفضة والبقر والشاء.</div></div>
+        <div class="essay-item essay-gold" onclick="this.classList.toggle('open')"><div class="essay-q">٨. ما الفرق في تغليظ الدية بين قتل العمد وقتل الخطأ؟</div><div class="essay-a">في العمد تغلظ بأن تكون 40 منها خلفات (حوامل)، أما الخطأ فلا تغليظ فيها.</div></div>
+        <div class="essay-item essay-navy" onclick="this.classList.toggle('open')"><div class="essay-q">٩. وضح كيفية حساب "الحكومة" في الجنايات؟</div><div class="essay-a">يقوم المجني عليه كأنه عبد قبل الجناية وبعدها، فما نقص من قيمته وجب له مثله من الدية.</div></div>
+        <div class="essay-item essay-gold" onclick="this.classList.toggle('open')"><div class="essay-q">١٠. ما حكم تورث "الغرة" عن الجنين الذي سقط ميتاً؟</div><div class="essay-a">تورث عنه كأنه سقط حياً لأنها دية لنفسه.</div></div>
+      </div>
+    </div>
+
+    <!-- ================= TAB: QUIZ (التقييم النهائي) ================= -->
+    <div id="s-quiz" class="scr">
+      <div class="hero-banner" style="background:#fdfaf3;">
+        <div class="hero-icon">🎓</div>
+        <div class="hero-title">التقييم الشامل والنهائي</div>
+        <div class="hero-sub">يحتوي على ٢٠ سؤالاً لتقييم فهمك للمحاضرة (النتيجة تُرسل للدكتور آلياً)</div>
+        <div class="hero-line"></div>
+      </div>
+      <div id="qzBox"></div>
+    </div>
+
+  </div>
+
+  <!-- ================= BOTTOM NAVIGATION BAR ================= -->
+  <div class="bottom-bar" id="bottomBar">
+    <div class="bottom-inner">
+      <button class="btab act" data-t="lesson" onclick="switchTab('lesson')">📚 الدرس</button>
+      <button class="btab locked" id="tab-nawazil" data-t="nawazil" onclick="switchTab('nawazil')">⚖️ النوازل</button>
+      <button class="btab locked" id="tab-review" data-t="review" onclick="switchTab('review')">🧠 المراجعة</button>
+      <button class="btab locked" id="tab-quiz" data-t="quiz" onclick="switchTab('quiz')">📝 التقييم</button>
+    </div>
+  </div>
+
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+const GAMES = {
+  1: {pairs:[{l:"الجناية على ما دون النفس",r:"كل أذى لا يودي بحياته"},{l:"دليل القصاص من القرآن",r:"{والجروح قصاص}"},{l:"أنواع الجناية",r:"جرح، قطع طرف، إبطال منفعة"}]},
+  2: {pairs:[{l:"الموضحة",r:"تكشف العظم وفيها 5 من الإبل"},{l:"الهاشمة",r:"تكسر العظم وفيها 10 من الإبل"},{l:"المنقلة",r:"تكسر العظم وتنقله وفيها 15 من الإبل"},{l:"المأمومة",r:"تصل إلى جلدة الدماغ وفيها ثلث الدية"}]},
+  3: {pairs:[{l:"إمكان الاستيفاء بلا حيف",r:"القطع من مفصل أو له حد"},{l:"التماثل",r:"يمين بيمين، خنصر بخنصر"},{l:"الاستواء في الصحة",r:"لا تؤخذ صحيحة بشلاء"}]},
+  4: {pairs:[{l:"إبطال السمع بالكامل",r:"دية كاملة"},{l:"إبطال البصر بالكامل",r:"دية كاملة"},{l:"النقص الجزئي",r:"قسط من الدية"}]},
+  5: {pairs:[{l:"الدية لغة",r:"العقل"},{l:"دية العمد عند العفو",r:"تجب في مال القاتل"},{l:"دية الخطأ",r:"تجب على العاقلة"},{l:"كفارة القتل",r:"عتق رقبة أو صيام شهرين"}]},
+  6: {pairs:[{l:"دية الرجل المسلم",r:"100 من الإبل"},{l:"دية المرأة المسلمة",r:"50 من الإبل"},{l:"دية الكتابي",r:"نصف دية المسلم"},{l:"دية الجنين",r:"غرة (5 من الإبل)"}]}
+};
+
+const FLASHCARDS =[
+  {q:"ما المقصود بالشجاج؟",a:"الجراحات الواقعة في الرأس والوجه خاصة."},
+  {q:"ما هي الموضحة؟",a:"الجراحة التي تكشف العظم، وفيها خمس من الإبل."},
+  {q:"هل يجب القصاص في المأمومة؟",a:"لا، لعدم إمكان الاستيفاء بلا حيف، وفيها ثلث الدية."},
+  {q:"ما حكم الجناية بقطع الطرف عمداً؟",a:"يجب فيها القصاص بثلاثة شروط (الإمكان، التماثل، الاستواء)."},
+  {q:"هل يقتص من الصحيحة بالشلاء؟",a:"لا، من شروط القصاص الاستواء في الصحة والكمال."},
+  {q:"ما دية إبطال منفعة السمع بالكامل؟",a:"دية كاملة (مائة من الإبل)."},
+  {q:"ما تعريف الدية شرعاً؟",a:"المال المؤدى للمجني عليه أو وليه بسبب الجناية."},
+  {q:"على من تجب دية القتل العمد عند العفو؟",a:"تجب في مال القاتل نفسه."},
+  {q:"من هم العاقلة؟",a:"هم عصبة الجاني الذين يتحملون دية الخطأ."},
+  {q:"ما الأصل في مقادير الديات؟",a:"الإبل (مائة من الإبل)."},
+  {q:"ما مقدار دية المرأة المسلمة؟",a:"نصف دية الرجل المسلم (خمسون من الإبل)."},
+  {q:"كم مقدار دية الكتابي (الذمي)؟",a:"نصف دية المسلم."},
+  {q:"ما دية الجنين إذا سقط ميتاً؟",a:"غرة (عبد أو أمة) وتعادل 5 من الإبل."},
+  {q:"ما حكم تقديم الإطعام في كفارة القتل؟",a:"لا يجزئ، بل يجب العتق فإن لم يجد فصيام شهرين."},
+  {q:"ما هي الجائفة؟",a:"الجراحة التي تصل إلى داخل الجوف (كالبطن أو الصدر)."},
+  {q:"ما مقدار دية الهاشمة؟",a:"عشر من الإبل."}
+];
+
+const QUIZ = [
+  {q:"الجراحة التي تكشف العظم تسمى:",o:["الهاشمة","الموضحة","المنقلة","المأمومة"],a:1},
+  {q:"دية الموضحة هي:",o:["عشر دية النفس","ثلث دية النفس","نصف عشر دية النفس","دية كاملة"],a:2},
+  {q:"تجب الحكومة في الشجاج التالية ما عدا:",o:["الحارصة","السمحاق","الباضعة","المنقلة"],a:3},
+  {q:"دية المنقلة هي:",o:["5 من الإبل","10 من الإبل","15 من الإبل","33 من الإبل"],a:2},
+  {q:"تصل الجراحة إلى جلدة الدماغ في:",o:["الهاشمة","المأمومة","الجائفة","الموضحة"],a:1},
+  {q:"القصاص في الشجاج يجب في نوع واحد فقط هو:",o:["الدامغة","المنقلة","الموضحة","السمحاق"],a:2},
+  {q:"يشترط للقصاص في الأطراف التماثل في الاسم والموضع، فلا تؤخذ:",o:["يمين بيسار","أصلي بزائد","خنصر بنصر","جميع ما سبق"],a:3},
+  {q:"دية إبطال منفعة العقل هي:",o:["ثلث الدية","نصف الدية","دية كاملة","حكومة فقط"],a:2},
+  {q:"إذا قتل شخص آخر عمداً وعفا الأولياء إلى الدية، تجب الدية في:",o:["مال العاقلة","مال الجاني","بيت مال المسلمين","بالتساوي بين الجاني وعاقلته"],a:1},
+  {q:"دية الجنين (الغرة) تقدر بـ:",o:["10 من الإبل","5 من الإبل","15 من الإبل","20 من الإبل"],a:1},
+  {q:"دية المعاهد والكتابي بالنسبة لدية المسلم هي:",o:["الربع","النصف","الثلث","المساواة"],a:1},
+  {q:"كفارة القتل الخطأ هي صيام شهرين متتابعين عند العجز عن العتق، فإذا عجز عن الصيام:",o:["يطعم ستين مسكيناً","تسقط عنه الكفارة","تبقى في ذمته ولا يجزئ الإطعام","يذبح هدياً"],a:2},
+  {q:"الشجة التي تكسر العظم تسمى:",o:["باضعة","هاشمة","دامعة","قاشرة"],a:1},
+  {q:"دية الجائفة الواصلة للجوف هي:",o:["ثلث الدية","ربع الدية","نصف الدية","خمس من الإبل"],a:0},
+  {q:"أصل الدية عند الفقهاء هو:",o:["الذهب","الفضة","الإبل","الحلل"],a:2},
+  {q:"دية المرأة الحرة المسلمة بالنسبة للرجل هي:",o:["الربع","النصف","الثلث","المساواة"],a:1},
+  {q:"ثبت وجوب القصاص فيما دون النفس بـ:",o:["الكتاب فقط","السنة فقط","الكتاب والسنة والإجماع","القياس فقط"],a:2},
+  {q:"دية الدامغة التي تخرق جلدة الدماغ هي:",o:["دية كاملة","ثلث الدية","نصف الدية","حكومة"],a:1},
+  {q:"العقل في اصطلاح الفقهاء هو اسم لـ:",o:["القصاص","الدية","الكفارة","التعزير"],a:1},
+  {q:"دية المجوسي الحر هي:",o:["12000 درهم","6000 درهم","800 درهم","400 درهم"],a:2}
+];
+
+/* ================= STATE & LOGIC ================= */
+let user={n:'',s:''}, curSlide=0, startTime=null;
+let progress = { 1:new Set(), 2:new Set(), 3:new Set(), 4:new Set(), 5:new Set(), 6:new Set() };
+let activeL = null;
+
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+const toast = m => { const t=$('#toast'); t.textContent=m; t.classList.add('on'); setTimeout(()=>t.classList.remove('on'), 3000); };
+
+function doLogin(){
+  const n=$('#iName').value.trim(), s=$('#iSec').value.trim();
+  if(!n||!s) return toast('⚠️ يرجى إدخال الاسم الكامل والشعبة');
+  user={n,s}; $('#stuInfo').textContent=`${n} | الشعبة: ${s}`;
+  $('#mainHeader').style.display='flex'; $('#bottomBar').style.display='flex';
+  startTime = Date.now();
+  renderGames(); renderReview(); renderQuiz();
+  goSlide(0);
+}
+
+function goSlide(i){
+  $$('.scr').forEach(s=>s.classList.remove('on'));
+  $(`#s-${i}`).classList.add('on');
+  curSlide = i; window.scrollTo({top:0, behavior:'smooth'});
+  
+  const vid = $('video');
+  if(vid && i !== 0) vid.pause();
+}
+
+function switchTab(t){
+  const btn = $(`#tab-${t}`);
+  if(btn && btn.classList.contains('locked')) return toast('🔒 أكمل الدروس الستة أولاً لفتح هذه الأقسام');
+  
+  const vid = $('video');
+  if(vid) vid.pause();
+
+  $$('.scr').forEach(s=>s.classList.remove('on'));
+  if(t==='lesson') $(`#s-${curSlide}`).classList.add('on');
+  else $(`#s-${t}`).classList.add('on');
+  
+  $$('.btab').forEach(b=>b.classList.remove('act'));
+  $(`.btab[data-t="${t}"]`).classList.add('act');
+  window.scrollTo(0,0);
+}
+
+function toggleAcc(el){ el.classList.toggle('active'); }
+
+function act(slide, exNum, btn, isCorrect, msg){
+  const box = btn.closest('.ex-box');
+  const fb = box.querySelector('.ex-fb');
+  box.querySelectorAll('.ex-btn').forEach(b => b.style.display='none');
+  fb.textContent = msg;
+  fb.className = 'ex-fb ' + (isCorrect ? 'right' : 'wrong');
+  markDone(slide, exNum);
+}
+
+function markDone(slide, exNum){
+  progress[slide].add(exNum);
+  const dots = $$(`#dots-${slide} .prog-dot`);
+  if(dots[exNum-1]) dots[exNum-1].classList.add('done');
+  if(progress[slide].size === parseInt($(`#s-${slide}`).dataset.req)){
+    const nextBtn = $(`#next-${slide}`);
+    if(nextBtn) { nextBtn.disabled = false; toast('✅ أتممت المطلوب، تفضل للدرس التالي.'); }
+  }
+}
+
+function finishLesson(){
+  toast('🎉 عظيم! لقد أنهيت المقرر بالكامل. تم فتح أقسام النوازل والمراجعة والتقييم لك.');
+  $$('.btab.locked').forEach(b => b.classList.remove('locked'));
+  switchTab('nawazil');
+}
+
+function renderGames(){
+  for(let i=1; i<=6; i++){
+    if(!GAMES[i]) continue;
+    const g = GAMES[i], sh =[...g.pairs].sort(()=>Math.random()-.5);
+    $(`#game-${i}`).innerHTML = `
+      <div style="display:flex;flex-direction:column;gap:10px">${g.pairs.map((p,idx)=>`<div class="g-item" onclick="pickL(${i},this,${idx})">${p.l}</div>`).join('')}</div>
+      <div style="display:flex;flex-direction:column;gap:10px">${sh.map((p)=>`<div class="g-choice" onclick="pickR(${i},this,'${p.r}')">${p.r}</div>`).join('')}</div>`;
+  }
+}
+
+function pickL(s, el, idx){ $$(`#game-${s} .g-item`).forEach(e=>e.classList.remove('active')); el.classList.add('active'); activeL={s, el, idx}; }
+function pickR(s, el, txt){
+  if(!activeL || activeL.s !== s) return;
+  if(txt === GAMES[s].pairs[activeL.idx].r){
+    activeL.el.classList.add('done'); el.classList.add('done'); activeL = null;
+    if([...$$(`#game-${s} .g-item`)].every(e=>e.classList.contains('done'))) markDone(s, 4);
+  } else { toast('❌ غير مطابق، حاول مجدداً'); activeL.el.classList.remove('active'); activeL = null; }
+}
+
+function renderReview(){
+  $('#fcBox').innerHTML = FLASHCARDS.map(c=>`<div class="fc" onclick="this.classList.toggle('flip')"><div class="fc-in"><div class="fc-f">${c.q}</div><div class="fc-b">${c.a}</div></div></div>`).join('');
+}
+
+let score=0, answered=0;
+function renderQuiz(){
+  $('#qzBox').innerHTML = QUIZ.map((q,i)=>`<div class="qz-card" id="qc-${i}"><h3 style="margin-bottom:20px;color:var(--navy);font-family:var(--font-title);line-height:1.6;">س${i+1}: ${q.q}</h3>${q.o.map((o,j)=>`<button class="qz-opt" onclick="ansQ(${i},${j},this)">${o}</button>`).join('')}</div>`).join('') + `<div id="qzRes"></div>`;
+}
+
+function ansQ(qi, oi, btn){
+  const card = $(`#qc-${qi}`); if(card.dataset.done) return;
+  card.dataset.done = '1';
+  const btns = card.querySelectorAll('.qz-opt'); btns.forEach(b => b.disabled = true);
+  if(oi === QUIZ[qi].a){ btn.classList.add('right'); score++; } 
+  else { btn.classList.add('wrong'); btns[QUIZ[qi].a].classList.add('right'); }
+  answered++; if(answered === QUIZ.length) finishQuiz();
+}
+
+function finishQuiz(){
+  const s = Math.floor((Date.now() - startTime)/1000);
+  const timeStr = `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;
+  
+  const fd = new FormData();
+  fd.append("entry.1186146438", "السابعة - الجنايات والديات"); 
+  fd.append("entry.598195891", user.n);       
+  fd.append("entry.583802758", user.s);        
+  fd.append("entry.2010697018", score);
+  fd.append("entry.1329211307", timeStr);   
+  fetch("https://docs.google.com/forms/d/e/1FAIpQLSe0zGzyfo7FfGHta0Ae-J5NYmFFCCLK4W2NdnG92dHH51IcBg/formResponse", { method: "POST", mode: "no-cors", body: fd }).catch(e=>console.log(e));
+
+  $('#qzRes').innerHTML = `<div style="text-align:center; padding:40px; background:#f8fafc; border-radius:16px; border:2px solid var(--gold); margin-top:30px;"><h2 style="color:var(--navy);font-family:var(--font-title);">انتهى التقييم!</h2><div style="font-size:4rem;font-weight:900;color:var(--green);margin:15px 0;">${score} / ${QUIZ.length}</div><p style="font-size:1.1rem;color:var(--text-main);"><strong>${user.n}</strong> | الشعبة: <strong>${user.s}</strong></p><p style="margin-top:15px; color:var(--text-muted); font-weight:700;">✅ تم إرسال نتيجتك للدكتور. وقت التعلم: ${timeStr} دقيقة.</p></div>`;
+  $('#qzRes').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>
